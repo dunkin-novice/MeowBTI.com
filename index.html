@@ -4,7 +4,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MeowBTI - 16 Cat Personalities Test</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Base Styles */
+        body { 
+            font-family: 'Arial', sans-serif; 
+            margin: 0;
+            background-color: #f7f7f7;
+            text-align: center;
+        }
+
+        /* Header & Nav Styles */
+        .main-header {
+            background-color: #333;
+            color: white;
+            padding: 15px 30px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .logo-link { text-decoration: none; color: white; }
+        .logo-text { font-size: 1.6em; font-weight: bold; }
+        .logo-tagline { font-size: 0.8em; color: #ccc; }
+        .main-nav ul { display: flex; align-items: center; list-style: none; margin: 0; padding: 0; gap: 30px; }
+        .main-nav a { color: #f0f0f0; text-decoration: none; font-weight: bold; font-size: 1em; transition: color 0.2s; }
+        .main-nav a:hover { color: #ffffff; }
+        .nav-cta a { background-color: #6a0dad; color: white; padding: 12px 22px; border-radius: 8px; transition: background-color 0.2s; }
+        .nav-cta a:hover { background-color: #560a8c; color: white; }
+
+        /* Hero Section */
+        .hero-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 70vh;
+            padding: 40px 20px;
+            background-image: url('https://images.unsplash.com/photo-1574158622682-e40e69841006?q=80&w=2080&auto-format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+        }
+        .hero-section h1 { font-size: 3.5em; margin-bottom: 15px; }
+        .hero-section p { font-size: 1.2em; max-width: 500px; margin-bottom: 30px; line-height: 1.6; }
+        .cta-button {
+            display: inline-block; padding: 18px 40px; background-color: #6a0dad; color: white;
+            font-size: 1.2em; font-weight: bold; text-decoration: none; border-radius: 8px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .cta-button:hover { background-color: #560a8c; transform: scale(1.05); }
+        
+        /* Testimonials Slider Styles */
+        .testimonials-section { padding: 60px 0; background-color: #ffffff; }
+        .testimonials-section h2 { font-size: 2.5em; color: #333; margin-bottom: 40px; }
+        .slider-viewport { max-width: 1200px; margin: 0 auto; overflow-x: hidden; }
+        .slider-track { display: flex; gap: 30px; padding: 10px; transition: transform 0.5s ease-in-out; }
+        .testimonial-card { background-color: #f7f7f7; border-radius: 10px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); text-align: left; flex-shrink: 0; width: 300px; }
+        .testimonial-header { display: flex; align-items: center; margin-bottom: 15px; }
+        .testimonial-avatar { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; margin-right: 15px; border: 3px solid #6a0dad; }
+        .testimonial-info strong { display: block; font-size: 1.1em; color: #333; }
+        .testimonial-info span { font-size: 0.9em; color: #6a0dad; font-weight: bold; }
+        .testimonial-comment { font-size: 1em; color: #555; line-height: 1.5; }
+        .slider-nav { margin-top: 30px; }
+        .slider-arrow { background-color: #fff; border: 2px solid #ddd; border-radius: 50%; width: 50px; height: 50px; font-size: 1.5em; cursor: pointer; transition: all 0.2s; margin: 0 10px; }
+        .slider-arrow:hover { border-color: #6a0dad; color: #6a0dad; }
+        .slider-arrow:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        /* Footer */
+        .site-footer { background-color: #f0f0f0; padding: 25px 20px; margin-top: 40px; color: #555; border-top: 1px solid #ddd; }
+        .sponsor-text { margin: 0 0 10px 0; font-size: 0.9em; }
+        .sponsor-logo { max-height: 50px; margin-bottom: 20px; }
+        .disclaimer { font-size: 0.75em; color: #999; max-width: 700px; margin: 0 auto; text-align: left; }
+    </style>
 </head>
 <body>
 
@@ -35,6 +112,69 @@
         <h2>See What Our Examiners Have To Say!</h2>
         <div class="slider-viewport">
             <div class="slider-track" id="slider-track">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="https://placekitten.com/60/60" alt="Cat Avatar" class="testimonial-avatar">
+                        <div class="testimonial-info"><strong>Mittens</strong><span>CHBR (The Grand General)</span></div>
+                    </div>
+                    <p class="testimonial-comment">"Meow. Meow meow meow meow. Meow meow meow meow meow meow meow. Meow meow."</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="https://placekitten.com/g/60/60" alt="Cat Avatar" class="testimonial-avatar">
+                        <div class="testimonial-info"><strong>Whiskers</strong><span>SDNC (The Peaceful Dreamer)</span></div>
+                    </div>
+                    <p class="testimonial-comment">"Meooow... *stretch* ...Meow meow, purrrr. Mrow."</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="https://cataas.com/cat/says/purr?width=60&height=60" alt="Cat Avatar" class="testimonial-avatar">
+                        <div class="testimonial-info"><strong>Noodle</strong><span>CDBC (The Wild Debater)</span></div>
+                    </div>
+                    <p class="testimonial-comment">"MRRROW! Mrow mrow meow MEOW. Purrrrrr?"</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="https://placekitten.com/60/61" alt="Cat Avatar" class="testimonial-avatar">
+                        <div class="testimonial-info"><strong>Captain Fluffernutter</strong><span>CHNC (The Party Starter)</span></div>
+                    </div>
+                    <p class="testimonial-comment">"Mrow! Meow meow meow meow meow meow meow! Purrrrrrrrrr!"</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="https://placekitten.com/g/60/61" alt="Cat Avatar" class="testimonial-avatar">
+                        <div class="testimonial-info"><strong>Ollie</strong><span>SHNR (The Gentle Defender)</span></div>
+                    </div>
+                    <p class="testimonial-comment">"Mew. Mrrr... purrrrr. Meow."</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="https://placekitten.com/61/61" alt="Cat Avatar" class="testimonial-avatar">
+                        <div class="testimonial-info"><strong>Luna</strong><span>SDBR (The Observant Theorist)</span></div>
+                    </div>
+                    <p class="testimonial-comment">".......meow?"</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="https://placekitten.com/g/61/61" alt="Cat Avatar" class="testimonial-avatar">
+                        <div class="testimonial-info"><strong>Simba</strong><span>CHBC (The Street CEO)</span></div>
+                    </div>
+                    <p class="testimonial-comment">"Meeeooowww. MEOW. Now."</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="https://placekitten.com/62/62" alt="Cat Avatar" class="testimonial-avatar">
+                        <div class="testimonial-info"><strong>Cleo</strong><span>SHBC (The Master Tinkerer)</span></div>
+                    </div>
+                    <p class="testimonial-comment">"*chirp* Mrow! *taps paw* Meow."</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="https://placekitten.com/g/62/62" alt="Cat Avatar" class="testimonial-avatar">
+                        <div class="testimonial-info"><strong>Jasper</strong><span>CDNC (The Joyful Performer)</span></div>
+                    </div>
+                    <p class="testimonial-comment">"Meow! Meow! Meow! Meowmeowmeow! Prrrrrt!"</p>
+                </div>
                 </div>
         </div>
         <div class="slider-nav">
@@ -49,10 +189,53 @@
         <div class="disclaimer">
             Disclaimer: This test is a fun, derivative personality assessment based on common psychological types and is not affiliated with the official MBTI® or The Myers & Briggs Foundation.
         </div>
-    </footer>
+        </footer>
 
     <script>
-        // Slider script here
+        document.addEventListener('DOMContentLoaded', () => {
+            const track = document.getElementById('slider-track');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const cards = Array.from(track.children);
+            const viewport = document.querySelector('.slider-viewport');
+            
+            let currentIndex = 0;
+
+            function updateSliderPosition() {
+                if (cards.length === 0) return;
+                const cardWidth = cards[0].offsetWidth;
+                const gap = parseInt(window.getComputedStyle(track).gap);
+                const scrollAmount = (cardWidth + gap) * currentIndex;
+                
+                track.style.transform = `translateX(-${scrollAmount}px)`;
+                prevBtn.disabled = currentIndex === 0;
+                
+                const trackWidth = track.scrollWidth;
+                const viewportWidth = viewport.offsetWidth;
+                nextBtn.disabled = scrollAmount >= trackWidth - viewportWidth - 1;
+            }
+
+            nextBtn.addEventListener('click', () => {
+                const viewportWidth = viewport.offsetWidth;
+                const trackWidth = track.scrollWidth;
+                const currentPosition = (cards[0].offsetWidth + parseInt(window.getComputedStyle(track).gap)) * currentIndex;
+                
+                if (currentPosition < trackWidth - viewportWidth) {
+                    currentIndex++;
+                    updateSliderPosition();
+                }
+            });
+
+            prevBtn.addEventListener('click', () => {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateSliderPosition();
+                }
+            });
+            
+            updateSliderPosition();
+            window.addEventListener('resize', updateSliderPosition);
+        });
     </script>
 </body>
 </html>

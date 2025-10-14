@@ -4,8 +4,201 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The 16 Cat Personality Types - MeowBTI</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Base Styles */
+        body { 
+            font-family: 'Arial', sans-serif; 
+            margin: 0;
+            background-color: #f7f7f7;
+        }
+
+        /* Header & Nav */
+        .main-header {
+            background-color: #333;
+            color: white;
+            padding: 15px 30px;
+        }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .logo-link { text-decoration: none; color: white; }
+        .logo-text { font-size: 1.6em; font-weight: bold; }
+        .logo-tagline { font-size: 0.8em; color: #ccc; }
+        .main-nav ul { display: flex; align-items: center; list-style: none; margin: 0; padding: 0; gap: 30px; }
+        .main-nav a { color: #f0f0f0; text-decoration: none; font-weight: bold; font-size: 1em; transition: color 0.2s; }
+        .main-nav a:hover { color: #ffffff; }
+        .nav-cta a { background-color: #6a0dad; color: white; padding: 12px 22px; border-radius: 8px; transition: background-color 0.2s; }
+        .nav-cta a:hover { background-color: #560a8c; color: white; }
+
+        /* Main Content Area */
+        .main-container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+        .main-container h1 {
+            font-size: 2.8em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .main-container > p {
+            font-size: 1.1em;
+            color: #555;
+            max-width: 700px;
+            margin: 0 auto 50px auto;
+        }
+
+        /* Personality Group Styling */
+        .personality-group {
+            margin-bottom: 50px;
+        }
+        .group-title {
+            font-size: 2.2em;
+            color: #333;
+            text-align: left;
+            border-bottom: 3px solid #6a0dad;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        .group-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        
+        /* Personality Card Styling */
+        .personality-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            padding: 25px;
+            text-align: left;
+            border-top: 5px solid #6a0dad;
+        }
+        .card-code {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+        }
+        .card-name {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        .card-cta {
+            display: inline-block;
+            background-color: #6a0dad;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+        .card-cta:hover {
+            background-color: #560a8c;
+        }
+
+        /* --- START: CORRECTED FOOTER CSS --- */
+        .site-footer {
+            background-color: #f0f0f0; 
+            padding: 25px 30px; 
+            color: #555; 
+            border-top: 1px solid #ddd;
+        }
+        .footer-content {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .sponsor-text {
+            margin-bottom: 10px;
+        }
+        .sponsor-logo {
+            max-height: 50px; /* This line fixes the size */
+            margin-bottom: 20px;
+        }
+        .disclaimer {
+             margin-bottom: 15px;
+        }
+        /* --- END: CORRECTED FOOTER CSS --- */
+    </style>
 </head>
 <body>
-    </body>
+
+    <header class="main-header">
+        <div class="header-container">
+            <a href="index.html" class="logo-link">
+                <span class="logo-text">16 Cat Personalities</span><span class="logo-tagline">(MeowBTI)</span>
+            </a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="personality-types.html">Personality Types</a></li>
+                    <li><a href="#">Product</a></li>
+                    <li class="nav-cta"><a href="quiz.html">Take the Test</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <h1>The 16 Feline Archetypes</h1>
+        <p>Curious about all the personalities? Explore our four distinct groups to understand every type of quirky cat behavior, from the strategic geniuses to the chaotic cuddle-bugs.</p>
+        
+        <section class="personality-group">
+            <h2 class="group-title">The Generals (xHxR)</h2>
+            <div class="group-grid">
+                <div class="personality-card"><p class="card-code">CHBR</p><p class="card-name">The Grand General</p><a href="CHBR.html" class="card-cta">Read More →</a></div>
+                <div class="personality-card"><p class="card-code">SHBR</p><p class="card-name">The Silent Strategist</p><a href="SHBR.html" class="card-cta">Read More →</a></div>
+                <div class="personality-card"><p class="card-code">CHNR</p><p class="card-name">The Affectionate Warden</p><a href="CHNR.html" class="card-cta">Read More →</a></div>
+                <div class="personality-card"><p class="card-code">SHNR</p><p class="card-name">The Gentle Defender</p><a href="SHNR.html" class="card-cta">Read More →</a></div>
+            </div>
+        </section>
+        <section class="personality-group">
+            <h2 class="group-title">The Visionaries (xDxR)</h2>
+            <div class="group-grid">
+                <div class="personality-card"><p class="card-code">CDBR</p><p class="card-name">The Visionary Supervisor</p><a href="CDBR.html" class="card-cta">Read More →</a></div>
+                <div class="personality-card"><p class="card-code">SDBR</p><p class="card-name">The Observant Theorist</p><a href="SDBR.html" class="card-cta">Read More →</a></div>
+                <div class="personality-card"><p class="card-code">CDNR</p><p class="card-name">The Charismatic Counselor</p><a href="CDNR.html" class="card-cta">Read More →</a></div>
+                <div class="personality-card"><p class="card-code">SDNR</p><p class="card-name">The Empathetic Muse</p><a href="SDNR.html" class="card-cta">Read More →</a></div>
+            </div>
+        </section>
+        <section class="personality-group">
+            <h2 class="group-title">The Mavericks (xHxC)</h2>
+            <div class="group-grid">
+                <div class="personality-card"><p class="card-code">CHBC</p><p class="card-name">The Street CEO</p><a href="CHBC.html" class="card-cta">Read More →</a></div>
+                <div class="personality-card"><p class="card-code">SHBC</p><p class="card-name">The Master Tinkerer</p><a href="SHBC.html" class="card-cta">Read More →</a></div>
+                <div class="personality-card"><p class="card-code">CHNC</p><p class="card-name">The Party Starter</p><a href="CHNC.html" class="card-cta">Read More →</a></div>
+                <div class="personality-card"><p class="card-code">SHNC</p><p class="card-name">The Emotional Artist</p><a href="SHNC.html" class="card-cta">Read More →</a></div>
+            </div>
+        </section>
+        <section class="personality-group">
+            <h2 class="group-title">The Artists (xDxC)</h2>
+            <div class="group-grid">
+                <div class="personality-card"><p class="card-code">CDBC</p><p class="card-name">The Wild Debater</p><a href="CDBC.html" class="card-cta">Read More →</a></div>
+                <div class="personality-card"><p class="card-code">SDBC</p><p class="card-name">The Free Spirit</p><a href="SDBC.html" class="card-cta">Read More →</a></div>
+                <div class="personality-card"><p class="card-code">CDNC</p><p class="card-name">The Joyful Performer</p><a href="CDNC.html" class="card-cta">Read More →</a></div>
+                <div class="personality-card"><p class="card-code">SDNC</p><p class="card-name">The Peaceful Dreamer</p><a href="SDNC.html" class="card-cta">Read More →</a></div>
+            </div>
+        </section>
+        
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p class="sponsor-text">Sponsored by</p>
+            <img src="CATGUY-04.png" alt="Catguy Logo" class="sponsor-logo">
+            <div class="disclaimer">
+                Disclaimer: This test is a fun, derivative personality assessment based on common psychological types and is not affiliated with the official MBTI® or The Myers & Briggs Foundation.
+            </div>
+        </div>
+    </footer>
+
+</body>
 </html>

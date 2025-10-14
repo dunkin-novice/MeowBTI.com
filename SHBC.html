@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Master Tinkerer (SHBC) Report - Cat16Personalities.com</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Shared Styles for Report Pages */
+        body { 
+            font-family: 'Inter', sans-serif; 
+            max-width: 800px; 
+            margin: 0 auto;
+            padding: 20px; 
+            background-color: #f7f7f7;
+            color: #333;
+            line-height: 1.6;
+        }
+        .banner {
+            width: 100%;
+            margin-bottom: 30px;
+            padding: 10px 0;
+            background-color: #333;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .banner img {
+            max-width: 100%;
+            height: auto;
+            max-height: 80px;
+        }
+        .header-section {
+            background-color: white;
+            padding: 40px 30px;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        h1 { color: #6a0dad; font-size: 2.5em; margin-bottom: 5px; }
+        .type-code { font-size: 4em; color: #6a0dad; font-weight: 700; margin: 10px 0; }
+        .type-name { font-size: 1.5em; color: #555; margin-bottom: 20px; }
+
+        /* Trait Section */
+        .traits-section {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        h2 { 
+            color: #333; 
+            font-size: 1.8em; 
+            margin-top: 0; 
+            border-bottom: 3px solid #6a0dad; 
+            padding-bottom: 10px; 
+            margin-bottom: 20px;
+        }
+        .trait-list {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+        }
+        .trait-list li {
+            background-color: #f3f0f7; /* Light purple background */
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 5px solid #6a0dad;
+            border-radius: 5px;
+            font-size: 1.1em;
+        }
+        .trait-list li strong {
+            color: #6a0dad;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        /* Footer/Action Button */
+        .action-button {
+            display: inline-block;
+            padding: 15px 30px;
+            margin-top: 20px;
+            background-color: #6a0dad;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.2s;
+        }
+        .action-button:hover {
+            background-color: #530999;
+        }
+        .disclaimer { font-size: 0.75em; color: #999; margin-top: 50px; text-align: center;}
+
+        /* Responsive Adjustments */
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            .header-section { padding: 20px 15px; }
+            h1 { font-size: 2em; }
+            .type-code { font-size: 3em; }
+            .type-name { font-size: 1.2em; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="banner">
+        <!-- Assuming CATGUY-04.png is available in the deployment context -->
+        <img src="CATGUY-04.png" alt="Sponsored by Catguy - Logo Banner">
+    </div>
+
+    <div class="header-section">
+        <p class="type-name">Your Cat's Archetype Is:</p>
+        <div class="type-code">SHBC</div>
+        <h1>The Master Tinkerer</h1>
+        <p>The **SHBC** type is the quiet, reserved problem-solver. They are masters of mechanical skill, preferring to disassemble and analyze the physical world in solitude. They learn best by manipulating objects.</p>
+    </div>
+
+    <div class="traits-section">
+        <h2>7 Key Traits of The Master Tinkerer</h2>
+        <ul class="trait-list" id="trait-content">
+            <li>
+                <strong>1. Supportive Action (S):</strong> Quietly observes and then acts alone. They will wait until you leave the room to begin their project of taking apart the puzzle toy or investigating the air vent.
+            </li>
+            <li>
+                <strong>2. Fact-Based Hunting (H):</strong> Focused entirely on how things work in the physical world. Their interest is in the tactile experience—the click of the door, the resistance of the carpet fiber.
+            </li>
+            <li>
+                <strong>3. Bossy Logic (B):</strong> Highly objective and detached. They see problems as puzzles to be solved and have no time for emotional attachments unless they are practical (e.g., getting food).
+            </li>
+            <li>
+                <strong>4. Chaos Perception (C):</strong> Flexible and adaptable, able to change their approach instantly if a new object or opportunity presents itself. They never feel obligated to finish one task before starting another.
+            </li>
+            <li>
+                <strong>5. Manual Dexterity:</strong> They are incredibly skillful with their paws, often manipulating complex objects like doorknobs, bottle caps, or drawer pulls with surprising precision.
+            </li>
+            <li>
+                <strong>6. Minimal Communication:</strong> Their communication is primarily non-verbal and physical. If they need something, they will show you the problem (e.g., tap the food dish) rather than meow.
+            </li>
+            <li>
+                <strong>7. The Project Cat:</strong> Always engaged in a personal project, whether it's optimizing a sunbeam for maximum warmth or figuring out the structural weakness of a curtain.
+            </li>
+        </ul>
+    </div>
+
+    <a href="index.html" class="action-button">Take The Test Again</a>
+
+    <div class="disclaimer">
+        Disclaimer: This test is a fun, derivative personality assessment based on common psychological types and is not affiliated with the official MBTI® or The Myers & Briggs Foundation.
+    </div>
+</body>
+</html>
