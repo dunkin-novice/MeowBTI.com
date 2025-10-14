@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MeowBTI - 16 Cat Personalities Test</title>
+    <style>
+        /* Base Styles */
+        body { 
+            font-family: 'Arial', sans-serif; 
+            margin: 0;
+            background-color: #f9f9f9; /* Lighter background */
+            text-align: center;
+        }
+
+        /* --- START: REBRANDED HEADER & NAV STYLES --- */
+        .main-header {
+            background-color: #ffffff; /* White header */
+            border-bottom: 1px solid #eee;
+            padding: 15px 30px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .logo-link { text-decoration: none; color: #333; } /* Dark text on white */
+        .logo-text { font-size: 1.6em; font-weight: bold; }
+        .logo-tagline { font-size: 0.8em; color: #777; }
+        
+        .main-nav ul {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 30px;
+        }
+        .main-nav a {
+            color: #555; /* Dark grey nav links */
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1em;
+            transition: color 0.2s ease-in-out;
+        }
+        .main-nav a:hover {
+            color: #F2762E; /* Orange hover */
+        }
+        .nav-cta a {
+            background-color: #F2762E; /* Orange CTA */
+            color: white;
+            padding: 12px 22px;
+            border-radius: 8px;
+            transition: background-color 0.2s ease-in-out;
+        }
+        .nav-cta a:hover {
+            background-color: #d96a29; /* Darker orange */
+            color: white;
+        }
+        /* --- END: REBRANDED HEADER & NAV STYLES --- */
+
+        /* Hero Section */
+        .hero-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 70vh;
+            padding: 40px 20px;
+            background-image: url('https://images.unsplash.com/photo-1574158622682-e40e69841006?q=80&w=2080&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+        }
+        .hero-section h1 { font-size: 3.5em; margin-bottom: 15px; }
+        .hero-section p { font-size: 1.2em; max-width: 500px; margin-bottom: 30px; line-height: 1.6; }
+        .cta-button {
+            display: inline-block;
+            padding: 18px 40px;
+            background-color: #F2762E; /* Orange CTA */
+            color: white;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .cta-button:hover {
+            background-color: #d96a29;
+            transform: scale(1.05);
+        }
+        
+        /* Testimonials Slider Styles */
+        .testimonials-section { padding: 60px 0; background-color: #ffffff; }
+        .testimonials-section h2 { font-size: 2.5em; color: #333; margin-bottom: 40px; }
+        .slider-viewport { max-width: 1200px; margin: 0 auto; overflow-x: hidden; }
+        .slider-track { display: flex; gap: 30px; padding: 10px; transition: transform 0.5s ease-in-out; }
+        .testimonial-card { background-color: #f9f9f9; border-radius: 10px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); text-align: left; flex-shrink: 0; width: 300px; }
+        .testimonial-header { display: flex; align-items: center; margin-bottom: 15px; }
+        .testimonial-avatar { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; margin-right: 15px; border: 3px solid #4BBFBF; } /* Teal border */
+        .testimonial-info strong { display: block; font-size: 1.1em; color: #333; }
+        .testimonial-info span { font-size: 0.9em; color: #F2762E; font-weight: bold; } /* Orange type */
+        .testimonial-comment { font-size: 1em; color: #555; line-height: 1.5; }
+        .slider-nav { margin-top: 30px; }
+        .slider-arrow { background-color: #fff; border: 2px solid #ddd; border-radius: 50%; width: 50px; height: 50px; font-size: 1.5em; cursor: pointer; transition: all 0.2s; margin: 0 10px; }
+        .slider-arrow:hover { border-color: #F2762E; color: #F2762E; }
+        .slider-arrow:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        /* Footer */
+        .site-footer { background-color: #f0f0f0; padding: 25px 20px; margin-top: 40px; color: #555; border-top: 1px solid #ddd; }
+        .sponsor-text { margin: 0 0 10px 0; font-size: 0.9em; }
+        .sponsor-logo { max-height: 50px; margin-bottom: 20px; }
+        .disclaimer { font-size: 0.75em; color: #999; max-width: 700px; margin: 0 auto; text-align: left; }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="header-container">
+            <a href="index.html" class="logo-link">
+                <span class="logo-text">16 Cat Personalities</span>
+                <span class="logo-tagline">(MeowBTI)</span>
+            </a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="personality-types.html">Personality Types</a></li>
+                    <li><a href="#">Product</a></li>
+                    <li class="nav-cta"><a href="quiz.html">Take the Test</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="hero-section">
+        <h1>What Is Your Cat <em>Really</em> Thinking?</h1>
+        <p>Our 70-question quiz decodes their quirks. From 3 AM zoomies to judging you from across the room, find out what's really going on in that fuzzy little head.</p>
+        <a href="quiz.html" class="cta-button">Take the Test →</a>
+    </main>
+
+    <section class="testimonials-section">
+        <h2>See What Our Examiners Have To Say!</h2>
+        <div class="slider-viewport">
+            <div class="slider-track" id="slider-track">
+                </div>
+        </div>
+        <div class="slider-nav">
+            <button class="slider-arrow" id="prev-btn">&lt;</button>
+            <button class="slider-arrow" id="next-btn">&gt;</button>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <p class="sponsor-text">Sponsored by</p>
+        <img src="CATGUY-04.png" alt="Catguy Logo" class="sponsor-logo">
+        <div class="disclaimer">
+            Disclaimer: This test is a fun, derivative personality assessment based on common psychological types and is not affiliated with the official MBTI® or The Myers & Briggs Foundation.
+        </div>
+    </footer>
+
+    <script>
+        // Slider script here
+    </script>
+</body>
+</html>
