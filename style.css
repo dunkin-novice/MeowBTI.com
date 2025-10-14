@@ -6,10 +6,9 @@ body {
     text-align: center;
 }
 
-/* --- Header & Navigation --- */
+/* --- START: REBRANDED HEADER & NAVIGATION --- */
 .main-header {
-    background-color: #ffffff;
-    border-bottom: 1px solid #eee;
+    background-color: #74A65D; /* NEW: Green background */
     padding: 15px 30px;
     width: 100%;
     box-sizing: border-box;
@@ -23,9 +22,10 @@ body {
     margin: 0 auto;
 }
 
-.logo-link { text-decoration: none; color: #333; }
+/* NEW: All text in header is now white */
+.logo-link { text-decoration: none; color: #ffffff; }
 .logo-text { font-size: 1.6em; font-weight: bold; }
-.logo-tagline { font-size: 0.8em; color: #777; }
+.logo-tagline { font-size: 0.8em; color: #f0f0f0; }
 
 .main-nav ul {
     display: flex;
@@ -37,14 +37,14 @@ body {
 }
 
 .main-nav a {
-    color: #555;
+    color: #f0f0f0; /* Light white for contrast */
     text-decoration: none;
     font-weight: bold;
     font-size: 1em;
     transition: color 0.2s;
 }
 
-.main-nav a:hover { color: #F2762E; }
+.main-nav a:hover { color: #ffffff; } /* Bright white on hover */
 
 .nav-cta a {
     background-color: #F2762E;
@@ -55,27 +55,10 @@ body {
 }
 
 .nav-cta a:hover { background-color: #d96a29; color: white; }
-
-/* --- Footer --- */
-.site-footer {
-    background-color: #f0f0f0;
-    padding: 25px 30px;
-    color: #555;
-    border-top: 1px solid #ddd;
-}
-
-.footer-content {
-    max-width: 700px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.sponsor-text { margin: 0 0 10px 0; font-size: 0.9em; }
-.sponsor-logo { max-height: 50px; margin-bottom: 20px; }
-.disclaimer { font-size: 0.75em; color: #999; text-align: left; }
+/* --- END: REBRANDED HEADER & NAVIGATION --- */
 
 
-/* --- Homepage Specific Styles (`index.html`) --- */
+/* --- START: REBRANDED HOMEPAGE STYLES --- */
 .hero-section {
     display: flex;
     flex-direction: column;
@@ -83,15 +66,23 @@ body {
     align-items: center;
     min-height: 70vh;
     padding: 40px 20px;
-    background-image: url('https://images.unsplash.com/photo-1574158622682-e40e69841006?q=80&w=2080&auto-format&fit=crop');
-    background-size: cover;
-    background-position: center;
-    color: white;
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+    background-color: #F2AF5C; /* NEW: Orange background */
+    /* background-image removed */
 }
 
-.hero-section h1 { font-size: 3.5em; margin-bottom: 15px; }
-.hero-section p { font-size: 1.2em; max-width: 500px; margin-bottom: 30px; line-height: 1.6; }
+/* NEW: Text changed to dark for readability */
+.hero-section h1 {
+    font-size: 3.5em;
+    margin-bottom: 15px;
+    color: #333; 
+}
+.hero-section p {
+    font-size: 1.2em;
+    max-width: 500px;
+    margin-bottom: 30px;
+    line-height: 1.6;
+    color: #444;
+}
 
 .cta-button {
     display: inline-block;
@@ -107,6 +98,9 @@ body {
 
 .cta-button:hover { background-color: #d96a29; transform: scale(1.05); }
 
+/* --- The rest of your styles are unchanged --- */
+
+/* Testimonials, Quiz, Personality Pages, and Footer styles follow... */
 .testimonials-section { padding: 60px 0; background-color: #ffffff; }
 .testimonials-section h2 { font-size: 2.5em; color: #333; margin-bottom: 40px; }
 .slider-viewport { max-width: 1200px; margin: 0 auto; overflow-x: hidden; }
@@ -122,8 +116,7 @@ body {
 .slider-arrow:hover { border-color: #F2762E; color: #F2762E; }
 .slider-arrow:disabled { opacity: 0.5; cursor: not-allowed; }
 
-
-/* --- Quiz Page Specific Styles (`quiz.html`) --- */
+/* Quiz Page Styles */
 .quiz-main-container { max-width: 700px; margin: 40px auto; padding: 0 20px; }
 .quiz-header { margin-bottom: 25px; }
 .progress-bar { height: 10px; background-color: #ddd; border-radius: 5px; margin-bottom: 10px; }
@@ -152,8 +145,7 @@ input[type="radio"]:checked + .option-label { background-color: #4BBFBF; color: 
     color: white; cursor: pointer; border-radius: 8px; font-size: 1.1em; text-decoration: none;
 }
 
-
-/* --- Personality Types Page Specific Styles (`personality-types.html`) --- */
+/* Personality Types Page Styles */
 .types-main-container { max-width: 1100px; margin: 40px auto; padding: 0 20px; text-align: center; }
 .types-main-container h1 { font-size: 2.8em; color: #333; margin-bottom: 20px; }
 .types-main-container > p { font-size: 1.1em; color: #555; max-width: 700px; margin: 0 auto 50px auto; }
@@ -174,8 +166,7 @@ input[type="radio"]:checked + .option-label { background-color: #4BBFBF; color: 
 .group-3 .card-cta { background-color: #74A65D; }
 .group-4 .card-cta { background-color: #4BBFBF; }
 
-
-/* --- Result Page Styles (for CHBR.html, etc.) --- */
+/* Result Page Styles */
 .report-container {
     max-width: 750px;
     margin: 40px auto;
@@ -185,13 +176,7 @@ input[type="radio"]:checked + .option-label { background-color: #4BBFBF; color: 
     box-shadow: 0 4px 20px rgba(0,0,0,0.08);
     text-align: left;
 }
-
-.report-container h1 {
-    font-size: 2.8em;
-    color: #F2762E; /* Orange title */
-    margin: 0;
-}
-
+.report-container h1 { font-size: 2.8em; color: #F2762E; margin: 0; }
 .report-container .summary {
     font-size: 1.3em;
     font-style: italic;
@@ -201,50 +186,24 @@ input[type="radio"]:checked + .option-label { background-color: #4BBFBF; color: 
     margin-top: 10px;
     margin-bottom: 25px;
 }
-
 .report-container h2 {
     font-size: 2em;
     color: #333;
-    border-bottom: 3px solid #F2AF5C; /* Yellow-Orange Underline */
+    border-bottom: 3px solid #F2AF5C;
     padding-bottom: 10px;
     margin-top: 40px;
     margin-bottom: 20px;
 }
-
 .report-container h3 {
     font-size: 1.4em;
-    color: #4BBFBF; /* Teal sub-heading */
+    color: #4BBFBF;
     margin-top: 30px;
     margin-bottom: 10px;
 }
-
-.report-container p {
-    font-size: 1.1em;
-    line-height: 1.7;
-    color: #444;
-}
-
-/* --- START: Result Page CTA Styles --- */
-
-.report-cta-section {
-    margin-top: 40px;
-    padding-top: 30px;
-    border-top: 1px solid #eee;
-    text-align: center;
-}
-
-.report-cta-section h3 {
-    color: #333;
-    font-size: 1.5em;
-    margin-bottom: 20px;
-}
-
-.cta-button-group {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
+.report-container p { font-size: 1.1em; line-height: 1.7; color: #444; }
+.report-cta-section { margin-top: 40px; padding-top: 30px; border-top: 1px solid #eee; text-align: center; }
+.report-cta-section h3 { color: #333; font-size: 1.5em; margin-bottom: 20px; }
+.cta-button-group { display: flex; justify-content: center; gap: 20px; }
 .cta-button {
     display: inline-block;
     padding: 15px 30px;
@@ -254,22 +213,19 @@ input[type="radio"]:checked + .option-label { background-color: #4BBFBF; color: 
     transition: all 0.2s ease-in-out;
     font-size: 1.1em;
 }
+.cta-primary { background-color: #F2762E; color: white; }
+.cta-primary:hover { background-color: #d96a29; }
+.cta-secondary { background-color: transparent; color: #F2762E; border: 2px solid #F2762E; }
+.cta-secondary:hover { background-color: #fef8f0; }
 
-.cta-primary {
-    background-color: #F2762E;
-    color: white;
+/* Footer Styles */
+.site-footer {
+    background-color: #f0f0f0;
+    padding: 25px 30px;
+    color: #555;
+    border-top: 1px solid #ddd;
 }
-.cta-primary:hover {
-    background-color: #d96a29;
-}
-
-.cta-secondary {
-    background-color: transparent;
-    color: #F2762E;
-    border: 2px solid #F2762E;
-}
-.cta-secondary:hover {
-    background-color: #fef8f0;
-}
-
-/* --- END: Result Page CTA Styles --- */
+.footer-content { max-width: 700px; margin: 0 auto; text-align: center; }
+.sponsor-text { margin: 0 0 10px 0; font-size: 0.9em; }
+.sponsor-logo { max-height: 50px; margin-bottom: 20px; }
+.disclaimer { font-size: 0.75em; color: #999; text-align: left; }
