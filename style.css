@@ -174,46 +174,8 @@ input[type="radio"]:checked + .option-label { background-color: #4BBFBF; color: 
 .group-3 .card-cta { background-color: #74A65D; }
 .group-4 .card-cta { background-color: #4BBFBF; }
 
-/* --- Result Page Specific Styles (e.g., CHBR.html) --- */
-.report-container {
-    max-width: 700px;
-    margin: 40px auto;
-    padding: 30px 40px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-    text-align: left;
-}
 
-.report-container h1 {
-    font-size: 2.5em;
-    color: #F2762E; /* Orange title */
-    margin-bottom: 10px;
-}
-
-.report-container .summary {
-    font-size: 1.2em;
-    font-style: italic;
-    color: #777;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 20px;
-    margin-bottom: 20px;
-}
-
-.report-container h2 {
-    font-size: 1.8em;
-    color: #333;
-    margin-top: 30px;
-}
-
-.report-container h3 {
-    font-size: 1.3em;
-    color: #4BBFBF; /* Teal sub-heading */
-    margin-top: 25px;
-}
-
-/* --- START: Result Page Styles (for CHBR.html, etc.) --- */
-
+/* --- Result Page Styles (for CHBR.html, etc.) --- */
 .report-container {
     max-width: 750px;
     margin: 40px auto;
@@ -261,5 +223,3 @@ input[type="radio"]:checked + .option-label { background-color: #4BBFBF; color: 
     line-height: 1.7;
     color: #444;
 }
-
-/* --- END: Result Page Styles --- */
