@@ -181,7 +181,7 @@ section {
     color: #555;
 }
 
-/* --- NEW STYLES FOR PERSONALITY TYPES PAGE --- */
+/* --- STYLES FOR PERSONALITY TYPES PAGE --- */
 .type-group {
     margin-bottom: 3rem;
 }
@@ -221,13 +221,11 @@ section {
 .type-card a:hover {
     text-decoration: underline;
 }
-/* --- END OF NEW STYLES --- */
-
 
 /* --- Testimonials Section --- */
 .testimonials-section {
     background-color: #fff;
-    overflow: hidden; /* Hide overflowing track */
+    overflow: hidden; 
 }
 
 .testimonial-carousel {
@@ -239,7 +237,7 @@ section {
 .testimonial-track {
     display: flex;
     animation: scroll 40s linear infinite;
-    width: calc(350px * 8); /* Card width * number of cards */
+    width: calc(350px * 8); 
 }
 
 .testimonial-card {
@@ -264,7 +262,7 @@ section {
 
 @keyframes scroll {
     0% { transform: translateX(0); }
-    100% { transform: translateX(calc(-350px * 4)); } /* Width * half of cards */
+    100% { transform: translateX(calc(-350px * 4)); } 
 }
 
 /* --- Affiliate Section --- */
@@ -321,6 +319,75 @@ section {
     padding: 18px 40px;
 }
 
+/* --- NEW QUIZ PAGE STYLES --- */
+.quiz-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+}
+.quiz-header {
+    margin-bottom: 2rem;
+}
+.progress-bar {
+    width: 100%;
+    height: 15px;
+    background-color: #eee;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--golden-yellow), var(--warm-orange));
+    width: 0%;
+    border-radius: 10px;
+    transition: width 0.5s ease-in-out;
+}
+.page-indicator {
+    text-align: center;
+    color: #888;
+    font-size: 0.9rem;
+}
+.question-block {
+    margin-bottom: 2.5rem;
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 1.5rem;
+}
+.question-text {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+.question-block input[type="radio"] {
+    display: none; /* Hide the default radio button */
+}
+.option-label {
+    display: block;
+    background: var(--cream-bg);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+.option-label:hover {
+    border-color: var(--soft-amber);
+}
+.question-block input[type="radio"]:checked + .option-label {
+    background-color: var(--soft-amber);
+    color: white;
+    border-color: var(--warm-orange);
+}
+.quiz-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+}
+.quiz-nav-btn {
+    padding: 12px 28px;
+}
+
 /* --- Footer --- */
 .main-footer {
     background: var(--calm-teal);
@@ -374,7 +441,6 @@ section {
     h2 { font-size: 2rem; }
 
     .nav-menu {
-        /* Basic mobile menu handler - could be enhanced with JS for a hamburger menu */
         display: none;
     }
 
