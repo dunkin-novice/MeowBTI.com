@@ -3,77 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Grand General (CHBR) - MeowBTI</title>
+    <!-- Title will be set by JavaScript -->
+    <title>Feline Personality Type - MeowBTI</title>
     <link rel="stylesheet" href="../style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <header class="main-header">
-        <div class="header-container">
-            <a href="../index.html" class="logo-link">
-                <span class="logo-text">16 Cat Personalities</span>
-                <span class="logo-tagline">(MeowBTI)</span>
-            </a>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="../personality-types.html">Personality Types</a></li>
-                    <li><a href="#">Product</a></li>
-                    <li class="nav-cta"><a href="../quiz.html">Take the Test</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <header class="main-header" id="main-header"></header>
 
-    <main class="report-container">
-    
-        <h1>CHBR: The Grand General</h1>
-        <p class="summary"><em>"Everything in this house is a resource, and I am the manager. Your compliance is expected."</em></p>
-    
-        <h2>The Feline Authority Breakdown</h2>
-        <p>This is the rare, powerful cat who operates with the cold efficiency of a corporate executive. The Grand General is **Commanding** because they seek external engagement, **Hunter** because they rely on observable facts, **Bossy** because they prioritize logic over emotion, and **Regal** because they demand structure and closure. They aren't trying to be mean; they're just running a tight ship.</p>
+    <main>
+        <section class="page-content personality-page">
+            <div class="container" id="personality-content">
+                <!-- Content will be dynamically inserted here by personality-page.js -->
+                <h1 id="type-code-title">Loading...</h1>
+                <p id="type-quote" class="type-quote">"..."</p>
+                
+                <h2 class="breakdown-title">The Feline Authority Breakdown</h2>
+                <p id="type-description" class="type-description">Loading personality details...</p>
 
-        <h2>The 7 Key Traits in Action</h2>
-    
-        <h3>1. How They Show Love ❤️</h3>
-        <p>Love is shown through **compliance and proximity**. They will stare intensely at you from a high perch or walk across your keyboard mid-use, signifying that you are the central, albeit distracting, object in their structured universe.</p>
-    
-        <h3>2. How They Ask for Attention 👀</h3>
-        <p>With **loud, sustained, direct meows** and demanding eye contact. If that fails, they will use strategic territorial obstruction (blocking doorways or jumping onto a forbidden counter). They don't ask; they demand compliance with their schedule.</p>
-        
-        <h3>3. Territory (The Fiefdom) 🛡️</h3>
-        <p>They maintain a highly **disciplined perimeter**. Non-human invaders are observed with chilling stillness until they retreat. New humans are immediately sized up, and the General will block entryways until they've been cleared for passage.</p>
-        
-        <h3>4. Energy Throughout the Day ⚡</h3>
-        <p>High and consistent. They are **always on patrol** or engaged in a productive, goal-oriented activity. They hate having unsettled tasks and need closure on all hunts and routines.</p>
-        
-        <h3>5. How They Recharge Energy 🔋</h3>
-        <p>Vigorously **grooming in the middle of the room**, making a silent statement of status. They take quick, efficient naps on firm, elevated surfaces, ready to return to duty instantly.</p>
-        
-        <h3>6. Preferred Role in the House 📜</h3>
-        <p>The **Executive/General**. Their role is overseeing the order, management, and resource allocation of the household. They ensure you adhere to the schedule (mostly the food schedule).</p>
-        
-        <h3>7. How They Flirt with Other Cats 😻</h3>
-        <p>By standing tall and letting the other cat approach for a **formal nose-touch**, or by overtly blocking the other cat's path until a chase (a test of dominance) starts.</p>
+                <h2 class="breakdown-title">The 7 Key Traits in Action</h2>
+                <div id="type-traits" class="traits-container">
+                    <!-- Traits will be loaded here -->
+                </div>
 
-        <div class="report-cta-section">
-            <h3>Ready for More?</h3>
-            <div class="cta-button-group">
-                <a href="../quiz.html" class="cta-button cta-primary">Test Another Cat!</a>
-                <a href="../personality-types.html" class="cta-button cta-secondary">See All Types</a>
+                <div class="ready-for-more">
+                    <h3>Ready for More?</h3>
+                    <a href="../quiz.html" class="cta-button">Test Another Cat!</a>
+                    <a href="../personality-types.html" class="cta-button">See All Types</a>
+                </div>
             </div>
-        </div>
-        </main>
+        </section>
+    </main>
 
-    <footer class="site-footer">
-        <div class="footer-content">
-            <p class="sponsor-text">Sponsored by</p>
-            <img src="../CATGUY-04.png" alt="Catguy Logo" class="sponsor-logo">
-            <div class="disclaimer">
-                Disclaimer: This test is a fun, derivative personality assessment based on common psychological types and is not affiliated with the official MBTI® or The Myers & Briggs Foundation.
-            </div>
-        </div>
-    </footer>
+    <footer class="main-footer" id="main-footer"></footer>
 
+    <!-- Note the ../ path for scripts and styles because this file is in a subfolder -->
+    <script src="../script.js"></script>
+    <script src="../personality-page.js"></script>
 </body>
 </html>
