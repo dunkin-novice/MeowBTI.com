@@ -4,41 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Feline Authority Test - MeowBTI</title>
-    <link rel="stylesheet" href="style.css">
+    <!-- Note the ../ path for styles -->
+    <link rel="stylesheet" href="style.css"> 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Modular header placeholder -->
     <header class="main-header" id="main-header"></header>
 
-    <main class="quiz-main-container">
-        <div id="quiz-container">
-            <div class="quiz-header">
-                <div class="progress-bar"><div id="progress-fill" class="progress-fill"></div></div>
-                <p id="page-number">Page 1 of 6</p>
-            </div>
-            
-            <div id="question-page">
-                <!-- Questions will be dynamically inserted here by quiz-script.js -->
-            </div>
+    <main>
+        <section class="page-content">
+            <div class="container">
+                <div id="quiz-container" class="quiz-wrapper">
+                    <h1>The MeowBTI Quiz</h1>
+                    <div class="quiz-header">
+                        <div class="progress-bar">
+                            <div id="progress-fill" class="progress-fill"></div>
+                        </div>
+                        <p id="page-number" class="page-indicator">Page 1 of 6</p>
+                    </div>
+                    
+                    <div id="question-page" class="question-area">
+                        <!-- Questions will be loaded here by JavaScript -->
+                    </div>
 
-            <div class="navigation-buttons">
-                <button id="prev-button" class="cta-button">Previous</button>
-                <button id="next-button" class="cta-button">Next</button>
-            </div>
-        </div>
+                    <div id="navigation-buttons" class="quiz-navigation">
+                        <button id="prev-button" class="cta-button quiz-nav-btn">Previous</button>
+                        <button id="next-button" class="cta-button quiz-nav-btn">Next</button>
+                    </div>
+                </div>
 
-        <!-- The results screen will be injected here after the quiz is complete -->
+                <div id="result-screen" style="display: none;">
+                    <!-- Result will be loaded here by JavaScript -->
+                </div>
+            </div>
+        </section>
     </main>
-
-    <!-- Modular footer placeholder -->
-    <footer class="main-footer" id="main-footer"></footer>
     
-    <!-- Global site script (loads header/footer) -->
-    <script src="script.js"></script>
-    <!-- Page-specific quiz script -->
-    <script src="quiz-script.js"></script>
+    <footer class="main-footer" id="main-footer"></footer>
 
+    <script src="script.js"></script>
+    <script src="quiz-script.js"></script>
 </body>
 </html>
 
