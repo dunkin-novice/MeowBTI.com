@@ -1,0 +1,205 @@
+const questions = [ /* Your full list of 57 questions */
+    ['When a new human guest enters the house, your cat:', 'Commands the room, immediately moving to greet/inspect the guest.', 'Retreats to a private, secure spot to watch from afar.', 'CS', 'C'],
+    ['When hungry, your cat is more likely to:', 'Give a sharp, insistent demand or perform a strategic obstruction.', 'Sit nearby with a soulful gaze and a gentle, pleading meow.', 'BN', 'B'],
+    ['When playing with a simple string or piece of fluff, your cat will:', 'Focus intensely on the *physical object* and how it moves *now*.', 'Treat the object as an imaginary *prey* in a complicated, abstract scenario.', 'HD', 'H'],
+    ['Regarding feeding time and routines, your cat:', 'Demands a predictable schedule; any deviation causes visible distress.', 'Is flexible and takes meals "whenever," easily adapting to different times.', 'RC', 'R'],
+    ['After a long nap, your cat first seeks:', 'To loudly announce its re-entry into the house and find the center of activity.', 'A moment alone to stretch, groom, and ensure no one is watching too closely.', 'CS', 'C'],
+    ['If another cat (or pet) is using a preferred bed, your cat will:', 'Force a calculated eviction using size, stare, or subtle physical force.', 'Find a less comfortable spot, sulking, or try to squeeze in next to them.', 'BN', 'B'],
+    ['A common sound (e.g., a door closing) is usually interpreted as:', 'A specific, concrete event requiring physical awareness (What is it? Where is it?).', 'A fascinating cue that might precede a new, unknown adventure.', 'HD', 'H'],
+    ['If a toy is left out, your cat is more likely to:', 'Engage with it until the play session is definitively finished and walk away.', 'Intermittently bat it, get distracted, and return later.', 'RC', 'C'],
+    ['When seeking affection, your cat:', 'Stands directly in your line of sight or interrupts your task until noticed.', 'Waits patiently until you are still and relaxed before tentatively approaching.', 'CS', 'C'],
+    ['When approaching its sleeping spot, your cat:', 'Spends a deliberate amount of time fluffing, pawing, and arranging the area to be perfect.', 'Simply flops down wherever it lands, seemingly unconcerned with messy arrangements.', 'RC', 'R'],
+    ['Which appeals more to your cat?', 'Consistency and logic in its environment and schedule.', 'Harmonious, gentle physical contact and affection.', 'BN', 'B'],
+    ['When tracking something, your cat pays more attention to:', 'Clear, observable movements and the physical path of the object.', 'Strange, potential movements, shadows, and subtle noises.', 'HD', 'H'],
+    ['New, non-routine interactions (e.g., a sudden loud sound) tend to:', 'Stimulate and energize your cat, making it investigate.', 'Tax its reserves, causing it to withdraw and hide.', 'CS', 'C'],
+    ['When making a decision (e.g., where to nap), your cat relies more on:', 'Standards (what is efficient and high).', 'Feelings (what feels right and connected to you).', 'BN', 'B'],
+    ['Your cat feels better about:', 'Having its favorite, perfect spot secured and owned.', 'Having the option of many potential spots to try.', 'RC', 'R'],
+    ['In the cat\'s mind:', 'Facts—like the location of the food—"speak for themselves."', 'Facts only serve to illustrate larger principles of the house.', 'HD', 'H'],
+    ['Your cat prefers:', 'To interact with many people briefly.', 'A few intense, lengthy, deep bonds.', 'CS', 'C'],
+    ['Which seems more important to your cat?', 'Being in control or clearly dominating the space.', 'Being loved and cherished by you.', 'BN', 'B'],
+    ['Your cat tends to be more:', 'Deliberate and planned than spontaneous.', 'Spontaneous and impulsive than deliberate.', 'RC', 'R'],
+    ['When presented with a task (like getting water), your cat is more likely to:', 'Perform the action the usual, proven way (e.g., drink from the bowl).', 'Experiment and try its own way (e.g., drink from the faucet or glass).', 'HD', 'H'],
+    ['When a stranger is nearby, your cat:', 'Communicates easily and at length with loud meows/purrs.', 'Is silent and watchful, finding little to communicate.', 'CS', 'C'],
+    ['Your cat\'s inclination when it comes to attention is to be somewhat:', 'Objective (expects a specific result like food).', 'Personal (seeks connection and mutual affection).', 'BN', 'B'],
+    ['Your cat is more:', 'Punctual, demanding food at the exact schedule.', 'Leisurely, happy to eat whenever you eventually offer it.', 'RC', 'R'],
+    ['New, non-practical hiding spots (e.g., an open drawer) are:', 'Somewhat annoying, as they are not safe or useful.', 'Rather fascinating, representing a new possibility.', 'HD', 'H'],
+    ['In the house, your cat\'s main focus is to:', 'Keep abreast of everyone\'s location and activities.', 'Be comfortable, often oblivious to what others are doing.', 'CS', 'C'],
+    ['Your cat is more comfortable making:', 'Logical judgments (This action gets food).', 'Value judgments (I love this person).', 'BN', 'B'],
+    ['Does your cat try to make events occur:', 'By careful selection (sitting *here* to get *that*).', 'Randomly, trusting chance will bring excitement.', 'RC', 'R'],
+    ['Your cat interacts with the world more by:', 'Processing clear, literal sensor information (sights, facts).', 'Making imaginative leaps based on what *might* be (intuition).', 'HD', 'H'],
+    ['When seeking affection, your cat:', 'Just acts, trusting its voice/actions will achieve the goal.', 'Cautiously plans its approach, waiting for the right moment.', 'CS', 'C'],
+    ['In judging others, your cat is swayed more by:', 'The consistency and logical application of rules.', 'The emotional closeness and affection it receives.', 'BN', 'B'],
+    ['Your cat prefers things to be:', 'Settled, decided, and predictable.', 'Unsettled and open to change.', 'RC', 'R'],
+    ['Your cat\'s intelligence is more:', 'Practical (how to open the treat bag).', 'Ingenious (how to create a new way to climb).', 'HD', 'H'],
+    ['When there is new, loud commotion, your cat:', 'Hastens to investigate first.', 'Hopes someone else will handle it.', 'CS', 'C'],
+    ['If another cat breaks a house rule, your cat is swayed more by:', 'Enforcing the clear, established boundary.', 'Considering the other cat\'s current emotional state/need.', 'BN', 'B'],
+    ['Your cat puts more value on:', 'Finality and closure (e.g., catching the laser dot).', 'Open-mindedness to new stimuli and possibilities.', 'RC', 'R'],
+    ['Your cat is more likely to view the human as:', 'A utility (source of food, heat, or necessary action).', 'A complex emotional being (that needs support or watching).', 'HD', 'H'],
+    ['When relaxing, your cat is more inclined to be:', 'Easy to approach and willing to interact.', 'Somewhat reserved and tucked away.', 'CS', 'C'],
+    ['Your cat is more:', 'Firm in its demands than gentle.', 'Gentle than firm.', 'BN', 'B'],
+    ['Your cat is more:', 'Routinized than whimsical.', 'Whimsical than routinized.', 'RC', 'R'],
+    ['When assessing a new potential risk, your cat is more likely to trust:', 'Its own past experience in similar situations.', 'A spontaneous hunch or strange intuition.', 'HD', 'H'],
+    ['At peak play time, your cat:', 'Gains energy from the intensity of the interaction, wanting more.', 'Gets easily drained by the excitement and often retreats to rest.', 'CS', 'C'],
+    ['Your cat values being:', 'Unwavering and persistent in its demands.', 'Devoted and loyal to its person.', 'BN', 'B'],
+    ['Your cat is more comfortable:', 'Once a routine is firmly established.', 'While the routine is still flexible.', 'RC', 'R'],
+    ['Your cat seems more interested in:', 'The production of a successful catch.', 'The design and research of new behaviors.', 'HD', 'H'],
+    ['In a new, non-threatening situation (e.g., a quiet friend visiting), your cat:', 'Initiates interaction with a sniff or meow.', 'Waits patiently to be approached first.', 'CS', 'C'],
+    ['Which rules your cat more?', 'Its rational, practical *head*.', 'Its emotional, affectionate *heart*.', 'BN', 'B'],
+    ['Your cat is more comfortable with playtime that is:', 'Structured and predictable (same toy, same time).', 'Casual and spontaneous (chasing a random bug).', 'RC', 'R'],
+    ['Your cat is drawn more to:', 'Fundamentals (the physical need for food, touch).', 'Overtones (the emotional subtext, your mood).', 'HD', 'H'],
+    ['Your cat prefers:', 'To interact with many people briefly.', 'A few close friends with more lengthy, deep contact.', 'CS', 'C'],
+    ['Which seems worse to your cat?', 'To be too cold or objective (Treated like a machine).', 'To be too passionate or affectionate (Overwhelmed by touch).', 'BN', 'B'],
+    ['Your cat tends to look for:', 'The orderly, expected path through the house.', 'Whatever new and unexpected thing turns up.', 'RC', 'R'],
+    ['When hunting, your cat:', 'Uses tested routes and logic.', 'Spontaneously chases shadows and imaginary things.', 'HD', 'H'],
+    ['When a stranger enters, your cat:', 'Meows easily and at length.', 'Is silent and watchful.', 'CS', 'C'],
+    ['In a relationship with a littermate, your cat is inclined more to be:', 'Fair-minded (I earned this spot, you earned that spot).', 'Sympathetic (allowing the other cat the spot if they seem to need it).', 'BN', 'B'],
+    ['Your cat feels better about:', 'Having a final, settled arrangement.', 'A tentative, preliminary plan, open to revision.', 'RC', 'R'],
+    ['Your cat\'s body language is:', 'Literal and clear (e.g., obvious stalk or rub).', 'Figurative and open to interpretation (a subtle glance, a strange posture).', 'HD', 'H'],
+    ['Your cat is more comfortable:', 'Once a routine is established.', 'While the routine is still flexible.', 'RC', 'R'],
+];
+
+const typeNames = {
+    'CHBR': 'The Grand General', 'CHNR': 'The Affectionate Warden', 'CDBR': 'The Visionary Supervisor', 'CDNR': 'The Charismatic Counselor',
+    'SHBR': 'The Silent Strategist', 'SHNR': 'The Gentle Defender', 'SDBR': 'The Observant Theorist', 'SDNR': 'The Empathetic Muse',
+    'CHBC': 'The Street CEO', 'CHNC': 'The Party Starter', 'CDBC': 'The Wild Debater', 'CDNC': 'The Joyful Performer',
+    'SHBC': 'The Master Tinkerer', 'SHNC': 'The Emotional Artist', 'SDBC': 'The Free Spirit', 'SDNC': 'The Peaceful Dreamer',
+};
+
+const questionsPerPage = 10;
+const totalPages = Math.ceil(questions.length / questionsPerPage);
+let currentPage = 0;
+const userAnswers = {};
+
+const questionPageContainer = document.getElementById('question-page');
+const nextButton = document.getElementById('next-button');
+const prevButton = document.getElementById('prev-button');
+const pageNumberEl = document.getElementById('page-number');
+const progressFillEl = document.getElementById('progress-fill');
+const navigationButtonsContainer = document.querySelector('.navigation-buttons');
+
+function displayCurrentPage() {
+    questionPageContainer.innerHTML = '';
+    const start = currentPage * questionsPerPage;
+    const end = Math.min(start + questionsPerPage, questions.length);
+
+    for (let i = start; i < end; i++) {
+        const q = questions[i];
+        const questionIndex = i;
+        const isCheckedA = userAnswers[questionIndex] === 'A' ? 'checked' : '';
+        const isCheckedB = userAnswers[questionIndex] === 'B' ? 'checked' : '';
+
+        const questionBlock = document.createElement('div');
+        questionBlock.className = 'question-block';
+        questionBlock.innerHTML = `
+            <p class="question-text">${questionIndex + 1}. ${q[0]}</p>
+            <div>
+                <input type="radio" name="q${questionIndex}" id="q${questionIndex}a" value="A" ${isCheckedA}>
+                <label for="q${questionIndex}a" class="option-label">${q[1]}</label>
+                <br>
+                <input type="radio" name="q${questionIndex}" id="q${questionIndex}b" value="B" ${isCheckedB}>
+                <label for="q${questionIndex}b" class="option-label">${q[2]}</label>
+            </div>`;
+        questionPageContainer.appendChild(questionBlock);
+    }
+
+    pageNumberEl.textContent = `Page ${currentPage + 1} of ${totalPages}`;
+    progressFillEl.style.width = `${((currentPage) / (totalPages -1)) * 100}%`;
+
+    prevButton.style.display = (currentPage === 0) ? 'none' : 'inline-block';
+    navigationButtonsContainer.style.justifyContent = (currentPage === 0) ? 'flex-end' : 'space-between';
+    
+    nextButton.textContent = (currentPage === totalPages - 1) ? 'Finish & See Results' : 'Next';
+}
+
+function saveCurrentAnswers() {
+    const start = currentPage * questionsPerPage;
+    const end = Math.min(start + questionsPerPage, questions.length);
+    for (let i = start; i < end; i++) {
+        const answer = document.querySelector(`input[name="q${i}"]:checked`);
+        if (answer) {
+            userAnswers[i] = answer.value;
+        }
+    }
+}
+
+nextButton.addEventListener('click', () => {
+    const start = currentPage * questionsPerPage;
+    const end = Math.min(start + questionsPerPage, questions.length);
+    let allAnswered = true;
+    for (let i = start; i < end; i++) {
+        if (!document.querySelector(`input[name="q${i}"]:checked`)) {
+            allAnswered = false;
+            break;
+        }
+    }
+
+    if (!allAnswered) {
+        // A non-blocking custom alert would be better in the future
+        alert('Please answer all questions on this page!');
+        return;
+    }
+
+    saveCurrentAnswers();
+
+    if (currentPage < totalPages - 1) {
+        currentPage++;
+        displayCurrentPage();
+        window.scrollTo(0, 0);
+    } else {
+        calculateAndShowResults();
+    }
+});
+
+prevButton.addEventListener('click', () => {
+    if (currentPage > 0) {
+        saveCurrentAnswers(); // Save answers before going back
+        currentPage--;
+        displayCurrentPage();
+        window.scrollTo(0, 0);
+    }
+});
+
+function calculateAndShowResults() {
+    let scores = { 'C': 0, 'S': 0, 'H': 0, 'D': 0, 'B': 0, 'N': 0, 'R': 0, 'C': 0 };
+    
+    // Tally scores based on answers
+    for (let i = 0; i < questions.length; i++) {
+        const questionData = questions[i];
+        const traitPair = questionData[3]; // e.g., 'CS'
+        const answer = userAnswers[i]; // 'A' or 'B'
+        
+        if (answer === 'A') {
+            const trait = traitPair.charAt(0);
+            scores[trait]++;
+        } else if (answer === 'B') {
+            const trait = traitPair.charAt(1);
+            scores[trait]++;
+        }
+    }
+
+    const letter1 = scores['C'] > scores['S'] ? 'C' : 'S';
+    const letter2 = scores['H'] > scores['D'] ? 'H' : 'D';
+    const letter3 = scores['B'] > scores['N'] ? 'B' : 'N';
+    const letter4 = scores['R'] > scores['C'] ? 'R' : 'C';
+
+    const finalCode = letter1 + letter2 + letter3 + letter4;
+    const finalName = typeNames[finalCode] || 'Unknown Type';
+
+    const quizContainer = document.getElementById('quiz-container');
+    quizContainer.innerHTML = `
+        <div id="result-screen">
+            <h2>Your Cat's Type Is:</h2>
+            <h1 class="final-type-code">${finalCode}</h1>
+            <p class="final-type-name">${finalName}</p>
+            <p>Congratulations! Click below to view the full personality report.</p>
+            <a href="personality-types/${finalCode}.html" class="cta-button result-button">View Full Report</a>
+        </div>
+    `;
+    window.scrollTo(0, 0);
+}
+
+
+// Initial call to display the first page when the script loads
+if (questionPageContainer) {
+    displayCurrentPage();
+}
