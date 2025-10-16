@@ -158,6 +158,20 @@ section {
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
+/* --- NEW: Styles for generic content pages (Privacy, Terms, etc.) --- */
+.page-content .container {
+    background-color: #fff;
+    padding: 2rem 2.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    text-align: left;
+}
+
+.page-content h1 {
+    text-align: left;
+    margin-bottom: 1.5rem;
+}
+
 /* --- Testimonials Section --- */
 .testimonials-section {
     background-color: #fff;
