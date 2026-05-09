@@ -3,28 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- SEO Meta Tags -->
-    <title>MeowBTI — 16 Cat Personalities Quiz</title>
-    <meta name="description" content="Discover your cat’s personality with MeowBTI, the 16-type feline test. From the Grand General to the Gentle Guardian — find out who your cat really is!">
+    <title>MeowBTI — what kind of menace is your cat?</title>
+    <meta name="description" content="8 questions. 60 seconds. Find out which of 16 chaotic personalities your cat truly is. The MeowBTI feline personality test.">
     <meta name="keywords" content="cat quiz, MBTI cats, cat personality test, MeowBTI, cat behavior">
     <meta name="author" content="MeowBTI">
+    <meta name="theme-color" content="#FFF4EC">
     <link rel="canonical" href="https://yourgithubusername.github.io/meowbti/">
 
     <!-- Favicon Placeholder -->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 
-    <!-- Open Graph Meta Tags (for social sharing) -->
-    <meta property="og:title" content="MeowBTI — 16 Cat Personalities Quiz">
-    <meta property="og:description" content="What is your cat really thinking? Discover their unique personality with our fun and insightful quiz!">
+    <!-- Open Graph -->
+    <meta property="og:title" content="MeowBTI — what kind of menace is your cat?">
+    <meta property="og:description" content="8 questions. 60 seconds. Find out which of 16 chaotic personalities your cat truly is.">
     <meta property="og:image" content="https://yourgithubusername.github.io/meowbti/assets/og-image.jpg">
     <meta property="og:url" content="https://yourgithubusername.github.io/meowbti/">
     <meta property="og:type" content="website">
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
@@ -44,20 +40,17 @@
           "@type": "WebSite",
           "name": "MeowBTI",
           "url": "https://yourgithubusername.github.io/meowbti/",
-          "description": "Discover your cat’s personality with the 16-type MeowBTI test.",
+          "description": "Discover your cat's personality with the 16-type MeowBTI test.",
           "publisher": {
             "@type": "Organization",
             "name": "MeowBTI"
           }
         },
         {
-          "@type": "Article",
-          "mainEntityOfPage": { "@type": "WebPage", "@id": "https://yourgithubusername.github.io/meowbti/" },
-          "headline": "MeowBTI — Discover Your Cat's 16 Personality Types",
-          "image": "https://yourgithubusername.github.io/meowbti/assets/hero-cat.jpg",  
-          "author": { "@type": "Organization", "name": "MeowBTI" },  
-          "publisher": { "@type": "Organization", "name": "MeowBTI", "logo": { "@type": "ImageObject", "url": "https://yourgithubusername.github.io/meowbti/assets/logo.png" } },
-          "datePublished": "2025-10-15"
+          "@type": "Quiz",
+          "name": "MeowBTI Cat Personality Quiz",
+          "url": "https://yourgithubusername.github.io/meowbti/quiz.html",
+          "about": "Cat personality classification across 16 types"
         }
       ]
     }
@@ -65,94 +58,111 @@
 </head>
 <body>
 
+    <div class="home-grain" aria-hidden="true"></div>
+
     <!-- Google AdSense code here -->
 
     <header class="main-header" id="main-header"></header>
 
     <main>
-        <!-- Hero Section -->
+        <!-- Hero -->
         <section id="hero" class="hero-section">
             <div class="container">
-                <h1>What Is Your Cat Really Thinking?</h1>
-                <p class="subtitle">Our 70-question MeowBTI quiz decodes your cat’s quirks into 16 delightful personalities.</p>
-                <a href="quiz.html" class="cta-button">Take the Test →</a>
+                <div class="sticker sticker-1" style="background:#FFB000" aria-hidden="true">
+                    <span style="font-size:32px">👑</span>
+                </div>
+                <div class="sticker sticker-2" style="background:#FF5B3B;color:#fff" aria-hidden="true">
+                    <span style="font-size:11px;font-weight:800;letter-spacing:0.5px">16 TYPES</span>
+                </div>
+                <div class="sticker sticker-3" style="background:#3DA17A" aria-hidden="true">
+                    <span style="font-size:28px">🐟</span>
+                </div>
+                <div class="sticker sticker-4" style="background:#7A5BFF;color:#fff" aria-hidden="true">
+                    <span style="font-size:11px;font-weight:800">~60s</span>
+                </div>
+
+                <h1>What kind of <em>menace</em> is your cat?</h1>
+                <p class="subtitle">8 questions. 60 seconds. Receive verdict.</p>
+                <a href="quiz.html" class="cta-button accent large-button">Start the test <span aria-hidden="true">→</span></a>
+
+                <div class="hero-meta">
+                    <span>No login</span>
+                    <span class="dot"></span>
+                    <span>No email</span>
+                    <span class="dot"></span>
+                    <span>Just chaos</span>
+                </div>
             </div>
         </section>
 
-        <!-- Testimonials Section -->
+        <!-- Tape marquee -->
+        <section class="tape-section" aria-hidden="true">
+            <div class="tape-track">
+                <span class="tape-item">the grand general 👑</span>
+                <span class="tape-item">the party starter 🎉</span>
+                <span class="tape-item">the silent strategist 🗝️</span>
+                <span class="tape-item">the peaceful dreamer ☁️</span>
+                <span class="tape-item">the wild debater 🧠</span>
+                <span class="tape-item">the master tinkerer 🔧</span>
+                <span class="tape-item">the affectionate warden 🫶</span>
+                <span class="tape-item">the free spirit 🌿</span>
+                <span class="tape-item">the grand general 👑</span>
+                <span class="tape-item">the party starter 🎉</span>
+                <span class="tape-item">the silent strategist 🗝️</span>
+                <span class="tape-item">the peaceful dreamer ☁️</span>
+            </div>
+        </section>
+
+        <!-- Quote cards -->
         <section id="testimonials" class="testimonials-section">
             <div class="container">
-                <h2>See What Our Examiners Have To Say!</h2>
-                <div class="testimonial-carousel">
-                    <div class="testimonial-track">
-                        <div class="testimonial-card">
-                            <p class="quote">"Meowed for treats. Received treats. Then judged the human for five minutes. The test was right."</p>
-                            <span class="author">Mittens — CHBR (The Grand General)</span>
-                        </div>
-                        <div class="testimonial-card">
-                            <p class="quote">"I knocked a glass off the table to test gravity. The results are conclusive. This quiz understands my scientific mind."</p>
-                            <span class="author">Jasper — INTP (The Curious Cuddler)</span>
-                        </div>
-                        <div class="testimonial-card">
-                            <p class="quote">"The sunbeam was perfectly placed for my nap. This quiz gets me."</p>
-                            <span class="author">Luna — ISFP (The Gentle Guardian)</span>
-                        </div>
-                        <div class="testimonial-card">
-                            <p class="quote">"I require a perfectly clean litter box and my food bowl to be 75% full at all times. This is not a request."</p>
-                            <span class="author">General Fluff — ESTJ (The Executive Pouncer)</span>
-                        </div>
-                         <!-- Duplicate for seamless loop -->
-                        <div class="testimonial-card">
-                            <p class="quote">"Meowed for treats. Received treats. Then judged the human for five minutes. The test was right."</p>
-                            <span class="author">Mittens — CHBR (The Grand General)</span>
-                        </div>
-                        <div class="testimonial-card">
-                            <p class="quote">"I knocked a glass off the table to test gravity. The results are conclusive. This quiz understands my scientific mind."</p>
-                            <span class="author">Jasper — INTP (The Curious Cuddler)</span>
-                        </div>
-                        <div class="testimonial-card">
-                            <p class="quote">"The sunbeam was perfectly placed for my nap. This quiz gets me."</p>
-                            <span class="author">Luna — ISFP (The Gentle Guardian)</span>
-                        </div>
-                        <div class="testimonial-card">
-                            <p class="quote">"I require a perfectly clean litter box and my food bowl to be 75% full at all times. This is not a request."</p>
-                            <span class="author">General Fluff — ESTJ (The Executive Pouncer)</span>
-                        </div>
+                <h2>people are saying</h2>
+                <div class="quotes-grid">
+                    <div class="qcard" style="background:#FFE3D6;transform:rotate(-1.5deg)">
+                        <p>"this is literally my cat I'm crying"</p>
+                        <span>— @minky.cat · 14k likes</span>
+                    </div>
+                    <div class="qcard" style="background:#FFEFC2;transform:rotate(1.2deg)">
+                        <p>"sent it to my group chat. now we're all doing it for our cats. and our exes."</p>
+                        <span>— @lasagna_lord</span>
+                    </div>
+                    <div class="qcard" style="background:#D2EDE0;transform:rotate(-0.8deg)">
+                        <p>"got 'The Grand General'. accurate. she just knocked over a glass."</p>
+                        <span>— @bigbiscuit</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Affiliate Section -->
+        <!-- Affiliate Section (kept; needed for nav anchor #affiliate-products) -->
         <section id="affiliate-products" class="affiliate-section">
             <div class="container">
-                <h2>Our Favorite Cat Picks</h2>
-                <!-- Affiliate integration here -->
+                <h2>our favorite cat picks</h2>
                 <div class="product-grid">
                     <div class="product-card">
                         <img src="https://placekitten.com/300/300?image=1" alt="Cozy Cat Bed" loading="lazy">
                         <h3>Cat Cozy Bed Deluxe</h3>
-                        <a href="#" class="cta-button buy-button">Buy Now</a>
+                        <a href="#" class="cta-button accent buy-button">Buy now</a>
                     </div>
                     <div class="product-card">
                         <img src="https://placekitten.com/300/300?image=2" alt="Interactive Feather Wand" loading="lazy">
                         <h3>Interactive Feather Wand</h3>
-                        <a href="#" class="cta-button buy-button">Buy Now</a>
+                        <a href="#" class="cta-button accent buy-button">Buy now</a>
                     </div>
                     <div class="product-card">
                         <img src="https://placekitten.com/300/300?image=3" alt="Gourmet Catnip Spray" loading="lazy">
                         <h3>Gourmet Catnip Spray</h3>
-                        <a href="#" class="cta-button buy-button">Buy Now</a>
+                        <a href="#" class="cta-button accent buy-button">Buy now</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Quiz CTA Banner -->
+        <!-- CTA banner -->
         <section id="cta-banner" class="cta-banner-section">
             <div class="container">
-                <h2>Ready to Uncover Your Cat's True Personality?</h2>
-                <a href="quiz.html" class="cta-button large-button">Take the MeowBTI Quiz Now!</a>
+                <h2>ready to uncover your cat's true personality?</h2>
+                <a href="quiz.html" class="cta-button accent large-button">Take the MeowBTI quiz <span aria-hidden="true">→</span></a>
             </div>
         </section>
     </main>
@@ -160,8 +170,7 @@
     <footer class="main-footer" id="main-footer"></footer>
 
     <!-- Google Analytics code here -->
-    
+
     <script src="script.js"></script>
 </body>
 </html>
-

@@ -3,51 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Feline Authority Test - MeowBTI</title>
-    <!-- Note the ../ path for styles -->
-    <link rel="stylesheet" href="style.css"> 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>MeowBTI Quiz — what kind of menace is your cat?</title>
+    <meta name="description" content="The 8-question MeowBTI test. Tap whichever feels more like your cat. ~60 seconds.">
+    <meta name="theme-color" content="#FFF4EC">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header class="main-header" id="main-header"></header>
 
     <main>
-        <section class="page-content">
+        <section class="quiz-section">
             <div class="container">
-                <div id="quiz-container" class="quiz-wrapper">
-                    <h1>The MeowBTI Quiz</h1>
-                    <div class="quiz-header">
-                        <div class="progress-bar">
-                            <div id="progress-fill" class="progress-fill"></div>
-                        </div>
-                        <p id="page-number" class="page-indicator">Page 1 of 6</p>
-                    </div>
-                    
-                    <div id="question-page" class="question-area">
-                        <!-- Questions will be loaded here by JavaScript -->
-                    </div>
 
-                    <div id="navigation-buttons" class="quiz-navigation">
-                        <button id="prev-button" class="cta-button quiz-nav-btn">Previous</button>
-                        <button id="next-button" class="cta-button quiz-nav-btn">Next</button>
-                    </div>
+                <div class="quiz-bar">
+                    <a href="index.html" class="ghost-btn" aria-label="Back home">← back</a>
+                    <div class="quiz-progress" id="quiz-progress" role="progressbar" aria-valuemin="1" aria-valuemax="8" aria-valuenow="1"></div>
+                    <span class="quiz-count" id="quiz-count">1/8</span>
                 </div>
 
-                <div id="result-screen" style="display: none;">
-                    <!-- Result will be loaded here by JavaScript -->
+                <div class="card-stack" id="card-stack">
+                    <!-- card injected by quiz-script.js -->
                 </div>
+
             </div>
         </section>
     </main>
-    
+
     <footer class="main-footer" id="main-footer"></footer>
 
     <script src="script.js"></script>
     <script src="quiz-script.js"></script>
 </body>
 </html>
-

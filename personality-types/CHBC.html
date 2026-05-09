@@ -3,46 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Title will be set by JavaScript -->
-    <title>Feline Personality Type - MeowBTI</title>
+    <!-- Title + meta description set by personality-page.js based on the URL -->
+    <title>Cat Personality — MeowBTI</title>
+    <meta name="description" content="Your cat's MeowBTI personality file. The 16-type cat personality test.">
+    <meta name="theme-color" content="#FFF4EC">
     <link rel="stylesheet" href="../style.css">
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <header class="main-header" id="main-header"></header>
 
     <main>
-        <section class="page-content personality-page">
-            <div class="container" id="personality-content">
-                <!-- Content will be dynamically inserted here by personality-page.js -->
-                <h1 id="type-code-title">Loading...</h1>
-                <p id="type-quote" class="type-quote">"..."</p>
-                
-                <h2 class="breakdown-title">The Feline Authority Breakdown</h2>
-                <p id="type-description" class="type-description">Loading personality details...</p>
-
-                <h2 class="breakdown-title">The 7 Key Traits in Action</h2>
-                <div id="type-traits" class="traits-container">
-                    <!-- Traits will be loaded here -->
-                </div>
-
-                <div class="ready-for-more">
-                    <h3>Ready for More?</h3>
-                    <a href="../quiz.html" class="cta-button">Test Another Cat!</a>
-                    <a href="../personality-types.html" class="cta-button">See All Types</a>
-                </div>
+        <section class="page-content">
+            <div class="container result-main" id="personality-content">
+                <!-- Trading-card result UI is injected here by personality-page.js -->
+                <p style="text-align:center;opacity:0.6;padding:80px 0">Loading…</p>
             </div>
         </section>
     </main>
 
     <footer class="main-footer" id="main-footer"></footer>
 
-    <!-- Note the ../ path for scripts and styles because this file is in a subfolder -->
     <script src="../script.js"></script>
-    <script src="../personality-page.js"></script>
+    <script src="personality-page.js"></script>
 </body>
 </html>
