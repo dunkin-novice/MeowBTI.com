@@ -162,6 +162,11 @@
             .replace(/'/g, '&#39;');
     }
 
+    function imagePath(p) {
+        const slug = p.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+        return `../assets/personalities/${p.code.toLowerCase()}-${slug}.webp`;
+    }
+
     function spectrumRows(tally, color) {
         const axes = [
             { left:"Solitary",   right:"Commanding", leftKey:"S", rightKey:"C" },
@@ -199,7 +204,7 @@
                 </div>
             </div>
             <div class="tc-portrait" style="background:${p.bg}">
-                <div class="tc-emoji">${p.emoji}</div>
+                <img class="tc-image" src="${imagePath(p)}" alt="${escapeHtml(`${p.name} cat illustration`)}" loading="eager" decoding="async">
                 <div class="tc-rays" aria-hidden="true">
                     ${Array.from({length:12}).map((_,i) =>
                         `<span style="transform:rotate(${i*30}deg) translateY(-130px);background:${p.color}"></span>`
