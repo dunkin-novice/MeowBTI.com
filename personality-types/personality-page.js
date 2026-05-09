@@ -315,6 +315,24 @@
 
             ${longFormSection(code)}
 
+            <section class="result-affiliate">
+                <h3 class="result-affiliate-h">picks for ${escapeHtml(p.name).toLowerCase()}s</h3>
+                <div class="product-grid">
+                    <a href="../index.html#affiliate-products" rel="sponsored noopener" class="product-card" style="--product-bg:${p.bg}">
+                        <span class="product-emoji" aria-hidden="true">🛏️</span>
+                        <h3>The Spot™ — premium nap zone</h3>
+                        <p class="product-blurb">A bed they will pretend to ignore for 3 days, then never leave.</p>
+                        <span class="product-cta">See picks →</span>
+                    </a>
+                    <a href="../index.html#affiliate-products" rel="sponsored noopener" class="product-card" style="--product-bg:#FFEFC2">
+                        <span class="product-emoji" aria-hidden="true">🪶</span>
+                        <h3>Wand of personal relevance</h3>
+                        <p class="product-blurb">Engineered for the "I have to murder this" personality types.</p>
+                        <span class="product-cta">See picks →</span>
+                    </a>
+                </div>
+            </section>
+
             <section class="result-cta">
                 <h2 class="cta-h">do this for your other cat. or your ex's cat. or your boss's cat.</h2>
                 <div class="cta-actions">
