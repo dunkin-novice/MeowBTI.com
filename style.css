@@ -327,11 +327,13 @@ a { color: inherit; }
   padding: 8px 4px 16px;
 }
 .quiz-bar .ghost-btn { flex-shrink: 0; }
-.quiz-progress { display: flex; gap: 3px; flex: 1; max-width: 360px; }
+.quiz-progress { display: flex; gap: 3px; flex: 1; max-width: 480px; }
+.quiz-progress.is-deep { gap: 1.5px; }
 .pip {
   flex: 1; height: 6px; border-radius: var(--radius-pill);
   background: var(--ink-10); transition: background 0.3s, transform 0.3s;
 }
+.quiz-progress.is-deep .pip { height: 4px; }
 .pip.active { transform: scaleY(1.4); background: var(--ink); }
 .pip.done { background: var(--accent); }
 .quiz-count {
@@ -855,10 +857,116 @@ a { color: inherit; }
 }
 .share-modal-close:hover { opacity: 1; }
 
-/* legacy "key traits" section — kept for SEO depth on existing detailed types */
-.traits-container {
-  display: grid; grid-template-columns: 1fr; gap: 12px;
+/* ─── QUIZ MODE SELECTION ─────────────────────────────── */
+.quiz-mode-select {
+  text-align: center;
+  padding: 40px 0;
+  animation: fadeIn 0.4s ease-out;
+}
+.quiz-mode-select h2 {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 6vw, 32px);
   margin-bottom: 32px;
+  letter-spacing: -0.02em;
+}
+.mode-options {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+@media (min-width: 600px) {
+  .mode-options { grid-template-columns: 1fr 1fr; }
+}
+.mode-card {
+  background: var(--paper);
+  border: 3px solid var(--ink);
+  border-radius: 24px;
+  padding: 24px 20px;
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+  box-shadow: 6px 6px 0 var(--ink-10);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font: inherit;
+}
+.mode-card:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 10px 10px 0 var(--ink-15);
+}
+.mode-card:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--ink-10);
+}
+.mode-card.highlight {
+  border-color: var(--accent-1);
+  background: #FFF9F5;
+}
+.mode-icon {
+  font-size: 40px;
+  margin-bottom: 12px;
+}
+.mode-card h3 {
+  font-family: var(--font-display);
+  font-size: 20px;
+  margin-bottom: 8px;
+  color: var(--ink);
+}
+.mode-card p {
+  font-size: 13px;
+  opacity: 0.7;
+  line-height: 1.4;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── QUIZ RESUME UI ─────────────────────────────────── */
+.resume-box {
+  background: var(--ink);
+  color: #fff;
+  border-radius: 20px;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 600;
+  animation: slideInDown 0.4s ease-out;
+}
+.resume-actions { display: flex; gap: 8px; }
+.resume-btn {
+  background: var(--accent-1);
+  color: #fff;
+  border: none;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.restart-btn {
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  border: none;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+@keyframes slideInDown {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 @media (min-width: 720px) { .traits-container { grid-template-columns: 1fr 1fr; gap: 16px; } }
 .trait-item {
@@ -939,6 +1047,83 @@ a { color: inherit; }
   font-family: var(--font-display); font-style: italic; font-weight: 700;
   font-size: clamp(20px, 4vw, 24px);
   text-align: center; margin-bottom: 16px; opacity: 0.85;
+}
+
+/* ─── EMOTIONAL MICRO-MODULES ─────────────────────────── */
+.module-section { margin-bottom: 40px; }
+.module-h {
+  font-family: var(--font-display); font-style: italic; font-weight: 700;
+  font-size: 20px; margin-bottom: 16px; text-align: center;
+}
+
+/* Your cat during... (mini cards) */
+.during-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;
+}
+@media (min-width: 600px) { .during-grid { grid-template-columns: repeat(3, 1fr); } }
+.during-card {
+  background: var(--paper); border: 2px solid var(--ink);
+  border-radius: 16px; padding: 14px;
+  box-shadow: 3px 3px 0 var(--ink-08);
+  display: flex; flex-direction: column; gap: 6px;
+}
+.during-event {
+  font-size: 11px; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 0.05em; opacity: 0.5;
+}
+.during-desc { font-size: 13px; line-height: 1.35; font-weight: 600; }
+
+/* Most likely to... (bullet list) */
+.likely-list {
+  background: var(--paper); border: 2.5px solid var(--ink);
+  border-radius: 20px; padding: 20px;
+  box-shadow: 4px 4px 0 var(--ink-10);
+  list-style: none;
+}
+.likely-item {
+  font-size: 15px; font-weight: 600; line-height: 1.4;
+  padding: 10px 0; border-bottom: 1px dashed var(--ink-10);
+  display: flex; gap: 12px;
+}
+.likely-item:last-child { border-bottom: 0; }
+.likely-item::before { content: "✨"; flex-shrink: 0; }
+
+/* Social Circle (The Relationship Grid) */
+.social-circle {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+}
+@media (min-width: 600px) { .social-circle { gap: 16px; } }
+.rel-card {
+  display: flex; flex-direction: column; gap: 8px;
+  background: var(--paper); border: 2.5px solid var(--ink);
+  border-radius: 20px; padding: 16px;
+  text-decoration: none; color: inherit;
+  box-shadow: 4px 4px 0 var(--ink-10);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.rel-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--ink-15);
+}
+.rel-type {
+  font-size: 10px; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 0.08em; opacity: 0.6;
+}
+.rel-main { display: flex; align-items: center; gap: 10px; }
+.rel-emoji { font-size: 28px; flex-shrink: 0; }
+.rel-info { min-width: 0; }
+.rel-name {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 15px; line-height: 1.1; margin-bottom: 2px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.rel-code { font-size: 10px; font-weight: 700; opacity: 0.5; }
+
+/* Social Bait */
+.social-bait {
+  text-align: center; margin-top: 24px;
+  font-family: var(--font-display); font-style: italic;
+  font-size: 14px; opacity: 0.5; padding: 0 20px;
 }
 
 /* ─── footer ─────────────────────────────────────────────── */

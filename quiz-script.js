@@ -1,70 +1,24 @@
-// MeowBTI quiz — binary YES/NO swipe deck. 12 statements. Vanilla JS.
-//
-// Each statement maps to one axis (CS / HD / BN / RF) with explicit yes-side
-// and no-side letters. 3 statements per axis × 4 axes = 12. Odd vote count
-// per axis → no ties.
+// MeowBTI quiz — binary YES/NO swipe deck.
+// Supports Short (12 q) and Deep (60 q) modes.
 //
 // Interaction: drag past threshold OR flick OR tap YES/NO buttons OR press
 // Y/N or arrow keys. Card tilts during drag, tints green/red, shows YES/NO
 // stamp past 40% threshold, flies off on commit. Stack peek shows next 2
 // cards behind active.
-//
-// Redirects to personality-types/<CODE>.html?t=<tally>[&lang=th] on finish.
 
-const STATEMENTS = [
-    // ─── CS axis (2 C-yes, 1 S-yes) ──────────────────────────
-    { emoji: "🚪", yes: "C", no: "S",
-      s:   "Your cat acts like you've returned from war after a 3-minute bathroom trip.",
-      sTh: "แมวคุณทำตัวเหมือนคุณกลับจากสงคราม ทั้งที่เพิ่งเข้าห้องน้ำไป 3 นาที" },
-    { emoji: "👻", yes: "S", no: "C",
-      s:   "Your cat becomes a rumor when guests come over. May or may not exist.",
-      sTh: "แมวคุณกลายเป็นตำนานเวลาแขกมาบ้าน มีอยู่จริงหรือเปล่าก็ไม่รู้" },
-    { emoji: "⌨️", yes: "C", no: "S",
-      s:   "Your cat walks across your keyboard mid-meeting just to remind you they exist.",
-      sTh: "แมวคุณเดินผ่านคีย์บอร์ดกลางประชุม แค่อยากเตือนว่ายังอยู่นะ" },
-
-    // ─── HD axis (1 H-yes, 2 D-yes) ──────────────────────────
-    { emoji: "🎯", yes: "H", no: "D",
-      s:   "Your cat will pursue a hair tie under the fridge for 40 minutes.",
-      sTh: "แมวคุณตามยางรัดผมที่กลิ้งเข้าใต้ตู้เย็นได้ 40 นาทีแบบไม่ยอมแพ้" },
-    { emoji: "👁️", yes: "D", no: "H",
-      s:   "Your cat stares at a wall like it owes them money.",
-      sTh: "แมวคุณจ้องกำแพงเหมือนกำแพงติดหนี้อยู่" },
-    { emoji: "🪲", yes: "D", no: "H",
-      s:   "Your cat watches a passing moth like it has prophecy value.",
-      sTh: "แมวคุณมองผีเสื้อกลางคืนบินผ่านเหมือนมันมาบอกอนาคต" },
-
-    // ─── BN axis (2 B-yes, 1 N-yes) ──────────────────────────
-    { emoji: "🚧", yes: "B", no: "N",
-      s:   "Your cat believes closed doors are personal attacks.",
-      sTh: "แมวคุณเชื่อว่าประตูที่ปิดอยู่คือการโจมตีส่วนตัว" },
-    { emoji: "💞", yes: "N", no: "B",
-      s:   "Your cat slow-blinks at you like a tiny therapist.",
-      sTh: "แมวคุณกะพริบตาช้าๆ ใส่คุณเหมือนนักจิตบำบัดตัวจิ๋ว" },
-    { emoji: "💼", yes: "B", no: "N",
-      s:   "Your cat will body-slam you for treats.",
-      sTh: "แมวคุณพร้อมพุ่งชนคุณเพื่อขอขนม" },
-
-    // ─── RF axis (1 R-yes, 2 F-yes) ──────────────────────────
-    { emoji: "📍", yes: "R", no: "F",
-      s:   "Your cat treats their favorite spot as a sacred site. Do not sit there.",
-      sTh: "แมวคุณถือว่าจุดโปรดของตัวเองเป็นพื้นที่ศักดิ์สิทธิ์ ห้ามนั่งเด็ดขาด" },
-    { emoji: "🌀", yes: "F", no: "R",
-      s:   "Your cat sleeps wherever they collapse — new spot every night.",
-      sTh: "แมวคุณนอนตรงไหนก็ได้ที่ล้มลง คืนนี้จุดนึง พรุ่งนี้อีกจุด" },
-    { emoji: "🕰️", yes: "F", no: "R",
-      s:   "Your cat eats whenever they feel like it. Could be now. Could be in 4 hours.",
-      sTh: "แมวคุณกินตอนไหนก็ได้ที่อยากกิน อาจจะเดี๋ยวนี้ หรืออีก 4 ชั่วโมงข้างหน้า" },
-];
-
-const TOTAL = STATEMENTS.length;
+let STATEMENTS = [];
+let TOTAL = 0;
 let idx = 0;
-const answers = []; // each entry: true (yes) | false (no)
-let locked = false;
+let answers = []; // each entry: true (yes) | false (no)
+let locked = true; // locked until quiz starts
+let currentMode = 'short';
 
 const stackEl = document.getElementById('card-stack');
 const countEl = document.getElementById('quiz-count');
 const progressEl = document.getElementById('quiz-progress');
+const modeSelectEl = document.getElementById('quiz-mode-select');
+
+const STORAGE_KEY = 'meow-bti-quiz-state';
 
 // ─── i18n helpers ────────────────────────────────────────────
 function getLang() {
@@ -80,14 +34,108 @@ function statementText(st) {
     return getLang() === 'th' && st.sTh ? st.sTh : st.s;
 }
 
+// ─── state management ────────────────────────────────────────
+function saveState() {
+    if (idx === 0) return;
+    const state = {
+        mode: currentMode,
+        idx: idx,
+        answers: answers,
+        timestamp: Date.now()
+    };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+}
+
+function clearState() {
+    localStorage.removeItem(STORAGE_KEY);
+}
+
+function loadState() {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (!saved) return null;
+    try {
+        const state = JSON.parse(saved);
+        // Expire after 24 hours
+        if (Date.now() - state.timestamp > 24 * 60 * 60 * 1000) {
+            clearState();
+            return null;
+        }
+        return state;
+    } catch (e) {
+        return null;
+    }
+}
+
+// ─── quiz lifecycle ──────────────────────────────────────────
+function startQuiz(mode, resumeData = null) {
+    currentMode = mode || 'short';
+    STATEMENTS = window.MeowQuestions[currentMode] || window.MeowQuestions.short;
+    TOTAL = STATEMENTS.length;
+    
+    if (resumeData) {
+        idx = resumeData.idx;
+        answers = resumeData.answers;
+    } else {
+        idx = 0;
+        answers = [];
+    }
+
+    locked = false;
+    modeSelectEl.style.display = 'none';
+    stackEl.style.display = 'block';
+    
+    window.MeowTrack && window.MeowTrack('quiz_start', { 
+        lang: getLang(), 
+        mode: currentMode, 
+        length: TOTAL,
+        resumed: !!resumeData
+    });
+
+    renderProgress();
+    renderStack();
+}
+
+function checkResume() {
+    const saved = loadState();
+    if (saved) {
+        // Show resume prompt
+        const resumeBox = document.createElement('div');
+        resumeBox.className = 'resume-box';
+        resumeBox.innerHTML = `
+            <span>${tStr('quizResume', 'Resume quiz?')} (${saved.idx}/${saved.mode === 'deep' ? 60 : 12})</span>
+            <div class="resume-actions">
+                <button class="restart-btn" onclick="this.parentElement.parentElement.remove()">${tStr('quizRestart', 'restart')}</button>
+                <button class="resume-btn" id="resume-confirm-btn">${tStr('quizStampYes', 'YES')}</button>
+            </div>
+        `;
+        modeSelectEl.prepend(resumeBox);
+        document.getElementById('resume-confirm-btn').onclick = () => {
+            startQuiz(saved.mode, saved);
+        };
+    }
+}
+
 // ─── progress + count ────────────────────────────────────────
 function renderProgress() {
     progressEl.innerHTML = '';
+    
+    // For Deep mode, we might want to skip some pips if space is tight
+    // but the CSS handles flex-wrap. For 60, let's use a progress bar
+    // if on mobile, or just smaller pips.
+    const isDeep = TOTAL > 20;
+    
+    if (isDeep) {
+        progressEl.classList.add('is-deep');
+        // If 60 questions, maybe just show a filled bar?
+        // Let's stick to pips but style them differently in CSS if needed.
+    }
+
     for (let i = 0; i < TOTAL; i++) {
         const pip = document.createElement('span');
         pip.className = 'pip' + (i < answers.length ? ' done' : '') + (i === idx ? ' active' : '');
         progressEl.appendChild(pip);
     }
+    
     progressEl.setAttribute('aria-valuemax', String(TOTAL));
     progressEl.setAttribute('aria-valuenow', String(Math.min(idx + 1, TOTAL)));
     countEl.textContent = tFn('quizCount', Math.min(idx + 1, TOTAL), TOTAL);
@@ -101,7 +149,6 @@ function escapeHtml(s) {
 }
 
 function buildCardEl(stIdx, depth) {
-    // depth: 0 = active, 1 = peek-1, 2 = peek-2
     if (stIdx >= TOTAL) return null;
     const st = STATEMENTS[stIdx];
     const card = document.createElement('article');
@@ -121,12 +168,10 @@ function buildCardEl(stIdx, depth) {
 
 function renderStack() {
     stackEl.innerHTML = '';
-    // Render back-to-front so DOM order matches z-index expectation.
     for (let d = 2; d >= 0; d--) {
         const card = buildCardEl(idx + d, d);
         if (card) stackEl.appendChild(card);
     }
-    // Bind drag only on the active (front) card.
     const active = stackEl.querySelector('.depth-0');
     if (active) attachDrag(active);
     renderActions();
@@ -144,14 +189,14 @@ function renderActions() {
         <button class="swipe-btn no" type="button" id="btn-no" aria-label="No">${escapeHtml(tStr('quizSwipeNo', 'NO ✗'))}</button>
         <button class="swipe-btn yes" type="button" id="btn-yes" aria-label="Yes">${escapeHtml(tStr('quizSwipeYes', 'YES ✓'))}</button>
     `;
-    document.getElementById('btn-no').addEventListener('click', () => commit(false));
-    document.getElementById('btn-yes').addEventListener('click', () => commit(true));
+    document.getElementById('btn-no').onclick = () => commit(false);
+    document.getElementById('btn-yes').onclick = () => commit(true);
 }
 
 // ─── drag interaction ────────────────────────────────────────
-const COMMIT_DISTANCE = 100;     // px — past this = commit
-const STAMP_THRESHOLD = 40;      // px — start fading in stamp
-const FLICK_VELOCITY  = 0.6;     // px/ms — flick triggers commit
+const COMMIT_DISTANCE = 100;
+const STAMP_THRESHOLD = 40;
+const FLICK_VELOCITY  = 0.6;
 
 function attachDrag(card) {
     let pointerId = null;
@@ -176,11 +221,10 @@ function attachDrag(card) {
     function onMove(e) {
         if (!dragging || e.pointerId !== pointerId) return;
         const dx = e.clientX - startX;
-        const dy = (e.clientY - startY) * 0.4; // dampen vertical
+        const dy = (e.clientY - startY) * 0.4;
         const rot = Math.max(-15, Math.min(15, dx / 14));
         card.style.transform = `translate(${dx}px, ${dy}px) rotate(${rot}deg)`;
 
-        // Tint + stamp opacity from drag distance
         const absX = Math.abs(dx);
         const tintAlpha = Math.min(1, absX / 220);
         const stampAlpha = Math.max(0, Math.min(1, (absX - STAMP_THRESHOLD) / 80));
@@ -196,7 +240,6 @@ function attachDrag(card) {
             stampNo.style.opacity = stampAlpha;  stampYes.style.opacity = 0;
         }
 
-        // Track velocity (rolling over last few ms)
         const now = performance.now();
         const dt = now - lastTime;
         if (dt > 0) velocity = (e.clientX - lastX) / dt;
@@ -218,8 +261,6 @@ function attachDrag(card) {
         if (past || flicked) {
             commit(dx > 0);
         } else {
-            // Snap back. Resetting transform + clearing tints triggers
-            // the CSS transition.
             card.style.transform = '';
             card.querySelectorAll('.swipe-tint, .swipe-stamp').forEach(el => el.style.opacity = '');
         }
@@ -238,19 +279,18 @@ function commit(yes) {
     const card = stackEl.querySelector('.depth-0');
     if (card) {
         card.classList.add(yes ? 'exit-right' : 'exit-left');
-        // Make sure tint+stamp are visible during the fly-off
         const tint  = card.querySelector(yes ? '.swipe-tint-yes' : '.swipe-tint-no');
         const stamp = card.querySelector(yes ? '.swipe-stamp-yes' : '.swipe-stamp-no');
         if (tint)  tint.style.opacity = 1;
         if (stamp) stamp.style.opacity = 1;
     }
-    // Light haptic on mobile
     try { if (navigator.vibrate) navigator.vibrate(15); } catch (_) {}
 
     const st = STATEMENTS[idx];
     window.MeowTrack && window.MeowTrack('quiz_question_answered', {
         question_index: idx + 1,
-        statement: st.s,                 // EN identifier — stable for analytics
+        mode: currentMode,
+        statement: st.s,
         choice: yes ? 'yes' : 'no',
         scored_letter: yes ? st.yes : st.no,
         lang: getLang(),
@@ -259,6 +299,7 @@ function commit(yes) {
     setTimeout(() => {
         answers.push(yes);
         idx++;
+        saveState();
         if (idx >= TOTAL) {
             finish();
         } else {
@@ -282,14 +323,15 @@ function classify(answers) {
         (tally.C >= tally.S ? 'C' : 'S') +
         (tally.H >= tally.D ? 'H' : 'D') +
         (tally.B >= tally.N ? 'B' : 'N') +
-        (tally.R >= tally.F ? 'R' : 'C');  // 4th: R or "C" (Casual) for the URL
+        (tally.R >= tally.F ? 'R' : 'C');
     return { code, tally };
 }
 
 function finish() {
     const { code, tally } = classify(answers);
     const t = ['C','S','H','D','B','N','R','F'].map(k => `${k}${tally[k]}`).join('');
-    window.MeowTrack && window.MeowTrack('quiz_complete', { code, lang: getLang() });
+    clearState();
+    window.MeowTrack && window.MeowTrack('quiz_complete', { code, mode: currentMode, lang: getLang() });
     const langSuffix = getLang() === 'th' ? '&lang=th' : '';
     window.location.href = `personality-types/${code}.html?t=${t}${langSuffix}`;
 }
@@ -309,9 +351,15 @@ function bindKeyboard() {
 }
 
 // ─── boot ────────────────────────────────────────────────────
+window.startQuiz = startQuiz; // Expose to global for HTML buttons
+
 if (stackEl) {
-    window.MeowTrack && window.MeowTrack('quiz_start', { lang: getLang(), length: TOTAL });
-    renderProgress();
-    renderStack();
     bindKeyboard();
+    checkResume();
+    
+    // Check URL for direct mode
+    const urlMode = new URLSearchParams(window.location.search).get('mode');
+    if (urlMode === 'short' || urlMode === 'deep') {
+        startQuiz(urlMode);
+    }
 }

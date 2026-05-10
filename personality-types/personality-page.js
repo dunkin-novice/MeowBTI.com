@@ -148,6 +148,70 @@
             </a>`;
     }
 
+    function renderDuringEvents(p) {
+        const events = field(p, 'duringEvents');
+        if (!events) return '';
+        const items = Object.keys(events).map(key => {
+            const labelKey = 'event' + key.charAt(0).toUpperCase() + key.slice(1);
+            const label = t(labelKey);
+            return `
+                <div class="during-card">
+                    <span class="during-event">${escapeHtml(label)}</span>
+                    <p class="during-desc">${escapeHtml(events[key])}</p>
+                </div>`;
+        }).join('');
+        return `
+            <section class="module-section">
+                <h3 class="module-h">${escapeHtml(t('duringTitle'))}</h3>
+                <div class="during-grid">${items}</div>
+            </section>`;
+    }
+
+    function renderMostLikelyTo(p) {
+        const list = field(p, 'mostLikelyTo');
+        if (!list) return '';
+        return `
+            <section class="module-section">
+                <h3 class="module-h">${escapeHtml(t('mostLikelyTitle'))}</h3>
+                <ul class="likely-list">
+                    ${list.map(item => `<li class="likely-item">${escapeHtml(item)}</li>`).join('')}
+                </ul>
+                <p class="social-bait">${escapeHtml(t('socialBaitFriend'))}</p>
+            </section>`;
+    }
+
+    function renderSocialCircle(p) {
+        const rels = p.relationships;
+        if (!rels) return '';
+        const keys = [
+            { key: 'bestFriend', label: t('relBestFriend') },
+            { key: 'chaosDuo', label: t('relChaosDuo') },
+            { key: 'soulmate', label: t('relSoulmate') },
+            { key: 'nightmare', label: t('relNightmare') }
+        ];
+        const cards = keys.map(k => {
+            const targetCode = rels[k.key];
+            const target = window.MeowArchetypes.get(targetCode);
+            return `
+                <a href="${withLang(target.code + '.html')}" class="rel-card" data-rel-type="${k.key}" data-target-code="${target.code}">
+                    <span class="rel-type">${escapeHtml(k.label)}</span>
+                    <div class="rel-main">
+                        <span class="rel-emoji" aria-hidden="true">${target.emoji}</span>
+                        <div class="rel-info">
+                            <div class="rel-name">${escapeHtml(field(target, 'name'))}</div>
+                            <div class="rel-code">${target.code}</div>
+                        </div>
+                    </div>
+                </a>`;
+        }).join('');
+        return `
+            <section class="module-section">
+                <h3 class="module-h">${escapeHtml(t('relTitle'))}</h3>
+                <div class="social-circle">${cards}</div>
+                <p class="social-bait">${escapeHtml(t('socialBaitGroup'))}</p>
+            </section>`;
+    }
+
     function longFormSection(p) {
         const description = field(p, 'description');
         const traits = field(p, 'traits');
@@ -346,6 +410,10 @@
                 </div>
             </section>
 
+            ${renderDuringEvents(p)}
+            ${renderMostLikelyTo(p)}
+            ${renderSocialCircle(p)}
+
             ${rivalTile(p)}
 
             ${longFormSection(p)}
@@ -387,6 +455,16 @@
                 setTimeout(() => { copyBtn.textContent = old; }, 1600);
             });
         }
+
+        document.querySelectorAll('.rel-card').forEach(card => {
+            card.addEventListener('click', () => {
+                window.MeowTrack && window.MeowTrack('relationship_clicked', {
+                    from_code: p.code,
+                    target_code: card.dataset.targetCode,
+                    rel_type: card.dataset.relType
+                });
+            });
+        });
 
         bindShare(p);
     }

@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MeowBTI Quiz — what kind of menace is your cat?</title>
-    <meta name="description" content="The 20-question MeowBTI test. Tap whichever feels most like your cat. About 90 seconds.">
+    <meta name="description" content="Quick or Deep analysis. Find out which of 16 chaotic personalities your cat truly is.">
     <meta name="theme-color" content="#FFF4EC">
     <link rel="canonical" href="https://meowbti.com/quiz.html">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 
     <meta property="og:title" content="Take the MeowBTI quiz — what kind of menace is your cat?">
-    <meta property="og:description" content="20 questions. ~90 seconds. One of 16 verdicts.">
+    <meta property="og:description" content="Quick or Deep analysis. One of 16 verdicts.">
     <meta property="og:image" content="https://meowbti.com/assets/personalities/chnc-the-party-starter.webp">
     <meta property="og:url" content="https://meowbti.com/quiz.html">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Take the MeowBTI quiz">
-    <meta name="twitter:description" content="20 questions. ~90 seconds. One of 16 verdicts.">
+    <meta name="twitter:description" content="Quick or Deep analysis. One of 16 verdicts.">
     <meta name="twitter:image" content="https://meowbti.com/assets/personalities/chnc-the-party-starter.webp">
 
     <link rel="stylesheet" href="style.css">
@@ -42,11 +42,28 @@
 
                 <div class="quiz-bar">
                     <a href="index.html" class="ghost-btn" aria-label="Back home" data-i18n-href data-i18n="quizBack">← back</a>
-                    <div class="quiz-progress" id="quiz-progress" role="progressbar" aria-valuemin="1" aria-valuemax="20" aria-valuenow="1"></div>
-                    <span class="quiz-count" id="quiz-count">1/20</span>
+                    <div class="quiz-progress" id="quiz-progress" role="progressbar" aria-valuemin="1" aria-valuemax="60" aria-valuenow="1"></div>
+                    <span class="quiz-count" id="quiz-count">1/12</span>
                 </div>
 
-                <div class="card-stack" id="card-stack">
+                <!-- Mode Selection -->
+                <div id="quiz-mode-select" class="quiz-mode-select">
+                    <h2 data-i18n="quizModeTitle">choose your depth</h2>
+                    <div class="mode-options">
+                        <button class="mode-card" onclick="startQuiz('short')">
+                            <div class="mode-icon">⚡</div>
+                            <h3 data-i18n="quizModeShort">Quick Quiz</h3>
+                            <p data-i18n="quizModeShortSub">12 questions · 90s · Viral</p>
+                        </button>
+                        <button class="mode-card highlight" onclick="startQuiz('deep')">
+                            <div class="mode-icon">🧬</div>
+                            <h3 data-i18n="quizModeDeep">Deep Analysis</h3>
+                            <p data-i18n="quizModeDeepSub">60 questions · 5m · Precise</p>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card-stack" id="card-stack" style="display: none;">
                     <!-- card injected by quiz-script.js -->
                 </div>
 
@@ -57,6 +74,7 @@
     <footer class="main-footer" id="main-footer"></footer>
 
     <script src="data/i18n.js"></script>
+    <script src="data/questions.js"></script>
     <script src="data/archetypes.js"></script>
     <script src="script.js"></script>
     <script src="quiz-script.js"></script>

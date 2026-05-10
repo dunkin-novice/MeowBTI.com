@@ -59,7 +59,34 @@
                 ["📦 ปฏิกิริยาต่อความเปลี่ยนแปลง", "<strong>ต่อต้านชัดเจน</strong> เฟอร์นิเจอร์ใหม่คือการบุกรุกอาณาเขตโดยไม่ขออนุญาต"],
                 ["🐈 ความสัมพันธ์กับแมวตัวอื่น", "<strong>สร้างลำดับชั้นตั้งแต่วันแรก</strong> ใช้สายตาที่ไม่กระพริบและการตบเชิงยุทธวิธีบางครั้งเพื่อรักษาตำแหน่ง"],
             ],
-        },
+        
+            duringEvents: {
+          "dinner": "Sits at the head of the table. Evaluates your plating.",
+          "thunderstorm": "Occupies the safe room. Expects you to report for duty.",
+          "guests": "Conducts a formal security sweep before allowing entry."
+},
+            duringEventsTh: {
+          "dinner": "นั่งหัวโต๊ะ คอยประเมินว่าคุณจัดจานสวยไหม",
+          "thunderstorm": "จองห้องที่ปลอดภัยที่สุด และคาดหวังให้คุณไปรายงานตัว",
+          "guests": "ตรวจความปลอดภัยอย่างเป็นทางการก่อนอนุญาตให้เข้าบ้าน"
+},
+            mostLikelyTo: [
+          "Schedule a meeting that could have been a meow.",
+          "Accidentally start a cult.",
+          "Sue you for emotional damages (empty bowl)."
+],
+            mostLikelyToTh: [
+          "นัดประชุมทั้งที่จริงๆ แค่ร้องเหมียวเดียวก็จบ",
+          "ตั้งลัทธิโดยไม่ได้ตั้งใจ",
+          "ฟ้องคุณฐานทำให้สะเทือนใจ (เพราะปล่อยชามข้าวว่าง)"
+],
+            relationships: {
+          "bestFriend": "SHBR",
+          "chaosDuo": "CHNC",
+          "soulmate": "CDNR",
+          "nightmare": "SDBC"
+},
+          },
         {
             code: "CHBC",
             name: "The Street CEO",
@@ -99,7 +126,34 @@
                 ["📦 ปฏิกิริยาต่อความเปลี่ยนแปลง", "<strong>มองเป็นโอกาสตั้งราคาใหม่</strong> เฟอร์นิเจอร์ชิ้นใหม่มาถึง เป็นตัวแรกที่ขึ้นไปลองนอน ก่อนคุณตัดสินใจวางตำแหน่งด้วยซ้ำ"],
                 ["🐈 ความสัมพันธ์กับแมวตัวอื่น", "<strong>มีพันธมิตร คู่แข่ง และลูกน้อง</strong> สร้างความสัมพันธ์เชิงงาน ไม่ใช่มิตรภาพ ลำดับชั้นเปลี่ยนได้ แต่ติดตามตลอด"],
             ],
-        },
+        
+            duringEvents: {
+          "dinner": "Negotiates for a 15% tuna increase.",
+          "facetime": "Tries to sell your boss a subscription to his purr.",
+          "guests": "Networking. Already has their contact info."
+},
+            duringEventsTh: {
+          "dinner": "กำลังเจรจาขอเพิ่มทูน่า 15%",
+          "facetime": "พยายามขายแพ็กเกจเสียงครางให้เจ้านายคุณ",
+          "guests": "สร้างคอนเนกชัน มีข้อมูลติดต่อแขกครบแล้ว"
+},
+            mostLikelyTo: [
+          "Convince you he hasn't been fed in 3 years.",
+          "Sublet your favorite chair to the neighbor's cat.",
+          "Bribe the dog."
+],
+            mostLikelyToTh: [
+          "โน้มน้าวให้คุณเชื่อว่าไม่ได้กินข้าวมา 3 ปี",
+          "ปล่อยเช่าเก้าอี้ตัวโปรดของคุณให้แมวข้างบ้าน",
+          "ติดสินบนหมา"
+],
+            relationships: {
+          "bestFriend": "SHBC",
+          "chaosDuo": "CHNC",
+          "soulmate": "CDBC",
+          "nightmare": "SDNR"
+},
+          },
         {
             code: "CHNR",
             name: "The Affectionate Warden",
@@ -139,7 +193,34 @@
                 ["📦 ปฏิกิริยาต่อความเปลี่ยนแปลง", "<strong>ประท้วงเบาๆ</strong> ตารางเปลี่ยนต้องตั้งคำถาม เฟอร์นิเจอร์ใหม่ต้องตรวจ แล้วค่อยเอามาผสมในรูทีน"],
                 ["🐈 ความสัมพันธ์กับแมวตัวอื่น", "<strong>มองตัวอื่นเป็นรุ่นน้องที่ต้องดูแล</strong> ไม่ก้าวร้าว แต่ทุกตัวในบ้านรู้ว่าใครเป็นคนเช็กก่อนนอน"],
             ],
-        },
+        
+            duringEvents: {
+          "dinner": "Ensures you chew your food properly.",
+          "zoomies": "Herds you to safety during the chaos.",
+          "guests": "Assigns them a seat and expects them to stay there."
+},
+            duringEventsTh: {
+          "dinner": "คุมให้คุณเคี้ยวอาหารให้ละเอียด",
+          "zoomies": "ต้อนคุณไปที่ปลอดภัยระหว่างเกิดความวุ่นวาย",
+          "guests": "จัดที่นั่งให้แขกและคาดหวังให้อยู่ตรงนั้น"
+},
+            mostLikelyTo: [
+          "Wake you up just to make sure you're breathing.",
+          "Ban you from the kitchen for your own safety.",
+          "Aggressively groom your hair."
+],
+            mostLikelyToTh: [
+          "ปลุกคุณขึ้นมาเพื่อเช็กว่ายังหายใจอยู่ไหม",
+          "แบนคุณออกจากครัวเพื่อความปลอดภัยของคุณเอง",
+          "เลียผมคุณอย่างเอาเป็นเอาตาย"
+],
+            relationships: {
+          "bestFriend": "SHNR",
+          "chaosDuo": "CDNC",
+          "soulmate": "SDBR",
+          "nightmare": "CHNC"
+},
+          },
         {
             code: "CHNC",
             name: "The Party Starter",
@@ -179,7 +260,34 @@
                 ["📦 ปฏิกิริยาต่อความเปลี่ยนแปลง", "<strong>รับมือเก่งมาก</strong> เฟอร์นิเจอร์ใหม่คือเวทีใหม่ ขึ้นไปยืนแล้วก่อนกล่องลังจะถึงถังรีไซเคิล"],
                 ["🐈 ความสัมพันธ์กับแมวตัวอื่น", "<strong>มั่นใจและอ่านสถานการณ์ไม่ค่อยเก่ง</strong> พยายามเป็นเพื่อนแมวอาวุโสด้วยการกระโจนเข้าใส่ ผลก็เป็นอย่างที่คุณนึกออก"],
             ],
-        },
+        
+            duringEvents: {
+          "zoomies": "Defies the laws of physics. The couch is lava.",
+          "facetime": "Screams directly into the microphone.",
+          "guests": "Performs a one-cat musical. Expects applause."
+},
+            duringEventsTh: {
+          "zoomies": "ทำลายกฎฟิสิกส์ โซฟาคือลาวา",
+          "facetime": "กรีดร้องใส่ไมโครโฟนตรงๆ",
+          "guests": "เล่นละครเวทีแมวเดี่ยว คาดหวังเสียงปรบมือ"
+},
+            mostLikelyTo: [
+          "Get stuck in a paper bag and pretend it was intentional.",
+          "Knock over a vase while maintaining eye contact.",
+          "Throw a party at 3 AM."
+],
+            mostLikelyToTh: [
+          "ติดในถุงกระดาษแล้วทำเป็นตั้งใจ",
+          "ปัดแจกันตกพร้อมจ้องตาคุณไม่กะพริบ",
+          "จัดปาร์ตี้ตอนตี 3"
+],
+            relationships: {
+          "bestFriend": "CDNC",
+          "chaosDuo": "CHBR",
+          "soulmate": "SDBC",
+          "nightmare": "SHBR"
+},
+          },
         {
             code: "CDBR",
             name: "The Visionary Supervisor",
@@ -219,7 +327,34 @@
                 ["📦 ปฏิกิริยาต่อความเปลี่ยนแปลง", "<strong>มองเป็นวัตถุดิบ</strong> เฟอร์นิเจอร์ใหม่คือผ้าใบเปล่า ห้องที่ตกแต่งใหม่คือคำเชิญสร้างสรรค์"],
                 ["🐈 ความสัมพันธ์กับแมวตัวอื่น", "<strong>ตัวอื่นคือนักแสดงสมทบ</strong> อยู่ในอาณาเขตได้ แต่คาดหวังให้อยู่นอกแผนใหญ่"],
             ],
-        },
+        
+            duringEvents: {
+          "dinner": "Critiques the structural integrity of your meal.",
+          "guests": "Explains how the living room could be optimized.",
+          "zoomies": "Calculated trajectory mapping. Not just running."
+},
+            duringEventsTh: {
+          "dinner": "วิจารณ์โครงสร้างมื้ออาหารของคุณ",
+          "guests": "อธิบายวิธีปรับปรุงห้องนั่งเล่นให้ดีขึ้น",
+          "zoomies": "คำนวณวิถีวิ่งอย่างรอบคอบ ไม่ใช่แค่วิ่งมั่ว"
+},
+            mostLikelyTo: [
+          "Build a fort out of your clean laundry.",
+          "Rearrange the bookshelf by knocking everything off.",
+          "Have a 5-year plan for the apartment."
+],
+            mostLikelyToTh: [
+          "สร้างป้อมปราการจากผ้าที่เพิ่งซัก",
+          "จัดชั้นหนังสือใหม่ด้วยการปัดทุกอย่างตกลงมา",
+          "มีแผนพัฒนาอพาร์ตเมนต์ล่วงหน้า 5 ปี"
+],
+            relationships: {
+          "bestFriend": "SDBR",
+          "chaosDuo": "CDBC",
+          "soulmate": "SHBC",
+          "nightmare": "SDNC"
+},
+          },
         {
             code: "CDBC",
             name: "The Wild Debater",
@@ -259,7 +394,34 @@
                 ["📦 ปฏิกิริยาต่อความเปลี่ยนแปลง", "<strong>ส่งเสียงคอมเมนต์</strong> บอกคุณตรงๆ ว่าคิดยังไงกับพรมใหม่ การประท้วงอาจลากยาวหลายวัน"],
                 ["🐈 ความสัมพันธ์กับแมวตัวอื่น", "<strong>มองตัวอื่นเป็นคู่ต่อสู้ที่คู่ควร</strong> ทะเลาะกันดัง เป็นละคร แต่จบโดยไม่มีใครเจ็บจริง การประลองเองคือจุดประสงค์"],
             ],
-        },
+        
+            duringEvents: {
+          "dinner": "Argues that it's actually breakfast time.",
+          "facetime": "Jumps in to correct a fact.",
+          "guests": "Debates the guest on who owns the sofa."
+},
+            duringEventsTh: {
+          "dinner": "เถียงว่าตอนนี้คือเวลาอาหารเช้าต่างหาก",
+          "facetime": "กระโดดเข้ามาเพื่อแก้ข้อมูลให้ถูกต้อง",
+          "guests": "โต้วาทีกับแขกว่าใครเป็นเจ้าของโซฟา"
+},
+            mostLikelyTo: [
+          "Refuse to sit where you want them to, out of principle.",
+          "Meow back every time you talk.",
+          "Win an argument by knocking over a glass."
+],
+            mostLikelyToTh: [
+          "ไม่ยอมนั่งตรงที่คุณอยากให้นั่งเพื่อรักษาจุดยืน",
+          "เถียงกลับทุกครั้งที่คุณพูดด้วย",
+          "ชนะการเถียงด้วยการปัดแก้วน้ำแตก"
+],
+            relationships: {
+          "bestFriend": "CDNC",
+          "chaosDuo": "CDBR",
+          "soulmate": "SHBC",
+          "nightmare": "SHNR"
+},
+          },
         {
             code: "CDNR",
             name: "The Charismatic Counselor",
@@ -299,7 +461,34 @@
                 ["📦 ปฏิกิริยาต่อความเปลี่ยนแปลง", "<strong>ซึมซับเงียบๆ</strong> เฟอร์นิเจอร์ใหม่จะถูกอ่านผ่านสีหน้าคุณ ปฏิกิริยาคุณบอกว่าเขาควรไปสำรวจหรือรอ"],
                 ["🐈 ความสัมพันธ์กับแมวตัวอื่น", "<strong>คอยดูแลตัวอื่น</strong> เลียทำความสะอาดให้แมวอาวุโส ปลอบตัวเล็กที่สุด และค่อยๆ คลี่คลายเรื่องทะเลาะโดยไม่อ้างความดี"],
             ],
-        },
+        
+            duringEvents: {
+          "dinner": "Sits politely and asks how your day was.",
+          "thunderstorm": "Provides emotional support to the dog.",
+          "facetime": "Smiles beautifully for the camera."
+},
+            duringEventsTh: {
+          "dinner": "นั่งเรียบร้อยและถามว่าวันนี้เป็นไงบ้าง",
+          "thunderstorm": "ให้การสนับสนุนทางอารมณ์กับน้องหมา",
+          "facetime": "ยิ้มสวยๆ ให้กล้อง"
+},
+            mostLikelyTo: [
+          "Know you're sad before you do.",
+          "Gently redirect your bad decisions.",
+          "Heal your inner child."
+],
+            mostLikelyToTh: [
+          "รู้ว่าคุณเศร้าก่อนตัวคุณเองจะรู้",
+          "เปลี่ยนทิศทางการตัดสินใจแย่ๆ ของคุณอย่างอ่อนโยน",
+          "เยียวยาเด็กน้อยในใจคุณ"
+],
+            relationships: {
+          "bestFriend": "SHNR",
+          "chaosDuo": "CDNC",
+          "soulmate": "CHBR",
+          "nightmare": "SHBC"
+},
+          },
         {
             code: "CDNC",
             name: "The Joyful Performer",
@@ -339,7 +528,34 @@
                 ["📦 ปฏิกิริยาต่อความเปลี่ยนแปลง", "<strong>ต้อนรับเหมือนพล็อตทวิสต์</strong> เฟอร์นิเจอร์ใหม่ถูกสำรวจทันที ปีนขึ้นถ่ายรูปหนึ่งครั้ง แล้วถูกผนวกเข้าโชว์ปกติ"],
                 ["🐈 ความสัมพันธ์กับแมวตัวอื่น", "<strong>ตัวอื่นคือนักแสดงร่วม</strong> เล่นด้วยกัน เคียงข้างกัน บางทีก็แสดงใส่กัน แต่โชว์ต้องดำเนินต่อไป"],
             ],
-        },
+        
+            duringEvents: {
+          "guests": "The center of attention. As it should be.",
+          "zoomies": "Interpretive dance.",
+          "facetime": "Demands to be the main subject of the call."
+},
+            duringEventsTh: {
+          "guests": "ศูนย์กลางความสนใจ อย่างที่ควรจะเป็น",
+          "zoomies": "เต้นระบำร่วมสมัย",
+          "facetime": "เรียกร้องให้ตัวเองเป็นตัวหลักในสาย"
+},
+            mostLikelyTo: [
+          "Trip you and then expect an apology.",
+          "Fake an injury for extra treats.",
+          "Make every situation about themselves."
+],
+            mostLikelyToTh: [
+          "ขัดขาคุณล้มแล้วรอคำขอโทษ",
+          "แกล้งเจ็บตัวเพื่อขอขนมเพิ่ม",
+          "ทำให้ทุกเรื่องกลายเป็นเรื่องของตัวเอง"
+],
+            relationships: {
+          "bestFriend": "CHNC",
+          "chaosDuo": "CDNR",
+          "soulmate": "SDBC",
+          "nightmare": "SDBR"
+},
+          },
         {
             code: "SHBR",
             name: "The Silent Strategist",
@@ -379,7 +595,34 @@
                 ["📦 ปฏิกิริยาต่อความเปลี่ยนแปลง", "<strong>มองเป็นตัวแปรใหม่ที่ต้องวิเคราะห์</strong> สังเกตจากระยะปลอดภัย แล้วค่อยรวมเข้าแผนที่ในใจ"],
                 ["🐈 ความสัมพันธ์กับแมวตัวอื่น", "<strong>มองตัวอื่นเป็นตัวแปรที่คาดเดาไม่ได้</strong> เย็นชาและคำนวณตลอด ไม่ก้าวร้าว"],
             ],
-        },
+        
+            duringEvents: {
+          "dinner": "Observes from the highest point in the room.",
+          "guests": "Becomes a shadow. Does not exist.",
+          "thunderstorm": "Retreats to the pre-selected bunker."
+},
+            duringEventsTh: {
+          "dinner": "สังเกตการณ์จากจุดสูงสุดของห้อง",
+          "guests": "กลายเป็นเงา ไม่มีตัวตน",
+          "thunderstorm": "ถอยทัพไปที่บังเกอร์ที่เลือกไว้ล่วงหน้า"
+},
+            mostLikelyTo: [
+          "Outsmart you at every turn.",
+          "Hold a grudge from 2019.",
+          "Judge you silently."
+],
+            mostLikelyToTh: [
+          "ฉลาดกว่าคุณในทุกจังหวะ",
+          "แค้นฝังหุ่นมาตั้งแต่ปี 2019",
+          "ตัดสินคุณเงียบๆ"
+],
+            relationships: {
+          "bestFriend": "CHBR",
+          "chaosDuo": "SHBC",
+          "soulmate": "SDBR",
+          "nightmare": "CHNC"
+},
+          },
         {
             code: "SHBC",
             name: "The Master Tinkerer",
@@ -419,7 +662,34 @@
                 ["📦 ปฏิกิริยาต่อความเปลี่ยนแปลง", "<strong>สำรวจเชิงกลไก</strong> เฟอร์นิเจอร์ใหม่ถูกตรวจรอยต่อ บานพับ และมุมที่ใช้ประโยชน์ได้ก่อนอนุมัติ"],
                 ["🐈 ความสัมพันธ์กับแมวตัวอื่น", "<strong>อยู่วงนอก</strong> ไม่ใช่ไม่เป็นมิตร แค่ยุ่ง อยู่ร่วมได้ แต่ไม่ต้องร่วมมือ"],
             ],
-        },
+        
+            duringEvents: {
+          "dinner": "Figures out how to open the fridge.",
+          "zoomies": "Disassembles the cat toy entirely.",
+          "guests": "Ignores them to focus on a loose screw."
+},
+            duringEventsTh: {
+          "dinner": "หาวิธีเปิดตู้เย็น",
+          "zoomies": "ถอดประกอบของเล่นแมวจนเกลี้ยง",
+          "guests": "เมินแขกเพื่อโฟกัสที่นอตหลวม"
+},
+            mostLikelyTo: [
+          "Escape any carrier.",
+          "Steal your keys for a project.",
+          "Learn how to turn off the alarm."
+],
+            mostLikelyToTh: [
+          "แหกหนีจากกระเป๋าแมวทุกใบ",
+          "ขโมยกุญแจคุณไปทำโปรเจกต์",
+          "เรียนรู้วิธีปิดนาฬิกาปลุก"
+],
+            relationships: {
+          "bestFriend": "CHBC",
+          "chaosDuo": "SHBR",
+          "soulmate": "CDBC",
+          "nightmare": "SDNR"
+},
+          },
         {
             code: "SHNR",
             name: "The Gentle Defender",
@@ -459,7 +729,34 @@
                 ["📦 ปฏิกิริยาต่อความเปลี่ยนแปลง", "<strong>เฝ้าระวังเงียบๆ</strong> แขกใหม่ถูกสังเกตจากที่สูง เฟอร์นิเจอร์ใหม่จะอนุมัติก็ต่อเมื่อคุณนั่งบนนั้นแล้ว"],
                 ["🐈 ความสัมพันธ์กับแมวตัวอื่น", "<strong>ทนได้ แต่ไม่เป็นเพื่อน</strong> สายสัมพันธ์อยู่ที่คนของเขาคนเดียว ตัวอื่นแชร์บ้านได้แต่แชร์บทบาทไม่ได้"],
             ],
-        },
+        
+            duringEvents: {
+          "guests": "Guards you from 3 feet away.",
+          "thunderstorm": "Hides behind you.",
+          "dinner": "Waits patiently for you to finish."
+},
+            duringEventsTh: {
+          "guests": "คุ้มกันคุณจากระยะ 3 ฟุต",
+          "thunderstorm": "ซ่อนอยู่หลังคุณ",
+          "dinner": "รออย่างอดทนให้คุณกินเสร็จ"
+},
+            mostLikelyTo: [
+          "Die for you.",
+          "Remember exactly where you put the treats.",
+          "Never leave your side when you're sick."
+],
+            mostLikelyToTh: [
+          "ยอมตายแทนคุณ",
+          "จำได้เป๊ะว่าคุณซ่อนขนมไว้ไหน",
+          "ไม่ยอมห่างคุณเลยตอนคุณป่วย"
+],
+            relationships: {
+          "bestFriend": "CDNR",
+          "chaosDuo": "SDNC",
+          "soulmate": "CHNR",
+          "nightmare": "CDBC"
+},
+          },
         {
             code: "SHNC",
             name: "The Emotional Artist",
@@ -499,7 +796,34 @@
                 ["📦 ปฏิกิริยาต่อความเปลี่ยนแปลง", "<strong>ประมวลผลช้าและเห็นได้ชัด</strong> เฟอร์นิเจอร์ใหม่อาจถูกเมินสามวัน แล้วอยู่ดีๆ กลายเป็นที่โปรดใหม่"],
                 ["🐈 ความสัมพันธ์กับแมวตัวอื่น", "<strong>ตัวอื่นคือศิลปินด้วยกัน</strong> ชอบเล่นแบบขนาน ห้องเดียวกันแต่กิจกรรมแยก ไม่ค่อยชอบสิ่งที่ดูเหมือนต้องร่วมมือ"],
             ],
-        },
+        
+            duringEvents: {
+          "dinner": "Looks at the food. Sighs.",
+          "thunderstorm": "Writes a sad poem about the rain.",
+          "guests": "Looks out the window dramatically."
+},
+            duringEventsTh: {
+          "dinner": "มองอาหารแล้วถอนหายใจ",
+          "thunderstorm": "แต่งกลอนเศร้าเกี่ยวกับสายฝน",
+          "guests": "มองออกนอกหน้าต่างแบบดราม่า"
+},
+            mostLikelyTo: [
+          "Cry because you moved slightly.",
+          "Stare at the rain and contemplate existence.",
+          "Refuse to eat out of existential dread."
+],
+            mostLikelyToTh: [
+          "ร้องไห้เพราะคุณขยับตัวนิดเดียว",
+          "จ้องฝนตกแล้วครุ่นคิดถึงการมีอยู่",
+          "ไม่ยอมกินข้าวเพราะกังวลเรื่องชีวิต"
+],
+            relationships: {
+          "bestFriend": "SDNR",
+          "chaosDuo": "SHNR",
+          "soulmate": "CDNC",
+          "nightmare": "CHBR"
+},
+          },
         {
             code: "SDBR",
             name: "The Observant Theorist",
@@ -539,7 +863,34 @@
                 ["📦 ปฏิกิริยาต่อความเปลี่ยนแปลง", "<strong>ระวังและเป็นระบบ</strong> ของใหม่จะถูกเดินรอบ ดม สังเกตจากที่สูง แล้วค่อยอนุมัติให้ใช้ทั่วไป"],
                 ["🐈 ความสัมพันธ์กับแมวตัวอื่น", "<strong>ตัวอื่นคือเป้าหมายการศึกษา</strong> เฝ้าผู้มาใหม่จากระยะปลอดภัย จดบันทึก แล้วผนวกเข้าแผนที่สังคมโดยไม่ต้องส่งเสียง"],
             ],
-        },
+        
+            duringEvents: {
+          "dinner": "Analyzes the nutritional value of the meal.",
+          "guests": "Studies them like a new species.",
+          "zoomies": "Calculates the physics of the jump, then doesn't jump."
+},
+            duringEventsTh: {
+          "dinner": "วิเคราะห์คุณค่าทางโภชนาการของมื้ออาหาร",
+          "guests": "ศึกษาแขกเหมือนเป็นสิ่งมีชีวิตสายพันธุ์ใหม่",
+          "zoomies": "คำนวณฟิสิกส์ของการกระโดด แล้วก็ไม่กระโดด"
+},
+            mostLikelyTo: [
+          "Stare at a blank wall for 45 minutes.",
+          "Understand string theory.",
+          "Know your passwords."
+],
+            mostLikelyToTh: [
+          "จ้องผนังเปล่าๆ 45 นาที",
+          "เข้าใจทฤษฎีสตริง",
+          "รู้รหัสผ่านของคุณ"
+],
+            relationships: {
+          "bestFriend": "CDBR",
+          "chaosDuo": "SDBC",
+          "soulmate": "SHBR",
+          "nightmare": "CHNC"
+},
+          },
         {
             code: "SDBC",
             name: "The Free Spirit",
@@ -579,7 +930,34 @@
                 ["📦 ปฏิกิริยาต่อความเปลี่ยนแปลง", "<strong>สนใจแบบสบายๆ</strong> เฟอร์นิเจอร์ใหม่อาจถูกเมิน ปีนครั้งเดียว หรือยอมรับเป็นบัลลังก์ใหม่ทันที แล้วแต่วัน"],
                 ["🐈 ความสัมพันธ์กับแมวตัวอื่น", "<strong>มองตัวอื่นเป็นรูมเมท</strong> ไม่มีลำดับชั้นต้องต่อรอง ไม่มีกฎต้องบังคับ ใช้ชีวิตและปล่อยให้นอน"],
             ],
-        },
+        
+            duringEvents: {
+          "dinner": "Eats the dog's food.",
+          "guests": "Sleeps on the guest's coat.",
+          "zoomies": "Runs sideways for no reason."
+},
+            duringEventsTh: {
+          "dinner": "กินอาหารหมา",
+          "guests": "นอนบนเสื้อโค้ทของแขก",
+          "zoomies": "วิ่งสไลด์ข้างโดยไม่มีเหตุผล"
+},
+            mostLikelyTo: [
+          "Forget they have a home.",
+          "Bring a leaf inside and act like it's a prize.",
+          "Sleep in the sink."
+],
+            mostLikelyToTh: [
+          "ลืมไปว่าตัวเองมีบ้าน",
+          "คาบใบไม้เข้าบ้านแล้วทำเหมือนเป็นของรางวัล",
+          "นอนในอ่างล้างหน้า"
+],
+            relationships: {
+          "bestFriend": "CHNC",
+          "chaosDuo": "SDBR",
+          "soulmate": "SDNC",
+          "nightmare": "CHBR"
+},
+          },
         {
             code: "SDNR",
             name: "The Empathetic Muse",
@@ -619,7 +997,34 @@
                 ["📦 ปฏิกิริยาต่อความเปลี่ยนแปลง", "<strong>รอดูอย่างอดทน</strong> สังเกตแขกใหม่หรือของใหม่นานเท่าที่ต้อง แล้วยอมรับเงียบๆ เมื่อรู้สึกปลอดภัย"],
                 ["🐈 ความสัมพันธ์กับแมวตัวอื่น", "<strong>ผู้อาศัยร่วมในความฝัน</strong> นอนใกล้ๆ เลียทำความสะอาดเป็นบางครั้ง หลีกเลี่ยงดราม่าอาณาเขตด้วยการแค่ไม่เข้าร่วม"],
             ],
-        },
+        
+            duringEvents: {
+          "dinner": "Shares their food with you.",
+          "thunderstorm": "Tries to comfort the thunder.",
+          "guests": "Makes sure everyone has a blanket."
+},
+            duringEventsTh: {
+          "dinner": "แบ่งอาหารให้คุณ",
+          "thunderstorm": "พยายามปลอบโยนเสียงฟ้าร้อง",
+          "guests": "คอยดูว่าทุกคนมีผ้าห่มไหม"
+},
+            mostLikelyTo: [
+          "Adopt a bug instead of killing it.",
+          "Listen to all your problems.",
+          "Fall asleep mid-purr."
+],
+            mostLikelyToTh: [
+          "รับเลี้ยงแมลงแทนที่จะฆ่ามัน",
+          "รับฟังทุกปัญหาของคุณ",
+          "หลับไปกลางคันตอนกำลังคราง"
+],
+            relationships: {
+          "bestFriend": "SHNC",
+          "chaosDuo": "SDNC",
+          "soulmate": "CDNR",
+          "nightmare": "CHBC"
+},
+          },
         {
             code: "SDNC",
             name: "The Peaceful Dreamer",
@@ -659,7 +1064,34 @@
                 ["📦 ปฏิกิริยาต่อความเปลี่ยนแปลง", "<strong>เฉยอย่างมีสง่า</strong> เฟอร์นิเจอร์ใหม่ สุดท้ายก็นอน แขกใหม่ สุดท้ายก็ยอมรับ ไม่ต้องรีบ"],
                 ["🐈 ความสัมพันธ์กับแมวตัวอื่น", "<strong>นักฝันด้วยกัน</strong> แชร์แสงแดด เมินข้อพิพาทเล็กๆ และเป็นแบบอย่างเงียบๆ ของศิลปะการไม่แคร์อะไรมาก"],
             ],
-        },
+        
+            duringEvents: {
+          "dinner": "Sleeps through dinner.",
+          "guests": "Doesn't notice the guests.",
+          "thunderstorm": "Sleeps through the thunderstorm."
+},
+            duringEventsTh: {
+          "dinner": "นอนหลับข้ามมื้อเย็น",
+          "guests": "ไม่ทันสังเกตว่ามีแขกมา",
+          "thunderstorm": "หลับยาวทะลุเสียงฟ้าร้อง"
+},
+            mostLikelyTo: [
+          "Melt into a puddle of floof.",
+          "Not care about literally anything.",
+          "Achieve nirvana."
+],
+            mostLikelyToTh: [
+          "ละลายกลายเป็นก้อนขน",
+          "ไม่แคร์อะไรเลยบนโลกนี้",
+          "บรรลุนิพพาน"
+],
+            relationships: {
+          "bestFriend": "SDBC",
+          "chaosDuo": "SDNR",
+          "soulmate": "SHNC",
+          "nightmare": "CDBR"
+},
+          },
     ];
 
     // Code-axis flips: rival is the archetype with all 4 axes inverted.
