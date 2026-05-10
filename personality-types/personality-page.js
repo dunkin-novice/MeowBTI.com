@@ -373,14 +373,11 @@
     }
 
     function renderCompatibilityMatrix(p) {
-        // Simple rule-based compatibility
-        // In a real app, this might be data-driven, but for now we can generate it
-        // based on the archetype's traits or pre-defined pairings.
-        
+        // Dynamic compatibility based on archetype fields
         const compatData = [
-            { type: t('compatWithCat'), level: '85%', survival: 'High', desc: "They won't understand your rules, but they'll respect your power." },
-            { type: t('compatWithBoss'), level: '40%', survival: 'Medium', desc: "One of you is getting fired by Tuesday. It's probably the boss." },
-            { type: t('compatWithRoomie'), level: '95%', survival: 'Very High', desc: "One creates chaos. The other documents it in Notion." }
+            { type: t('compatWithCat'), level: '85%', survival: 'High', desc: field(p, 'compatCatDesc') },
+            { type: t('compatWithBoss'), level: '40%', survival: 'Medium', desc: field(p, 'compatBossDesc') },
+            { type: t('compatWithRoomie'), level: '95%', survival: 'Very High', desc: field(p, 'compatRoomieDesc') }
         ];
 
         const cards = compatData.map(c => `

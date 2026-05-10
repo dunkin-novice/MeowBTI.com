@@ -83,20 +83,20 @@
 
         // ─── results (personality-page.js) ─────────────────────
         resultTitle:       { en: "The Verdict",               th: "คำตัดสิน" },
-        resultOwnerTitle:  { en: "Your Human Archetype",      th: "ตัวตนร่างมนุษย์ของคุณ" },
-        resultOwnerSub:    { en: "You project the energy of:", th: "คุณแผ่ซ่านพลังงานของ:" },
-        resultCatTitle:    { en: "The Official Type",         th: "ประเภทแมวอย่างเป็นทางการ" },
-        shareOwnerBtn:     { en: "Share Your Identity",        th: "แชร์ตัวตนของคุณ" },
+        resultOwnerTitle:  { en: "Your Human Archetype",      th: "ตัวตนร่างมนุษย์" },
+        resultOwnerSub:    { en: "You project the energy of:", th: "พลังงานในตัวคุณคือสาย:" },
+        resultCatTitle:    { en: "The Official Type",         th: "ประเภทแมว" },
+        shareOwnerBtn:     { en: "Share Your Identity",        th: "แชร์ตัวตนร่างคน" },
         
         // Modules
-        ownerWorkplace:    { en: "Workplace Energy",          th: "พลังงานในที่ทำงาน" },
-        ownerGroupChat:    { en: "Group Chat Role",           th: "บทบาทในกลุ่มแชท" },
-        ownerDamage:       { en: "Emotional Damage",          th: "การรับมือความนอยด์" },
-        ownerComm:         { en: "Communication Style",       th: "สไตล์การสื่อสาร" },
-        ownerCatAttract:   { en: "The Cat You Attract",       th: "แมวที่จะเข้าหาคุณ" },
-        ownerBossCompat:   { en: "Boss Compatibility",        th: "ความเข้ากันกับบอส" },
+        ownerWorkplace:    { en: "Workplace Energy",          th: "Vibe ในที่ทำงาน" },
+        ownerGroupChat:    { en: "Group Chat Role",           th: "ตัวตึงแชทกลุ่ม" },
+        ownerDamage:       { en: "Emotional Damage",          th: "เวลาโดนดาเมจ" },
+        ownerComm:         { en: "Communication Style",       th: "สไตล์การทักแชท" },
+        ownerCatAttract:   { en: "The Cat You Attract",       th: "แมวที่มักจะตกเราได้" },
+        ownerBossCompat:   { en: "Boss Compatibility",        th: "ความเข้ากันกับหัวหน้า" },
         ownerRoommate:     { en: "Roommate Warning",          th: "คำเตือนสำหรับรูมเมท" },
-        ownerSurvival:     { en: "Survival Strategy",         th: "กลยุทธ์การเอาตัวรอด" },
+        ownerSurvival:     { en: "Survival Strategy",         th: "วิธีเอาชีวิตรอด" },
         
         // Compatibility
         compatTitle:       { en: "Compatibility Matrix",       th: "ความเข้ากันได้" },
@@ -108,7 +108,7 @@
         compatSurvival:    { en: "Survival Odds",             th: "โอกาสรอดชีวิต" },
 
         // ─── result page chrome ───────────────────────────────
-        revealLine:        { en: "your cat's official type is", th: "ประเภทแมวอย่างเป็นทางการของคุณคือ" },
+        revealLine:        { en: "your cat's official type is", th: "แมวของคุณคือสาย:" },
         copyLink:          { en: "copy link",                 th: "คัดลอกลิงก์" },
         copied:            { en: "copied!",                   th: "คัดลอกแล้ว" },
         retake:            { en: "↺ retake",                  th: "↺ ทำใหม่" },
