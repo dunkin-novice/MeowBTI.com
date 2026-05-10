@@ -1,0 +1,186 @@
+#!/usr/bin/env node
+// MeowBTI — SEO regenerator. Runs locally, idempotent, no build step in the
+// deployed site. Re-run whenever archetype data, dates, or copy change.
+//
+//   node tools/build-seo.js
+//
+// What it does:
+//   1. Rewrites sitemap.xml from data/archetypes.js (with sitemap-image
+//      extension and today's lastmod for entries that touch archetype data).
+//   2. Replaces the <script type="application/ld+json"> block in each
+//      personality-types/<CODE>.html with an enriched per-archetype block
+//      (Article + ImageObject + BreadcrumbList + dates + keywords). The
+//      block is delimited by surrounding sentinel comments so the script
+//      stays idempotent.
+
+const fs = require('fs');
+const path = require('path');
+
+const ROOT = path.resolve(__dirname, '..');
+const SITE = 'https://meowbti.com';
+const TODAY = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+const PUBLISHED = '2026-05-09';                       // initial publish date for archetype pages
+
+global.window = {};
+require(path.join(ROOT, 'data/archetypes.js'));
+const A = global.window.MeowArchetypes;
+
+// ─── sitemap ────────────────────────────────────────────────
+function buildSitemap() {
+    const entries = [];
+
+    function row(loc, lastmod, changefreq, priority, image) {
+        const lines = [
+            '  <url>',
+            `    <loc>${loc}</loc>`,
+            `    <lastmod>${lastmod}</lastmod>`,
+            `    <changefreq>${changefreq}</changefreq>`,
+            `    <priority>${priority}</priority>`,
+        ];
+        if (image) {
+            lines.push('    <image:image>');
+            lines.push(`      <image:loc>${image.loc}</image:loc>`);
+            lines.push(`      <image:title>${image.title}</image:title>`);
+            lines.push('    </image:image>');
+        }
+        lines.push('  </url>');
+        return lines.join('\n');
+    }
+
+    entries.push(row(`${SITE}/`,                    TODAY, 'weekly',  '1.0'));
+    entries.push(row(`${SITE}/quiz.html`,           TODAY, 'monthly', '0.9'));
+    entries.push(row(`${SITE}/personality-types.html`, TODAY, 'monthly', '0.8'));
+
+    A.all.forEach(a => {
+        entries.push(row(
+            `${SITE}/personality-types/${a.code}.html`,
+            TODAY,
+            'monthly',
+            '0.7',
+            {
+                loc: `${SITE}/assets/og/${a.code}.png`,
+                title: `${a.name} — MeowBTI`,
+            }
+        ));
+    });
+
+    entries.push(row(`${SITE}/privacy.html`, '2026-05-09', 'yearly', '0.3'));
+    entries.push(row(`${SITE}/terms.html`,   '2026-05-09', 'yearly', '0.3'));
+
+    return [
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"',
+        '        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">',
+        ...entries,
+        '</urlset>',
+        '',
+    ].join('\n');
+}
+
+// ─── per-archetype JSON-LD ──────────────────────────────────
+function buildJsonLd(a) {
+    const url = `${SITE}/personality-types/${a.code}.html`;
+    const imgUrl = `${SITE}/assets/og/${a.code}.png`;
+    const headline = `${a.code} — ${a.name}`;
+    const keywords = [
+        'cat personality',
+        'MeowBTI',
+        'cat MBTI',
+        a.name,
+        a.code,
+        'cat personality test',
+    ];
+
+    const graph = [
+        {
+            '@type': 'Article',
+            'headline': headline,
+            'description': a.tagline,
+            'url': url,
+            'image': {
+                '@type': 'ImageObject',
+                'url': imgUrl,
+                'width': 1200,
+                'height': 630,
+            },
+            'datePublished': PUBLISHED,
+            'dateModified': TODAY,
+            'inLanguage': 'en',
+            'keywords': keywords,
+            'publisher': {
+                '@type': 'Organization',
+                'name': 'MeowBTI',
+                'url': `${SITE}/`,
+            },
+            'isPartOf': {
+                '@type': 'WebSite',
+                'name': 'MeowBTI',
+                'url': `${SITE}/`,
+            },
+            'mainEntity': {
+                '@type': 'Thing',
+                'name': a.name,
+                'alternateName': a.code,
+                'description': a.tagline,
+            },
+        },
+        {
+            '@type': 'BreadcrumbList',
+            'itemListElement': [
+                { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': `${SITE}/` },
+                { '@type': 'ListItem', 'position': 2, 'name': 'All 16 personalities', 'item': `${SITE}/personality-types.html` },
+                { '@type': 'ListItem', 'position': 3, 'name': a.name },
+            ],
+        },
+    ];
+
+    return {
+        '@context': 'https://schema.org',
+        '@graph': graph,
+    };
+}
+
+function ldBlock(a) {
+    const json = JSON.stringify(buildJsonLd(a), null, 2)
+        .split('\n')
+        .map(line => '    ' + line)
+        .join('\n');
+    return [
+        '    <!-- JSON-LD: type page (generated by tools/build-seo.js) -->',
+        '    <script type="application/ld+json">',
+        json,
+        '    </script>',
+    ].join('\n');
+}
+
+// ─── HTML rewrite (idempotent via JSON-LD block match) ──────
+function rewriteHtmlForArchetype(a) {
+    const file = path.join(ROOT, 'personality-types', `${a.code}.html`);
+    let html = fs.readFileSync(file, 'utf8');
+
+    // Match the existing JSON-LD block: an opening comment line that
+    // contains "JSON-LD" through the matching </script>.
+    const re = /[ \t]*<!--\s*JSON-LD[^>]*-->[\s\S]*?<\/script>/;
+    if (!re.test(html)) {
+        throw new Error(`No JSON-LD block found in ${file}`);
+    }
+    html = html.replace(re, ldBlock(a));
+
+    fs.writeFileSync(file, html);
+}
+
+// ─── run ────────────────────────────────────────────────────
+function main() {
+    const sitemap = buildSitemap();
+    fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), sitemap);
+    console.log(`✓ sitemap.xml (${A.all.length + 5} urls, lastmod ${TODAY})`);
+
+    A.all.forEach(a => {
+        rewriteHtmlForArchetype(a);
+        console.log(`✓ personality-types/${a.code}.html`);
+    });
+
+    console.log(`\nDone. Re-run any time data/archetypes.js or dates change.`);
+}
+
+main();

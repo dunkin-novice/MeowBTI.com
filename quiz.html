@@ -7,7 +7,7 @@
     <meta name="description" content="The 20-question MeowBTI test. Tap whichever feels most like your cat. About 90 seconds.">
     <meta name="theme-color" content="#FFF4EC">
     <link rel="canonical" href="https://meowbti.com/quiz.html">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 
     <meta property="og:title" content="Take the MeowBTI quiz — what kind of menace is your cat?">
     <meta property="og:description" content="20 questions. ~90 seconds. One of 16 verdicts.">
@@ -41,7 +41,7 @@
             <div class="container">
 
                 <div class="quiz-bar">
-                    <a href="index.html" class="ghost-btn" aria-label="Back home">← back</a>
+                    <a href="index.html" class="ghost-btn" aria-label="Back home" data-i18n-href data-i18n="quizBack">← back</a>
                     <div class="quiz-progress" id="quiz-progress" role="progressbar" aria-valuemin="1" aria-valuemax="20" aria-valuenow="1"></div>
                     <span class="quiz-count" id="quiz-count">1/20</span>
                 </div>
@@ -56,6 +56,8 @@
 
     <footer class="main-footer" id="main-footer"></footer>
 
+    <script src="data/i18n.js"></script>
+    <script src="data/archetypes.js"></script>
     <script src="script.js"></script>
     <script src="quiz-script.js"></script>
 </body>

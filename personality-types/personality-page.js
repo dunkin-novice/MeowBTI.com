@@ -1,134 +1,33 @@
 // MeowBTI personality page renderer.
 // Reads code from filename + tally from ?t querystring (set by quiz),
 // then builds the trading-card result UI inside #personality-content.
+//
+// Archetype data lives in /data/archetypes.js and must be loaded before this script.
 
 (function () {
-    const PERSONALITIES = {
-        CHBR: { code:"CHBR", name:"The Grand General",         tagline:"Runs the household like a small, judgmental kingdom.",  emoji:"👑", color:"#FF5B3B", bg:"#FFE3D6",
-            vibes:["Bossy","Loud","Loyal","Knocks Things Off Tables On Purpose"],
-            famouslySays:"I scheduled this meeting. You will attend.",
-            kindredSpirits:["Gordon Ramsay","Miranda Priestly","your group chat admin"],
-            redFlags:"Has opinions about your life choices.",
-            greenFlags:"Will defend you from a houseplant." },
-        CHBC: { code:"CHBC", name:"The Street CEO",              tagline:"Built a tuna empire from one strategic meow.",            emoji:"💼", color:"#E8612A", bg:"#FFE0CC",
-            vibes:["Hustler","Charming","Opportunist","Always Negotiating"],
-            famouslySays:"Let's circle back after dinner.",
-            kindredSpirits:["a slightly chaotic founder","Tony Soprano","the kid who sold candy at school"],
-            redFlags:"Has 4 different humans feeding it.",
-            greenFlags:"Networking is love language." },
-        CHNR: { code:"CHNR", name:"The Affectionate Warden",     tagline:"Loves you fiercely and on a strict schedule.",            emoji:"🫶", color:"#D94E8C", bg:"#FFD6E6",
-            vibes:["Clingy","Routine-Obsessed","Gentle Bully","Mandatory Cuddler"],
-            famouslySays:"You will be loved at 7:42pm. No exceptions.",
-            kindredSpirits:["a Pinterest mom","Monica Geller","your sweetest, scariest aunt"],
-            redFlags:"Wakes you up to make sure you're alive.",
-            greenFlags:"Knows your sleep schedule better than you." },
-        CHNC: { code:"CHNC", name:"The Party Starter",           tagline:"The room is boring. They will fix it.",                  emoji:"🎉", color:"#FFB000", bg:"#FFEFC2",
-            vibes:["Chaotic Good","Zoomie Champion","Talks A Lot","Absolutely Unhinged"],
-            famouslySays:"WAKE UP. WAKE UP. THE SUN IS DOING SOMETHING.",
-            kindredSpirits:["a golden retriever in a cat suit","your most extroverted friend"],
-            redFlags:"3am wall sprints.",
-            greenFlags:"Genuinely thrilled to see you, every time." },
-        CDBR: { code:"CDBR", name:"The Visionary Supervisor",    tagline:"Has Big Ideas about that empty Amazon box.",             emoji:"📐", color:"#7A5BFF", bg:"#E2DBFF",
-            vibes:["Inventive","Bossy","Schemer","Architecturally Curious"],
-            famouslySays:"I have plans for the bookshelf.",
-            kindredSpirits:["an indie movie director","Wes Anderson","Lego enthusiasts"],
-            redFlags:"Treats the curtain rod as a balance beam.",
-            greenFlags:"Genuinely impressed by your weird ideas too." },
-        CDBC: { code:"CDBC", name:"The Wild Debater",            tagline:"Will argue with you about gravity. And win.",            emoji:"🧠", color:"#3B6FFF", bg:"#D8E2FF",
-            vibes:["Smart","Loud","Counter-arguer","Counter-jumper"],
-            famouslySays:"Actually, the counter is mine. Let me explain.",
-            kindredSpirits:["a debate kid","Reddit at 2am","your favorite contrarian friend"],
-            redFlags:"Knocks things off the counter to prove a point.",
-            greenFlags:"Will absolutely die on a hill for you." },
-        CDNR: { code:"CDNR", name:"The Charismatic Counselor",   tagline:"Personal therapist. Co-pay is treats.",                  emoji:"💗", color:"#FF7AA2", bg:"#FFD9E5",
-            vibes:["Emotionally Fluent","Soft Boss","Vibes Reader","Lap Loiterer"],
-            famouslySays:"You seem stressed. Have you tried purring?",
-            kindredSpirits:["a yoga teacher","Ted Lasso","the friend who always texts first"],
-            redFlags:"Knows when you're sad and uses it.",
-            greenFlags:"Knows when you're sad and shows up." },
-        CDNC: { code:"CDNC", name:"The Joyful Performer",        tagline:"Is this entertainment? It is now.",                       emoji:"🎭", color:"#FF6B6B", bg:"#FFD9D9",
-            vibes:["Dramatic","Loving","Theatrical","Audience-Required"],
-            famouslySays:"Watch me. Watch me. Are you watching?",
-            kindredSpirits:["theater kids","any small dog","your friend who always tells the story"],
-            redFlags:"Performs a death scene daily.",
-            greenFlags:"Will make your worst day at least weird." },
-        SHBR: { code:"SHBR", name:"The Silent Strategist",       tagline:"Has been planning this for six months.",                  emoji:"🗝️", color:"#2E7D7D", bg:"#CFE8E8",
-            vibes:["Mysterious","Calculating","Slow-Blink","Has A Plan"],
-            famouslySays:"...",
-            kindredSpirits:["a chess grandmaster","John Wick","the quiet one in the friend group"],
-            redFlags:"You don't know where they are right now.",
-            greenFlags:"You don't know where they are right now (and they're fine)." },
-        SHBC: { code:"SHBC", name:"The Master Tinkerer",         tagline:"Can absolutely open that cabinet, given time.",           emoji:"🔧", color:"#5C6BC0", bg:"#D8DDF5",
-            vibes:["Crafty","Independent","Door-Opener","Chaos Engineer"],
-            famouslySays:"I have figured out the lid.",
-            kindredSpirits:["a maker on YouTube","MacGyver","your friend who fixes things"],
-            redFlags:"Has cracked the treat container code.",
-            greenFlags:"Self-entertaining genius." },
-        SHNR: { code:"SHNR", name:"The Gentle Defender",         tagline:"Soft outside, fiercely loyal inside.",                    emoji:"🛡️", color:"#3F8B5C", bg:"#D5EBDD",
-            vibes:["Quiet","Devoted","Watchful","One-Person Cat"],
-            famouslySays:"I am here. That is enough.",
-            kindredSpirits:["a librarian","Samwise Gamgee","the friend who remembers everything"],
-            redFlags:"Has trust issues with new visitors.",
-            greenFlags:"Unbreakable bond, unspoken understanding." },
-        SHNC: { code:"SHNC", name:"The Emotional Artist",        tagline:"Their medium is yowling at 3am.",                         emoji:"🎨", color:"#9B59B6", bg:"#EAD6F2",
-            vibes:["Sensitive","Independent","Mood-Driven","Hairball Poet"],
-            famouslySays:"(stares meaningfully)",
-            kindredSpirits:["a film school grad","any sad indie singer","your friend with a journal"],
-            redFlags:"Cries when you close a door.",
-            greenFlags:"Big feelings, big love." },
-        SDBR: { code:"SDBR", name:"The Observant Theorist",      tagline:"Watches the red dot. Wonders why.",                       emoji:"🔭", color:"#1F6FA8", bg:"#D0E3F0",
-            vibes:["Pensive","Quiet","Window-Watcher","Galaxy-Brained"],
-            famouslySays:"What is the laser, really?",
-            kindredSpirits:["a philosophy major","Lisa Simpson","your friend who reads on the train"],
-            redFlags:"Stares at walls for 4 hours.",
-            greenFlags:"Will quietly figure you out." },
-        SDBC: { code:"SDBC", name:"The Free Spirit",             tagline:"A rule is just a suggestion they haven't ignored yet.",   emoji:"🌿", color:"#3DA17A", bg:"#D2EDE0",
-            vibes:["Independent","Whimsical","Anti-Schedule","Sun-Chasing"],
-            famouslySays:"I will eat dinner whenever I feel like it. Which is now. Or in 4 hours.",
-            kindredSpirits:["a Burning Man regular","Phoebe Buffay","your friend who lives in a van"],
-            redFlags:"Does not respect the closed door.",
-            greenFlags:"Lives entirely in the present moment." },
-        SDNR: { code:"SDNR", name:"The Empathetic Muse",         tagline:"Feels your feelings. Naps until they pass.",              emoji:"🌙", color:"#7E57C2", bg:"#E2D6F2",
-            vibes:["Soft","Intuitive","Dream-Heavy","Quiet Comforter"],
-            famouslySays:"I am here. Let us nap on this together.",
-            kindredSpirits:["an INFP forever","Luna Lovegood","your friend who texts 'thinking of you'"],
-            redFlags:"Disappears when overstimulated.",
-            greenFlags:"Knows exactly when to show up." },
-        SDNC: { code:"SDNC", name:"The Peaceful Dreamer",        tagline:"Sun. Blanket. Nothing else matters.",                     emoji:"☁️", color:"#5BA8D9", bg:"#D5EBF7",
-            vibes:["Chill","Floofy","Unbothered","Aggressively Soft"],
-            famouslySays:"(snoring softly)",
-            kindredSpirits:["a yoga retreat regular","Winnie the Pooh","your friend who's always 'good'"],
-            redFlags:"Will not be rushed. Ever.",
-            greenFlags:"A walking, purring meditation." },
-    };
+    if (!window.MeowArchetypes) {
+        console.error('MeowArchetypes not loaded — include data/archetypes.js before personality-page.js');
+        return;
+    }
 
-    // Optional long-form copy (preserved from the previous site for SEO depth on detailed types).
-    const LONG_FORM = {
-        CHBR: {
-            description: "This is the rare, powerful cat who operates with the cold efficiency of a corporate executive. The Grand General is <strong>Commanding</strong> because they seek external engagement, <strong>Hunter</strong> because they rely on observable facts, <strong>Bossy</strong> because they prioritize logic over emotion, and <strong>Regal</strong> because they demand structure and closure. They aren't trying to be mean; they're just running a tight ship.",
-            traits: [
-                ["How They Show Love ❤️", "Love is shown through <strong>compliance and proximity</strong>. They will stare intensely at you from a high perch or walk across your keyboard mid-use, signifying that you are the central, albeit distracting, object in their structured universe."],
-                ["How They Ask for Attention 👀", "With <strong>loud, sustained, direct meows</strong> and demanding eye contact. If that fails, they will use strategic territorial obstruction (blocking doorways or jumping onto a forbidden counter)."],
-                ["Territory (The Fiefdom) 🏰", "They maintain a highly <strong>disciplined perimeter</strong>. Non-human invaders are observed with chilling stillness until they retreat."],
-                ["Energy Throughout the Day ⚡", "High and consistent. They see idleness as non-productive. Naps are strategic, not leisurely."],
-                ["Play Style 🧶", "Play is <strong>training</strong>. The goal is the efficient capture of the toy."],
-                ["Reaction to Change 📦", "Hostile. A new piece of furniture is an unauthorized invasion of their territory."],
-                ["Relationship with Other Cats 🐈", "Hierarchical. The General establishes dominance early and enforces it with unblinking stares and the occasional tactical bap."],
-            ],
-        },
-        SHBR: {
-            description: "The Silent Strategist is the master observer, a quiet force who understands the household's inner workings better than anyone. They are <strong>Solitary</strong>, <strong>Hunter</strong>, <strong>Bossy</strong>, and <strong>Regal</strong> — combining a need for privacy with a brutally logical and structured approach to life.",
-            traits: [
-                ["How They Show Love ❤️", "Love is demonstrated through <strong>silent companionship</strong>. They will 'fix' your loneliness by simply materializing in the same room as you."],
-                ["How They Ask for Attention 👀", "They don't. They position themselves in a high-traffic area and wait for you to notice."],
-                ["Territory (The Fiefdom) 🏰", "Their territory is a series of <strong>optimized, efficient zones</strong>: a sleeping zone, an observation zone, a sunbeam zone."],
-                ["Energy Throughout the Day ⚡", "Energy is conserved and expended with purpose. They move with deliberation."],
-                ["Play Style 🧶", "Play is a <strong>tactical simulation</strong>. They prefer puzzle toys or laser pointers that challenge their intellect."],
-                ["Reaction to Change 📦", "Change is a new variable that must be analyzed. They observe from a safe distance, then integrate it into their internal map."],
-                ["Relationship with Other Cats 🐈", "Other cats are <strong>unpredictable variables</strong>. Aloof and calculating, not aggressive."],
-            ],
-        },
-    };
+    // ─── i18n ────────────────────────────────────────────────
+    // All chrome strings live in /data/i18n.js (window.MeowI18n). This file
+    // only owns the result-page-specific helpers: archetype `field()` swap.
+    if (!window.MeowI18n) {
+        console.error('MeowI18n not loaded — include data/i18n.js before personality-page.js');
+        return;
+    }
+    const { getLang, t, withLang } = window.MeowI18n;
+
+    // Per-archetype field swap with EN fallback (data lives on archetype objects).
+    function field(p, key) {
+        const lang = getLang();
+        if (lang === 'th') {
+            const thKey = key + 'Th';
+            if (p[thKey] != null) return p[thKey];
+        }
+        return p[key];
+    }
 
     function parseTally() {
         // Format: "C5S3H4D4B5N3R6F2"
@@ -163,16 +62,15 @@
     }
 
     function imagePath(p) {
-        const slug = p.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-        return `../assets/personalities/${p.code.toLowerCase()}-${slug}.webp`;
+        return `../${window.MeowArchetypes.imagePath(p.code)}`;
     }
 
     function spectrumRows(tally, color) {
         const axes = [
-            { left:"Solitary",   right:"Commanding", leftKey:"S", rightKey:"C" },
-            { left:"Dreamer",    right:"Hunter",     leftKey:"D", rightKey:"H" },
-            { left:"Nurturing",  right:"Bossy",      leftKey:"N", rightKey:"B" },
-            { left:"Casual",     right:"Regal",      leftKey:"F", rightKey:"R" },
+            { left:t('solitary'),  right:t('commanding'), leftKey:"S", rightKey:"C" },
+            { left:t('dreamer'),   right:t('hunter'),     leftKey:"D", rightKey:"H" },
+            { left:t('nurturing'), right:t('bossy'),      leftKey:"N", rightKey:"B" },
+            { left:t('casual'),    right:t('regal'),      leftKey:"F", rightKey:"R" },
         ];
         return axes.map(a => {
             const l = tally[a.leftKey] || 0;
@@ -193,18 +91,21 @@
 
     function tradingCard(p) {
         const stamp = Math.floor(100000 + Math.random() * 899999);
+        const name = field(p, 'name');
+        const tagline = field(p, 'tagline');
+        const vibes = field(p, 'vibes');
         return `
         <article class="trading-card" style="background:${p.color}">
             <div class="tc-noise" aria-hidden="true"></div>
             <div class="tc-top">
                 <div class="tc-code">${p.code}</div>
                 <div class="tc-stamp">
-                    <span>cert. authentic</span>
+                    <span>${escapeHtml(t('certAuthentic'))}</span>
                     <span>№${stamp}</span>
                 </div>
             </div>
             <div class="tc-portrait" style="background:${p.bg}">
-                <img class="tc-image" src="${imagePath(p)}" alt="${escapeHtml(`${p.name} cat illustration`)}" loading="eager" decoding="async">
+                <img class="tc-image" src="${imagePath(p)}" alt="${escapeHtml(`${name} cat illustration`)}" loading="eager" decoding="async">
                 <div class="tc-rays" aria-hidden="true">
                     ${Array.from({length:12}).map((_,i) =>
                         `<span style="transform:rotate(${i*30}deg) translateY(-130px);background:${p.color}"></span>`
@@ -212,15 +113,15 @@
                 </div>
             </div>
             <div class="tc-meta">
-                <h1 class="tc-name">${escapeHtml(p.name)}</h1>
-                <p class="tc-tag">"${escapeHtml(p.tagline)}"</p>
+                <h1 class="tc-name">${escapeHtml(name)}</h1>
+                <p class="tc-tag">"${escapeHtml(tagline)}"</p>
             </div>
             <div class="tc-vibes">
-                ${p.vibes.map(v => `<span class="tc-vibe">${escapeHtml(v)}</span>`).join('')}
+                ${vibes.map(v => `<span class="tc-vibe">${escapeHtml(v)}</span>`).join('')}
             </div>
             <div class="tc-foot">
                 <span>meowbti.com</span>
-                <span>1 of 16</span>
+                <span>${escapeHtml(t('oneOfSixteen'))}</span>
             </div>
         </article>`;
     }
@@ -234,25 +135,147 @@
         }</div>`;
     }
 
-    function longFormSection(code) {
-        const lf = LONG_FORM[code];
-        if (!lf) return '';
-        const traits = lf.traits.map(([title, body]) =>
+    function rivalTile(p) {
+        const r = window.MeowArchetypes.get(p.rival);
+        return `
+            <a class="rival-tile" href="${withLang(r.code + '.html')}" style="background:${r.color}">
+                <div class="rival-tile-meta">
+                    <span class="rival-label">${escapeHtml(t('vsRival'))}</span>
+                    <h3 class="rival-name">${escapeHtml(field(r, 'name'))}</h3>
+                    <span class="rival-code">${r.code} <span aria-hidden="true">→</span></span>
+                </div>
+                <span class="rival-emoji" aria-hidden="true">${r.emoji}</span>
+            </a>`;
+    }
+
+    function longFormSection(p) {
+        const description = field(p, 'description');
+        const traits = field(p, 'traits');
+        if (!description || !traits) return '';
+        const traitsHtml = traits.map(([title, body]) =>
             `<div class="trait-item"><h3>${escapeHtml(title)}</h3><p>${body}</p></div>`
         ).join('');
         return `
-            <h2 class="breakdown-title">The full breakdown</h2>
-            <p class="type-description">${lf.description}</p>
-            <h2 class="breakdown-title">Key traits in action</h2>
-            <div class="traits-container">${traits}</div>
+            <h2 class="breakdown-title">${escapeHtml(t('fullBreakdown'))}</h2>
+            <p class="type-description">${description}</p>
+            <h2 class="breakdown-title">${escapeHtml(t('keyTraits'))}</h2>
+            <div class="traits-container">${traitsHtml}</div>
         `;
     }
 
     function copyLink(p) {
-        const txt = `My cat is ${p.code} — ${p.name}. "${p.tagline}" — meowbti.com`;
+        const txt = window.MeowArchetypes.shareCaption(p.code);
         if (navigator.clipboard) {
             navigator.clipboard.writeText(txt).catch(() => {});
         }
+    }
+
+    function sharePanel() {
+        return `
+            <section class="share-panel" id="share-panel">
+                <img class="share-thumb" id="share-thumb" alt="">
+                <h3>${escapeHtml(t('shareVerdict'))}</h3>
+                <p>${escapeHtml(t('sharePromptText'))}</p>
+                <div class="share-actions">
+                    <label class="share-upload" for="share-photo">
+                        <span aria-hidden="true">📸</span>
+                        <span id="share-upload-label">${escapeHtml(t('addPhoto'))}</span>
+                        <input type="file" id="share-photo" accept="image/*">
+                    </label>
+                    <button class="big-btn" id="btn-share" type="button">${escapeHtml(t('sharePoster'))}</button>
+                </div>
+                <div class="share-status" id="share-status" aria-live="polite"></div>
+            </section>
+
+            <div class="share-modal" id="share-modal" role="dialog" aria-modal="true" aria-labelledby="share-modal-title">
+                <div class="share-modal-card">
+                    <h3 id="share-modal-title">${escapeHtml(t('posterTitle'))}</h3>
+                    <img class="share-preview" id="share-preview" alt="MeowBTI share poster">
+                    <div class="share-modal-actions">
+                        <button class="big-btn" id="btn-share-now" type="button">${escapeHtml(t('shareSave'))}</button>
+                        <button class="big-btn ghost" id="btn-copy-modal" type="button">${escapeHtml(t('copyCaption'))}</button>
+                    </div>
+                    <button class="share-modal-close" id="btn-close-modal" type="button">${escapeHtml(t('close'))}</button>
+                </div>
+            </div>
+        `;
+    }
+
+    function bindShare(p) {
+        const fileInput = document.getElementById('share-photo');
+        const uploadLabel = document.getElementById('share-upload-label');
+        const thumb = document.getElementById('share-thumb');
+        const shareBtn = document.getElementById('btn-share');
+        const statusEl = document.getElementById('share-status');
+        const modal = document.getElementById('share-modal');
+        const preview = document.getElementById('share-preview');
+        const shareNow = document.getElementById('btn-share-now');
+        const copyModal = document.getElementById('btn-copy-modal');
+        const closeModal = document.getElementById('btn-close-modal');
+
+        if (!fileInput || !shareBtn || !window.MeowShare) return;
+
+        let chosenFile = null;
+        let lastBlob = null;
+
+        fileInput.addEventListener('change', () => {
+            const f = fileInput.files && fileInput.files[0];
+            if (!f) return;
+            chosenFile = f;
+            uploadLabel.textContent = t('changePhoto');
+            const url = URL.createObjectURL(f);
+            thumb.src = url;
+            thumb.classList.add('has-image');
+            statusEl.textContent = '';
+        });
+
+        const illustrationUrl = imagePath(p);
+
+        async function build() {
+            window.MeowTrack && window.MeowTrack('share_clicked', {
+                code: p.code, has_user_photo: !!chosenFile,
+            });
+            statusEl.textContent = t('buildingPoster');
+            shareBtn.disabled = true;
+            try {
+                lastBlob = await window.MeowShare.buildPoster(p, illustrationUrl, chosenFile);
+                preview.src = URL.createObjectURL(lastBlob);
+                modal.classList.add('open');
+                statusEl.textContent = '';
+            } catch (e) {
+                console.error(e);
+                statusEl.textContent = t('somethingWrong');
+            } finally {
+                shareBtn.disabled = false;
+            }
+        }
+
+        shareBtn.addEventListener('click', build);
+
+        shareNow.addEventListener('click', async () => {
+            if (!lastBlob) return;
+            const result = await window.MeowShare.sharePoster(p, lastBlob);
+            window.MeowTrack && window.MeowTrack('share_completed', {
+                code: p.code, method: result,
+            });
+            if (result === 'downloaded') {
+                statusEl.textContent = t('savedToDownloads');
+            } else if (result === 'shared') {
+                statusEl.textContent = t('sharedThanks');
+            }
+            if (result !== 'cancelled') modal.classList.remove('open');
+        });
+
+        copyModal.addEventListener('click', () => {
+            copyLink(p);
+            copyModal.textContent = t('copied');
+            setTimeout(() => { copyModal.textContent = t('copyCaption'); }, 1600);
+        });
+
+        closeModal.addEventListener('click', () => modal.classList.remove('open'));
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) modal.classList.remove('open');
+        });
     }
 
     function render() {
@@ -260,11 +283,13 @@
         if (!host) return;
 
         const code = getCodeFromUrl();
-        const p = PERSONALITIES[code] || PERSONALITIES.CHBR;
+        const p = window.MeowArchetypes.get(code);
         const tally = parseTally() || evenTally();
         const accent = '#FF5B3B';
+        const name = field(p, 'name');
+        const tagline = field(p, 'tagline');
 
-        document.title = `${p.name} (${p.code}) — MeowBTI`;
+        document.title = `${name} (${p.code}) — MeowBTI`;
         // Update meta description for SEO
         let metaDesc = document.querySelector('meta[name="description"]');
         if (!metaDesc) {
@@ -272,59 +297,69 @@
             metaDesc.setAttribute('name', 'description');
             document.head.appendChild(metaDesc);
         }
-        metaDesc.setAttribute('content', `${p.code} — ${p.name}. ${p.tagline} The MeowBTI cat personality test.`);
+        metaDesc.setAttribute('content', `${p.code} — ${name}. ${tagline} MeowBTI`);
+        document.documentElement.lang = getLang();
         document.body.style.background = p.bg;
+
+        window.MeowTrack && window.MeowTrack('archetype_viewed', {
+            code: p.code, name: p.name, lang: getLang(),
+            from_quiz: parseTally() ? true : false,
+        });
 
         host.innerHTML = `
             ${confetti(p, accent)}
-            <div class="reveal-line">your cat's official type is</div>
+            <div class="reveal-line">${escapeHtml(t('revealLine'))}</div>
             ${tradingCard(p)}
 
             <div class="result-actions">
-                <button class="big-btn" id="btn-copy" type="button">copy link</button>
-                <a href="../quiz.html" class="big-btn ghost">↺ retake</a>
-                <a href="../personality-types.html" class="big-btn ghost">all 16 →</a>
+                <button class="big-btn" id="btn-copy" type="button">${escapeHtml(t('copyLink'))}</button>
+                <a href="${withLang('../quiz.html')}" class="big-btn ghost">${escapeHtml(t('retake'))}</a>
+                <a href="${withLang('../personality-types.html')}" class="big-btn ghost">${escapeHtml(t('all16'))}</a>
             </div>
+
+            ${sharePanel()}
 
             <section class="result-grid">
                 <div class="rg-block">
-                    <h3 class="rg-h">famously says</h3>
-                    <p class="rg-quote">"${escapeHtml(p.famouslySays)}"</p>
+                    <h3 class="rg-h">${escapeHtml(t('famouslySays'))}</h3>
+                    <p class="rg-quote">"${escapeHtml(field(p, 'famouslySays'))}"</p>
                 </div>
                 <div class="rg-block">
-                    <h3 class="rg-h">the spectrum</h3>
+                    <h3 class="rg-h">${escapeHtml(t('spectrum'))}</h3>
                     <div class="spectrum">${spectrumRows(tally, p.color)}</div>
                 </div>
                 <div class="rg-block">
-                    <h3 class="rg-h">kindred spirits</h3>
+                    <h3 class="rg-h">${escapeHtml(t('kindredSpirits'))}</h3>
                     <ul class="kindred">
-                        ${p.kindredSpirits.map(k => `<li>${escapeHtml(k)}</li>`).join('')}
+                        ${field(p, 'kindredSpirits').map(k => `<li>${escapeHtml(k)}</li>`).join('')}
                     </ul>
                 </div>
                 <div class="rg-block flags">
                     <div>
-                        <h3 class="rg-h">🚩 red flag</h3>
-                        <p>${escapeHtml(p.redFlags)}</p>
+                        <h3 class="rg-h">${escapeHtml(t('redFlag'))}</h3>
+                        <p>${escapeHtml(field(p, 'redFlags'))}</p>
                     </div>
                     <div>
-                        <h3 class="rg-h">💚 green flag</h3>
-                        <p>${escapeHtml(p.greenFlags)}</p>
+                        <h3 class="rg-h">${escapeHtml(t('greenFlag'))}</h3>
+                        <p>${escapeHtml(field(p, 'greenFlags'))}</p>
                     </div>
                 </div>
             </section>
 
-            ${longFormSection(code)}
+            ${rivalTile(p)}
+
+            ${longFormSection(p)}
 
             <section class="result-affiliate">
-                <h3 class="result-affiliate-h">picks for ${escapeHtml(p.name).toLowerCase()}s</h3>
+                <h3 class="result-affiliate-h">${escapeHtml(t('picksFor', name))}</h3>
                 <div class="product-grid">
-                    <a href="../index.html#affiliate-products" rel="sponsored noopener" class="product-card" style="--product-bg:${p.bg}">
+                    <a href="${withLang('../index.html#affiliate-products')}" rel="sponsored noopener" class="product-card" style="--product-bg:${p.bg}">
                         <span class="product-emoji" aria-hidden="true">🛏️</span>
                         <h3>The Spot™ — premium nap zone</h3>
                         <p class="product-blurb">A bed they will pretend to ignore for 3 days, then never leave.</p>
                         <span class="product-cta">See picks →</span>
                     </a>
-                    <a href="../index.html#affiliate-products" rel="sponsored noopener" class="product-card" style="--product-bg:#FFEFC2">
+                    <a href="${withLang('../index.html#affiliate-products')}" rel="sponsored noopener" class="product-card" style="--product-bg:#FFEFC2">
                         <span class="product-emoji" aria-hidden="true">🪶</span>
                         <h3>Wand of personal relevance</h3>
                         <p class="product-blurb">Engineered for the "I have to murder this" personality types.</p>
@@ -334,10 +369,10 @@
             </section>
 
             <section class="result-cta">
-                <h2 class="cta-h">do this for your other cat. or your ex's cat. or your boss's cat.</h2>
+                <h2 class="cta-h">${escapeHtml(t('ctaH'))}</h2>
                 <div class="cta-actions">
-                    <a href="../quiz.html" class="big-btn" style="background:${p.color};color:#fff">analyze another →</a>
-                    <a href="../personality-types.html" class="big-btn ghost">browse all 16 types</a>
+                    <a href="${withLang('../quiz.html')}" class="big-btn" style="background:${p.color};color:#fff">${escapeHtml(t('analyzeAnother'))}</a>
+                    <a href="${withLang('../personality-types.html')}" class="big-btn ghost">${escapeHtml(t('browseAll'))}</a>
                 </div>
             </section>
         `;
@@ -346,11 +381,14 @@
         if (copyBtn) {
             copyBtn.addEventListener('click', () => {
                 copyLink(p);
+                window.MeowTrack && window.MeowTrack('copy_link', { code: p.code });
                 const old = copyBtn.textContent;
-                copyBtn.textContent = 'copied!';
+                copyBtn.textContent = t('copied');
                 setTimeout(() => { copyBtn.textContent = old; }, 1600);
             });
         }
+
+        bindShare(p);
     }
 
     if (document.readyState === 'loading') {

@@ -13,7 +13,7 @@
     <link rel="canonical" href="https://meowbti.com/">
 
     <!-- Favicon Placeholder -->
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 
     <!-- Open Graph -->
     <meta property="og:title" content="MeowBTI — what kind of menace is your cat?">
@@ -44,7 +44,7 @@
           "@type": "Organization",
           "name": "MeowBTI",
           "url": "https://meowbti.com/",
-          "logo": "https://meowbti.com/assets/logo.png"
+          "logo": "https://meowbti.com/favicon.svg"
         },
         {
           "@type": "WebSite",
@@ -101,16 +101,16 @@
                     <span style="font-size:11px;font-weight:800">~90s</span>
                 </div>
 
-                <h1>What kind of <em>menace</em> is your cat?</h1>
-                <p class="subtitle">20 questions. ~90 seconds. Receive verdict.</p>
-                <a href="quiz.html" class="cta-button accent large-button">Start the test <span aria-hidden="true">→</span></a>
+                <h1 data-i18n="heroH1" data-i18n-html>What kind of <em>menace</em> is your cat?</h1>
+                <p class="subtitle" data-i18n="heroSubtitle">20 questions. ~90 seconds. Receive verdict.</p>
+                <a href="quiz.html" class="cta-button accent large-button" data-i18n-href><span data-i18n="heroCta">Start the test</span> <span aria-hidden="true">→</span></a>
 
                 <div class="hero-meta">
-                    <span>No login</span>
+                    <span data-i18n="heroMetaNoLogin">No login</span>
                     <span class="dot"></span>
-                    <span>No email</span>
+                    <span data-i18n="heroMetaNoEmail">No email</span>
                     <span class="dot"></span>
-                    <span>Just chaos</span>
+                    <span data-i18n="heroMetaJustChaos">Just chaos</span>
                 </div>
             </div>
         </section>
@@ -136,7 +136,7 @@
         <!-- Quote cards -->
         <section id="testimonials" class="testimonials-section">
             <div class="container">
-                <h2>people are saying</h2>
+                <h2 data-i18n="testimonialsH">people are saying</h2>
                 <div class="quotes-grid">
                     <div class="qcard" style="background:#FFE3D6;transform:rotate(-1.5deg)">
                         <p>"this is literally my cat I'm crying"</p>
@@ -157,26 +157,26 @@
         <!-- Affiliate Section -->
         <section id="affiliate-products" class="affiliate-section">
             <div class="container">
-                <h2>our favorite cat picks</h2>
-                <p class="affiliate-sub">Tested by judgmental cats. Approved by us. (Affiliate links — we may earn a small commission.)</p>
+                <h2 data-i18n="affiliateH">our favorite cat picks</h2>
+                <p class="affiliate-sub" data-i18n="affiliateSub">Tested by judgmental cats. Approved by us. (Affiliate links — we may earn a small commission.)</p>
                 <div class="product-grid">
                     <a href="#" rel="sponsored noopener" class="product-card" style="--product-bg:#FFE3D6">
                         <span class="product-emoji" aria-hidden="true">🛏️</span>
-                        <h3>Cat Cozy Bed Deluxe</h3>
-                        <p class="product-blurb">For cats who require a "spot" with thermal regulation.</p>
-                        <span class="product-cta">Shop the bed →</span>
+                        <h3 data-i18n="bedTitle">Cat Cozy Bed Deluxe</h3>
+                        <p class="product-blurb" data-i18n="bedBlurb">For cats who require a "spot" with thermal regulation.</p>
+                        <span class="product-cta" data-i18n="bedCta">Shop the bed →</span>
                     </a>
                     <a href="#" rel="sponsored noopener" class="product-card" style="--product-bg:#FFEFC2">
                         <span class="product-emoji" aria-hidden="true">🪶</span>
-                        <h3>Interactive Feather Wand</h3>
-                        <p class="product-blurb">Engineered for the "I have to murder this" personality types.</p>
-                        <span class="product-cta">Shop the wand →</span>
+                        <h3 data-i18n="wandTitle">Interactive Feather Wand</h3>
+                        <p class="product-blurb" data-i18n="wandBlurb">Engineered for the "I have to murder this" personality types.</p>
+                        <span class="product-cta" data-i18n="wandCta">Shop the wand →</span>
                     </a>
                     <a href="#" rel="sponsored noopener" class="product-card" style="--product-bg:#D2EDE0">
                         <span class="product-emoji" aria-hidden="true">🌿</span>
-                        <h3>Gourmet Catnip Spray</h3>
-                        <p class="product-blurb">For when the vibes simply must be elevated.</p>
-                        <span class="product-cta">Shop the spray →</span>
+                        <h3 data-i18n="catnipTitle">Gourmet Catnip Spray</h3>
+                        <p class="product-blurb" data-i18n="catnipBlurb">For when the vibes simply must be elevated.</p>
+                        <span class="product-cta" data-i18n="catnipCta">Shop the spray →</span>
                     </a>
                 </div>
             </div>
@@ -185,14 +185,15 @@
         <!-- CTA banner -->
         <section id="cta-banner" class="cta-banner-section">
             <div class="container">
-                <h2>ready to uncover your cat's true personality?</h2>
-                <a href="quiz.html" class="cta-button accent large-button">Take the MeowBTI quiz <span aria-hidden="true">→</span></a>
+                <h2 data-i18n="ctaBannerH">ready to uncover your cat's true personality?</h2>
+                <a href="quiz.html" class="cta-button accent large-button" data-i18n-href><span data-i18n="ctaBannerBtn">Take the MeowBTI quiz</span> <span aria-hidden="true">→</span></a>
             </div>
         </section>
     </main>
 
     <footer class="main-footer" id="main-footer"></footer>
 
+    <script src="/data/i18n.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

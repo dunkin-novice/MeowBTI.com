@@ -1,11 +1,17 @@
 <nav class="navbar">
     <div class="container">
-        <a href="index.html" class="logo">MeowBTI</a>
+        <a href="/" class="logo" data-i18n-href>MeowBTI</a>
         <ul class="nav-menu">
-            <li class="nav-mobile-hide"><a href="index.html">Home</a></li>
-            <li><a href="personality-types.html">All 16</a></li>
-            <li class="nav-mobile-hide"><a href="index.html#affiliate-products">Picks</a></li>
-            <li><a href="quiz.html" class="nav-cta">Take the test</a></li>
+            <li class="nav-mobile-hide"><a href="/" data-i18n-href data-i18n="navHome">Home</a></li>
+            <li><a href="/personality-types.html" data-i18n-href data-i18n="navAll16">All 16</a></li>
+            <li class="nav-mobile-hide"><a href="/#affiliate-products" data-i18n-href data-i18n="navPicks">Picks</a></li>
+            <li><a href="/quiz.html" class="nav-cta" data-i18n-href data-i18n="navTakeTest">Take the test</a></li>
+            <li class="nav-lang">
+                <div class="lang-switcher nav-lang-switcher" role="group" aria-label="Language">
+                    <button type="button" class="lang-pill" data-lang="en">EN</button>
+                    <button type="button" class="lang-pill" data-lang="th">TH</button>
+                </div>
+            </li>
         </ul>
     </div>
 </nav>

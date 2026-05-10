@@ -1,222 +1,86 @@
-// MeowBTI quiz — 20 questions, swipe-card UI, vanilla JS.
-// Redirects to personality-types/<CODE>.html?t=<tally> on finish.
+// MeowBTI quiz — binary YES/NO swipe deck. 12 statements. Vanilla JS.
 //
-// Axes: C/S, H/D, B/N, R/F (R/F internally so the 4th axis "Casual"
-// doesn't collide with "Commanding"). The result page reads ?t to
-// render the spectrum bars accurately.
+// Each statement maps to one axis (CS / HD / BN / RF) with explicit yes-side
+// and no-side letters. 3 statements per axis × 4 axes = 12. Odd vote count
+// per axis → no ties.
+//
+// Interaction: drag past threshold OR flick OR tap YES/NO buttons OR press
+// Y/N or arrow keys. Card tilts during drag, tints green/red, shows YES/NO
+// stamp past 40% threshold, flies off on commit. Stack peek shows next 2
+// cards behind active.
+//
+// Redirects to personality-types/<CODE>.html?t=<tally>[&lang=th] on finish.
 
-const QUESTIONS = [
-    {
-        q: "It's 7am. You walk into the kitchen. Your cat:",
-        axis: "CS",
-        options: [
-            { emoji: "📣", text: "MEOWS. AT YOU. LIKE A FOGHORN.", letter: "C" },
-            { emoji: "👁️", text: "Stares from the windowsill. Says nothing.", letter: "S" },
-            { emoji: "🐾", text: "Trots over and escorts you to the bowl.", letter: "C" },
-            { emoji: "🫥", text: "Appears only after breakfast is definitely real.", letter: "S" },
-        ],
-    },
-    {
-        q: "A new cardboard box appears.",
-        axis: "HD",
-        options: [
-            { emoji: "📦", text: "Boots & Cats Mode: inspects, sits, owns.", letter: "H" },
-            { emoji: "🤔", text: "Gives it the long stare. Considers its meaning.", letter: "D" },
-            { emoji: "🧪", text: "Tests every flap with scientific violence.", letter: "H" },
-            { emoji: "🌌", text: "Studies it like a portal to another realm.", letter: "D" },
-        ],
-    },
-    {
-        q: "Dinner is 4 minutes late. They:",
-        axis: "BN",
-        options: [
-            { emoji: "🚨", text: "Demand it. Loudly. With body slams.", letter: "B" },
-            { emoji: "🥺", text: "Soulful eyes. A single tragic meow.", letter: "N" },
-            { emoji: "📢", text: "Makes a formal complaint to management.", letter: "B" },
-            { emoji: "💞", text: "Melts beside the bowl and hopes you notice.", letter: "N" },
-        ],
-    },
-    {
-        q: "Where do they sleep?",
-        axis: "RF",
-        options: [
-            { emoji: "📍", text: "The Spot. Same one. Always. Do not touch it.", letter: "R" },
-            { emoji: "🌀", text: "Wherever they collapse. New spot daily.", letter: "F" },
-            { emoji: "🛏️", text: "A throne-like arrangement they clearly selected.", letter: "R" },
-            { emoji: "📦", text: "Laundry basket today. Sink tomorrow. Who knows.", letter: "F" },
-        ],
-    },
-    {
-        q: "A guest arrives. Your cat:",
-        axis: "CS",
-        options: [
-            { emoji: "🤝", text: "Greets them. Inspects shoes. Demands attention.", letter: "C" },
-            { emoji: "👻", text: "Becomes a rumor. May not exist.", letter: "S" },
-            { emoji: "🗣️", text: "Announces the visit to the entire household.", letter: "C" },
-            { emoji: "🕳️", text: "Finds a hiding spot you did not know existed.", letter: "S" },
-        ],
-    },
-    {
-        q: "You drop a hair tie. They:",
-        axis: "HD",
-        options: [
-            { emoji: "🎯", text: "Pounce. It is prey. Game on.", letter: "H" },
-            { emoji: "🧐", text: "Watch it suspiciously. What does it want?", letter: "D" },
-            { emoji: "⚡", text: "Bats it under the fridge within 3 seconds.", letter: "H" },
-            { emoji: "🧘", text: "Waits, observes, then maybe acts later.", letter: "D" },
-        ],
-    },
-    {
-        q: "You're sad on the couch. They:",
-        axis: "BN",
-        options: [
-            { emoji: "😼", text: "Stand on your face. Problem solved.", letter: "B" },
-            { emoji: "💞", text: "Curl up nearby. Quiet support.", letter: "N" },
-            { emoji: "🧱", text: "Blocks your phone until you pet them.", letter: "B" },
-            { emoji: "🫶", text: "Slow-blinks like a tiny therapist.", letter: "N" },
-        ],
-    },
-    {
-        q: "You move the couch. They:",
-        axis: "RF",
-        options: [
-            { emoji: "📋", text: "Investigate every angle. File a formal complaint.", letter: "R" },
-            { emoji: "🤷", text: "Do not care. New couch. Same nap.", letter: "F" },
-            { emoji: "🚧", text: "Inspects the perimeter until order is restored.", letter: "R" },
-            { emoji: "🪩", text: "Treats the chaos as fresh enrichment.", letter: "F" },
-        ],
-    },
-    {
-        q: "When you call their name, they:",
-        axis: "CS",
-        options: [
-            { emoji: "🏃", text: "Arrive like they were already in the meeting.", letter: "C" },
-            { emoji: "🙄", text: "Flick one ear and continue their private life.", letter: "S" },
-            { emoji: "📣", text: "Answer back with a full sentence.", letter: "C" },
-            { emoji: "🫥", text: "Wait until you stop looking, then appear.", letter: "S" },
-        ],
-    },
-    {
-        q: "A strange noise happens outside.",
-        axis: "HD",
-        options: [
-            { emoji: "🪟", text: "Runs to the window for live reporting.", letter: "H" },
-            { emoji: "💭", text: "Freezes and calculates the emotional implications.", letter: "D" },
-            { emoji: "🕵️", text: "Tracks the source with detective energy.", letter: "H" },
-            { emoji: "🌫️", text: "Listens from a safe distance and imagines everything.", letter: "D" },
-        ],
-    },
-    {
-        q: "Another cat touches their toy.",
-        axis: "BN",
-        options: [
-            { emoji: "⚔️", text: "Absolutely not. Boundaries are enforced.", letter: "B" },
-            { emoji: "🥲", text: "Looks wounded but lets it happen.", letter: "N" },
-            { emoji: "👑", text: "Takes it back with royal confidence.", letter: "B" },
-            { emoji: "🧸", text: "Finds another toy and avoids drama.", letter: "N" },
-        ],
-    },
-    {
-        q: "Their daily schedule is best described as:",
-        axis: "RF",
-        options: [
-            { emoji: "🕰️", text: "Meal, patrol, nap, patrol. Very official.", letter: "R" },
-            { emoji: "🎲", text: "Improvised jazz, but with fur.", letter: "F" },
-            { emoji: "📆", text: "Predictable enough to set your watch by.", letter: "R" },
-            { emoji: "🌊", text: "A loose vibe that changes with the sunbeam.", letter: "F" },
-        ],
-    },
-    {
-        q: "They want attention while you're working.",
-        axis: "CS",
-        options: [
-            { emoji: "⌨️", text: "Walks across the keyboard with confidence.", letter: "C" },
-            { emoji: "🪑", text: "Sits nearby and silently increases pressure.", letter: "S" },
-            { emoji: "📢", text: "Yells until the calendar is cleared.", letter: "C" },
-            { emoji: "👀", text: "Watches from the doorway like a small manager.", letter: "S" },
-        ],
-    },
-    {
-        q: "A puzzle feeder appears.",
-        axis: "HD",
-        options: [
-            { emoji: "🔧", text: "Attacks the mechanism until treats surrender.", letter: "H" },
-            { emoji: "🧠", text: "Studies the system before touching anything.", letter: "D" },
-            { emoji: "🐾", text: "Paws, flips, solves, leaves.", letter: "H" },
-            { emoji: "📚", text: "Looks like they are writing a thesis on it.", letter: "D" },
-        ],
-    },
-    {
-        q: "When they love you, it looks like:",
-        axis: "BN",
-        options: [
-            { emoji: "🧍", text: "Full-body supervision. Everywhere. Always.", letter: "B" },
-            { emoji: "🫧", text: "Soft presence, gentle purrs, no demands.", letter: "N" },
-            { emoji: "🐟", text: "Bringing you a toy and expecting applause.", letter: "B" },
-            { emoji: "🌙", text: "Choosing to nap near you when they could leave.", letter: "N" },
-        ],
-    },
-    {
-        q: "A door is closed.",
-        axis: "RF",
-        options: [
-            { emoji: "🚪", text: "Closed doors are policy violations.", letter: "R" },
-            { emoji: "🍃", text: "Fine. Another door, another destiny.", letter: "F" },
-            { emoji: "📑", text: "They inspect why this door broke the routine.", letter: "R" },
-            { emoji: "🛋️", text: "They nap somewhere else and forget the issue.", letter: "F" },
-        ],
-    },
-    {
-        q: "At the vet, your cat is most likely to:",
-        axis: "CS",
-        options: [
-            { emoji: "📢", text: "Announce their legal objections to everyone.", letter: "C" },
-            { emoji: "🧊", text: "Go silent and become very, very small.", letter: "S" },
-            { emoji: "🧑‍⚖️", text: "Make intense eye contact with the staff.", letter: "C" },
-            { emoji: "🫥", text: "Hide in the carrier like a folded secret.", letter: "S" },
-        ],
-    },
-    {
-        q: "A bug enters the room.",
-        axis: "HD",
-        options: [
-            { emoji: "🎯", text: "Immediate hunt mode. No hesitation.", letter: "H" },
-            { emoji: "🔮", text: "Watches its path like it has prophecy value.", letter: "D" },
-            { emoji: "💥", text: "Launches into action and misses elegantly.", letter: "H" },
-            { emoji: "🪐", text: "Keeps distance and contemplates the visitor.", letter: "D" },
-        ],
-    },
-    {
-        q: "If they could run the house, they would:",
-        axis: "BN",
-        options: [
-            { emoji: "📜", text: "Issue rules and enforce consequences.", letter: "B" },
-            { emoji: "🕯️", text: "Create a peaceful emotional support commune.", letter: "N" },
-            { emoji: "💼", text: "Negotiate treat distribution aggressively.", letter: "B" },
-            { emoji: "🧺", text: "Make every room softer and calmer.", letter: "N" },
-        ],
-    },
-    {
-        q: "Their relationship with routine is:",
-        axis: "RF",
-        options: [
-            { emoji: "📍", text: "Sacred. The timeline must be respected.", letter: "R" },
-            { emoji: "🌪️", text: "Optional. The vibes decide.", letter: "F" },
-            { emoji: "🏛️", text: "They prefer rules, rituals, and known spots.", letter: "R" },
-            { emoji: "🎈", text: "They follow curiosity, not calendars.", letter: "F" },
-        ],
-    },
+const STATEMENTS = [
+    // ─── CS axis (2 C-yes, 1 S-yes) ──────────────────────────
+    { emoji: "🚪", yes: "C", no: "S",
+      s:   "Your cat acts like you've returned from war after a 3-minute bathroom trip.",
+      sTh: "แมวคุณทำตัวเหมือนคุณกลับจากสงคราม ทั้งที่เพิ่งเข้าห้องน้ำไป 3 นาที" },
+    { emoji: "👻", yes: "S", no: "C",
+      s:   "Your cat becomes a rumor when guests come over. May or may not exist.",
+      sTh: "แมวคุณกลายเป็นตำนานเวลาแขกมาบ้าน มีอยู่จริงหรือเปล่าก็ไม่รู้" },
+    { emoji: "⌨️", yes: "C", no: "S",
+      s:   "Your cat walks across your keyboard mid-meeting just to remind you they exist.",
+      sTh: "แมวคุณเดินผ่านคีย์บอร์ดกลางประชุม แค่อยากเตือนว่ายังอยู่นะ" },
+
+    // ─── HD axis (1 H-yes, 2 D-yes) ──────────────────────────
+    { emoji: "🎯", yes: "H", no: "D",
+      s:   "Your cat will pursue a hair tie under the fridge for 40 minutes.",
+      sTh: "แมวคุณตามยางรัดผมที่กลิ้งเข้าใต้ตู้เย็นได้ 40 นาทีแบบไม่ยอมแพ้" },
+    { emoji: "👁️", yes: "D", no: "H",
+      s:   "Your cat stares at a wall like it owes them money.",
+      sTh: "แมวคุณจ้องกำแพงเหมือนกำแพงติดหนี้อยู่" },
+    { emoji: "🪲", yes: "D", no: "H",
+      s:   "Your cat watches a passing moth like it has prophecy value.",
+      sTh: "แมวคุณมองผีเสื้อกลางคืนบินผ่านเหมือนมันมาบอกอนาคต" },
+
+    // ─── BN axis (2 B-yes, 1 N-yes) ──────────────────────────
+    { emoji: "🚧", yes: "B", no: "N",
+      s:   "Your cat believes closed doors are personal attacks.",
+      sTh: "แมวคุณเชื่อว่าประตูที่ปิดอยู่คือการโจมตีส่วนตัว" },
+    { emoji: "💞", yes: "N", no: "B",
+      s:   "Your cat slow-blinks at you like a tiny therapist.",
+      sTh: "แมวคุณกะพริบตาช้าๆ ใส่คุณเหมือนนักจิตบำบัดตัวจิ๋ว" },
+    { emoji: "💼", yes: "B", no: "N",
+      s:   "Your cat will body-slam you for treats.",
+      sTh: "แมวคุณพร้อมพุ่งชนคุณเพื่อขอขนม" },
+
+    // ─── RF axis (1 R-yes, 2 F-yes) ──────────────────────────
+    { emoji: "📍", yes: "R", no: "F",
+      s:   "Your cat treats their favorite spot as a sacred site. Do not sit there.",
+      sTh: "แมวคุณถือว่าจุดโปรดของตัวเองเป็นพื้นที่ศักดิ์สิทธิ์ ห้ามนั่งเด็ดขาด" },
+    { emoji: "🌀", yes: "F", no: "R",
+      s:   "Your cat sleeps wherever they collapse — new spot every night.",
+      sTh: "แมวคุณนอนตรงไหนก็ได้ที่ล้มลง คืนนี้จุดนึง พรุ่งนี้อีกจุด" },
+    { emoji: "🕰️", yes: "F", no: "R",
+      s:   "Your cat eats whenever they feel like it. Could be now. Could be in 4 hours.",
+      sTh: "แมวคุณกินตอนไหนก็ได้ที่อยากกิน อาจจะเดี๋ยวนี้ หรืออีก 4 ชั่วโมงข้างหน้า" },
 ];
 
-const TOTAL = QUESTIONS.length;
+const TOTAL = STATEMENTS.length;
 let idx = 0;
-const answers = [];
+const answers = []; // each entry: true (yes) | false (no)
 let locked = false;
 
 const stackEl = document.getElementById('card-stack');
 const countEl = document.getElementById('quiz-count');
 const progressEl = document.getElementById('quiz-progress');
 
+// ─── i18n helpers ────────────────────────────────────────────
+function getLang() {
+    return (window.MeowI18n && window.MeowI18n.getLang && window.MeowI18n.getLang()) || 'en';
+}
+function tStr(key, fallback) {
+    return (window.MeowI18n && window.MeowI18n.t(key)) || fallback;
+}
+function tFn(key, ...args) {
+    return (window.MeowI18n && window.MeowI18n.t(key, ...args)) || args.join(' ');
+}
+function statementText(st) {
+    return getLang() === 'th' && st.sTh ? st.sTh : st.s;
+}
+
+// ─── progress + count ────────────────────────────────────────
 function renderProgress() {
     progressEl.innerHTML = '';
     for (let i = 0; i < TOTAL; i++) {
@@ -225,93 +89,229 @@ function renderProgress() {
         progressEl.appendChild(pip);
     }
     progressEl.setAttribute('aria-valuemax', String(TOTAL));
-    progressEl.setAttribute('aria-valuenow', String(idx + 1));
-    countEl.textContent = `${Math.min(idx + 1, TOTAL)}/${TOTAL}`;
+    progressEl.setAttribute('aria-valuenow', String(Math.min(idx + 1, TOTAL)));
+    countEl.textContent = tFn('quizCount', Math.min(idx + 1, TOTAL), TOTAL);
 }
 
-function renderCard() {
-    if (idx >= TOTAL) return;
-    const q = QUESTIONS[idx];
-    const optionsHtml = q.options.map((opt, i) => `
-            <button class="opt opt-${i + 1}" type="button" data-pick="${i}">
-                <span class="opt-emoji" aria-hidden="true">${opt.emoji}</span>
-                <span class="opt-text">${escapeHtml(opt.text)}</span>
-            </button>
-    `).join('');
+// ─── card rendering ──────────────────────────────────────────
+function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, ch => ({
+        '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+    }[ch]));
+}
 
+function buildCardEl(stIdx, depth) {
+    // depth: 0 = active, 1 = peek-1, 2 = peek-2
+    if (stIdx >= TOTAL) return null;
+    const st = STATEMENTS[stIdx];
     const card = document.createElement('article');
-    card.className = 'qcard-big';
-    card.dataset.qIdx = String(idx);
+    card.className = `qcard-binary depth-${depth}`;
+    card.dataset.stIdx = String(stIdx);
     card.innerHTML = `
-        <div class="qcard-tag">Q${idx + 1}</div>
-        <h2 class="qcard-q">${escapeHtml(q.q)}</h2>
-        <div class="opts">
-            ${optionsHtml}
-        </div>
-        <div class="qcard-foot">tap whichever feels more <em>them</em></div>
+        <div class="swipe-tint swipe-tint-yes" aria-hidden="true"></div>
+        <div class="swipe-tint swipe-tint-no" aria-hidden="true"></div>
+        <div class="swipe-stamp swipe-stamp-yes" aria-hidden="true">${escapeHtml(tStr('quizStampYes', 'YES'))}</div>
+        <div class="swipe-stamp swipe-stamp-no"  aria-hidden="true">${escapeHtml(tStr('quizStampNo', 'NO'))}</div>
+        <div class="qcard-tag">Q${stIdx + 1}</div>
+        <div class="qcard-emoji" aria-hidden="true">${st.emoji}</div>
+        <p class="qcard-statement">${escapeHtml(statementText(st))}</p>
     `;
-    stackEl.innerHTML = '';
-    stackEl.appendChild(card);
-    card.querySelectorAll('.opt').forEach(btn => {
-        btn.addEventListener('click', () => pick(btn.dataset.pick));
-    });
+    return card;
 }
 
-function pick(letter) {
-    if (locked) return;
+function renderStack() {
+    stackEl.innerHTML = '';
+    // Render back-to-front so DOM order matches z-index expectation.
+    for (let d = 2; d >= 0; d--) {
+        const card = buildCardEl(idx + d, d);
+        if (card) stackEl.appendChild(card);
+    }
+    // Bind drag only on the active (front) card.
+    const active = stackEl.querySelector('.depth-0');
+    if (active) attachDrag(active);
+    renderActions();
+}
+
+function renderActions() {
+    let actions = document.getElementById('swipe-actions');
+    if (!actions) {
+        actions = document.createElement('div');
+        actions.className = 'swipe-actions';
+        actions.id = 'swipe-actions';
+        stackEl.parentNode.appendChild(actions);
+    }
+    actions.innerHTML = `
+        <button class="swipe-btn no" type="button" id="btn-no" aria-label="No">${escapeHtml(tStr('quizSwipeNo', 'NO ✗'))}</button>
+        <button class="swipe-btn yes" type="button" id="btn-yes" aria-label="Yes">${escapeHtml(tStr('quizSwipeYes', 'YES ✓'))}</button>
+    `;
+    document.getElementById('btn-no').addEventListener('click', () => commit(false));
+    document.getElementById('btn-yes').addEventListener('click', () => commit(true));
+}
+
+// ─── drag interaction ────────────────────────────────────────
+const COMMIT_DISTANCE = 100;     // px — past this = commit
+const STAMP_THRESHOLD = 40;      // px — start fading in stamp
+const FLICK_VELOCITY  = 0.6;     // px/ms — flick triggers commit
+
+function attachDrag(card) {
+    let pointerId = null;
+    let startX = 0, startY = 0;
+    let lastX = 0, lastTime = 0;
+    let velocity = 0;
+    let dragging = false;
+
+    function onDown(e) {
+        if (e.target.closest('.swipe-btn')) return;
+        if (locked) return;
+        dragging = true;
+        pointerId = e.pointerId;
+        startX = e.clientX;
+        startY = e.clientY;
+        lastX = e.clientX;
+        lastTime = performance.now();
+        card.setPointerCapture(pointerId);
+        card.classList.add('dragging');
+    }
+
+    function onMove(e) {
+        if (!dragging || e.pointerId !== pointerId) return;
+        const dx = e.clientX - startX;
+        const dy = (e.clientY - startY) * 0.4; // dampen vertical
+        const rot = Math.max(-15, Math.min(15, dx / 14));
+        card.style.transform = `translate(${dx}px, ${dy}px) rotate(${rot}deg)`;
+
+        // Tint + stamp opacity from drag distance
+        const absX = Math.abs(dx);
+        const tintAlpha = Math.min(1, absX / 220);
+        const stampAlpha = Math.max(0, Math.min(1, (absX - STAMP_THRESHOLD) / 80));
+        const tintYes = card.querySelector('.swipe-tint-yes');
+        const tintNo  = card.querySelector('.swipe-tint-no');
+        const stampYes = card.querySelector('.swipe-stamp-yes');
+        const stampNo  = card.querySelector('.swipe-stamp-no');
+        if (dx > 0) {
+            tintYes.style.opacity = tintAlpha; tintNo.style.opacity = 0;
+            stampYes.style.opacity = stampAlpha; stampNo.style.opacity = 0;
+        } else {
+            tintNo.style.opacity = tintAlpha;  tintYes.style.opacity = 0;
+            stampNo.style.opacity = stampAlpha;  stampYes.style.opacity = 0;
+        }
+
+        // Track velocity (rolling over last few ms)
+        const now = performance.now();
+        const dt = now - lastTime;
+        if (dt > 0) velocity = (e.clientX - lastX) / dt;
+        lastX = e.clientX;
+        lastTime = now;
+    }
+
+    function onUp(e) {
+        if (!dragging) return;
+        if (pointerId !== null && e.pointerId !== pointerId) return;
+        dragging = false;
+        try { card.releasePointerCapture(pointerId); } catch (_) {}
+        pointerId = null;
+        card.classList.remove('dragging');
+
+        const dx = e.clientX - startX;
+        const flicked = Math.abs(velocity) >= FLICK_VELOCITY && Math.sign(velocity) === Math.sign(dx);
+        const past = Math.abs(dx) >= COMMIT_DISTANCE;
+        if (past || flicked) {
+            commit(dx > 0);
+        } else {
+            // Snap back. Resetting transform + clearing tints triggers
+            // the CSS transition.
+            card.style.transform = '';
+            card.querySelectorAll('.swipe-tint, .swipe-stamp').forEach(el => el.style.opacity = '');
+        }
+    }
+
+    card.addEventListener('pointerdown', onDown);
+    card.addEventListener('pointermove', onMove);
+    card.addEventListener('pointerup', onUp);
+    card.addEventListener('pointercancel', onUp);
+}
+
+// ─── commit + advance ────────────────────────────────────────
+function commit(yes) {
+    if (locked || idx >= TOTAL) return;
     locked = true;
-    const card = stackEl.querySelector('.qcard-big');
-    const picked = QUESTIONS[idx].options[Number(letter)];
-    if (card) card.classList.add(picked && picked.letter === QUESTIONS[idx].axis[0] ? 'exit-right' : 'exit-left');
+    const card = stackEl.querySelector('.depth-0');
+    if (card) {
+        card.classList.add(yes ? 'exit-right' : 'exit-left');
+        // Make sure tint+stamp are visible during the fly-off
+        const tint  = card.querySelector(yes ? '.swipe-tint-yes' : '.swipe-tint-no');
+        const stamp = card.querySelector(yes ? '.swipe-stamp-yes' : '.swipe-stamp-no');
+        if (tint)  tint.style.opacity = 1;
+        if (stamp) stamp.style.opacity = 1;
+    }
+    // Light haptic on mobile
+    try { if (navigator.vibrate) navigator.vibrate(15); } catch (_) {}
+
+    const st = STATEMENTS[idx];
+    window.MeowTrack && window.MeowTrack('quiz_question_answered', {
+        question_index: idx + 1,
+        statement: st.s,                 // EN identifier — stable for analytics
+        choice: yes ? 'yes' : 'no',
+        scored_letter: yes ? st.yes : st.no,
+        lang: getLang(),
+    });
 
     setTimeout(() => {
-        answers.push(Number(letter));
+        answers.push(yes);
         idx++;
         if (idx >= TOTAL) {
             finish();
         } else {
             renderProgress();
-            renderCard();
+            renderStack();
             locked = false;
-            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-    }, 240);
+    }, 280);
 }
 
+// ─── classification ──────────────────────────────────────────
 function classify(answers) {
     const tally = { C:0, S:0, H:0, D:0, B:0, N:0, R:0, F:0 };
-    QUESTIONS.forEach((q, i) => {
+    STATEMENTS.forEach((st, i) => {
         const ans = answers[i];
-        if (!Number.isInteger(ans)) return;
-        const letter = q.options[ans]?.letter;
-        if (!letter) return;
+        if (typeof ans !== 'boolean') return;
+        const letter = ans ? st.yes : st.no;
         tally[letter] = (tally[letter] || 0) + 1;
     });
     const code =
         (tally.C >= tally.S ? 'C' : 'S') +
         (tally.H >= tally.D ? 'H' : 'D') +
         (tally.B >= tally.N ? 'B' : 'N') +
-        (tally.R >= tally.F ? 'R' : 'C');  // 4th axis: R or "C" (Casual) for the URL
+        (tally.R >= tally.F ? 'R' : 'C');  // 4th: R or "C" (Casual) for the URL
     return { code, tally };
 }
 
 function finish() {
     const { code, tally } = classify(answers);
-    // Encode tally as compact string e.g., C5S3H4D4B5N3R6F2
     const t = ['C','S','H','D','B','N','R','F'].map(k => `${k}${tally[k]}`).join('');
-    window.location.href = `personality-types/${code}.html?t=${t}`;
+    window.MeowTrack && window.MeowTrack('quiz_complete', { code, lang: getLang() });
+    const langSuffix = getLang() === 'th' ? '&lang=th' : '';
+    window.location.href = `personality-types/${code}.html?t=${t}${langSuffix}`;
 }
 
-function escapeHtml(s) {
-    return String(s)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#39;');
+// ─── keyboard ────────────────────────────────────────────────
+function bindKeyboard() {
+    document.addEventListener('keydown', (e) => {
+        if (locked) return;
+        if (e.key === 'ArrowRight' || e.key === 'y' || e.key === 'Y') {
+            e.preventDefault();
+            commit(true);
+        } else if (e.key === 'ArrowLeft' || e.key === 'n' || e.key === 'N') {
+            e.preventDefault();
+            commit(false);
+        }
+    });
 }
 
+// ─── boot ────────────────────────────────────────────────────
 if (stackEl) {
+    window.MeowTrack && window.MeowTrack('quiz_start', { lang: getLang(), length: TOTAL });
     renderProgress();
-    renderCard();
+    renderStack();
+    bindKeyboard();
 }
