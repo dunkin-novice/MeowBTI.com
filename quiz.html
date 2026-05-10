@@ -48,18 +48,38 @@
 
                 <!-- Mode Selection -->
                 <div id="quiz-mode-select" class="quiz-mode-select">
-                    <h2 data-i18n="quizModeTitle">choose your depth</h2>
-                    <div class="mode-options">
-                        <button class="mode-card" onclick="startQuiz('short')">
-                            <div class="mode-icon">⚡</div>
-                            <h3 data-i18n="quizModeShort">Quick Quiz</h3>
-                            <p data-i18n="quizModeShortSub">12 questions · 90s · Viral</p>
-                        </button>
-                        <button class="mode-card highlight" onclick="startQuiz('deep')">
-                            <div class="mode-icon">🧬</div>
-                            <h3 data-i18n="quizModeDeep">Deep Analysis</h3>
-                            <p data-i18n="quizModeDeepSub">60 questions · 5m · Precise</p>
-                        </button>
+                    <h2 data-i18n="quizModeTitle">choose your path</h2>
+                    
+                    <div class="quiz-mode-group">
+                        <h3 class="group-label" data-i18n="quizModeCat">The Cat Quiz</h3>
+                        <div class="mode-options">
+                            <button class="mode-card" onclick="startQuiz('short')">
+                                <div class="mode-icon">⚡</div>
+                                <h4 data-i18n="quizModeShort">Quick Quiz</h4>
+                                <p data-i18n="quizModeShortSub">12 questions · 90s · Viral</p>
+                            </button>
+                            <button class="mode-card" onclick="startQuiz('deep')">
+                                <div class="mode-icon">🧬</div>
+                                <h4 data-i18n="quizModeDeep">Deep Analysis</h4>
+                                <p data-i18n="quizModeDeepSub">60 questions · 5m · Precise</p>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="quiz-mode-group">
+                        <h3 class="group-label" data-i18n="quizModeOwner">The Human Quiz</h3>
+                        <div class="mode-options">
+                            <button class="mode-card highlight" onclick="startQuiz('humanShort')">
+                                <div class="mode-icon">🧠</div>
+                                <h4 data-i18n="quizModeShort">Quick Quiz</h4>
+                                <p data-i18n="quizModeShortSub">12 questions · 90s · Viral</p>
+                            </button>
+                            <button class="mode-card highlight" onclick="startQuiz('humanDeep')">
+                                <div class="mode-icon">🔮</div>
+                                <h4 data-i18n="quizModeDeep">Deep Analysis</h4>
+                                <p data-i18n="quizModeDeepSub">60 questions · 5m · Precise</p>
+                            </button>
+                        </div>
                     </div>
                 </div>
 

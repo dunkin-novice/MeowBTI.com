@@ -342,6 +342,71 @@
         });
     }
 
+    function getSubject() {
+        return new URLSearchParams(window.location.search).get('subject') || 'cat';
+    }
+
+    function renderOwnerModules(p) {
+        const modules = [
+            { label: t('ownerWorkplace'), text: field(p, 'ownerWorkplace') },
+            { label: t('ownerGroupChat'), text: field(p, 'ownerGroupChat') },
+            { label: t('ownerDamage'), text: field(p, 'ownerEmotionalDamage') },
+            { label: t('ownerComm'), text: field(p, 'ownerCommunication') },
+            { label: t('ownerCatAttract'), text: field(p, 'ownerCatAttract') },
+            { label: t('ownerBossCompat'), text: field(p, 'ownerBossCompat') },
+            { label: t('ownerRoommate'), text: field(p, 'ownerRoommateWarning') },
+            { label: t('ownerSurvival'), text: field(p, 'ownerSurvivalStrategy') }
+        ];
+
+        const grid = modules.map(m => `
+            <div class="owner-module-card">
+                <span class="om-label">${escapeHtml(m.label)}</span>
+                <p class="om-text">${escapeHtml(m.text)}</p>
+            </div>
+        `).join('');
+
+        return `
+            <section class="module-section">
+                <h3 class="module-h">${escapeHtml(t('resultOwnerTitle'))}</h3>
+                <div class="owner-modules-grid">${grid}</div>
+            </section>`;
+    }
+
+    function renderCompatibilityMatrix(p) {
+        // Simple rule-based compatibility
+        // In a real app, this might be data-driven, but for now we can generate it
+        // based on the archetype's traits or pre-defined pairings.
+        
+        const compatData = [
+            { type: t('compatWithCat'), level: '85%', survival: 'High', desc: "They won't understand your rules, but they'll respect your power." },
+            { type: t('compatWithBoss'), level: '40%', survival: 'Medium', desc: "One of you is getting fired by Tuesday. It's probably the boss." },
+            { type: t('compatWithRoomie'), level: '95%', survival: 'Very High', desc: "One creates chaos. The other documents it in Notion." }
+        ];
+
+        const cards = compatData.map(c => `
+            <div class="compat-card">
+                <span class="compat-type">${escapeHtml(c.type)}</span>
+                <div class="compat-stats">
+                    <div class="compat-stat">
+                        <span>${escapeHtml(t('compatChaos'))}</span>
+                        <strong>${c.level}</strong>
+                    </div>
+                    <div class="compat-stat">
+                        <span>${escapeHtml(t('compatSurvival'))}</span>
+                        <strong>${c.survival}</strong>
+                    </div>
+                </div>
+                <p class="compat-desc">${escapeHtml(c.desc)}</p>
+            </div>
+        `).join('');
+
+        return `
+            <section class="module-section">
+                <h3 class="module-h">${escapeHtml(t('compatTitle'))}</h3>
+                <div class="compat-grid">${cards}</div>
+            </section>`;
+    }
+
     function render() {
         const host = document.getElementById('personality-content');
         if (!host) return;
@@ -352,6 +417,8 @@
         const accent = '#FF5B3B';
         const name = field(p, 'name');
         const tagline = field(p, 'tagline');
+        const subject = getSubject();
+        const isHuman = subject === 'human';
 
         document.title = `${name} (${p.code}) — MeowBTI`;
         // Update meta description for SEO
@@ -368,20 +435,26 @@
         window.MeowTrack && window.MeowTrack('archetype_viewed', {
             code: p.code, name: p.name, lang: getLang(),
             from_quiz: parseTally() ? true : false,
+            subject: subject
         });
+
+        const revealText = isHuman ? t('resultOwnerSub') : t('revealLine');
 
         host.innerHTML = `
             ${confetti(p, accent)}
-            <div class="reveal-line">${escapeHtml(t('revealLine'))}</div>
+            <div class="reveal-line">${escapeHtml(revealText)}</div>
             ${tradingCard(p)}
 
             <div class="result-actions">
-                <button class="big-btn" id="btn-copy" type="button">${escapeHtml(t('copyLink'))}</button>
+                <button class="big-btn" id="btn-copy" type="button">${escapeHtml(isHuman ? t('shareOwnerBtn') : t('copyLink'))}</button>
                 <a href="${withLang('../quiz.html')}" class="big-btn ghost">${escapeHtml(t('retake'))}</a>
                 <a href="${withLang('../personality-types.html')}" class="big-btn ghost">${escapeHtml(t('all16'))}</a>
             </div>
 
             ${sharePanel()}
+
+            ${isHuman ? renderOwnerModules(p) : ''}
+            ${isHuman ? renderCompatibilityMatrix(p) : ''}
 
             <section class="result-grid">
                 <div class="rg-block">
@@ -410,7 +483,7 @@
                 </div>
             </section>
 
-            ${renderDuringEvents(p)}
+            ${!isHuman ? renderDuringEvents(p) : ''}
             ${renderMostLikelyTo(p)}
             ${renderSocialCircle(p)}
 
@@ -419,25 +492,25 @@
             ${longFormSection(p)}
 
             <section class="result-affiliate">
-                <h3 class="result-affiliate-h">${escapeHtml(t('picksFor', name))}</h3>
+                <h3 class="result-affiliate-h">${escapeHtml(isHuman ? 'Your Ideal Human Setup' : t('picksFor', name))}</h3>
                 <div class="product-grid">
                     <a href="${withLang('../index.html#affiliate-products')}" rel="sponsored noopener" class="product-card" style="--product-bg:${p.bg}">
                         <span class="product-emoji" aria-hidden="true">🛏️</span>
-                        <h3>The Spot™ — premium nap zone</h3>
-                        <p class="product-blurb">A bed they will pretend to ignore for 3 days, then never leave.</p>
+                        <h3>The Spot™ — premium zone</h3>
+                        <p class="product-blurb">Perfect for ${isHuman ? 'dissociating' : 'ignoring everyone'}.</p>
                         <span class="product-cta">See picks →</span>
                     </a>
                     <a href="${withLang('../index.html#affiliate-products')}" rel="sponsored noopener" class="product-card" style="--product-bg:#FFEFC2">
-                        <span class="product-emoji" aria-hidden="true">🪶</span>
-                        <h3>Wand of personal relevance</h3>
-                        <p class="product-blurb">Engineered for the "I have to murder this" personality types.</p>
+                        <span class="product-emoji" aria-hidden="true">☕</span>
+                        <h3>Fuel for the Menace</h3>
+                        <p class="product-blurb">Engineered for the "I am the problem" personality types.</p>
                         <span class="product-cta">See picks →</span>
                     </a>
                 </div>
             </section>
 
             <section class="result-cta">
-                <h2 class="cta-h">${escapeHtml(t('ctaH'))}</h2>
+                <h2 class="cta-h">${escapeHtml(isHuman ? 'Now find out which cat matches you.' : t('ctaH'))}</h2>
                 <div class="cta-actions">
                     <a href="${withLang('../quiz.html')}" class="big-btn" style="background:${p.color};color:#fff">${escapeHtml(t('analyzeAnother'))}</a>
                     <a href="${withLang('../personality-types.html')}" class="big-btn ghost">${escapeHtml(t('browseAll'))}</a>
@@ -449,12 +522,22 @@
         if (copyBtn) {
             copyBtn.addEventListener('click', () => {
                 copyLink(p);
-                window.MeowTrack && window.MeowTrack('copy_link', { code: p.code });
+                window.MeowTrack && window.MeowTrack(isHuman ? 'share_owner_result' : 'copy_link', { code: p.code });
                 const old = copyBtn.textContent;
                 copyBtn.textContent = t('copied');
                 setTimeout(() => { copyBtn.textContent = old; }, 1600);
             });
         }
+
+        document.querySelectorAll('.compat-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const type = card.querySelector('.compat-type').textContent;
+                window.MeowTrack && window.MeowTrack('compatibility_checked', {
+                    from_code: p.code,
+                    compat_type: type
+                });
+            });
+        });
 
         document.querySelectorAll('.rel-card').forEach(card => {
             card.addEventListener('click', () => {

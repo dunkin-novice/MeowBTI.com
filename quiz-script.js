@@ -72,6 +72,8 @@ function startQuiz(mode, resumeData = null) {
     STATEMENTS = window.MeowQuestions[currentMode] || window.MeowQuestions.short;
     TOTAL = STATEMENTS.length;
     
+    const isHuman = currentMode.startsWith('human');
+
     if (resumeData) {
         idx = resumeData.idx;
         answers = resumeData.answers;
@@ -88,7 +90,8 @@ function startQuiz(mode, resumeData = null) {
         lang: getLang(), 
         mode: currentMode, 
         length: TOTAL,
-        resumed: !!resumeData
+        resumed: !!resumeData,
+        subject: isHuman ? 'human' : 'cat'
     });
 
     renderProgress();
@@ -98,11 +101,13 @@ function startQuiz(mode, resumeData = null) {
 function checkResume() {
     const saved = loadState();
     if (saved) {
+        const isHuman = saved.mode.startsWith('human');
+        const qCount = saved.mode.toLowerCase().includes('deep') ? 60 : 12;
         // Show resume prompt
         const resumeBox = document.createElement('div');
         resumeBox.className = 'resume-box';
         resumeBox.innerHTML = `
-            <span>${tStr('quizResume', 'Resume quiz?')} (${saved.idx}/${saved.mode === 'deep' ? 60 : 12})</span>
+            <span>${tStr('quizResume', 'Resume quiz?')} (${saved.idx}/${qCount})</span>
             <div class="resume-actions">
                 <button class="restart-btn" onclick="this.parentElement.parentElement.remove()">${tStr('quizRestart', 'restart')}</button>
                 <button class="resume-btn" id="resume-confirm-btn">${tStr('quizStampYes', 'YES')}</button>
@@ -330,10 +335,15 @@ function classify(answers) {
 function finish() {
     const { code, tally } = classify(answers);
     const t = ['C','S','H','D','B','N','R','F'].map(k => `${k}${tally[k]}`).join('');
+    const isHuman = currentMode.startsWith('human');
+    
     clearState();
-    window.MeowTrack && window.MeowTrack('quiz_complete', { code, mode: currentMode, lang: getLang() });
+    window.MeowTrack && window.MeowTrack('quiz_complete', { code, mode: currentMode, lang: getLang(), subject: isHuman ? 'human' : 'cat' });
+    
     const langSuffix = getLang() === 'th' ? '&lang=th' : '';
-    window.location.href = `personality-types/${code}.html?t=${t}${langSuffix}`;
+    const subjectSuffix = isHuman ? '&subject=human' : '';
+    
+    window.location.href = `personality-types/${code}.html?t=${t}${langSuffix}${subjectSuffix}`;
 }
 
 // ─── keyboard ────────────────────────────────────────────────

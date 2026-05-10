@@ -866,8 +866,20 @@ a { color: inherit; }
 .quiz-mode-select h2 {
   font-family: var(--font-display);
   font-size: clamp(24px, 6vw, 32px);
-  margin-bottom: 32px;
+  margin-bottom: 24px;
   letter-spacing: -0.02em;
+}
+.quiz-mode-group {
+  margin-bottom: 32px;
+}
+.group-label {
+  font-size: 14px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.6;
+  margin-bottom: 16px;
+  color: var(--ink);
 }
 .mode-options {
   display: grid;
@@ -1048,6 +1060,63 @@ a { color: inherit; }
   font-size: clamp(20px, 4vw, 24px);
   text-align: center; margin-bottom: 16px; opacity: 0.85;
 }
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.hero-actions .cta-button {
+  margin: 0 !important;
+}
+@media (max-width: 480px) {
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .hero-actions .cta-button { margin-left: 0 !important; }
+}
+
+/* ─── HUMAN OWNER MODULES ────────────────────────────── */
+.owner-modules-grid {
+  display: grid; grid-template-columns: 1fr; gap: 12px;
+  margin-top: 16px;
+}
+@media (min-width: 600px) {
+  .owner-modules-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+}
+.owner-module-card {
+  background: var(--paper); border: 2.5px solid var(--ink);
+  border-radius: 20px; padding: 16px;
+  box-shadow: 4px 4px 0 var(--ink-08);
+}
+.om-label {
+  font-size: 10px; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 0.1em; opacity: 0.5; display: block; margin-bottom: 6px;
+}
+.om-text { font-size: 14px; font-weight: 600; line-height: 1.4; }
+
+/* ─── COMPATIBILITY MATRIX ───────────────────────────── */
+.compat-grid {
+  display: grid; grid-template-columns: 1fr; gap: 12px;
+}
+@media (min-width: 720px) {
+  .compat-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+}
+.compat-card {
+  background: var(--paper); border: 2.5px solid var(--ink);
+  border-radius: 24px; padding: 20px;
+  box-shadow: 5px 5px 0 var(--ink-10);
+  display: flex; flex-direction: column; gap: 12px;
+}
+.compat-type {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 16px; color: var(--ink);
+}
+.compat-stats { display: flex; gap: 16px; }
+.compat-stat { display: flex; flex-direction: column; }
+.compat-stat span { font-size: 10px; font-weight: 800; opacity: 0.4; text-transform: uppercase; }
+.compat-stat strong { font-size: 18px; color: var(--accent-1); }
+.compat-desc { font-size: 13px; line-height: 1.4; font-weight: 600; opacity: 0.8; }
 
 /* ─── EMOTIONAL MICRO-MODULES ─────────────────────────── */
 .module-section { margin-bottom: 40px; }
