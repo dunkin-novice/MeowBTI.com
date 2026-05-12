@@ -16,38 +16,38 @@
 
         const score = (matches / 4) * 100;
         let vibeKey = "vibeRoommate";
-        let desc = "";
+        let descKey = "compDescRoommateEnergy";
 
         // Specific Rules
         if (a.code === "CHBR" && b.code === "CHBR") {
             vibeKey = "vibeBoss";
-            desc = "A constant power struggle for the sunny spot.";
+            descKey = "compDescBossBattle";
         } else if (a.code[2] === 'l' && b.code[2] === 'l') {
             vibeKey = "vibeOneBrainCell";
-            desc = "Logic has left the building. Chaos reigns.";
+            descKey = "compDescOneBrainCell";
         } else if (matches === 4) {
             vibeKey = "vibeTwin";
-            desc = "Literally the same person in different bodies.";
+            descKey = "compDescTwinFlames";
         } else if (matches === 0) {
             vibeKey = "vibeOpposite";
-            desc = "They have nothing in common, yet here they are.";
+            descKey = "compDescTotalOpposites";
         } else if (matches === 3) {
             vibeKey = "vibeMafia";
-            desc = "Coordinated efforts to acquire extra treats.";
+            descKey = "compDescTinyMafia";
         } else if (matches === 2) {
             if (a.code[3] === 'R' && b.code[3] === 'R') {
                 vibeKey = "vibeChaotic";
-                desc = "Emotional volume set to 11 at all times.";
+                descKey = "compDescChaoticVolume";
             } else if (a.code[1] === 'A' && b.code[1] === 'A') {
                 vibeKey = "vibeSupport";
-                desc = "A constant loop of seeking and giving validation.";
+                descKey = "compDescEmotionalSupport";
             }
         }
 
         return {
             score,
             vibeKey,
-            desc
+            desc: t(descKey)
         };
     }
 

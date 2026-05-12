@@ -191,8 +191,27 @@
                                  th: (n) => `${n} กำลังมองคุณอยู่ห่างๆ... ระดับการตัดสิน: 100%` },
         dramaChaos:           { en: () => `The household chaos level just increased by 20%. No reason given.`,
                                  th: () => `ระดับความวุ่นวายในบ้านเพิ่มขึ้น 20% โดยไม่มีสาเหตุ` },
-        };
+        dramaTimeMinutesAgo:  { en: (count) => `${count}m ago`,
+                                 th: (count) => `${count} นาทีที่แล้ว` },
 
+        // ─── compatibility descriptions ──────────────────────
+        compDescBossBattle:    { en: "A constant power struggle for the sunny spot.",
+                                 th: "สงครามแย่งชิงที่อาบแดดที่ดีที่สุดเกิดขึ้นตลอดเวลา" },
+        compDescOneBrainCell:  { en: "Logic has left the building. Chaos reigns.",
+                                 th: "ตรรกะไม่อยู่ในบ้านนี้อีกต่อไป ความวุ่นวายครองเมือง" },
+        compDescTwinFlames:    { en: "Literally the same person in different bodies.",
+                                 th: "คือคนเดียวกันเป๊ะ แค่อยู่ในคนละร่าง" },
+        compDescTotalOpposites: { en: "They have nothing in common, yet here they are.",
+                                 th: "ไม่มีอะไรเหมือนกันเลย แต่ก็ดันมาอยู่ด้วยกันได้" },
+        compDescTinyMafia:     { en: "Coordinated efforts to acquire extra treats.",
+                                 th: "ร่วมมือกันอย่างเป็นระบบเพื่อหลอกเอาขนมเพิ่ม" },
+        compDescChaoticVolume: { en: "Emotional volume set to 11 at all times.",
+                                 th: "ระดับอารมณ์ถูกตั้งไว้ที่ 11 ตลอดเวลา" },
+        compDescEmotionalSupport: { en: "A constant loop of seeking and giving validation.",
+                                 th: "วงจรการเรียกร้องความสนใจและให้กำลังใจกันไม่สิ้นสุด" },
+        compDescRoommateEnergy: { en: "They're just figuring it out.",
+                                 th: "พวกเขากำลังพยายามทำความเข้าใจกันอยู่" },
+        };
         // Compatibility
         compatTitle:       { en: "Compatibility Matrix",       th: "ความเข้ากันได้" },
         compatCheck:       { en: "Check Compatibility",        th: "เช็คความเข้ากัน" },

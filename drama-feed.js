@@ -70,7 +70,7 @@
                         <div class="drama-post-icon">💬</div>
                         <div class="drama-post-content">
                             <p>${text}</p>
-                            <span class="drama-post-time">${i + 1}m ago</span>
+                            <span class="drama-post-time">${t('dramaTimeMinutesAgo', i + 1)}</span>
                         </div>
                     </div>
                 `).join('')}
