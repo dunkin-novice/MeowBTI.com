@@ -77,6 +77,14 @@
         if (profiles.length >= 2 && window.MeowCompatibility) {
             renderDynamics(profiles);
         }
+
+        // Render Drama Feed if 2+ members
+        if (profiles.length >= 2 && window.MeowDramaFeed) {
+            window.MeowDramaFeed.render(profiles, 'family-drama-feed');
+        } else {
+            const feed = document.getElementById('family-drama-feed');
+            if (feed) feed.style.display = 'none';
+        }
     }
 
     function renderDynamics(profiles) {

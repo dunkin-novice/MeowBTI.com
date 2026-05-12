@@ -170,6 +170,29 @@
         footProblem:          { en: "We are all the problem.",     th: "พวกเราทุกคนคือตัวปัญหา" },
         footLove:             { en: "Judgment is our primary love language.", th: "การตัดสินกันคือภาษาบอกรักหลักของเรา" },
 
+        // ─── drama feed (drama-feed.js) ───────────────────────
+        dramaFeedTitle:       { en: "Household Drama Feed",    th: "ฟีดดราม่าประจำบ้าน" },
+        dramaFeedSub:         { en: "Real-time updates from your tiny roommates.", th: "อัปเดตแบบเรียลไทม์จากเหล่ารูมเมทตัวจิ๋ว" },
+
+        // Templates
+        dramaAudit:           { en: (n) => `${n} is currently auditing everyone's productivity.`,
+                                 th: (n) => `${n} กำลังตรวจสอบประสิทธิภาพการทำงานของทุกคนในบ้าน` },
+        dramaAlliance:        { en: (n1, n2) => `${n1} and ${n2} have formed an alliance against peace.`,
+                                 th: (n1, n2) => `${n1} และ ${n2} ได้จับมือเป็นพันธมิตรเพื่อทำลายความสงบสุข` },
+        dramaMenace:          { en: (n) => `Warning: The household menace (${n}) has entered the room.`,
+                                 th: (n) => `คำเตือน: ตัวแสบประจำบ้าน (${n}) ได้ก้าวเข้าสู่ห้องแล้ว` },
+        dramaStability:       { en: () => `Someone knocked over emotional stability. It wasn't an accident.`,
+                                 th: () => `มีคนทำ 'ความมั่นคงทางอารมณ์' ตกแตก... และนั่นไม่ใช่อุบัติเหตุ` },
+        dramaBrainCell:       { en: (n1, n2) => `${n1} and ${n2} are currently sharing one brain cell. It's not working.`,
+                                 th: (n1, n2) => `${n1} และ ${n2} กำลังแบ่งสมองก้อนเดียวกันใช้... ดูทรงแล้วไม่รอด` },
+        dramaMeeting:         { en: (n) => `${n} has called an emergency 3 AM meeting. Attendance is mandatory.`,
+                                 th: (n) => `${n} เรียกประชุมด่วนตอนตี 3 ทุกคนต้องเข้าประชุม ห้ามสาย` },
+        dramaJudging:         { en: (n) => `${n} is watching you from a distance. Judgment level: 100%.`,
+                                 th: (n) => `${n} กำลังมองคุณอยู่ห่างๆ... ระดับการตัดสิน: 100%` },
+        dramaChaos:           { en: () => `The household chaos level just increased by 20%. No reason given.`,
+                                 th: () => `ระดับความวุ่นวายในบ้านเพิ่มขึ้น 20% โดยไม่มีสาเหตุ` },
+        };
+
         // Compatibility
         compatTitle:       { en: "Compatibility Matrix",       th: "ความเข้ากันได้" },
         compatCheck:       { en: "Check Compatibility",        th: "เช็คความเข้ากัน" },
