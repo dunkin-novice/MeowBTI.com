@@ -118,6 +118,29 @@
             </div>
         </section>
 
+        <!-- My Cat Family Dashboard (v3) -->
+        <section id="family-dashboard" class="family-section" style="display: none;">
+            <div class="container">
+                <div class="family-header">
+                    <h2 data-i18n="familyDashboardTitle">My Cat Family</h2>
+                    <p class="family-subtitle" data-i18n="familyDashboardSub">Meet the inhabitants of your chaotic household.</p>
+                </div>
+
+                <div id="family-grid" class="family-grid">
+                    <!-- Cards injected by dashboard.js -->
+                </div>
+
+                <div class="family-footer-actions">
+                    <a href="quiz.html" class="cta-button accent" data-i18n-href>
+                        <span>+</span> <span data-i18n="addAnotherCat">Add Another Cat</span>
+                    </a>
+                    <a href="quiz.html?mode=humanShort" class="cta-button ghost" data-i18n-href>
+                        <span>+</span> <span data-i18n="addAnotherHuman">Add Another Human</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
         <!-- Tape marquee -->
         <section class="tape-section" aria-hidden="true">
             <div class="tape-track">
@@ -196,7 +219,12 @@
 
     <footer class="main-footer" id="main-footer"></footer>
 
-    <script src="/data/i18n.js"></script>
+    <script src="data/i18n.js"></script>
+    <script src="data/archetypes.js"></script>
+    <script src="data/store.js"></script>
     <script src="script.js"></script>
+    <script src="compatibility.js"></script>
+    <script src="family-share.js"></script>
+    <script src="dashboard.js"></script>
 </body>
 </html>

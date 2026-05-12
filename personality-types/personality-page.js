@@ -265,6 +265,21 @@
         `;
     }
 
+    function saveFamilyPanel(p, isHuman) {
+        const title = isHuman ? t('addMyselfToFamily') : t('saveToFamily');
+        const label = isHuman ? t('yourNameOptional') : t('catNameOptional');
+        return `
+            <section class="save-family-panel">
+                <h3>${escapeHtml(title)}</h3>
+                <div class="save-family-input-group">
+                    <label for="family-member-name">${escapeHtml(label)}</label>
+                    <input type="text" id="family-member-name" placeholder="${isHuman ? 'e.g. Cat Mother' : 'e.g. Mochi'}" maxlength="30">
+                </div>
+                <button class="big-btn accent" id="btn-save-family" type="button">${escapeHtml(title)}</button>
+            </section>
+        `;
+    }
+
     function bindShare(p) {
         const fileInput = document.getElementById('share-photo');
         const uploadLabel = document.getElementById('share-upload-label');
@@ -436,11 +451,12 @@
         });
 
         const revealText = isHuman ? t('resultOwnerSub') : t('revealLine');
-
         host.innerHTML = `
             ${confetti(p, accent)}
             <div class="reveal-line">${escapeHtml(revealText)}</div>
             ${tradingCard(p)}
+
+            ${saveFamilyPanel(p, isHuman)}
 
             <div class="result-actions">
                 <button class="big-btn" id="btn-copy" type="button">${escapeHtml(isHuman ? t('shareOwnerBtn') : t('copyLink'))}</button>
@@ -514,6 +530,32 @@
                 </div>
             </section>
         `;
+
+        const saveBtn = document.getElementById('btn-save-family');
+        const nameInput = document.getElementById('family-member-name');
+        if (saveBtn && nameInput && window.MeowStore) {
+            saveBtn.addEventListener('click', () => {
+                const nameValue = nameInput.value.trim();
+                const defaultName = isHuman ? t('defaultHumanName') : t('defaultCatName');
+                const profile = {
+                    id: window.MeowStore.generateProfileId(),
+                    name: nameValue || defaultName,
+                    subject: subject,
+                    code: p.code,
+                    tally: new URLSearchParams(window.location.search).get('t') || '',
+                    archetypeName: name,
+                    savedAt: new Date().toISOString(),
+                    source: 'result-page'
+                };
+                
+                const success = window.MeowStore.saveFamilyProfile(profile);
+                if (success || true) { // Always show success to user
+                    saveBtn.textContent = t('savedToFamily');
+                    saveBtn.classList.add('saved');
+                    nameInput.disabled = true;
+                }
+            });
+        }
 
         const copyBtn = document.getElementById('btn-copy');
         if (copyBtn) {

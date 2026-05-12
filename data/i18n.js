@@ -97,7 +97,79 @@
         ownerBossCompat:   { en: "Boss Compatibility",        th: "ความเข้ากันกับหัวหน้า" },
         ownerRoommate:     { en: "Roommate Warning",          th: "คำเตือนสำหรับรูมเมท" },
         ownerSurvival:     { en: "Survival Strategy",         th: "วิธีเอาชีวิตรอด" },
+
+        // ─── family saving (v3) ──────────────────────────────
+        saveToFamily:      { en: "Save to My Cat Family",     th: "บันทึกลงกลุ่มแมวของฉัน" },
+        savedToFamily:     { en: "Saved to My Cat Family ✓",  th: "บันทึกลงกลุ่มแมวแล้ว ✓" },
+        addMyselfToFamily: { en: "Add Myself to Family",      th: "เพิ่มตัวเองเข้ากลุ่ม" },
+        catNameOptional:   { en: "Cat name (optional)",       th: "ชื่อแมว (ถ้ามี)" },
+        yourNameOptional:  { en: "Your name (optional)",      th: "ชื่อของคุณ (ถ้ามี)" },
+        defaultCatName:    { en: "My Cat",                    th: "แมวของฉัน" },
+        defaultHumanName:  { en: "Me",                        th: "ฉันเอง" },
+
+        // ─── dashboard (dashboard.js) ──────────────────────────
+        familyDashboardTitle: { en: "My Cat Family",           th: "กลุ่มแมวของฉัน" },
+        familyDashboardSub:   { en: "Meet the inhabitants of your chaotic household.", 
+                                 th: "พบกับเหล่าสมาชิกในบ้านที่สุดจะวุ่นวาย" },
+        addAnotherCat:        { en: "Add Another Cat",         th: "เพิ่มแมวอีกตัว" },
+        addAnotherHuman:      { en: "Add Another Human",       th: "เพิ่มทาสอีกคน" },
+        confirmRemove:        { en: (name) => `Remove ${name} from your family?`,
+                                 th: (name) => `ลบ ${name} ออกจากกลุ่มใช่ไหม?` },
+
+        // ─── compatibility (compatibility.js) ──────────────────
+        dynamicsTitle:        { en: "Household Dynamics",      th: "ความสัมพันธ์ในบ้าน" },
+        statsChaos:           { en: "Chaos Level",             th: "ระดับความวุ่นวาย" },
+        statsDominant:        { en: "Dominant Axis",           th: "แกนหลักของบ้าน" },
+        statsTotal:           { en: "Total Members",           th: "สมาชิกทั้งหมด" },
         
+        // Vibe Labels
+        vibeChaotic:          { en: "Chaotic Duo",             th: "คู่หูตัวป่วน" },
+        vibeSilent:           { en: "Silent Respect",          th: "เคารพในความเงียบ" },
+        vibeMafia:            { en: "Tiny Mafia",              th: "มาเฟียตัวจิ๋ว" },
+        vibeRoommate:         { en: "Roommate Energy",         th: "พลังงานรูมเมท" },
+        vibeBoss:             { en: "Boss vs Boss",            th: "บอสปะทะบอส" },
+        vibeOneBrainCell:     { en: "One Brain Cell Shared",   th: "ใช้สมองก้อนเดียวกัน" },
+        vibeSupport:          { en: "Emotional Support",       th: "ซัพพอร์ตทางอารมณ์" },
+        vibeTwin:             { en: "Twin Flames",             th: "แฝดคนละฝา" },
+        vibeOpposite:         { en: "Total Opposites",         th: "ขั้วตรงข้าม" },
+
+        // Special Tags
+        tagBestMatch:         { en: "Best Match",              th: "คู่ที่เข้ากันที่สุด" },
+        tagMostChaotic:       { en: "Most Chaotic Pair",       th: "คู่ที่ป่วนที่สุด" },
+        tagHouseholdMenace:   { en: "Household Menace",        th: "ตัวแสบประจำบ้าน" },
+
+        // Observations
+        obsScream:            { en: "These two definitely scream before dinner.", 
+                                 th: "สองตัวนี้ต้องกรีดร้องก่อนมื้อเย็นแน่นอน" },
+        obsMainChar:          { en: "One is the main character. The other is the unpaid intern.",
+                                 th: "ตัวหนึ่งเป็นพระเอก อีกตัวเป็นเด็กฝึกงานที่ไม่ได้รับค่าจ้าง" },
+        obsSecretLang:        { en: "They have a secret language involving slow blinks and tactical baps.",
+                                 th: "พวกเขามีภาษาลับที่ประกอบด้วยการกระพริบตาช้าๆ และการตบแบบมีกลยุทธ์" },
+        obsFridge:            { en: "If they could open the fridge, you'd be in serious trouble.",
+                                 th: "ถ้าพวกมันเปิดตู้เย็นได้ คุณจะซวยแน่ๆ" },
+        obsVibes:             { en: "This household survives entirely on vibes and expensive treats.",
+                                 th: "บ้านหลังนี้อยู่รอดได้ด้วย 'วิบ' และขนมราคาแพงล้วนๆ" },
+
+        // ─── poster (family-share.js) ──────────────────────────
+        posterHouseholdVerdict: { en: "MEOWBTI HOUSEHOLD VERDICT", th: "คำตัดสินบ้าน MEOWBTI" },
+        posterDownloadBtn:      { en: "Download Family Poster",    th: "ดาวน์โหลดโปสเตอร์ครอบครัว" },
+        
+        // Household Titles
+        titleDictators:       { en: "The Tiny Dictators",      th: "เหล่านักเผด็จการตัวจิ๋ว" },
+        titleUnstable:        { en: "Emotionally Unstable Apartment", th: "อะพาร์ตเมนต์ที่อารมณ์แปรปรวน" },
+        titleSyndicate:       { en: "Corporate Meow Syndicate", th: "องค์กรลับเมี๊ยวเมี๊ยว" },
+        titleChaos:           { en: "Chaos But Loving",        th: "วุ่นวายแต่ก็รักนะ" },
+        titleJudgment:        { en: "Silent Judgment Society", th: "สมาคมตัดสินคนเงียบๆ" },
+        titleScreamers:       { en: "The Midnight Screamers",  th: "เหล่านักว๊ากเที่ยงคืน" },
+        titleOneBrain:        { en: "Collective One Brain Cell", th: "ศูนย์รวมสมองก้อนเดียว" },
+
+        // Footer Insights
+        footPeace:            { en: "0% peace. 100% family.",   th: "สงบ 0% ครอบครัว 100%" },
+        footNormal:           { en: "Nobody here communicates normally.", th: "ไม่มีใครในบ้านนี้ที่สื่อสารแบบคนปกติ" },
+        footVibes:            { en: "This household survives on vibes.", th: "บ้านหลังนี้ขับเคลื่อนด้วยวิบ" },
+        footProblem:          { en: "We are all the problem.",     th: "พวกเราทุกคนคือตัวปัญหา" },
+        footLove:             { en: "Judgment is our primary love language.", th: "การตัดสินกันคือภาษาบอกรักหลักของเรา" },
+
         // Compatibility
         compatTitle:       { en: "Compatibility Matrix",       th: "ความเข้ากันได้" },
         compatCheck:       { en: "Check Compatibility",        th: "เช็คความเข้ากัน" },
