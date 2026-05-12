@@ -106,6 +106,16 @@
         yourNameOptional:  { en: "Your name (optional)",      th: "ชื่อของคุณ (ถ้ามี)" },
         defaultCatName:    { en: "My Cat",                    th: "แมวของฉัน" },
         defaultHumanName:  { en: "Me",                        th: "ฉันเอง" },
+        placeholderCatName:   { en: "e.g. Mochi",                th: "เช่น น้องถุงทอง" },
+        placeholderHumanName: { en: "e.g. Cat Mother",           th: "เช่น มนุษย์แม่" },
+        picksForHuman:        { en: "Your Ideal Human Setup",    th: "เซ็ตที่ใช่สำหรับร่างมนุษย์" },
+        productBlurbDissociating: { en: "Perfect for dissociating.", th: "เหมาะสำหรับนิ่งสงบสยบทุกความเคลื่อนไหว" },
+        productBlurbIgnoring: { en: "Perfect for ignoring everyone.", th: "เหมาะกับการเมินทุกคนแบบตัวมารดา" },
+        productBlurbProblem:  { en: "Engineered for the \"I am the problem\" personality types.", th: "ออกแบบมาเพื่อมนุษย์สาย 'ฉันนี่แหละตัวปัญหา'" },
+        productTitleSpot:     { en: "The Spot™ — premium zone", th: "The Spot™ — มุมสงบระดับพรีเมียม" },
+        productTitleFuel:     { en: "Fuel for the Menace", th: "ขุมพลังของเหล่าตัวแสบ" },
+        productCta:           { en: "See picks →", th: "ดูของแนะนำ →" },
+        ctaHuman:             { en: "Now find out which cat matches you.", th: "ทีนี้มาดูกันว่าแมวตัวไหนที่เข้ากับคุณ" },
 
         // ─── dashboard (dashboard.js) ──────────────────────────
         familyDashboardTitle: { en: "My Cat Family",           th: "กลุ่มแมวของฉัน" },
@@ -211,7 +221,7 @@
                                  th: "วงจรการเรียกร้องความสนใจและให้กำลังใจกันไม่สิ้นสุด" },
         compDescRoommateEnergy: { en: "They're just figuring it out.",
                                  th: "พวกเขากำลังพยายามทำความเข้าใจกันอยู่" },
-        };
+
         // Compatibility
         compatTitle:       { en: "Compatibility Matrix",       th: "ความเข้ากันได้" },
         compatCheck:       { en: "Check Compatibility",        th: "เช็คความเข้ากัน" },

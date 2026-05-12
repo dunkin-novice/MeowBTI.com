@@ -273,7 +273,7 @@
                 <h3>${escapeHtml(title)}</h3>
                 <div class="save-family-input-group">
                     <label for="family-member-name">${escapeHtml(label)}</label>
-                    <input type="text" id="family-member-name" placeholder="${isHuman ? 'e.g. Cat Mother' : 'e.g. Mochi'}" maxlength="30">
+                    <input type="text" id="family-member-name" placeholder="${isHuman ? t('placeholderHumanName') : t('placeholderCatName')}" maxlength="30">
                 </div>
                 <button class="big-btn accent" id="btn-save-family" type="button">${escapeHtml(title)}</button>
             </section>
@@ -505,25 +505,25 @@
             ${longFormSection(p)}
 
             <section class="result-affiliate">
-                <h3 class="result-affiliate-h">${escapeHtml(isHuman ? 'Your Ideal Human Setup' : t('picksFor', name))}</h3>
+                <h3 class="result-affiliate-h">${escapeHtml(isHuman ? t('picksForHuman') : t('picksFor', name))}</h3>
                 <div class="product-grid">
                     <a href="${withLang('../index.html#affiliate-products')}" rel="sponsored noopener" class="product-card" style="--product-bg:${p.bg}">
                         <span class="product-emoji" aria-hidden="true">🛏️</span>
-                        <h3>The Spot™ — premium zone</h3>
-                        <p class="product-blurb">Perfect for ${isHuman ? 'dissociating' : 'ignoring everyone'}.</p>
-                        <span class="product-cta">See picks →</span>
+                        <h3>${t('productTitleSpot')}</h3>
+                        <p class="product-blurb">${isHuman ? t('productBlurbDissociating') : t('productBlurbIgnoring')}</p>
+                        <span class="product-cta">${t('productCta')}</span>
                     </a>
                     <a href="${withLang('../index.html#affiliate-products')}" rel="sponsored noopener" class="product-card" style="--product-bg:#FFEFC2">
                         <span class="product-emoji" aria-hidden="true">☕</span>
-                        <h3>Fuel for the Menace</h3>
-                        <p class="product-blurb">Engineered for the "I am the problem" personality types.</p>
-                        <span class="product-cta">See picks →</span>
+                        <h3>${t('productTitleFuel')}</h3>
+                        <p class="product-blurb">${t('productBlurbProblem')}</p>
+                        <span class="product-cta">${t('productCta')}</span>
                     </a>
                 </div>
             </section>
 
             <section class="result-cta">
-                <h2 class="cta-h">${escapeHtml(isHuman ? 'Now find out which cat matches you.' : t('ctaH'))}</h2>
+                <h2 class="cta-h">${escapeHtml(isHuman ? t('ctaHuman') : t('ctaH'))}</h2>
                 <div class="cta-actions">
                     <a href="${withLang('../quiz.html')}" class="big-btn" style="background:${p.color};color:#fff">${escapeHtml(t('analyzeAnother'))}</a>
                     <a href="${withLang('../personality-types.html')}" class="big-btn ghost">${escapeHtml(t('browseAll'))}</a>
