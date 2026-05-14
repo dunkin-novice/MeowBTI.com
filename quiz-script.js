@@ -331,7 +331,7 @@ function classify(answers) {
         (tally.C >= tally.S ? 'C' : 'S') +
         (tally.H >= tally.D ? 'H' : 'D') +
         (tally.B >= tally.N ? 'B' : 'N') +
-        (tally.R >= tally.F ? 'R' : 'C');
+        (tally.R >= tally.F ? 'R' : 'F');
     return { code, tally };
 }
 
@@ -339,9 +339,10 @@ function finish() {
     const { code, tally } = classify(answers);
     const t = ['C','S','H','D','B','N','R','F'].map(k => `${k}${tally[k]}`).join('');
     const isHuman = currentMode.startsWith('human');
+    const lang = getLang();
     
     clearState();
-    window.MeowTrack && window.MeowTrack('quiz_complete', { code, mode: currentMode, lang: getLang(), subject: isHuman ? 'human' : 'cat' });
+    window.MeowTrack && window.MeowTrack('quiz_complete', { code, mode: currentMode, lang: lang, subject: isHuman ? 'human' : 'cat' });
     
     const langSuffix = lang !== 'en' ? `&lang=${lang}` : '';
     const subjectSuffix = isHuman ? `&subject=human` : '';
