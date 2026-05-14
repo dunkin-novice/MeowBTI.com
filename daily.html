@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Emotional Weather — MeowBTI</title>
+    <meta name="description" content="A soft daily check-in for your current cat-energy mood.">
+    <meta name="theme-color" content="#FFF4EC">
+    <link rel="canonical" href="https://meowbti.com/daily.html">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+    <meta property="og:title" content="Daily Emotional Weather — MeowBTI">
+    <meta property="og:description" content="A soft daily check-in for your current cat-energy mood.">
+    <meta property="og:image" content="https://meowbti.com/assets/personalities/sdnr-the-empathetic-muse.webp">
+    <meta property="og:url" content="https://meowbti.com/daily.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Daily Emotional Weather — MeowBTI">
+    <meta name="twitter:description" content="A soft daily check-in for your current cat-energy mood.">
+    <meta name="twitter:image" content="https://meowbti.com/assets/personalities/sdnr-the-empathetic-muse.webp">
+
+    <link rel="stylesheet" href="style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945" crossorigin="anonymous"></script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2WNZ4HBJ87"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-2WNZ4HBJ87');
+    </script>
+</head>
+<body>
+    <header class="main-header" id="main-header"></header>
+
+    <main>
+        <section class="daily-page-section">
+            <div class="container">
+                <div class="daily-page-shell" id="daily-root">
+                    <div class="daily-page-intro">
+                        <span class="daily-page-kicker" data-i18n="dailyKicker">Daily ritual</span>
+                        <h1 data-i18n="dailyH1">Daily Emotional Weather</h1>
+                        <p data-i18n="dailyIntro">A tiny check-in for your current cat-energy mood. Saved only on this device.</p>
+                    </div>
+                    <div id="daily-app" class="daily-app" aria-live="polite">
+                        <p style="text-align:center;opacity:0.6;padding:48px 0">Loading today's weather...</p>
+                    </div>
+                    <p class="daily-disclaimer" data-i18n="dailyDisclaimer">For reflection and entertainment only. Not medical or mental health advice.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer" id="main-footer"></footer>
+
+    <script src="data/i18n.js"></script>
+    <script src="data/archetypes.js"></script>
+    <script src="data/store.js"></script>
+    <script src="script.js"></script>
+    <script src="daily.js"></script>
+</body>
+</html>

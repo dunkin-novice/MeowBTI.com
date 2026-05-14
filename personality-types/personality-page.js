@@ -506,6 +506,30 @@
         `;
     }
 
+    function renderDailyWeatherEntry(p) {
+        return `
+            <section class="daily-weather-result-module">
+                <div>
+                    <span class="daily-page-kicker">${escapeHtml(t('dailyKicker'))}</span>
+                    <h3>${escapeHtml(t('humanResultWeatherH'))}</h3>
+                    <p>${escapeHtml(t('humanResultWeatherSub'))}</p>
+                </div>
+                <a href="${withLang('daily.html?subject=human&type=' + p.code)}" class="big-btn accent">${escapeHtml(t('humanResultWeatherCta'))}</a>
+            </section>`;
+    }
+
+    function renderCatHumanBridge() {
+        return `
+            <section class="daily-weather-result-module cat-bridge">
+                <div>
+                    <span class="daily-page-kicker">${escapeHtml(t('quizModeOwner'))}</span>
+                    <h3>${escapeHtml(t('catResultHumanBridgeH'))}</h3>
+                    <p>${escapeHtml(t('catResultHumanBridgeSub'))}</p>
+                </div>
+                <a href="${withLang('human-quiz.html')}" class="big-btn ghost">${escapeHtml(t('catResultHumanBridgeCta'))}</a>
+            </section>`;
+    }
+
     function bindShare(p) {
         const fileInput = document.getElementById('share-photo');
         const uploadLabel = document.getElementById('share-upload-label');
@@ -737,6 +761,8 @@
             ${tradingCard(p, displayName)}
 
             ${isResultPage ? saveFamilyPanel(p, isHuman) : ''}
+            ${(isResultPage && isHuman) ? renderDailyWeatherEntry(p) : ''}
+            ${(isResultPage && !isHuman) ? renderCatHumanBridge() : ''}
 
             <div class="result-actions">
                 ${isResultPage ? `
