@@ -106,7 +106,7 @@
         shareOwnerBtn:     { en: "Share Your Identity",        th: "แชร์ตัวตนร่างคน" },
         
         // Evergreen Meaning Page Chrome
-        revealLineEvergreen:  { en: "{0} archetype",          th: "บุคลิกแบบ{0}" },
+        revealLineEvergreen:  { en: "The {0} archetype",          th: "บุคลิกสาย {0}" },
         resultOwnerSubEvergreen: { en: "The {0} archetype projects the energy of:", th: "ตัวตนของสาย {0} คือ:" },
         duringTitleEvergreen: { en: "Behavior during events", th: "พฤติกรรมระหว่างสถานการณ์ต่างๆ" },
         dailyVibeIsEvergreen: { en: (archetype) => `Today's energy for the ${archetype} archetype.`, 
@@ -182,11 +182,16 @@
         // ─── human expansion growth loop (v1) ────────────────
         hCompCatTitle:        { en: "Which cat energy survives you?", th: "แมวแบบไหนที่อยู่รอดกับคุณได้?" },
         hCompHumanTitle:      { en: "Who should never be in your group chat?", th: "ใครคือคนที่ไม่ควรอยู่ในแชทกลุ่มกับคุณ?" },
+        hCompCatTitleEvergreen:   { en: "Cat energy compatibility", th: "ความเข้ากันกับพลังงานแมว" },
+        hCompHumanTitleEvergreen: { en: "Group chat dynamics", th: "ความสัมพันธ์ในแชทกลุ่ม" },
         
         hCompCatBest:         { en: "Ideal cat coworker",      th: "เพื่อนร่วมงานในฝัน" },
         hCompCatWorst:        { en: "Would block you",         th: "โดนบล็อกแน่นอน" },
         hCompCatChaos:        { en: "Enables your chaos",      th: "สายซัพความป่วน" },
         hCompCatSupport:      { en: "Support gremlin",         th: "หน่วยซัพพอร์ตทางใจ" },
+        
+        hCompCatWorstEvergreen:   { en: "Socially guarded",       th: "เว้นระยะห่าง" },
+        hCompCatChaosEvergreen:   { en: "Chaos catalyst",         th: "ตัวกระตุ้นความป่วน" },
 
         hCompHumanBest:       { en: "Friend group goals",      th: "คู่หูตัวตึง" },
         hCompHumanEnabler:    { en: "Mutual enabler",          th: "พากันเสียคน" },
@@ -203,6 +208,7 @@
         hooksCorporate:       { en: "Corporate survival rate", th: "โอกาสรอดในออฟฟิศ" },
         hooksSupportObject:   { en: "Emotional support object", th: "ของซัพพอร์ตทางใจ" },
         hHooksSupportObject:  { en: "Object you'd save in a fire", th: "ของที่จะหยิบถ้าไฟไหม้บ้าน" },
+        hHooksSupportObjectEvergreen: { en: "Prized possession", th: "ของรักของหวง" },
 
         // ─── share cards (v1) ────────────────────────────────
         shareCardBtn:         { en: "Save card",               th: "เซฟรูปการ์ด" },
@@ -384,6 +390,7 @@
                                 th: "บันทึกหรือแชร์ผลลัพธ์พลังงานแมวในร่างมนุษย์ของคุณ" },
         addHumanPhoto:     { en: "add your photo",             th: "เพิ่มรูปของคุณ" },
         humanResultCta:    { en: "take the Human Quiz again",  th: "ทำแบบทดสอบร่างมนุษย์อีกครั้ง" },
+        humanMeaningCta:   { en: "Find your human energy →",   th: "ค้นหาพลังงานของคุณ →" },
         browseHumanAll:    { en: "browse all 16 human types",  th: "ดูร่างมนุษย์ทั้ง 16 แบบ" },
         changePhoto:       { en: "change photo",              th: "เปลี่ยนรูป" },
         sharePoster:       { en: "↗ share poster",            th: "↗ แชร์โปสเตอร์" },
@@ -400,6 +407,7 @@
         vsRival:           { en: "vs. your cat's natural enemy", th: "ศัตรูคู่ปรับของแมวคุณ" },
         vsRivalEvergreen:  { en: "The natural enemy",         th: "ศัตรูคู่ปรับตามธรรมชาติ" },
         hVsRival:          { en: "The natural rival",         th: "คู่ปรับที่สมน้ำสมเนื้อ" },
+        hVsRivalResult:    { en: "Your natural rival",        th: "คู่ปรับที่สมน้ำสมเนื้อของคุณ" },
         fullBreakdown:     { en: "The full breakdown",        th: "รายละเอียดเชิงลึก" },
         keyTraits:         { en: "Key traits in action",      th: "พฤติกรรมเด่น" },
 

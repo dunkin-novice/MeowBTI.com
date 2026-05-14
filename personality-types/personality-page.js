@@ -165,7 +165,7 @@
         const isHuman = subject === 'human';
         const root = isHuman ? 'human-types/' : (isResultPage ? 'personality-types/' : '');
         
-        const label = isHuman ? t('hVsRival') : (isEvergreen ? t('vsRivalEvergreen') : t('vsRival'));
+        const label = isHuman ? (isEvergreen ? t('hVsRival') : t('hVsRivalResult')) : (isEvergreen ? t('vsRivalEvergreen') : t('vsRival'));
         
         return `
             <a class="rival-tile" href="${withLang(root + r.code + '.html')}" style="background:${r.color}">
@@ -238,8 +238,8 @@
 
         const catRels = [
             { key: 'bestMatch', label: t('hCompCatBest'), data: hcc.bestMatch },
-            { key: 'worstMatch', label: t('hCompCatWorst'), data: hcc.worstMatch },
-            { key: 'chaosPair', label: t('hCompCatChaos'), data: hcc.chaosPair },
+            { key: 'worstMatch', label: isEvergreen ? t('hCompCatWorstEvergreen') : t('hCompCatWorst'), data: hcc.worstMatch },
+            { key: 'chaosPair', label: isEvergreen ? t('hCompCatChaosEvergreen') : t('hCompCatChaos'), data: hcc.chaosPair },
             { key: 'emotionalSupport', label: t('hCompCatSupport'), data: hcc.emotionalSupport }
         ];
 
@@ -285,8 +285,8 @@
 
         return `
             <div class="human-growth-loop">
-                ${renderSet(catRels, t('hCompCatTitle'), isResultPage ? 'personality-types/' : '../personality-types/')}
-                ${renderSet(humanRels, t('hCompHumanTitle'), isResultPage ? 'human-types/' : '')}
+                ${renderSet(catRels, isEvergreen ? t('hCompCatTitleEvergreen') : t('hCompCatTitle'), isResultPage ? 'personality-types/' : '../personality-types/')}
+                ${renderSet(humanRels, isEvergreen ? t('hCompHumanTitleEvergreen') : t('hCompHumanTitle'), isResultPage ? 'human-types/' : '')}
             </div>
         `;
     }
@@ -345,7 +345,7 @@
             { label: t('hooksWhenStressed'), value: field(hooks, 'whenStressed'), icon: '😤', key: 'whenStressed' },
             { label: t('hooksAt2AM'), value: at2AM, icon: '🌕', key: 'at2AM' },
             { label: t('hooksCorporate'), value: field(hooks, 'corporateSurvivalRate'), icon: '💼', key: 'corporate' },
-            { label: isHuman ? t('hHooksSupportObject') : t('hooksSupportObject'), value: emotionalSupportObject, icon: '🧸', key: 'supportObject' }
+            { label: isHuman ? (isEvergreen ? t('hHooksSupportObjectEvergreen') : t('hHooksSupportObject')) : t('hooksSupportObject'), value: emotionalSupportObject, icon: '🧸', key: 'supportObject' }
         ];
 
         const gridHtml = gridItems.map(item => `
@@ -851,7 +851,7 @@
             <section class="result-cta">
                 <h2 class="cta-h">${escapeHtml(isHuman ? (isEvergreen ? t('ctaHumanEvergreen') : t('ctaHuman')) : (isEvergreen ? t('ctaHEvergreen') : t('ctaH')))}</h2>
                 <div class="cta-actions">
-                    <a href="${withLang(quizRoot + quizPage)}" class="big-btn" style="background:${p.color};color:#fff">${escapeHtml(isHuman ? t('humanResultCta') : (isResultPage ? t('analyzeAnother') : t('heroCta')))}</a>
+                    <a href="${withLang(quizRoot + quizPage)}" class="big-btn" style="background:${p.color};color:#fff">${escapeHtml(isHuman ? (isEvergreen ? t('humanMeaningCta') : t('humanResultCta')) : (isResultPage ? t('analyzeAnother') : t('heroCta')))}</a>
                     <a href="${withLang(quizRoot + allTypesPage)}" class="big-btn ghost">${escapeHtml(isHuman ? t('browseHumanAll') : t('browseAll'))}</a>
                 </div>
             </section>
