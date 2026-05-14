@@ -460,16 +460,16 @@
         }
     }
 
-    function sharePanel() {
+    function sharePanel(isHuman = false) {
         return `
             <section class="share-panel" id="share-panel">
                 <img class="share-thumb" id="share-thumb" alt="">
-                <h3>${escapeHtml(t('shareVerdict'))}</h3>
-                <p>${escapeHtml(t('sharePromptText'))}</p>
+                <h3>${escapeHtml(isHuman ? t('shareHumanVerdict') : t('shareVerdict'))}</h3>
+                <p>${escapeHtml(isHuman ? t('shareHumanPromptText') : t('sharePromptText'))}</p>
                 <div class="share-actions">
                     <label class="share-upload" for="share-photo">
                         <span aria-hidden="true">📸</span>
-                        <span id="share-upload-label">${escapeHtml(t('addPhoto'))}</span>
+                        <span id="share-upload-label">${escapeHtml(isHuman ? t('addHumanPhoto') : t('addPhoto'))}</span>
                         <input type="file" id="share-photo" accept="image/*">
                     </label>
                     <button class="big-btn" id="btn-share" type="button">${escapeHtml(t('sharePoster'))}</button>
@@ -665,23 +665,35 @@
         if (!host) return;
 
         const code = getCode();
+        const subject = getSubject();
+        const isHuman = subject === 'human';
+        const quizPage = isHuman ? 'human-quiz.html' : 'quiz.html';
+
         if (isResultPage && !code) {
             host.innerHTML = `
                 <div style="text-align:center; padding: 100px 20px;">
                     <h2 style="font-family:'Fraunces', serif; font-size: 48px; margin-bottom: 24px;">${escapeHtml(t('resultTitle'))}</h2>
                     <p style="font-family:'Space Grotesk', sans-serif; opacity: 0.8; margin-bottom: 32px;">${escapeHtml(t('heroSubtitle'))}</p>
-                    <a href="${withLang('quiz.html')}" class="big-btn accent">${escapeHtml(t('heroCta'))}</a>
+                    <a href="${withLang(quizPage)}" class="big-btn accent">${escapeHtml(t('heroCta'))}</a>
                 </div>
             `;
             return;
         }
-        const p = window.MeowArchetypes.get(code);
+        const p = window.MeowArchetypes.byCode[code];
+        if (!p) {
+            host.innerHTML = `
+                <div style="text-align:center; padding: 100px 20px;">
+                    <h2 style="font-family:'Fraunces', serif; font-size: 48px; margin-bottom: 24px;">${escapeHtml(t('resultTitle'))}</h2>
+                    <p style="font-family:'Space Grotesk', sans-serif; opacity: 0.8; margin-bottom: 32px;">${escapeHtml(t('heroSubtitle'))}</p>
+                    <a href="${withLang(quizPage)}" class="big-btn accent">${escapeHtml(t('heroCta'))}</a>
+                </div>
+            `;
+            return;
+        }
         const tally = parseTally() || evenTally();
         const accent = '#FF5B3B';
         const name = field(p, 'name');
         const tagline = field(p, 'tagline');
-        const subject = getSubject();
-        const isHuman = subject === 'human';
         const displayName = getDisplayName();
 
         document.title = displayName ? `${displayName} (${p.code}) — MeowBTI` : `${name} (${p.code}) — MeowBTI`;
@@ -718,7 +730,6 @@
         const quizRoot = isResultPage ? '' : '../';
 
         const allTypesPage = isHumanPage ? 'human-types.html' : 'personality-types.html';
-        const quizPage = isHuman ? 'human-quiz.html' : 'quiz.html';
 
         host.innerHTML = `
             ${isResultPage ? confetti(p, accent) : ''}
@@ -738,7 +749,7 @@
                 <a href="${withLang(quizRoot + allTypesPage)}" class="big-btn ghost">${escapeHtml(t('all16'))}</a>
             </div>
 
-            ${isResultPage ? sharePanel() : ''}
+            ${isResultPage ? sharePanel(isHuman) : ''}
 
             ${renderDailyFeed(p)}
 
@@ -804,8 +815,8 @@
             <section class="result-cta">
                 <h2 class="cta-h">${escapeHtml(isHuman ? t('ctaHuman') : t('ctaH'))}</h2>
                 <div class="cta-actions">
-                    <a href="${withLang(quizRoot + 'quiz.html')}" class="big-btn" style="background:${p.color};color:#fff">${escapeHtml(isResultPage ? t('analyzeAnother') : t('heroCta'))}</a>
-                    <a href="${withLang(quizRoot + 'personality-types.html')}" class="big-btn ghost">${escapeHtml(t('browseAll'))}</a>
+                    <a href="${withLang(quizRoot + quizPage)}" class="big-btn" style="background:${p.color};color:#fff">${escapeHtml(isHuman ? t('humanResultCta') : (isResultPage ? t('analyzeAnother') : t('heroCta')))}</a>
+                    <a href="${withLang(quizRoot + allTypesPage)}" class="big-btn ghost">${escapeHtml(isHuman ? t('browseHumanAll') : t('browseAll'))}</a>
                 </div>
             </section>
         `;

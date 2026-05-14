@@ -157,12 +157,6 @@
         hCompSecretTwin:      { en: "Identity Twin",           th: "แฝดทางจิตวิญญาณ" },
         hCompWorstRoommate:   { en: "Corporate Nemesis",       th: "ศัตรูคู่อาฆาตในออฟฟิศ" },
 
-        // ─── human teaser (index.html) ───────────────────────
-        hTeaserH2:         { en: "What cat energy are YOU?", th: "ตัวคุณล่ะ มีพลังงานแมวแบบไหน?" },
-        hTeaserP:          { en: "Your boss, your ex, and your group chat all have a MeowBTI. Find your human archetype.",
-                              th: "หัวหน้าคุณ แฟนเก่าคุณ หรือเพื่อนในกลุ่มแชท ต่างก็มี MeowBTI ในตัว ค้นหาตัวตนร่างมนุษย์ของคุณได้เลย" },
-        hTeaserCta:        { en: "Take the Human Quiz →",    th: "เริ่มทำแบบทดสอบร่างมนุษย์ →" },
-
         // ─── human expansion growth loop (v1) ────────────────
         hCompCatTitle:        { en: "Which cat energy survives you?", th: "แมวแบบไหนที่อยู่รอดกับคุณได้?" },
         hCompHumanTitle:      { en: "Who should never be in your group chat?", th: "ใครคือคนที่ไม่ควรอยู่ในแชทกลุ่มกับคุณ?" },
@@ -362,6 +356,12 @@
         sharePromptText:   { en: "upload your cat's photo (optional) and we'll build a poster for IG / TikTok / LINE.",
                               th: "อัปโหลดรูปแมวคุณ (ไม่บังคับ) แล้วเราจะสร้างโปสเตอร์ให้สำหรับ IG / TikTok / LINE" },
         addPhoto:          { en: "add cat photo",             th: "เพิ่มรูปแมว" },
+        shareHumanVerdict: { en: "share your human archetype", th: "แชร์ตัวตนร่างมนุษย์ของคุณ" },
+        shareHumanPromptText: { en: "Save or share your human cat-energy result.",
+                                th: "บันทึกหรือแชร์ผลลัพธ์พลังงานแมวในร่างมนุษย์ของคุณ" },
+        addHumanPhoto:     { en: "add your photo",             th: "เพิ่มรูปของคุณ" },
+        humanResultCta:    { en: "take the Human Quiz again",  th: "ทำแบบทดสอบร่างมนุษย์อีกครั้ง" },
+        browseHumanAll:    { en: "browse all 16 human types",  th: "ดูร่างมนุษย์ทั้ง 16 แบบ" },
         changePhoto:       { en: "change photo",              th: "เปลี่ยนรูป" },
         sharePoster:       { en: "↗ share poster",            th: "↗ แชร์โปสเตอร์" },
         posterTitle:       { en: "your shareable poster",     th: "โปสเตอร์ของคุณพร้อมแชร์" },
