@@ -20,6 +20,7 @@
 
     const isResultPage = window.location.pathname.includes('result.html') || window.location.pathname.includes('human-result.html');
     const isHumanPage = window.location.pathname.includes('/human-types/') || window.location.pathname.includes('human-result.html');
+    const isEvergreen = !isResultPage;
 
     // Per-archetype field swap with EN fallback (data lives on archetype objects).
     function field(p, key) {
@@ -164,10 +165,12 @@
         const isHuman = subject === 'human';
         const root = isHuman ? 'human-types/' : (isResultPage ? 'personality-types/' : '');
         
+        const label = isHuman ? t('hVsRival') : (isEvergreen ? t('vsRivalEvergreen') : t('vsRival'));
+        
         return `
             <a class="rival-tile" href="${withLang(root + r.code + '.html')}" style="background:${r.color}">
                 <div class="rival-tile-meta">
-                    <span class="rival-label">${escapeHtml(t('vsRival'))}</span>
+                    <span class="rival-label">${escapeHtml(label)}</span>
                     <h3 class="rival-name">${escapeHtml(field(r, 'name'))}</h3>
                     <span class="rival-code">${r.code} <span aria-hidden="true">→</span></span>
                 </div>
@@ -196,9 +199,10 @@
         const lang = getLang();
         const text = entry[lang] || entry.en;
 
-        const displayName = getDisplayName();
+        const displayName = isEvergreen ? '' : getDisplayName();
         const archetypeName = field(p, 'name');
-        const vTitle = displayName ? t('dailyVibeIs', displayName, archetypeName) : t('dailyTitle');
+
+        const vTitle = isEvergreen ? t('dailyVibeIsEvergreen', archetypeName) : (displayName ? t('dailyVibeIs', displayName, archetypeName) : t('dailyTitle'));
 
         window.MeowTrack && window.MeowTrack(isHuman ? 'human_daily_view' : 'daily_feed_view', {
             archetype_code: p.code,
@@ -301,7 +305,7 @@
         }).join('');
         return `
             <section class="module-section">
-                <h3 class="module-h">${escapeHtml(t('duringTitle'))}</h3>
+                <h3 class="module-h">${escapeHtml(isEvergreen ? t('duringTitleEvergreen') : t('duringTitle'))}</h3>
                 <div class="during-grid">${items}</div>
             </section>`;
     }
@@ -688,6 +692,10 @@
         const host = document.getElementById('personality-content');
         if (!host) return;
 
+        const isResultPage = window.location.pathname.includes('result.html') || window.location.pathname.includes('human-result.html');
+        const renderMode = isResultPage ? 'result' : 'evergreen';
+        const isEvergreen = renderMode === 'evergreen';
+
         const code = getCode();
         const subject = getSubject();
         const isHuman = subject === 'human';
@@ -718,7 +726,7 @@
         const accent = '#FF5B3B';
         const name = field(p, 'name');
         const tagline = field(p, 'tagline');
-        const displayName = getDisplayName();
+        const displayName = isEvergreen ? '' : getDisplayName();
 
         document.title = displayName ? `${displayName} (${p.code}) — MeowBTI` : `${name} (${p.code}) — MeowBTI`;
         // Update meta description for SEO
@@ -736,7 +744,7 @@
             code: p.code, name: p.name, lang: getLang(),
             from_quiz: parseTally() ? true : false,
             subject: subject,
-            view_type: isResultPage ? 'result' : 'meaning'
+            view_type: renderMode
         });
 
         if (isHuman) {
@@ -747,7 +755,9 @@
             }
         }
 
-        const revealText = displayName ? (isHuman ? t('shareNameIs', displayName, name) : t('shareNameIs', displayName, name)) : (isHuman ? t('resultOwnerSub') : t('revealLine'));
+        const revealText = isEvergreen 
+            ? (isHuman ? t('resultOwnerSubEvergreen', name) : t('revealLineEvergreen', name))
+            : (displayName ? (isHuman ? t('shareNameIs', displayName, name) : t('shareNameIs', displayName, name)) : (isHuman ? t('resultOwnerSub') : t('revealLine')));
 
         // Root path for internal links
         const root = isHuman ? 'human-types/' : (isResultPage ? 'personality-types/' : '');
@@ -769,7 +779,7 @@
                     <button class="big-btn" id="btn-copy" type="button">${escapeHtml(isHuman ? t('shareOwnerBtn') : t('copyLink'))}</button>
                     <a href="${withLang(root + p.code + '.html')}" class="big-btn ghost">${escapeHtml(t('readFullProfile'))}</a>
                 ` : `
-                    <a href="${withLang(quizRoot + quizPage)}" class="big-btn accent">${escapeHtml(t('meaningTakeQuiz'))}</a>
+                    <a href="${withLang(quizRoot + quizPage)}" class="big-btn accent">${escapeHtml(isHuman ? t('meaningTakeQuizHuman') : t('meaningTakeQuiz'))}</a>
                     <button class="big-btn ghost" id="btn-copy" type="button">${escapeHtml(t('copyLink'))}</button>
                 `}
                 <a href="${withLang(quizRoot + allTypesPage)}" class="big-btn ghost">${escapeHtml(t('all16'))}</a>
@@ -821,7 +831,7 @@
             ${longFormSection(p)}
 
             <section class="result-affiliate">
-                <h3 class="result-affiliate-h">${escapeHtml(isHuman ? t('picksForHuman') : t('picksFor', name))}</h3>
+                <h3 class="result-affiliate-h">${escapeHtml(isHuman ? (isEvergreen ? t('picksForHumanEvergreen') : t('picksForHuman')) : (isEvergreen ? t('picksForEvergreen', name) : t('picksFor', name)))}</h3>
                 <div class="product-grid">
                     <a href="${withLang(quizRoot + 'index.html#affiliate-products')}" rel="sponsored noopener" class="product-card" style="--product-bg:${p.bg}">
                         <span class="product-emoji" aria-hidden="true">🛏️</span>
@@ -839,7 +849,7 @@
             </section>
 
             <section class="result-cta">
-                <h2 class="cta-h">${escapeHtml(isHuman ? t('ctaHuman') : t('ctaH'))}</h2>
+                <h2 class="cta-h">${escapeHtml(isHuman ? (isEvergreen ? t('ctaHumanEvergreen') : t('ctaHuman')) : (isEvergreen ? t('ctaHEvergreen') : t('ctaH')))}</h2>
                 <div class="cta-actions">
                     <a href="${withLang(quizRoot + quizPage)}" class="big-btn" style="background:${p.color};color:#fff">${escapeHtml(isHuman ? t('humanResultCta') : (isResultPage ? t('analyzeAnother') : t('heroCta')))}</a>
                     <a href="${withLang(quizRoot + allTypesPage)}" class="big-btn ghost">${escapeHtml(isHuman ? t('browseHumanAll') : t('browseAll'))}</a>
