@@ -23,8 +23,19 @@
         return d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
     }
 
+    function getDailyHash(seed) {
+        let hash = 0;
+        for (let i = 0; i < seed.length; i++) {
+            hash = ((hash << 5) - hash) + seed.charCodeAt(i);
+            hash |= 0;
+        }
+        return Math.abs(hash);
+    }
+
     function render() {
         const profiles = window.MeowStore.getFamily();
+        const now = new Date();
+        const dateStr = now.toISOString().split('T')[0];
         
         if (profiles.length === 0) {
             section.style.display = 'none';
@@ -41,8 +52,19 @@
             const archetype = window.MeowArchetypes ? window.MeowArchetypes.get(p.code) : null;
             const imgPath = archetype ? `assets/personalities/${archetype.code.toLowerCase()}-${archetype.slug}.webp` : '';
             
-            // Reconstruct URL with tally precision
-            let resultUrl = `personality-types/${p.code}.html?subject=${p.subject}`;
+            // Get daily energy for card preview
+            let dailyPreview = '';
+            if (archetype && archetype.dailyObservations) {
+                const daily = archetype.dailyObservations;
+                const idx = getDailyHash(dateStr + archetype.code) % daily.length;
+                const lang = (window.MeowI18n && window.MeowI18n.getLang()) || 'en';
+                const obs = daily[idx][lang] || daily[idx].en;
+                dailyPreview = `<div class="fc-daily-preview">“${obs}”</div>`;
+            }
+
+            // Reconstruct URL with tally precision and name
+            const resultPage = p.subject === 'human' ? 'human-result.html' : 'result.html';
+            let resultUrl = `${resultPage}?type=${p.code}&subject=${p.subject}&name=${encodeURIComponent(p.name)}`;
             if (p.tally) resultUrl += `&t=${p.tally}`;
 
             card.innerHTML = `
@@ -56,6 +78,7 @@
                         <div class="fc-meta">
                             <div class="fc-name">${p.name}</div>
                             <div class="fc-archetype">${p.archetypeName}</div>
+                            ${dailyPreview}
                         </div>
                         <div class="fc-footer">
                             <span class="fc-code">${p.code}</span>

@@ -9,8 +9,10 @@
     const STRINGS = {
         // ─── nav (loaded from /nav.html partial) ──────────────
         navHome:           { en: "Home",                      th: "หน้าหลัก" },
-        navAll16:          { en: "All 16",                    th: "ทั้ง 16" },
+        navAll16:          { en: "All 16",                    th: "ทั้งหมด 16" },
+        navHumanMode:      { en: "Human Energy",              th: "ตัวตนในร่างแมว" },
         navPicks:          { en: "Picks",                     th: "ของแนะนำ" },
+
         navTakeTest:       { en: "Take the test",             th: "เริ่มทำแบบทดสอบ" },
 
         // ─── footer (loaded from /footer.html partial) ────────
@@ -54,6 +56,9 @@
         browseH1:          { en: "All 16 cats.",              th: "แมวทั้ง 16 ประเภท" },
         browseIntro:       { en: "From the Grand General to the Peaceful Dreamer — tap any to read the full file.",
                               th: "จากนายพลใหญ่ถึงนักฝันสายสงบ — แตะตัวไหนก็ได้เพื่ออ่านโปรไฟล์เต็ม" },
+        hBrowseH1:         { en: "16 ways to be a cat.",      th: "16 วิถีสู่การเป็นแมว" },
+        hBrowseIntro:      { en: "Discover which cat matches your human personality. Tap any to see the breakdown.",
+                              th: "ค้นหาว่าแมวตัวไหนที่ตรงกับตัวตนของคุณที่สุด แตะเพื่อดูรายละเอียดร่างมนุษย์" },
         browseGenerals:    { en: "The Generals · xHxR",       th: "สายนายพล · xHxR" },
         browseVisionaries: { en: "The Visionaries · xDxR",    th: "สายวิชวล · xDxR" },
         browseMavericks:   { en: "The Mavericks · xHxC",      th: "สายมาเวอริก · xHxC" },
@@ -132,6 +137,82 @@
         statsDominant:        { en: "Dominant Axis",           th: "แกนหลักของบ้าน" },
         statsTotal:           { en: "Total Members",           th: "สมาชิกทั้งหมด" },
         
+        // ─── compatibility graph (v1) ─────────────────────────
+        compTitle:            { en: "Compatibility Graph",     th: "กราฟความเข้ากัน" },
+        compIntro:            { en: "How this cat interacts with the rest of the 16 types.", 
+                                 th: "วิธีที่แมวตัวนี้มีปฏิสัมพันธ์กับแมวอีกทั้ง 16 ประเภท" },
+        compBestMatch:        { en: "Best Match",              th: "คู่ที่ใช่ที่สุด" },
+        compChaosPair:        { en: "Chaos Pair",              th: "คู่หูสายป่วน" },
+        compSecretTwin:       { en: "Secret Twin",             th: "แฝดคนละฝา" },
+        compWorstRoommate:    { en: "Worst Roommate",          th: "รูมเมทสุดจะทน" },
+        compViewFull:         { en: "View full compatibility →", th: "ดูรายละเอียดความเข้ากัน →" },
+
+        // ─── human compatibility labels (v1) ─────────────────
+        hCompBestMatch:       { en: "Soulmate Energy",         th: "โซลเมทสายซัพ" },
+        hCompChaosPair:       { en: "Toxic Duo",               th: "คู่หูตัวเป็นพิษ" },
+        hCompSecretTwin:      { en: "Identity Twin",           th: "แฝดทางจิตวิญญาณ" },
+        hCompWorstRoommate:   { en: "Corporate Nemesis",       th: "ศัตรูคู่อาฆาตในออฟฟิศ" },
+
+        // ─── human expansion growth loop (v1) ────────────────
+        hCompCatTitle:        { en: "Which cat energy survives you?", th: "แมวแบบไหนที่อยู่รอดกับคุณได้?" },
+        hCompHumanTitle:      { en: "Who should never be in your group chat?", th: "ใครคือคนที่ไม่ควรอยู่ในแชทกลุ่มกับคุณ?" },
+        
+        hCompCatBest:         { en: "Ideal cat coworker",      th: "เพื่อนร่วมงานในฝัน" },
+        hCompCatWorst:        { en: "Would block you",         th: "โดนบล็อกแน่นอน" },
+        hCompCatChaos:        { en: "Enables your chaos",      th: "สายซัพความป่วน" },
+        hCompCatSupport:      { en: "Support gremlin",         th: "หน่วยซัพพอร์ตทางใจ" },
+
+        hCompHumanBest:       { en: "Friend group goals",      th: "คู่หูตัวตึง" },
+        hCompHumanEnabler:    { en: "Mutual enabler",          th: "พากันเสียคน" },
+        hCompHumanExhaust:    { en: "Emotionally exhausting",  th: "เหนื่อยใจแพ็คคู่" },
+        hCompHumanBanned:     { en: "Banned from Discord",     th: "โดนแบนจากกลุ่ม" },
+
+        // ─── behavioral hooks (v1) ───────────────────────────
+        hooksTitle:           { en: "Behavioral Hooks",        th: "พฤติกรรมสุดแม่น" },
+        hooksMostLikely:      { en: "Most likely to…",         th: "มีแนวโน้มจะ…" },
+        hooksTextsLike:       { en: "Texts like…",             th: "สไตล์การทักแชท…" },
+        hooksSecretWeakness:  { en: "Secret weakness",         th: "จุดอ่อนลับ" },
+        hooksWhenStressed:    { en: "When stressed",           th: "ตอนเครียด" },
+        hooksAt2AM:           { en: "At 2 AM",                 th: "ตอนตี 2" },
+        hooksCorporate:       { en: "Corporate survival rate", th: "โอกาสรอดในออฟฟิศ" },
+        hooksSupportObject:   { en: "Emotional support object", th: "ของซัพพอร์ตทางใจ" },
+        hHooksSupportObject:  { en: "Object you'd save in a fire", th: "ของที่จะหยิบถ้าไฟไหม้บ้าน" },
+
+        // ─── share cards (v1) ────────────────────────────────
+        shareCardBtn:         { en: "Save card",               th: "เซฟรูปการ์ด" },
+        shareChatBtn:         { en: "Save chat",               th: "เซฟแชท" },
+        sharePairBtn:         { en: "Save pair",               th: "เซฟรูปคู่" },
+        shareProcessing:      { en: "Generating...",           th: "กำลังสร้างรูป..." },
+        shareDone:            { en: "Card saved!",             th: "บันทึกรูปแล้ว!" },
+        shareOpened:          { en: "Share sheet opened",      th: "เปิดหน้าต่างแชร์แล้ว" },
+        shareFailed:          { en: "Generation failed",       th: "สร้างรูปไม่สำเร็จ" },
+        shareFallbackMsg:     { en: "Download blocked? Long-press the image to save.",
+                                 th: "โหลดไม่ได้ใช่ไหม? กดค้างที่รูปเพื่อบันทึกได้เลย" },
+
+        // ─── daily feed (v1) ─────────────────────────────────
+        dailyTitle:           { en: "Today’s Cat Energy",      th: "พลังงานแมววันนี้" },
+        dailyUpdated:         { en: "Updated daily",           th: "อัปเดตรายวัน" },
+        dailyShareBtn:        { en: "Share mood",              th: "แชร์อารมณ์วันนี้" },
+        dailyVibeIs:          { en: (name, archetype) => `Today, ${name} is giving ${archetype} energy.`,
+                                 th: (name, archetype) => `วันนี้ ${name} มีพลังงานแบบ ${archetype}` },
+        dailySeeFull:         { en: "See today’s full reading →", th: "ดูคำทำนายเต็มของวันนี้ →" },
+        dailyFindYours:        { en: "Find your MeowBTI",       th: "ค้นหา MeowBTI ของคุณ" },
+        dailyFeatured:        { en: "Featured cat energy",     th: "แมวเด่นประจำวัน" },
+        dailyFamilyTitle:     { en: "Your Cat Family Today",   th: "กลุ่มแมวของคุณในวันนี้" },
+        dailyViewReading:     { en: "View today’s reading",    th: "ดูคำทำนายวันนี้" },
+        dailyViewAllFamily:   { en: "View all family",         th: "ดูสมาชิกทั้งหมด" },
+        dailyHouseholdMood:   { en: "Today’s household mood",  th: "บรรยากาศในบ้านวันนี้" },
+
+        // Personalized share cards
+        shareNameIs:          { en: (n, a) => `${n} is the ${a}`, 
+                                 th: (n, a) => `${n} คือ ${a}` },
+        shareNameTextsLike:   { en: (n) => `${n} texts like…`,
+                                 th: (n) => `สไตล์การทักแชทของ ${n}` },
+        shareNameHook:        { en: (n, t) => `${n}’s ${t}`,
+                                 th: (n, t) => `${t}ของ ${n}` },
+        shareNamePair:        { en: (n1, n2) => `${n1} + ${n2}`,
+                                 th: (n1, n2) => `${n1} + ${n2}` },
+
         // Vibe Labels
         vibeChaotic:          { en: "Chaotic Duo",             th: "คู่หูตัวป่วน" },
         vibeSilent:           { en: "Silent Respect",          th: "เคารพในความเงียบ" },
@@ -263,6 +344,8 @@
                               th: "ลองทำให้แมวอีกตัว หรือแมวของแฟนเก่า หรือแมวของหัวหน้าก็ได้" },
         analyzeAnother:    { en: "analyze another →",         th: "วิเคราะห์อีกตัว →" },
         browseAll:         { en: "browse all 16 types",       th: "ดูทั้ง 16 ประเภท" },
+        readFullProfile:   { en: "Read full meaning & traits →", th: "อ่านความหมายและลักษณะเด่นเต็มๆ →" },
+        meaningTakeQuiz:   { en: "Find your cat's MeowBTI →", th: "ค้นหา MeowBTI ของแมวคุณ →" },
         certAuthentic:    { en: "cert. authentic",            th: "รับรองของแท้" },
         oneOfSixteen:      { en: "1 of 16",                   th: "1 จาก 16" },
         shareVerdict:      { en: "share your cat's verdict",  th: "แชร์คำตัดสินของแมวคุณ" },

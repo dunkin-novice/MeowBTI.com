@@ -3,25 +3,25 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://meowbti.com/</loc>
-    <lastmod>2026-05-10</lastmod>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://meowbti.com/quiz.html</loc>
-    <lastmod>2026-05-10</lastmod>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://meowbti.com/personality-types.html</loc>
-    <lastmod>2026-05-10</lastmod>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://meowbti.com/personality-types/CHBR.html</loc>
-    <lastmod>2026-05-10</lastmod>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -31,7 +31,7 @@
   </url>
   <url>
     <loc>https://meowbti.com/personality-types/CHBC.html</loc>
-    <lastmod>2026-05-10</lastmod>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -41,7 +41,7 @@
   </url>
   <url>
     <loc>https://meowbti.com/personality-types/CHNR.html</loc>
-    <lastmod>2026-05-10</lastmod>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -51,7 +51,7 @@
   </url>
   <url>
     <loc>https://meowbti.com/personality-types/CHNC.html</loc>
-    <lastmod>2026-05-10</lastmod>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -61,7 +61,7 @@
   </url>
   <url>
     <loc>https://meowbti.com/personality-types/CDBR.html</loc>
-    <lastmod>2026-05-10</lastmod>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -71,7 +71,7 @@
   </url>
   <url>
     <loc>https://meowbti.com/personality-types/CDBC.html</loc>
-    <lastmod>2026-05-10</lastmod>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -81,7 +81,7 @@
   </url>
   <url>
     <loc>https://meowbti.com/personality-types/CDNR.html</loc>
-    <lastmod>2026-05-10</lastmod>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -91,7 +91,7 @@
   </url>
   <url>
     <loc>https://meowbti.com/personality-types/CDNC.html</loc>
-    <lastmod>2026-05-10</lastmod>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -101,7 +101,7 @@
   </url>
   <url>
     <loc>https://meowbti.com/personality-types/SHBR.html</loc>
-    <lastmod>2026-05-10</lastmod>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -111,7 +111,7 @@
   </url>
   <url>
     <loc>https://meowbti.com/personality-types/SHBC.html</loc>
-    <lastmod>2026-05-10</lastmod>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -121,7 +121,7 @@
   </url>
   <url>
     <loc>https://meowbti.com/personality-types/SHNR.html</loc>
-    <lastmod>2026-05-10</lastmod>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -131,7 +131,7 @@
   </url>
   <url>
     <loc>https://meowbti.com/personality-types/SHNC.html</loc>
-    <lastmod>2026-05-10</lastmod>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -141,7 +141,7 @@
   </url>
   <url>
     <loc>https://meowbti.com/personality-types/SDBR.html</loc>
-    <lastmod>2026-05-10</lastmod>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -151,7 +151,7 @@
   </url>
   <url>
     <loc>https://meowbti.com/personality-types/SDBC.html</loc>
-    <lastmod>2026-05-10</lastmod>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -161,7 +161,7 @@
   </url>
   <url>
     <loc>https://meowbti.com/personality-types/SDNR.html</loc>
-    <lastmod>2026-05-10</lastmod>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -171,7 +171,7 @@
   </url>
   <url>
     <loc>https://meowbti.com/personality-types/SDNC.html</loc>
-    <lastmod>2026-05-10</lastmod>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -190,5 +190,177 @@
     <lastmod>2026-05-09</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://meowbti.com/human-quiz.html</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://meowbti.com/human-types.html</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://meowbti.com/human-types/CHBR.html</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://meowbti.com/assets/og/CHBR.png</image:loc>
+      <image:title>The Grand General — MeowBTI Human Identity</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://meowbti.com/human-types/CHBC.html</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://meowbti.com/assets/og/CHBC.png</image:loc>
+      <image:title>The Street CEO — MeowBTI Human Identity</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://meowbti.com/human-types/CHNR.html</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://meowbti.com/assets/og/CHNR.png</image:loc>
+      <image:title>The Affectionate Warden — MeowBTI Human Identity</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://meowbti.com/human-types/CHNC.html</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://meowbti.com/assets/og/CHNC.png</image:loc>
+      <image:title>The Party Starter — MeowBTI Human Identity</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://meowbti.com/human-types/CDBR.html</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://meowbti.com/assets/og/CDBR.png</image:loc>
+      <image:title>The Visionary Supervisor — MeowBTI Human Identity</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://meowbti.com/human-types/CDBC.html</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://meowbti.com/assets/og/CDBC.png</image:loc>
+      <image:title>The Wild Debater — MeowBTI Human Identity</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://meowbti.com/human-types/CDNR.html</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://meowbti.com/assets/og/CDNR.png</image:loc>
+      <image:title>The Charismatic Counselor — MeowBTI Human Identity</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://meowbti.com/human-types/CDNC.html</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://meowbti.com/assets/og/CDNC.png</image:loc>
+      <image:title>The Joyful Performer — MeowBTI Human Identity</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://meowbti.com/human-types/SHBR.html</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://meowbti.com/assets/og/SHBR.png</image:loc>
+      <image:title>The Silent Strategist — MeowBTI Human Identity</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://meowbti.com/human-types/SHBC.html</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://meowbti.com/assets/og/SHBC.png</image:loc>
+      <image:title>The Master Tinkerer — MeowBTI Human Identity</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://meowbti.com/human-types/SHNR.html</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://meowbti.com/assets/og/SHNR.png</image:loc>
+      <image:title>The Gentle Defender — MeowBTI Human Identity</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://meowbti.com/human-types/SHNC.html</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://meowbti.com/assets/og/SHNC.png</image:loc>
+      <image:title>The Emotional Artist — MeowBTI Human Identity</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://meowbti.com/human-types/SDBR.html</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://meowbti.com/assets/og/SDBR.png</image:loc>
+      <image:title>The Observant Theorist — MeowBTI Human Identity</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://meowbti.com/human-types/SDBC.html</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://meowbti.com/assets/og/SDBC.png</image:loc>
+      <image:title>The Free Spirit — MeowBTI Human Identity</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://meowbti.com/human-types/SDNR.html</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://meowbti.com/assets/og/SDNR.png</image:loc>
+      <image:title>The Empathetic Muse — MeowBTI Human Identity</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://meowbti.com/human-types/SDNC.html</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://meowbti.com/assets/og/SDNC.png</image:loc>
+      <image:title>The Peaceful Dreamer — MeowBTI Human Identity</image:title>
+    </image:image>
   </url>
 </urlset>

@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All 16 Cat Personalities — MeowBTI</title>
-    <meta name="description" content="Browse all 16 MeowBTI cat personality types — from The Grand General to The Peaceful Dreamer. Tap any to read the full file.">
+    <title>All 16 Human Cat Archetypes — MeowBTI</title>
+    <meta name="description" content="Explore all 16 cat-inspired human archetypes. From the Grand General to the Peaceful Dreamer. Discover your cat energy.">
     <meta name="theme-color" content="#FFF4EC">
-    <link rel="canonical" href="https://meowbti.com/personality-types.html">
+    <link rel="canonical" href="https://meowbti.com/human-types.html">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 
     <meta property="og:title" content="All 16 cat personalities — MeowBTI">
@@ -39,17 +39,17 @@
     <main>
         <section class="page-content">
             <div class="container">
-                <h1 data-i18n="browseH1">All 16 cats.</h1>
-                <p class="page-intro" data-i18n="browseIntro">From the Grand General to the Peaceful Dreamer — tap any to read the full file.</p>
+                <h1 data-i18n="hBrowseH1">16 ways to be a cat.</h1>
+                <p class="page-intro" data-i18n="hBrowseIntro">Find out which cat matches your human personality. Tap any to see the human breakdown.</p>
                 
                 <div style="text-align:center; margin-bottom: 24px;">
-                    <a href="human-types.html" data-i18n-href style="font-weight: 800; color: var(--ink); text-decoration: underline;">→ Switch to Human Energy Mode</a>
+                    <a href="personality-types.html" data-i18n-href style="font-weight: 800; color: var(--ink); text-decoration: underline;">← Switch to Cat Mode</a>
                 </div>
 
                 <!-- Browse groups injected here from data/archetypes.js -->
                 <div id="browse-groups" class="browse-groups">
                     <noscript>
-                        <p style="text-align:center;opacity:0.7">Enable JavaScript to browse all 16 personalities, or jump straight to <a href="personality-types/CHBR.html">CHBR</a>.</p>
+                        <p style="text-align:center;opacity:0.7">Enable JavaScript to browse all 16 personalities, or jump straight to <a href="human-types/CHBR.html">CHBR</a>.</p>
                     </noscript>
                 </div>
 
@@ -96,7 +96,7 @@
             // CHNC's color is yellow → keep dark ink for legibility, like the original markup did.
             const colorOverride = a.code === 'CHNC' ? ';color:#1F1410' : '';
             return `
-                <a class="browse-card" href="${withLang('personality-types/' + a.code + '.html')}"
+                <a class="browse-card" href="${withLang('human-types/' + a.code + '.html')}"
                    style="background:${a.color}${colorOverride};transform:rotate(${tilt})">
                     <img class="bc-image" src="${A.imagePath(a.code)}"
                          alt="${escapeHtml(name(a))} cat illustration"

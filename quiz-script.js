@@ -93,6 +93,9 @@ function startQuiz(mode, resumeData = null) {
         resumed: !!resumeData,
         subject: isHuman ? 'human' : 'cat'
     });
+    if (isHuman) {
+        window.MeowTrack && window.MeowTrack('human_quiz_start', { mode: currentMode, lang: getLang() });
+    }
 
     renderProgress();
     renderStack();
@@ -340,10 +343,12 @@ function finish() {
     clearState();
     window.MeowTrack && window.MeowTrack('quiz_complete', { code, mode: currentMode, lang: getLang(), subject: isHuman ? 'human' : 'cat' });
     
-    const langSuffix = getLang() === 'th' ? '&lang=th' : '';
-    const subjectSuffix = isHuman ? '&subject=human' : '';
-    
-    window.location.href = `personality-types/${code}.html?t=${t}${langSuffix}${subjectSuffix}`;
+    const langSuffix = lang !== 'en' ? `&lang=${lang}` : '';
+    const subjectSuffix = isHuman ? `&subject=human` : '';
+    const resultPage = isHuman ? 'human-result.html' : 'result.html';
+    window.location.href = `${resultPage}?type=${code}&t=${t}${langSuffix}${subjectSuffix}`;
+    }
+
 }
 
 // ─── keyboard ────────────────────────────────────────────────
@@ -369,7 +374,11 @@ if (stackEl) {
     
     // Check URL for direct mode
     const urlMode = new URLSearchParams(window.location.search).get('mode');
+    const isHumanQuizPage = window.location.pathname.includes('human-quiz.html');
+    
     if (urlMode === 'short' || urlMode === 'deep') {
         startQuiz(urlMode);
+    } else if (isHumanQuizPage) {
+        startQuiz('humanShort');
     }
 }

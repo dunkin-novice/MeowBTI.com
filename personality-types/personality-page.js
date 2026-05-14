@@ -1,6 +1,7 @@
 // MeowBTI personality page renderer.
-// Reads code from filename + tally from ?t querystring (set by quiz),
-// then builds the trading-card result UI inside #personality-content.
+// Handles two distinct views:
+// 1. Quiz Result View (/result.html): Personalized, personalized, shareable.
+// 2. Meaning View (/personality-types/CODE.html): Evergreen, SEO-canonical.
 //
 // Archetype data lives in /data/archetypes.js and must be loaded before this script.
 
@@ -11,21 +12,35 @@
     }
 
     // ─── i18n ────────────────────────────────────────────────
-    // All chrome strings live in /data/i18n.js (window.MeowI18n). This file
-    // only owns the result-page-specific helpers: archetype `field()` swap.
     if (!window.MeowI18n) {
         console.error('MeowI18n not loaded — include data/i18n.js before personality-page.js');
         return;
     }
     const { getLang, t, withLang } = window.MeowI18n;
 
+    const isResultPage = window.location.pathname.includes('result.html') || window.location.pathname.includes('human-result.html');
+    const isHumanPage = window.location.pathname.includes('/human-types/') || window.location.pathname.includes('human-result.html');
+
     // Per-archetype field swap with EN fallback (data lives on archetype objects).
     function field(p, key) {
         const lang = getLang();
+        const subject = getSubject();
+        const isHuman = subject === 'human';
+
         if (lang === 'th') {
             const thKey = key + 'Th';
+            if (isHuman) {
+                const humanThKey = key + 'HumanTh';
+                if (p[humanThKey] != null) return p[humanThKey];
+            }
             if (p[thKey] != null) return p[thKey];
         }
+        
+        if (isHuman) {
+            const humanKey = key + 'Human';
+            if (p[humanKey] != null) return p[humanKey];
+        }
+
         return p[key];
     }
 
@@ -46,10 +61,16 @@
         return { C:5, S:5, H:5, D:5, B:5, N:5, R:5, F:5 };
     }
 
-    function getCodeFromUrl() {
+    function getCode() {
+        const params = new URLSearchParams(window.location.search);
+        const typeParam = params.get('type');
+        if (typeParam) return typeParam.toUpperCase();
+
         const path = window.location.pathname;
         const fname = path.split('/').pop() || '';
-        return fname.replace('.html', '').toUpperCase();
+        const code = fname.replace('.html', '').toUpperCase();
+        if (code === 'RESULT') return '';
+        return code;
     }
 
     function escapeHtml(s) {
@@ -62,7 +83,8 @@
     }
 
     function imagePath(p) {
-        return `../${window.MeowArchetypes.imagePath(p.code)}`;
+        const root = isResultPage ? '' : '../';
+        return `${root}${window.MeowArchetypes.imagePath(p.code)}`;
     }
 
     function spectrumRows(tally, color) {
@@ -89,9 +111,10 @@
         }).join('');
     }
 
-    function tradingCard(p) {
+    function tradingCard(p, displayName = '') {
         const stamp = Math.floor(100000 + Math.random() * 899999);
-        const name = field(p, 'name');
+        const archetypeName = field(p, 'name');
+        const cardHeading = displayName || archetypeName;
         const tagline = field(p, 'tagline');
         const vibes = field(p, 'vibes');
         return `
@@ -105,7 +128,7 @@
                 </div>
             </div>
             <div class="tc-portrait" style="background:${p.bg}">
-                <img class="tc-image" src="${imagePath(p)}" alt="${escapeHtml(`${name} cat illustration`)}" loading="eager" decoding="async">
+                <img class="tc-image" src="${imagePath(p)}" alt="${escapeHtml(`${archetypeName} cat illustration`)}" loading="eager" decoding="async">
                 <div class="tc-rays" aria-hidden="true">
                     ${Array.from({length:12}).map((_,i) =>
                         `<span style="transform:rotate(${i*30}deg) translateY(-130px);background:${p.color}"></span>`
@@ -113,7 +136,7 @@
                 </div>
             </div>
             <div class="tc-meta">
-                <h1 class="tc-name">${escapeHtml(name)}</h1>
+                <h1 class="tc-name">${escapeHtml(cardHeading)}</h1>
                 <p class="tc-tag">"${escapeHtml(tagline)}"</p>
             </div>
             <div class="tc-vibes">
@@ -137,8 +160,12 @@
 
     function rivalTile(p) {
         const r = window.MeowArchetypes.get(p.rival);
+        const subject = getSubject();
+        const isHuman = subject === 'human';
+        const root = isHuman ? 'human-types/' : (isResultPage ? 'personality-types/' : '');
+        
         return `
-            <a class="rival-tile" href="${withLang(r.code + '.html')}" style="background:${r.color}">
+            <a class="rival-tile" href="${withLang(root + r.code + '.html')}" style="background:${r.color}">
                 <div class="rival-tile-meta">
                     <span class="rival-label">${escapeHtml(t('vsRival'))}</span>
                     <h3 class="rival-name">${escapeHtml(field(r, 'name'))}</h3>
@@ -146,6 +173,118 @@
                 </div>
                 <span class="rival-emoji" aria-hidden="true">${r.emoji}</span>
             </a>`;
+    }
+
+    function renderDailyFeed(p) {
+        const subject = getSubject();
+        const isHuman = subject === 'human';
+        const daily = isHuman ? (p.dailyObservationsHuman || p.dailyObservations) : p.dailyObservations;
+        
+        if (!daily || daily.length === 0) return '';
+
+        // Deterministic seed: date + code
+        const now = new Date();
+        const dateStr = now.toISOString().split('T')[0];
+        const seed = dateStr + p.code;
+        let hash = 0;
+        for (let i = 0; i < seed.length; i++) {
+            hash = ((hash << 5) - hash) + seed.charCodeAt(i);
+            hash |= 0;
+        }
+        const idx = Math.abs(hash) % daily.length;
+        const entry = daily[idx];
+        const lang = getLang();
+        const text = entry[lang] || entry.en;
+
+        const displayName = getDisplayName();
+        const archetypeName = field(p, 'name');
+        const vTitle = displayName ? t('dailyVibeIs', displayName, archetypeName) : t('dailyTitle');
+
+        window.MeowTrack && window.MeowTrack(isHuman ? 'human_daily_view' : 'daily_feed_view', {
+            archetype_code: p.code,
+            language: lang,
+            page_context: isResultPage ? 'result' : 'meaning',
+            has_name: !!displayName
+        });
+
+        return `
+            <section class="module-section daily-feed-section">
+                <div class="daily-header">
+                    <h3 class="module-h">${escapeHtml(vTitle)}</h3>
+                    <span class="daily-badge">${escapeHtml(t('dailyUpdated'))}</span>
+                </div>
+                <div class="daily-card-v1">
+                    <p class="daily-obs">“${escapeHtml(text)}”</p>
+                    <div class="daily-footer">
+                        <button class="card-share-btn" data-share-type="daily" data-share-title="${escapeHtml(t('dailyTitle'))}" data-share-value="${escapeHtml(text)}" title="${escapeHtml(t('dailyShareBtn'))}">
+                            <span>📤</span> ${escapeHtml(t('dailyShareBtn'))}
+                        </button>
+                    </div>
+                </div>
+            </section>`;
+    }
+
+    function renderHumanGrowthLoop(p) {
+        const subject = getSubject();
+        if (subject !== 'human') return '';
+
+        const hcc = p.humanCatCompatibility;
+        const hhc = p.humanHumanCompatibility;
+        if (!hcc || !hhc) return '';
+
+        const catRels = [
+            { key: 'bestMatch', label: t('hCompCatBest'), data: hcc.bestMatch },
+            { key: 'worstMatch', label: t('hCompCatWorst'), data: hcc.worstMatch },
+            { key: 'chaosPair', label: t('hCompCatChaos'), data: hcc.chaosPair },
+            { key: 'emotionalSupport', label: t('hCompCatSupport'), data: hcc.emotionalSupport }
+        ];
+
+        const humanRels = [
+            { key: 'thrivesTogether', label: t('hCompHumanBest'), data: hhc.thrivesTogether },
+            { key: 'mutualEnablers', label: t('hCompHumanEnabler'), data: hhc.mutualEnablers },
+            { key: 'exhaustingDuo', label: t('hCompHumanExhaust'), data: hhc.exhaustingDuo },
+            { key: 'bannedFromDiscord', label: t('hCompHumanBanned'), data: hhc.bannedFromDiscord }
+        ];
+
+        const renderSet = (rels, title, rootPath) => {
+            const cards = rels.map(r => {
+                const target = window.MeowArchetypes.get(r.data.type);
+                const blurb = field(r.data, 'blurb');
+                return `
+                    <div class="comp-card" data-comp-type="${r.key}">
+                        <div class="comp-label-row">
+                            <span class="comp-label">${escapeHtml(r.label)}</span>
+                            <button class="card-share-btn mini" data-share-type="pair" data-share-title="${escapeHtml(r.label)}" data-share-target="${target.code}" data-share-blurb="${escapeHtml(blurb)}" title="${escapeHtml(t('sharePairBtn'))}">📥</button>
+                        </div>
+                        <a href="${withLang(rootPath + target.code + '.html')}" class="comp-target">
+                            <span class="comp-emoji" aria-hidden="true">${target.emoji}</span>
+                            <div class="comp-target-info">
+                                <span class="comp-target-name">${escapeHtml(field(target, 'name'))}</span>
+                                <span class="comp-target-code">${target.code}</span>
+                            </div>
+                        </a>
+                        <p class="comp-blurb">${escapeHtml(blurb)}</p>
+                    </div>`;
+            }).join('');
+
+            return `
+                <div class="growth-loop-module">
+                    <h3 class="module-h">${escapeHtml(title)}</h3>
+                    <div class="comp-grid">
+                        ${cards}
+                    </div>
+                </div>
+            `;
+        };
+
+        window.MeowTrack && window.MeowTrack('human_compatibility_view', { archetype_code: p.code });
+
+        return `
+            <div class="human-growth-loop">
+                ${renderSet(catRels, t('hCompCatTitle'), isResultPage ? 'personality-types/' : '../personality-types/')}
+                ${renderSet(humanRels, t('hCompHumanTitle'), isResultPage ? 'human-types/' : '')}
+            </div>
+        `;
     }
 
     function renderDuringEvents(p) {
@@ -167,48 +306,135 @@
             </section>`;
     }
 
-    function renderMostLikelyTo(p) {
-        const list = field(p, 'mostLikelyTo');
-        if (!list) return '';
+    function renderBehavioralHooks(p) {
+        const hooks = field(p, 'behavioralHooks');
+        if (!hooks) return '';
+
+        const subject = getSubject();
+        const isHuman = subject === 'human';
+
+        const mostLikelyTo = field(hooks, 'mostLikelyTo');
+        const emotionalSupportObject = field(hooks, 'emotionalSupportObject');
+        const at2AM = field(hooks, 'at2AM');
+
+        if (isResultPage) {
+            // Compact version for result page: just "Most likely to" teaser
+            return `
+                <section class="module-section hooks-section compact">
+                    <div class="module-h-row">
+                        <h3 class="module-h">${escapeHtml(t('hooksMostLikely'))}</h3>
+                        <button class="card-share-btn mini" data-share-type="list" data-share-title="${escapeHtml(t('hooksMostLikely'))}" data-share-items='${JSON.stringify(mostLikelyTo)}' title="${escapeHtml(t('shareCardBtn'))}">📥</button>
+                    </div>
+                    <ul class="likely-list teaser">
+                        ${mostLikelyTo.slice(0, 2).map(item => `<li class="likely-item">${escapeHtml(item)}</li>`).join('')}
+                    </ul>
+                </section>
+            `;
+        }
+
+        // Full version for Meaning Page
+        const likelyHtml = mostLikelyTo.map(item => `<li class="likely-item">${escapeHtml(item)}</li>`).join('');
+        const textsHtml = field(hooks, 'textsLike').map(item => `<div class="chat-bubble">${escapeHtml(item)}</div>`).join('');
+
+        const gridItems = [
+            { label: t('hooksSecretWeakness'), value: field(hooks, 'secretWeakness'), icon: '🤫', key: 'secretWeakness' },
+            { label: t('hooksWhenStressed'), value: field(hooks, 'whenStressed'), icon: '😤', key: 'whenStressed' },
+            { label: t('hooksAt2AM'), value: at2AM, icon: '🌕', key: 'at2AM' },
+            { label: t('hooksCorporate'), value: field(hooks, 'corporateSurvivalRate'), icon: '💼', key: 'corporate' },
+            { label: isHuman ? t('hHooksSupportObject') : t('hooksSupportObject'), value: emotionalSupportObject, icon: '🧸', key: 'supportObject' }
+        ];
+
+        const gridHtml = gridItems.map(item => `
+            <div class="hook-card">
+                <div class="hook-card-header">
+                    <span class="hook-icon">${item.icon}</span>
+                    <span class="hook-label">${escapeHtml(item.label)}</span>
+                    <button class="card-share-btn mini" data-share-type="hook" data-share-title="${escapeHtml(item.label)}" data-share-value="${escapeHtml(item.value)}" data-share-icon="${item.icon}" title="${escapeHtml(t('shareCardBtn'))}">📥</button>
+                </div>
+                <p class="hook-value">${escapeHtml(item.value)}</p>
+            </div>
+        `).join('');
+
         return `
-            <section class="module-section">
-                <h3 class="module-h">${escapeHtml(t('mostLikelyTitle'))}</h3>
-                <ul class="likely-list">
-                    ${list.map(item => `<li class="likely-item">${escapeHtml(item)}</li>`).join('')}
-                </ul>
-                <p class="social-bait">${escapeHtml(t('socialBaitFriend'))}</p>
+            <section class="module-section hooks-section">
+                <h3 class="module-h">${escapeHtml(t('hooksTitle'))}</h3>
+                
+                <div class="hooks-top-grid">
+                    <div class="hook-block">
+                        <div class="hook-sub-h-row">
+                            <h4 class="hook-sub-h">${escapeHtml(t('hooksMostLikely'))}</h4>
+                            <button class="card-share-btn mini" data-share-type="list" data-share-title="${escapeHtml(t('hooksMostLikely'))}" data-share-items='${JSON.stringify(hooks.mostLikelyTo)}' title="${escapeHtml(t('shareCardBtn'))}">📥</button>
+                        </div>
+                        <ul class="likely-list">${likelyHtml}</ul>
+                    </div>
+                    <div class="hook-block">
+                        <div class="hook-sub-h-row">
+                            <h4 class="hook-sub-h">${escapeHtml(t('hooksTextsLike'))}</h4>
+                            <button class="card-share-btn mini" data-share-type="chat" data-share-title="${escapeHtml(t('hooksTextsLike'))}" data-share-items='${JSON.stringify(hooks.textsLike)}' title="${escapeHtml(t('shareChatBtn'))}">📥</button>
+                        </div>
+                        <div class="chat-container">${textsHtml}</div>
+                    </div>
+                </div>
+
+                <div class="hooks-grid">
+                    ${gridHtml}
+                </div>
             </section>`;
     }
 
-    function renderSocialCircle(p) {
-        const rels = p.relationships;
-        if (!rels) return '';
-        const keys = [
-            { key: 'bestFriend', label: t('relBestFriend') },
-            { key: 'chaosDuo', label: t('relChaosDuo') },
-            { key: 'soulmate', label: t('relSoulmate') },
-            { key: 'nightmare', label: t('relNightmare') }
+    function renderCompatibilityGraph(p) {
+        const comp = p.compatibility;
+        if (!comp) return '';
+        
+        const subject = getSubject();
+        const isHuman = subject === 'human';
+
+        const rels = [
+            { key: 'bestMatch', label: isHuman ? t('hCompBestMatch') : t('compBestMatch'), data: comp.bestMatch },
+            { key: 'chaosPair', label: isHuman ? t('hCompChaosPair') : t('compChaosPair'), data: comp.chaosPair },
+            { key: 'secretTwin', label: isHuman ? t('hCompSecretTwin') : t('compSecretTwin'), data: comp.secretTwin },
+            { key: 'worstRoommate', label: isHuman ? t('hCompWorstRoommate') : t('compWorstRoommate'), data: comp.worstRoommate }
         ];
-        const cards = keys.map(k => {
-            const targetCode = rels[k.key];
-            const target = window.MeowArchetypes.get(targetCode);
+
+        const root = isHuman ? 'human-types/' : (isResultPage ? 'personality-types/' : '');
+        
+        // On Result page, show only top 2 to keep it compact
+        const displayRels = isResultPage ? rels.slice(0, 2) : rels;
+
+        const cards = displayRels.map(r => {
+            const target = window.MeowArchetypes.get(r.data.type);
+            const blurb = field(r.data, 'blurb');
             return `
-                <a href="${withLang(target.code + '.html')}" class="rel-card" data-rel-type="${k.key}" data-target-code="${target.code}">
-                    <span class="rel-type">${escapeHtml(k.label)}</span>
-                    <div class="rel-main">
-                        <span class="rel-emoji" aria-hidden="true">${target.emoji}</span>
-                        <div class="rel-info">
-                            <div class="rel-name">${escapeHtml(field(target, 'name'))}</div>
-                            <div class="rel-code">${target.code}</div>
-                        </div>
+                <div class="comp-card" data-comp-type="${r.key}">
+                    <div class="comp-label-row">
+                        <span class="comp-label">${escapeHtml(r.label)}</span>
+                        <button class="card-share-btn mini" data-share-type="pair" data-share-title="${escapeHtml(r.label)}" data-share-target="${target.code}" data-share-blurb="${escapeHtml(blurb)}" title="${escapeHtml(t('sharePairBtn'))}">📥</button>
                     </div>
-                </a>`;
+                    <a href="${withLang(root + target.code + '.html')}" class="comp-target">
+                        <span class="comp-emoji" aria-hidden="true">${target.emoji}</span>
+                        <div class="comp-target-info">
+                            <span class="comp-target-name">${escapeHtml(field(target, 'name'))}</span>
+                            <span class="comp-target-code">${target.code}</span>
+                        </div>
+                    </a>
+                    <p class="comp-blurb">${escapeHtml(blurb)}</p>
+                </div>`;
         }).join('');
+
+        const footerCta = isResultPage ? `
+            <div class="comp-footer">
+                <a href="${withLang(root + p.code + '.html')}" class="comp-cta">${escapeHtml(t('compViewFull'))}</a>
+            </div>
+        ` : '';
+
         return `
-            <section class="module-section">
-                <h3 class="module-h">${escapeHtml(t('relTitle'))}</h3>
-                <div class="social-circle">${cards}</div>
-                <p class="social-bait">${escapeHtml(t('socialBaitGroup'))}</p>
+            <section class="module-section compatibility-section">
+                <h3 class="module-h">${escapeHtml(t('compTitle'))}</h3>
+                <p class="module-intro">${escapeHtml(t('compIntro'))}</p>
+                <div class="comp-grid ${isResultPage ? 'compact' : ''}">
+                    ${cards}
+                </div>
+                ${footerCta}
             </section>`;
     }
 
@@ -358,7 +584,22 @@
     }
 
     function getSubject() {
+        if (isHumanPage) return 'human';
         return new URLSearchParams(window.location.search).get('subject') || 'cat';
+    }
+
+    function getDisplayName() {
+        const params = new URLSearchParams(window.location.search);
+        let name = params.get('name');
+        if (name) return name;
+
+        // Try input field if on result page
+        const nameInput = document.getElementById('family-member-name');
+        if (nameInput && nameInput.value.trim()) {
+            return nameInput.value.trim();
+        }
+
+        return '';
     }
 
     function renderOwnerModules(p) {
@@ -423,7 +664,17 @@
         const host = document.getElementById('personality-content');
         if (!host) return;
 
-        const code = getCodeFromUrl();
+        const code = getCode();
+        if (isResultPage && !code) {
+            host.innerHTML = `
+                <div style="text-align:center; padding: 100px 20px;">
+                    <h2 style="font-family:'Fraunces', serif; font-size: 48px; margin-bottom: 24px;">${escapeHtml(t('resultTitle'))}</h2>
+                    <p style="font-family:'Space Grotesk', sans-serif; opacity: 0.8; margin-bottom: 32px;">${escapeHtml(t('heroSubtitle'))}</p>
+                    <a href="${withLang('quiz.html')}" class="big-btn accent">${escapeHtml(t('heroCta'))}</a>
+                </div>
+            `;
+            return;
+        }
         const p = window.MeowArchetypes.get(code);
         const tally = parseTally() || evenTally();
         const accent = '#FF5B3B';
@@ -431,8 +682,9 @@
         const tagline = field(p, 'tagline');
         const subject = getSubject();
         const isHuman = subject === 'human';
+        const displayName = getDisplayName();
 
-        document.title = `${name} (${p.code}) — MeowBTI`;
+        document.title = displayName ? `${displayName} (${p.code}) — MeowBTI` : `${name} (${p.code}) — MeowBTI`;
         // Update meta description for SEO
         let metaDesc = document.querySelector('meta[name="description"]');
         if (!metaDesc) {
@@ -447,37 +699,66 @@
         window.MeowTrack && window.MeowTrack('archetype_viewed', {
             code: p.code, name: p.name, lang: getLang(),
             from_quiz: parseTally() ? true : false,
-            subject: subject
+            subject: subject,
+            view_type: isResultPage ? 'result' : 'meaning'
         });
 
-        const revealText = isHuman ? t('resultOwnerSub') : t('revealLine');
-        host.innerHTML = `
-            ${confetti(p, accent)}
-            <div class="reveal-line">${escapeHtml(revealText)}</div>
-            ${tradingCard(p)}
+        if (isHuman) {
+            if (isResultPage) {
+                window.MeowTrack && window.MeowTrack('human_result_view', { archetype_code: p.code, language: getLang() });
+            } else {
+                window.MeowTrack && window.MeowTrack('human_meaning_view', { archetype_code: p.code, language: getLang() });
+            }
+        }
 
-            ${saveFamilyPanel(p, isHuman)}
+        const revealText = displayName ? (isHuman ? t('shareNameIs', displayName, name) : t('shareNameIs', displayName, name)) : (isHuman ? t('resultOwnerSub') : t('revealLine'));
+        
+        const subject = getSubject();
+        const isHuman = subject === 'human';
+
+        // Root path for internal links
+        const root = isHuman ? 'human-types/' : (isResultPage ? 'personality-types/' : '');
+        const quizRoot = isResultPage ? '' : '../';
+
+        const allTypesPage = isHumanPage ? 'human-types.html' : 'personality-types.html';
+        const quizPage = isHuman ? 'human-quiz.html' : 'quiz.html';
+
+        host.innerHTML = `
+            ${isResultPage ? confetti(p, accent) : ''}
+            <div class="reveal-line">${escapeHtml(revealText)}</div>
+            ${tradingCard(p, displayName)}
+
+            ${isResultPage ? saveFamilyPanel(p, isHuman) : ''}
 
             <div class="result-actions">
-                <button class="big-btn" id="btn-copy" type="button">${escapeHtml(isHuman ? t('shareOwnerBtn') : t('copyLink'))}</button>
-                <a href="${withLang('../quiz.html')}" class="big-btn ghost">${escapeHtml(t('retake'))}</a>
-                <a href="${withLang('../personality-types.html')}" class="big-btn ghost">${escapeHtml(t('all16'))}</a>
+                ${isResultPage ? `
+                    <button class="big-btn" id="btn-copy" type="button">${escapeHtml(isHuman ? t('shareOwnerBtn') : t('copyLink'))}</button>
+                    <a href="${withLang(root + p.code + '.html')}" class="big-btn ghost">${escapeHtml(t('readFullProfile'))}</a>
+                ` : `
+                    <a href="${withLang(quizRoot + quizPage)}" class="big-btn accent">${escapeHtml(t('meaningTakeQuiz'))}</a>
+                    <button class="big-btn ghost" id="btn-copy" type="button">${escapeHtml(t('copyLink'))}</button>
+                `}
+                <a href="${withLang(quizRoot + allTypesPage)}" class="big-btn ghost">${escapeHtml(t('all16'))}</a>
             </div>
 
-            ${sharePanel()}
+            ${isResultPage ? sharePanel() : ''}
 
-            ${isHuman ? renderOwnerModules(p) : ''}
-            ${isHuman ? renderCompatibilityMatrix(p) : ''}
+            ${renderDailyFeed(p)}
+
+            ${(isResultPage && isHuman) ? renderOwnerModules(p) : ''}
+            ${(isResultPage && isHuman) ? renderCompatibilityMatrix(p) : ''}
 
             <section class="result-grid">
                 <div class="rg-block">
                     <h3 class="rg-h">${escapeHtml(t('famouslySays'))}</h3>
                     <p class="rg-quote">"${escapeHtml(field(p, 'famouslySays'))}"</p>
                 </div>
+                ${isResultPage ? `
                 <div class="rg-block">
                     <h3 class="rg-h">${escapeHtml(t('spectrum'))}</h3>
                     <div class="spectrum">${spectrumRows(tally, p.color)}</div>
                 </div>
+                ` : ''}
                 <div class="rg-block">
                     <h3 class="rg-h">${escapeHtml(t('kindredSpirits'))}</h3>
                     <ul class="kindred">
@@ -496,9 +777,10 @@
                 </div>
             </section>
 
-            ${!isHuman ? renderDuringEvents(p) : ''}
-            ${renderMostLikelyTo(p)}
-            ${renderSocialCircle(p)}
+            ${(!isHuman) ? renderDuringEvents(p) : ''}
+            ${renderBehavioralHooks(p)}
+            ${renderHumanGrowthLoop(p)}
+            ${renderCompatibilityGraph(p)}
 
             ${rivalTile(p)}
 
@@ -507,13 +789,13 @@
             <section class="result-affiliate">
                 <h3 class="result-affiliate-h">${escapeHtml(isHuman ? t('picksForHuman') : t('picksFor', name))}</h3>
                 <div class="product-grid">
-                    <a href="${withLang('../index.html#affiliate-products')}" rel="sponsored noopener" class="product-card" style="--product-bg:${p.bg}">
+                    <a href="${withLang(quizRoot + 'index.html#affiliate-products')}" rel="sponsored noopener" class="product-card" style="--product-bg:${p.bg}">
                         <span class="product-emoji" aria-hidden="true">🛏️</span>
                         <h3>${t('productTitleSpot')}</h3>
                         <p class="product-blurb">${isHuman ? t('productBlurbDissociating') : t('productBlurbIgnoring')}</p>
                         <span class="product-cta">${t('productCta')}</span>
                     </a>
-                    <a href="${withLang('../index.html#affiliate-products')}" rel="sponsored noopener" class="product-card" style="--product-bg:#FFEFC2">
+                    <a href="${withLang(quizRoot + 'index.html#affiliate-products')}" rel="sponsored noopener" class="product-card" style="--product-bg:#FFEFC2">
                         <span class="product-emoji" aria-hidden="true">☕</span>
                         <h3>${t('productTitleFuel')}</h3>
                         <p class="product-blurb">${t('productBlurbProblem')}</p>
@@ -525,36 +807,53 @@
             <section class="result-cta">
                 <h2 class="cta-h">${escapeHtml(isHuman ? t('ctaHuman') : t('ctaH'))}</h2>
                 <div class="cta-actions">
-                    <a href="${withLang('../quiz.html')}" class="big-btn" style="background:${p.color};color:#fff">${escapeHtml(t('analyzeAnother'))}</a>
-                    <a href="${withLang('../personality-types.html')}" class="big-btn ghost">${escapeHtml(t('browseAll'))}</a>
+                    <a href="${withLang(quizRoot + 'quiz.html')}" class="big-btn" style="background:${p.color};color:#fff">${escapeHtml(isResultPage ? t('analyzeAnother') : t('heroCta'))}</a>
+                    <a href="${withLang(quizRoot + 'personality-types.html')}" class="big-btn ghost">${escapeHtml(t('browseAll'))}</a>
                 </div>
             </section>
         `;
 
-        const saveBtn = document.getElementById('btn-save-family');
-        const nameInput = document.getElementById('family-member-name');
-        if (saveBtn && nameInput && window.MeowStore) {
-            saveBtn.addEventListener('click', () => {
-                const nameValue = nameInput.value.trim();
-                const defaultName = isHuman ? t('defaultHumanName') : t('defaultCatName');
-                const profile = {
-                    id: window.MeowStore.generateProfileId(),
-                    name: nameValue || defaultName,
-                    subject: subject,
-                    code: p.code,
-                    tally: new URLSearchParams(window.location.search).get('t') || '',
-                    archetypeName: name,
-                    savedAt: new Date().toISOString(),
-                    source: 'result-page'
-                };
-                
-                const success = window.MeowStore.saveFamilyProfile(profile);
-                if (success || true) { // Always show success to user
-                    saveBtn.textContent = t('savedToFamily');
-                    saveBtn.classList.add('saved');
-                    nameInput.disabled = true;
-                }
-            });
+        if (isResultPage) {
+            const saveBtn = document.getElementById('btn-save-family');
+            const nameInput = document.getElementById('family-member-name');
+            if (saveBtn && nameInput && window.MeowStore) {
+                saveBtn.addEventListener('click', () => {
+                    const nameValue = nameInput.value.trim();
+                    const defaultName = isHuman ? t('defaultHumanName') : t('defaultCatName');
+                    const profile = {
+                        id: window.MeowStore.generateProfileId(),
+                        name: nameValue || defaultName,
+                        subject: subject,
+                        code: p.code,
+                        tally: new URLSearchParams(window.location.search).get('t') || '',
+                        archetypeName: name,
+                        savedAt: new Date().toISOString(),
+                        source: 'result-page'
+                    };
+                    
+                    const success = window.MeowStore.saveFamilyProfile(profile);
+                    if (success || true) {
+                        saveBtn.textContent = t('savedToFamily');
+                        saveBtn.classList.add('saved');
+                        nameInput.disabled = true;
+                        
+                        if (isHuman) {
+                            window.MeowTrack && window.MeowTrack('human_profile_save', { archetype_code: p.code, language: getLang() });
+                        }
+                        
+                        // Update UI and share context without full reload
+                        const newName = nameValue || defaultName;
+                        const cardNameEl = document.querySelector('.tc-name');
+                        if (cardNameEl) cardNameEl.textContent = newName;
+                        
+                        const revealEl = document.querySelector('.reveal-line');
+                        if (revealEl) revealEl.textContent = isHuman ? t('shareNameIs', newName, name) : t('shareNameIs', newName, name);
+                        
+                        // Note: The card-share-btn's getDisplayName() call will now pick up the input value or saved state.
+                    }
+                });
+            }
+            bindShare(p);
         }
 
         const copyBtn = document.getElementById('btn-copy');
@@ -588,8 +887,72 @@
             });
         });
 
+        // ─── Share Card Binders ─────────────────────────────────
+        document.querySelectorAll('.card-share-btn').forEach(btn => {
+            const cardTitle = btn.dataset.shareTitle || '';
+            btn.setAttribute('aria-label', `${t('shareCardBtn')}: ${cardTitle}`);
+            
+            btn.addEventListener('click', async (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+
+                if (!window.MeowShare || !window.MeowShare.buildCard) return;
+
+                const originalText = btn.textContent;
+                btn.textContent = '⏳';
+                btn.disabled = true;
+                
+                // Track click event
+                window.MeowTrack && window.MeowTrack(isResultPage ? 'result_share_card_click' : 'meaning_share_card_click', {
+                    card_type: btn.dataset.shareType,
+                    archetype_code: p.code
+                });
+
+                if (btn.dataset.shareType === 'daily') {
+                    window.MeowTrack && window.MeowTrack('daily_feed_share_click', {
+                        archetype_code: p.code,
+                        language: getLang(),
+                        page_context: isResultPage ? 'result' : 'meaning',
+                        has_name: !!getDisplayName()
+                    });
+                }
+
+                const shareData = {
+                    type: btn.dataset.shareType,
+                    title: btn.dataset.shareTitle,
+                    value: btn.dataset.shareValue,
+                    icon: btn.dataset.shareIcon,
+                    items: btn.dataset.shareItems ? JSON.parse(btn.dataset.shareItems) : null,
+                    targetCode: btn.dataset.shareTarget,
+                    blurb: btn.dataset.shareBlurb,
+                    displayName: getDisplayName(),
+                    pageContext: isResultPage ? 'result' : 'meaning'
+                };
+
+                try {
+                    const blob = await window.MeowShare.buildCard(p, shareData);
+                    const result = await window.MeowShare.shareCard(p, blob, shareData);
+                    
+                    if (result === 'shared') {
+                        btn.textContent = '✅';
+                    } else if (result === 'downloaded') {
+                        btn.textContent = '💾';
+                    } else if (result === 'fallback') {
+                        btn.textContent = '🖼️';
+                    }
+                } catch (err) {
+                    console.error('Share failed:', err);
+                    btn.textContent = '❌';
+                } finally {
+                    setTimeout(() => {
+                        btn.textContent = originalText;
+                        btn.disabled = false;
+                    }, 2000);
+                }
+            });
+        });
+
         bindShare(p);
-    }
 
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', render);

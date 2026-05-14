@@ -105,7 +105,7 @@
                 <p class="subtitle" data-i18n="heroSubtitle">Quick quiz or Deep analysis. Receive verdict.</p>
                 <div class="hero-actions">
                     <a href="quiz.html" class="cta-button accent large-button" data-i18n-href><span data-i18n="heroCta">Start the test</span> <span aria-hidden="true">→</span></a>
-                    <a href="quiz.html?mode=humanShort" class="cta-button ghost large-button" data-i18n-href style="margin-left: 12px; border: 2.5px solid var(--ink); color: var(--ink); background: var(--paper);"><span data-i18n="quizModeOwner">The Human Quiz</span></a>
+                    <a href="human-quiz.html" class="cta-button ghost large-button" data-i18n-href style="margin-left: 12px; border: 2.5px solid var(--ink); color: var(--ink); background: var(--paper);"><span data-i18n="quizModeOwner">The Human Quiz</span></a>
                 </div>
 
                 <div class="hero-meta">
@@ -114,6 +114,16 @@
                     <span data-i18n="heroMetaNoEmail">No email</span>
                     <span class="dot"></span>
                     <span data-i18n="heroMetaJustChaos">Just chaos</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Today's Cat Energy Daily Loop (v1) -->
+        <section id="daily-loop" class="daily-loop-section">
+            <div class="container">
+                <div id="daily-loop-content" class="daily-loop-card-wrapper">
+                    <!-- Injected by home-daily.js -->
+                    <p style="text-align:center; opacity:0.5; padding:40px 0">Loading today's energy…</p>
                 </div>
             </div>
         </section>
@@ -138,7 +148,7 @@
                     <a href="quiz.html" class="cta-button accent" data-i18n-href>
                         <span>+</span> <span data-i18n="addAnotherCat">Add Another Cat</span>
                     </a>
-                    <a href="quiz.html?mode=humanShort" class="cta-button ghost" data-i18n-href>
+                    <a href="human-quiz.html" class="cta-button ghost" data-i18n-href>
                         <span>+</span> <span data-i18n="addAnotherHuman">Add Another Human</span>
                     </a>
                 </div>
@@ -230,6 +240,7 @@
     <script src="compatibility.js"></script>
     <script src="family-share.js"></script>
     <script src="drama-feed.js"></script>
+    <script src="home-daily.js"></script>
     <script src="dashboard.js"></script>
 </body>
 </html>
