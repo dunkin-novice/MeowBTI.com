@@ -32,6 +32,10 @@
         heroMetaNoLogin:   { en: "No login",                  th: "ไม่ต้องล็อกอิน" },
         heroMetaNoEmail:   { en: "No email",                  th: "ไม่ต้องอีเมล" },
         heroMetaJustChaos: { en: "Just chaos",                th: "แค่ความวุ่นวาย" },
+        hTeaserH2:         { en: "What cat energy are YOU?",   th: "แล้วคุณมีพลังงานแมวแบบไหน?" },
+        hTeaserP:          { en: "Your boss, your ex, and your group chat all have a MeowBTI. Find the archetype hiding under your human skin.",
+                              th: "หัวหน้า แฟนเก่า และแชทกลุ่มของคุณต่างก็มี MeowBTI ในตัว ค้นหาตัวตนแมวที่ซ่อนอยู่ใต้ร่างมนุษย์ของคุณ" },
+        hTeaserCta:        { en: "Take the Human Quiz →",      th: "ทำแบบทดสอบร่างมนุษย์ →" },
         testimonialsH:     { en: "people are saying",         th: "เสียงตอบรับจากคนใช้" },
         affiliateH:        { en: "our favorite cat picks",    th: "ของโปรดของแมวเรา" },
         affiliateSub:      { en: "Tested by judgmental cats. Approved by us. (Affiliate links — we may earn a small commission.)",
@@ -152,6 +156,12 @@
         hCompChaosPair:       { en: "Toxic Duo",               th: "คู่หูตัวเป็นพิษ" },
         hCompSecretTwin:      { en: "Identity Twin",           th: "แฝดทางจิตวิญญาณ" },
         hCompWorstRoommate:   { en: "Corporate Nemesis",       th: "ศัตรูคู่อาฆาตในออฟฟิศ" },
+
+        // ─── human teaser (index.html) ───────────────────────
+        hTeaserH2:         { en: "What cat energy are YOU?", th: "ตัวคุณล่ะ มีพลังงานแมวแบบไหน?" },
+        hTeaserP:          { en: "Your boss, your ex, and your group chat all have a MeowBTI. Find your human archetype.",
+                              th: "หัวหน้าคุณ แฟนเก่าคุณ หรือเพื่อนในกลุ่มแชท ต่างก็มี MeowBTI ในตัว ค้นหาตัวตนร่างมนุษย์ของคุณได้เลย" },
+        hTeaserCta:        { en: "Take the Human Quiz →",    th: "เริ่มทำแบบทดสอบร่างมนุษย์ →" },
 
         // ─── human expansion growth loop (v1) ────────────────
         hCompCatTitle:        { en: "Which cat energy survives you?", th: "แมวแบบไหนที่อยู่รอดกับคุณได้?" },

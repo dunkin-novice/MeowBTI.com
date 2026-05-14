@@ -370,6 +370,9 @@
 
         if (navigator.canShare && navigator.canShare({ files: [file] })) {
             try {
+                if (subject === 'human') {
+                    window.MeowTrack && window.MeowTrack('human_poster_share_attempt', { archetype_code: personality.code, language: (window.MeowI18n && window.MeowI18n.getLang()) || 'en' });
+                }
                 await navigator.share({
                     files: [file],
                     title: `MeowBTI: ${personality.name}`,
@@ -386,6 +389,11 @@
         a.href = url;
         a.download = filename;
         document.body.appendChild(a);
+        
+        if (subject === 'human') {
+            window.MeowTrack && window.MeowTrack('human_poster_download', { archetype_code: personality.code, language: (window.MeowI18n && window.MeowI18n.getLang()) || 'en' });
+        }
+        
         a.click();
         a.remove();
         setTimeout(() => URL.revokeObjectURL(url), 4000);

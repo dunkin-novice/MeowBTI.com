@@ -347,8 +347,6 @@ function finish() {
     const subjectSuffix = isHuman ? `&subject=human` : '';
     const resultPage = isHuman ? 'human-result.html' : 'result.html';
     window.location.href = `${resultPage}?type=${code}&t=${t}${langSuffix}${subjectSuffix}`;
-    }
-
 }
 
 // ─── keyboard ────────────────────────────────────────────────

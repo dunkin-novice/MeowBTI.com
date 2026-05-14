@@ -617,7 +617,7 @@
         const grid = modules.map(m => `
             <div class="owner-module-card">
                 <span class="om-label">${escapeHtml(m.label)}</span>
-                <p class="om-text">${escapeHtml(m.text)}</p>
+                <p class="om-text">${escapeHtml(m.text || '')}</p>
             </div>
         `).join('');
 
@@ -649,7 +649,7 @@
                         <strong>${c.survival}</strong>
                     </div>
                 </div>
-                <p class="compat-desc">${escapeHtml(c.desc)}</p>
+                <p class="compat-desc">${escapeHtml(c.desc || '')}</p>
             </div>
         `).join('');
 
@@ -712,9 +712,6 @@
         }
 
         const revealText = displayName ? (isHuman ? t('shareNameIs', displayName, name) : t('shareNameIs', displayName, name)) : (isHuman ? t('resultOwnerSub') : t('revealLine'));
-        
-        const subject = getSubject();
-        const isHuman = subject === 'human';
 
         // Root path for internal links
         const root = isHuman ? 'human-types/' : (isResultPage ? 'personality-types/' : '');
@@ -953,6 +950,7 @@
         });
 
         bindShare(p);
+    }
 
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', render);
