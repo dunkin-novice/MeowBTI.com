@@ -32,9 +32,11 @@
 
     function renderProfileCard(p, dateStr) {
         const archetype = window.MeowArchetypes.get(p.code);
-        if (!archetype || !archetype.dailyObservations) return '';
+        if (!archetype) return '';
 
-        const daily = archetype.dailyObservations;
+        const daily = (p.subject === 'human' && archetype.dailyObservationsHuman) ? archetype.dailyObservationsHuman : archetype.dailyObservations;
+        if (!daily || daily.length === 0) return '';
+
         const entryIdx = getDailyHash(dateStr + archetype.code) % daily.length;
         const entry = daily[entryIdx];
         const lang = getLang();
@@ -107,9 +109,11 @@
             // SINGLE CAT VIEW (Existing behavior)
             const profile = family[0];
             const archetype = window.MeowArchetypes.get(profile.code);
-            if (!archetype || !archetype.dailyObservations) return;
+            if (!archetype) return;
 
-            const daily = archetype.dailyObservations;
+            const daily = (profile.subject === 'human' && archetype.dailyObservationsHuman) ? archetype.dailyObservationsHuman : archetype.dailyObservations;
+            if (!daily || daily.length === 0) return;
+
             const entryIdx = getDailyHash(dateStr + archetype.code) % daily.length;
             const observation = daily[entryIdx][lang] || daily[entryIdx].en;
             const archetypeName = lang === 'th' ? (archetype.nameTh || archetype.name) : archetype.name;
@@ -149,9 +153,12 @@
             const all = window.MeowArchetypes.all;
             const archIdx = getDailyHash(dateStr) % all.length;
             const archetype = all[archIdx];
-            if (!archetype || !archetype.dailyObservations) return;
+            if (!archetype) return;
 
-            const daily = archetype.dailyObservations;
+            // Featured fallback can prefer human daily observations for variety
+            const daily = archetype.dailyObservationsHuman || archetype.dailyObservations;
+            if (!daily || daily.length === 0) return;
+
             const entryIdx = getDailyHash(dateStr + archetype.code) % daily.length;
             const observation = daily[entryIdx][lang] || daily[entryIdx].en;
 
