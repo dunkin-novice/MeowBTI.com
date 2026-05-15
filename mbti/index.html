@@ -68,11 +68,38 @@
                 </div>
             </div>
         </section>
+        <section class="browse-mbti-section" style="padding: 60px 0; background: var(--bg);">
+            <div class="container">
+                <h2 style="font-family: var(--font-display); text-align: center; margin-bottom: 40px;">Browse all 16 MBTI Personality Types</h2>
+                <div id="mbti-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 20px;">
+                    <!-- JS Injected Grid -->
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer class="main-footer" id="main-footer"></footer>
 
     <script src="../data/i18n.js"></script>
+    <script src="../data/mbti/content.js"></script>
     <script src="../script.js"></script>
+    <script>
+    (function() {
+        const grid = document.getElementById('mbti-grid');
+        const mapping = window.MeowMBTIContent.MAPPING;
+        const { getLang, withLang } = window.MeowI18n;
+        const lang = getLang();
+
+        grid.innerHTML = Object.keys(mapping).map(type => {
+            const name = lang === 'th' ? mapping[type].nameTh : mapping[type].name;
+            return `
+                <a href="${type.toLowerCase()}.html" class="mbti-grid-card" style="background:#fff; border: 2px solid var(--ink); border-radius: 16px; padding: 20px; text-align: center; text-decoration: none; color: inherit; transition: transform 0.2s, box-shadow 0.2s;">
+                    <div style="font-family: var(--font-mono); font-weight: 900; font-size: 1.2rem; margin-bottom: 4px;">${type}</div>
+                    <div style="font-size: 0.8rem; opacity: 0.6; line-height: 1.2;">${name}</div>
+                </a>
+            `;
+        }).join('');
+    })();
+    </script>
 </body>
 </html>

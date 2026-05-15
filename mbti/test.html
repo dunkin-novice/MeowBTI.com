@@ -4,45 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MBTI-style Personality Analysis | MeowBTI</title>
-    <meta name="description" content="Take the free MBTI-style test. 32 binary questions to find your type.">
+    <meta name="description" content="Take the free MBTI-style test. 32 behavioral questions to find your human type.">
     <meta name="theme-color" content="#FFF4EC">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-
     <link rel="stylesheet" href="../style.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945" crossorigin="anonymous"></script>
-
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2WNZ4HBJ87"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-2WNZ4HBJ87');
-    </script>
 </head>
 <body>
-
     <header class="main-header" id="main-header"></header>
-
     <main>
         <section class="quiz-section">
             <div class="container">
                 <div class="quiz-bar">
-                    <a href="index.html" class="ghost-btn" aria-label="Back to MBTI home" data-i18n-href data-i18n="back">← back</a>
+                    <a href="index.html" class="ghost-btn" data-i18n-href data-i18n="back">← back</a>
                     <h1 data-i18n="mbtiTestH1" style="font-size: 1rem; margin: 0; opacity: 0.6;">MBTI-style Analysis</h1>
                 </div>
-
                 <div id="mbti-test-container" class="mbti-test-container">
                     <p style="text-align:center; padding: 100px 0; opacity: 0.6;">Loading analysis engine...</p>
                 </div>
             </div>
         </section>
     </main>
-
     <footer class="main-footer" id="main-footer"></footer>
-
     <script src="../data/i18n.js"></script>
     <script src="../script.js"></script>
+    <script src="../data/mbti/questions.js"></script>
     <script src="mbti-script.js"></script>
 </body>
 </html>

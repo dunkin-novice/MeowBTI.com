@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INFJ Meaning: The Advocate | MeowBTI</title>
+    <meta name="description" content="INFJ (The Advocate) meaning, traits, and stress patterns. Discover the human psychology behind the SDNR cat energy.">
+    <link rel="canonical" href="https://meowbti.com/mbti/infj.html">
+    <link rel="stylesheet" href="../style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945" crossorigin="anonymous"></script>
+    <style>
+        .mbti-content-grid { display: grid; gap: 40px; margin-top: 40px; }
+        .mbti-section-h { font-family: var(--font-display); font-size: 1.8rem; margin-bottom: 16px; border-bottom: 2px solid rgba(0,0,0,0.05); padding-bottom: 8px; }
+        .mbti-card-box { background: #fff; border: 2px solid var(--ink); border-radius: 24px; padding: 32px; box-shadow: 8px 8px 0 rgba(0,0,0,0.05); }
+        .mbti-pill-grid { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+        .mbti-pill { background: var(--bg); padding: 8px 16px; border-radius: 40px; font-size: 0.9rem; font-weight: 600; border: 1.5px solid var(--ink); }
+        .bridge-box { display: flex; align-items: center; gap: 24px; background: #fff; border: 2.5px solid var(--ink); border-radius: 32px; padding: 32px; margin-top: 60px; position: relative; overflow: hidden; }
+        .bridge-emoji { font-size: 5rem; opacity: 0.15; position: absolute; right: -10px; top: -10px; }
+        @media (max-width: 600px) { .bridge-box { flex-direction: column; text-align: center; } .bridge-emoji { position: static; opacity: 1; font-size: 4rem; } }
+    </style>
+</head>
+<body class="mbti-evergreen-page">
+    <header class="main-header" id="main-header"></header>
+    <main>
+        <section class="evergreen-section">
+            <div class="container" style="max-width: 900px; padding: 80px 20px;">
+                <div id="mbti-evergreen-content">
+                    <p style="text-align:center; opacity:0.6;">Loading type data...</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="main-footer" id="main-footer"></footer>
+
+    <script src="../data/i18n.js"></script>
+    <script src="../data/archetypes.js"></script>
+    <script src="../data/mbti/content.js"></script>
+    <script src="../script.js"></script>
+    <script>
+    (function() {
+        const { getLang, t, withLang } = window.MeowI18n;
+        const lang = getLang();
+        const type = 'INFJ';
+        
+        const content = window.MeowMBTIContent;
+        if (!content || !content.DESCRIPTIONSinfj) return;
+
+        const data = content.DESCRIPTIONSinfj;
+        const mapping = content.MAPPINGinfj;
+        const archetype = window.MeowArchetypes.get(mapping.meow);
+
+        const field = (key) => {
+            if (lang === 'th') {
+                const thKey = key + 'Th';
+                return data[thKey] || data[key];
+            }
+            return data[key];
+        };
+
+        const typeName = lang === 'th' ? mapping.nameTh : mapping.name;
+        document.title = type + " Meaning: " + typeName + " | MeowBTI";
+
+        document.getElementById('mbti-evergreen-content').innerHTML = "<div style='text-align:center; margin-bottom: 60px;'><div style='display:inline-block; background:var(--ink); color:#fff; padding:8px 20px; border-radius:40px; font-family:var(--font-mono); font-weight:900; margin-bottom:16px;'>" + type + "</div><h1 style='font-family: var(--font-display); font-size: clamp(2.5rem, 8vw, 4rem); line-height:1; margin-bottom:12px;'>" + typeName + "</h1><p style='font-size: 1.3rem; opacity: 0.7; max-width: 600px; margin: 0 auto;'>" + field('intro') + "</p></div><div class='mbti-content-grid'><div class='mbti-card-box'><h2 class='mbti-section-h'>" + (lang === 'th' ? 'กระบวนการคิด' : 'The Internal Engine') + "</h2><p style='font-size: 1.15rem; line-height:1.7; margin-bottom:20px;'>" + field('thoughts') + "</p><h3 style='font-size: 1rem; text-transform:uppercase; letter-spacing:0.1em; opacity:0.5; margin-bottom:8px;'>" + (lang === 'th' ? 'โลกทางอารมณ์' : 'Emotional World') + "</h3><p style='line-height:1.6;'>" + field('emotions') + "</p></div><div style='display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px;'><div class='mbti-card-box'><h2 class='mbti-section-h'>" + (lang === 'th' ? 'สไตล์การสื่อสาร' : 'Communication') + "</h2><p>" + field('communication') + "</p><div class='mbti-pill-grid'><div class='mbti-pill'>" + (lang === 'th' ? 'การส่งข้อความ: ' : 'Texting: ') + field('texting') + "</div></div></div><div class='mbti-card-box'><h2 class='mbti-section-h'>" + (lang === 'th' ? 'ความเครียด & การหมดไฟ' : 'Stress & Burnout') + "</h2><p>" + field('stress') + "</p><p style='margin-top:12px; font-size:0.9rem; opacity:0.7;'><strong>Burnout:</strong> " + field('burnout') + "</p></div></div><div class='mbti-card-box'><h2 class='mbti-section-h'>" + (lang === 'th' ? 'ชีวิตและการเติบโต' : 'Life & Growth') + "</h2><div style='display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:24px;'><div><h4 style='font-size:0.9rem; text-transform:uppercase; opacity:0.5;'>" + (lang === 'th' ? 'ความสัมพันธ์' : 'Relationships') + "</h4><p style='font-size:0.95rem;'>" + field('relationships') + "</p></div><div><h4 style='font-size:0.9rem; text-transform:uppercase; opacity:0.5;'>" + (lang === 'th' ? 'ทิศทางการเติบโต' : 'Growth Direction') + "</h4><p style='font-size:0.95rem;'>" + field('growth') + "</p></div></div></div><div style='display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px;'><div class='mbti-card-box'><h2 class='mbti-section-h'>" + (lang === 'th' ? 'พฤติกรรมบนโลกอินเทอร์เน็ต' : 'Digital Life') + "</h2><p>" + field('internet') + "</p></div><div class='mbti-card-box' style='background:var(--paper);'><h2 class='mbti-section-h'>" + (lang === 'th' ? 'เกร็ดขำๆ' : 'Quick Vibes') + "</h2><p><strong>" + (lang === 'th' ? 'มักจะ: ' : 'Most likely to: ') + "</strong> " + field('likelyTo') + "</p><p style='margin-top:12px;'><strong>" + (lang === 'th' ? 'จุดอ่อน: ' : 'Secret weakness: ') + "</strong> " + field('weakness') + "</p></div></div></div><div class='bridge-box'><div class='bridge-emoji'>" + archetype.emoji + "</div><div style='flex:1; position:relative; z-index:1;'><h3 style='font-family:var(--font-display); font-size:1.5rem; margin-bottom:8px;'>" + (lang === 'th' ? 'ร่างแมวที่ใช่สำหรับคุณ' : 'The Cat Energy Match') + "</h3><p style='margin-bottom:16px; line-height:1.5;'>" + field('bridge') + "</p><a href='" + withLang('../human-types/' + archetype.code + '.html') + "' class='big-btn' style='background:var(--ink); color:#fff;'>" + (lang === 'th' ? 'ดูรายละเอียดร่างแมวสาย ' + (archetype.nameTh || archetype.name) : 'View ' + archetype.name + ' traits') + " →</a></div></div><div style='margin-top: 100px; text-align: center; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 60px;'><h2 style='font-family:var(--font-display); margin-bottom:24px;'>" + (lang === 'th' ? 'คุณคือ ' + type + ' จริงหรือเปล่า?' : 'Are you really an ' + type + '?') + "</h2><a href='" + withLang('test.html') + "' class='big-btn accent'>" + (lang === 'th' ? 'ทำแบบทดสอบ MBTI ฟรี' : 'Take the Free MBTI Test') + "</a></div>";
+    })();
+    </script>
+</body>
+</html>

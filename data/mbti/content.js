@@ -1,0 +1,166 @@
+// MBTI -> MeowBTI Mapping & Type Descriptions
+(function() {
+    const MAPPING = {
+        'ISTJ': { meow: 'SHBR', name: 'The Duty Fulfiller', title: 'ISTJ Meaning, Traits & Personality' },
+        'ISFJ': { meow: 'SHNR', name: 'The Nurturer', title: 'ISFJ Meaning, Traits & Personality' },
+        'INFJ': { meow: 'SDNR', name: 'The Advocate', title: 'INFJ Meaning, Traits & Personality' },
+        'INTJ': { meow: 'SDBR', name: 'The Architect', title: 'INTJ Meaning, Traits & Personality' },
+        'ISTP': { meow: 'SHBC', name: 'The Virtuoso', title: 'ISTP Meaning, Traits & Personality' },
+        'ISFP': { meow: 'SHNC', name: 'The Adventurer', title: 'ISFP Meaning, Traits & Personality' },
+        'INFP': { meow: 'SDNC', name: 'The Mediator', title: 'INFP Meaning, Traits & Personality' },
+        'INTP': { meow: 'SDBC', name: 'The Logician', title: 'INTP Meaning, Traits & Personality' },
+        'ESTP': { meow: 'CHBC', name: 'The Entrepreneur', title: 'ESTP Meaning, Traits & Personality' },
+        'ESFP': { meow: 'CHNC', name: 'The Entertainer', title: 'ESFP Meaning, Traits & Personality' },
+        'ENFP': { meow: 'CDNC', name: 'The Campaigner', title: 'ENFP Meaning, Traits & Personality' },
+        'ENTP': { meow: 'CDBC', name: 'The Debater', title: 'ENTP Meaning, Traits & Personality' },
+        'ESTJ': { meow: 'CHBR', name: 'The Executive', title: 'ESTJ Meaning, Traits & Personality' },
+        'ESFJ': { meow: 'CHNR', name: 'The Consul', title: 'ESFJ Meaning, Traits & Personality' },
+        'ENFJ': { meow: 'CDNR', name: 'The Protagonist', title: 'ENFJ Meaning, Traits & Personality' },
+        'ENTJ': { meow: 'CDBR', name: 'The Commander', title: 'ENTJ Meaning, Traits & Personality' }
+    };
+
+    const DESCRIPTIONS = {
+        'INTJ': {
+            intro: 'INTJs are analytical architects of systems, often seen building entire civilizations in their minds while everyone else is still choosing a lunch spot.',
+            introTh: 'INTJ คือนักออกแบบระบบผู้วิเคราะห์ พวกเขามักสร้างอาณาจักรที่ซับซ้อนไว้ในหัว ในขณะที่คนอื่นยังเลือกไม่ได้เลยว่าจะกินอะไรเป็นมื้อเที่ยง',
+            thoughts: 'They process information through a filter of long-term efficiency, discarding anything that doesn\'t serve a purpose.',
+            thoughtsTh: 'พวกเขาประมวลผลข้อมูลผ่านตัวกรองของประสิทธิภาพในระยะยาว และจะตัดสิ่งที่ไม่จำเป็นทิ้งอย่างไม่ใยดี',
+            emotions: 'Private and guarded, INTJs feel deeply but express emotions as data points that need to be solved.',
+            emotionsTh: 'โลกส่วนตัวสูงและระแวดระวัง INTJ มีความรู้สึกที่ลึกซึ้ง แต่พวกเขามักแสดงออกผ่านข้อมูลที่ต้องได้รับการแก้ไขมากกว่าความรู้สึกเพียวๆ',
+            communication: 'Direct, dry, and often misinterpreted as blunt. They value clarity over politeness.',
+            communicationTh: 'ตรงไปตรงมา เรียบเฉย และมักถูกเข้าใจผิดว่าขวานผ่าซาก พวกเขาให้ความสำคัญกับความชัดเจนมากกว่ามารยาท',
+            stress: 'When stressed, they obsess over tiny, irrelevant details or retreat into a sensory-seeking spiral.',
+            stressTh: 'เวลาเครียด พวกเขาจะหมกมุ่นกับรายละเอียดเล็กน้อยที่ไม่ได้สำคัญอะไร หรือหลุดเข้าไปในวงจรของการหาความเพลิดเพลินผ่านประสาทสัมผัสแบบสุดโต่ง',
+            burnout: 'Occurs when they feel trapped in an inefficient system they cannot fix.',
+            burnoutTh: 'เกิดจากความรู้สึกว่าตัวเองติดอยู่ในระบบที่ไม่มีประสิทธิภาพและแก้ไขอะไรไม่ได้',
+            relationships: 'Loyal and intellectually demanding. They seek partners who don\'t require constant verbal validation.',
+            relationshipsTh: 'ซื่อสัตย์และต้องการคู่ชีวิตที่พูดคุยกันได้ในเชิงสติปัญญา พวกเขามองหาคนที่ไม่ต้องการการยืนยันทางคำพูดตลอดเวลา',
+            work: 'Thrive in independent roles where they can implement complex strategic visions.',
+            workTh: 'รุ่งเรืองในบทบาทที่เป็นอิสระซึ่งสามารถนำวิสัยทัศน์เชิงกลยุทธ์ที่ซับซ้อนมาใช้ได้จริง',
+            socialBattery: 'Drains rapidly in groups; recharges only through solitude or deep one-on-one talk.',
+            socialBatteryTh: 'หมดเร็วมากเวลาอยู่รวมกันเป็นกลุ่มใหญ่ และจะชาร์จไฟได้จากการอยู่ลำพังหรือการคุยกันแบบตัวต่อตัวที่ลึกซึ้งเท่านั้น',
+            growth: 'Learning that \"illogical\" human emotions are data points worth considering.',
+            growthTh: 'เรียนรู้ว่าอารมณ์ของมนุษย์ที่ \"ไร้ตรรกะ\" แท้จริงแล้วเป็นข้อมูลที่มีค่าที่ควรนำมาพิจารณา',
+            likelyTo: 'Accidentally ruin a party by pointing out the statistical likelihood of an event.',
+            likelyToTh: 'ทำปาร์ตี้กร่อยโดยไม่ได้ตั้งใจ เพราะดันไปบอกความน่าจะเป็นทางสถิติของเหตุการณ์ที่กำลังคุยกันอยู่',
+            bridge: 'INTJ energy maps to cats that observe the room from the highest shelf. In MeowBTI, this is the Silent Strategist (SDBR).',
+            bridgeTh: 'พลังงานแบบ INTJ ตรงกับแมวที่ชอบเฝ้าสังเกตการณ์จากหิ้งที่สูงที่สุด ใน MeowBTI นี่คือบุคลิกแบบนักออกแบบกลยุทธ์ (SDBR)'
+        },
+        'INFP': {
+            intro: 'INFPs are dreamers who live in a cinematic internal world, often feeling like they\'re from a different planet.',
+            introTh: 'INFP คือนักฝันที่อาศัยอยู่ในโลกภายในที่เหมือนภาพยนตร์ พวกเขามักรู้สึกเหมือนตัวเองมาจากดาวดวงอื่น',
+            thoughts: 'They think in metaphors and values, constantly searching for deeper meaning in ordinary events.',
+            thoughtsTh: 'พวกเขาคิดเป็นภาพเชิงเปรียบเทียบและค่านิยม คอยมองหาความหมายที่ลึกซึ้งในเหตุการณ์ธรรมดาทั่วไปเสมอ',
+            emotions: 'Vibrant and intense. They experience emotions with a complexity that is hard to put into words.',
+            emotionsTh: 'มีชีวิตชีวาและเข้มข้น พวกเขารู้สึกถึงอารมณ์ด้วยความซับซ้อนที่ยากจะบรรยายเป็นคำพูด',
+            communication: 'Gentle and encouraging, though they struggle to share their own feelings until they feel 100% safe.',
+            communicationTh: 'อ่อนโยนและให้กำลังใจคนอื่น แม้ว่าพวกเขาจะลำบากใจในการแชร์ความรู้สึกของตัวเองจนกว่าจะรู้สึกปลอดภัย 100%',
+            stress: 'Becomes uncharacteristically harsh and critical, often directed at themselves first.',
+            stressTh: 'จะกลายเป็นคนขี้บ่นและวิพากษ์วิจารณ์อย่างไม่น่าเชื่อ โดยมักจะเริ่มจากการด่าตัวเองก่อน',
+            burnout: 'Occurs when they have to compromise their core values for too long.',
+            burnoutTh: 'เกิดจากการต้องยอมลดทอนค่านิยมหลักของตัวเองเพื่อคนอื่นเป็นเวลานานเกินไป',
+            relationships: 'Idealistic and deep. They want a soulmate connection, not just a casual partner.',
+            relationshipsTh: 'เพ้อฝันและลึกซึ้ง พวกเขาต้องการความสัมพันธ์แบบเนื้อคู่ ไม่ใช่แค่แฟนทั่วๆ ไป',
+            work: 'Need creative freedom and a sense of mission to stay motivated.',
+            workTh: 'ต้องการอิสระในการสร้างสรรค์และความรู้สึกว่างานที่ทำมีคุณค่าเพื่อรักษาแรงจูงใจ',
+            socialBattery: 'Small and easily drained by shallow interactions.',
+            socialBatteryTh: 'เล็กและหมดไวมากหากต้องมีปฏิสัมพันธ์ที่ผิวเผิน',
+            growth: 'Learning to turn internal dreams into external action without waiting for perfection.',
+            growthTh: 'เรียนรู้ที่จะเปลี่ยนความฝันในหัวให้กลายเป็นการลงมือทำจริงๆ โดยไม่ต้องรอให้ทุกอย่างสมบูรณ์แบบ',
+            likelyTo: 'Cry because a song was just \"too beautiful\" to handle.',
+            likelyToTh: 'ร้องไห้เพราะเพลงมัน \"เพราะเกินไป\" จนรับไม่ไหว',
+            bridge: 'INFP energy maps to the sensitive dreamers of the cat world. In MeowBTI, this is the Mediator (SDNC).',
+            bridgeTh: 'พลังงานแบบ INFP ตรงกับแมวนักฝันที่อ่อนไหว ใน MeowBTI นี่คือบุคลิกแบบผู้ไกล่เกลี่ยที่อ่อนโยน (SDNC)'
+        },
+        'ENFP': {
+            intro: 'ENFPs are enthusiastic explorers of life, often collecting new hobbies and connections like they are rare Pokémon.',
+            introTh: 'ENFP คือนักสำรวจชีวิตผู้กระตือรือร้น พวกเขามักสะสมงานอดิเรกและคนรู้จักใหม่ๆ เหมือนกำลังเก็บสะสมโปเกมอนหายาก',
+            thoughts: 'They think in possibilities and connections, seeing magic in even the most mundane situations.',
+            thoughtsTh: 'พวกเขาคิดเป็นความเป็นไปได้และความเชื่อมโยง มองเห็นเวทมนตร์ที่ซ่อนอยู่ในสถานการณ์ที่ธรรมดาที่สุด',
+            emotions: 'Emotional chameleons who feel everything intensely and want everyone around them to feel inspired.',
+            emotionsTh: 'กิ้งก่าทางอารมณ์ที่รู้สึกถึงทุกอย่างอย่างเข้มข้น และอยากให้ทุกคนรอบข้างรู้สึกได้รับแรงบันดาลใจ',
+            communication: 'Warm, expressive, and prone to jumping between five different topics in a single sentence.',
+            communicationTh: 'อบอุ่น กล้าแสดงออก และมีแนวโน้มที่จะกระโดดข้ามไปมาระหว่าง 5 เรื่องในประโยคเดียว',
+            stress: 'Becomes uncharacteristically withdrawn and obsessed with tiny, meaningless rules.',
+            stressTh: 'จะกลายเป็นคนเก็บตัวอย่างผิดปกติ และหมกมุ่นอยู่กับกฎเกณฑ์เล็กๆ น้อยๆ ที่ไม่มีความหมาย',
+            burnout: 'Occurs when they feel forced to follow a rigid, repetitive routine with zero creative outlet.',
+            burnoutTh: 'เกิดจากการถูกบังคับให้ทำตามกิจวัตรที่ซ้ำซากจำเจโดยไม่มีช่องทางในการปลดปล่อยความคิดสร้างสรรค์เลย',
+            relationships: 'Passionate and encouraging. They need a partner who can handle their constant evolution.',
+            relationshipsTh: 'ร้อนแรงและคอยให้กำลังใจ พวกเขาต้องการคู่ครองที่สามารถรับมือกับการเปลี่ยนแปลงของพวกเขาได้',
+            work: 'Thrive in collaborative, fast-paced environments where they can brainstorm big ideas.',
+            workTh: 'รุ่งเรืองในสภาพแวดล้อมที่ต้องร่วมมือกันและรวดเร็ว ซึ่งพวกเขาสามารถระดมสมองคิดไอเดียใหญ่ๆ ได้',
+            socialBattery: 'Huge, but requires \"introvert time\" to process all the emotions they absorbed.',
+            socialBatteryTh: 'ใหญ่มาก แต่ก็ยังต้องการ \"เวลาของคนเก็บตัว\" เพื่อประมวลผลอารมณ์ทั้งหมดที่รับมาจากคนอื่น',
+            growth: 'Learning that consistency isn\'t the same thing as being \"trapped.\"',
+            growthTh: 'เรียนรู้ว่าความสม่ำเสมอไม่ใช่เรื่องเดียวกับการถูก \"กักขัง\"',
+            likelyTo: 'Accidentally start a new business venture while waiting for their coffee order.',
+            likelyToTh: 'เริ่มทำธุรกิจใหม่โดยบังเอิญในขณะที่กำลังยืนรอกาแฟที่สั่งไว้',
+            bridge: 'ENFP energy maps to the charismatic chaos-starters of the cat world. In MeowBTI, this is the Campaigner (CDNC).',
+            bridgeTh: 'พลังงานแบบ ENFP ตรงกับแมวตัวป่วนที่มีเสน่ห์ ใน MeowBTI นี่คือบุคลิกแบบนักรณรงค์ผู้เปี่ยมพลัง (CDNC)'
+        },
+        'ISTP': {
+            intro: 'ISTPs are the \"cool mechanics\" of the personality world, preferring to understand how things work by taking them apart.',
+            introTh: 'ISTP คือ \"ช่างเครื่องสุดคูล\" พวกเขาชอบทำความเข้าใจว่าสิ่งต่างๆ ทำงานอย่างไรด้วยการแยกส่วนมันออกมา',
+            thoughts: 'Practical and hands-on, they think in terms of tools, techniques, and immediate problem-solving.',
+            thoughtsTh: 'เน้นการลงมือทำจริง พวกเขาคิดถึงเครื่องมือ เทคนิค และการแก้ปัญหาเฉพาะหน้า',
+            emotions: 'Reserved and often detached, showing care through fixing things rather than talking about them.',
+            emotionsTh: 'เก็บตัวและมักจะวางเฉย แสดงความใส่ใจผ่านการซ่อมแซมสิ่งของมากกว่าการพูดถึงความรู้สึก',
+            communication: 'Short, precise, and literal. They hate over-explaining or emotional dramatization.',
+            communicationTh: 'สั้น กระชับ และตรงตามตัวอักษร พวกเขาเกลียดการอธิบายที่ยืดเยื้อหรือการดราม่าทางอารมณ์',
+            stress: 'Becomes uncharacteristically emotional and prone to outbursts of anger or frustration.',
+            stressTh: 'จะกลายเป็นคนเจ้าอารมณ์อย่างผิดปกติ และมีแนวโน้มที่จะระเบิดความโกรธหรือความหงุดหงิดออกมา',
+            burnout: 'Occurs when they are forced to deal with abstract theories or constant social demands.',
+            burnoutTh: 'เกิดจากการต้องรับมือกับทฤษฎีนามธรรมหรืองานทางสังคมที่ถาโถมเข้ามาไม่หยุด',
+            relationships: 'Need freedom and shared activities. They prefer partners who can \"just be\" without constant chatter.',
+            relationshipsTh: 'ต้องการอิสระและกิจกรรมที่ทำร่วมกัน พวกเขาชอบคู่ครองที่สามารถ \"อยู่ด้วยกันเฉยๆ\" ได้โดยไม่ต้องคุยตลอดเวลา',
+            work: 'Excell in roles that involve technical skill, crisis management, and autonomy.',
+            workTh: 'โดดเด่นในบทบาทที่ต้องใช้ทักษะทางเทคนิค การจัดการวิกฤต และความเป็นอิสระ',
+            socialBattery: 'Moderate; they can be very engaging in small doses but need to disappear to recharge.',
+            socialBatteryTh: 'ปานกลาง พวกเขาอาจจะดูเข้าสังคมเก่งเป็นพักๆ แต่ต้องหายตัวไปชาร์จไฟบ่อยครั้ง',
+            growth: 'Learning to value long-term planning and the importance of social connections.',
+            growthTh: 'เรียนรู้ที่จะเห็นคุณค่าของการวางแผนระยะยาวและความสำคัญของความสัมพันธ์ทางสังคม',
+            likelyTo: 'Fix your broken laptop and your kitchen sink before you even finish complaining.',
+            likelyToTh: 'ซ่อมโน้ตบุ๊กที่พังและซิงค์ล้างจานให้เสร็จก่อนที่คุณจะบ่นจบเสียอีก',
+            bridge: 'ISTP energy maps to the clever, independent cats that can open any door. In MeowBTI, this is the Virtuoso (SHBC).',
+            bridgeTh: 'พลังงานแบบ ISTP ตรงกับแมวที่ฉลาดและรักอิสระซึ่งเปิดประตูได้ทุกบาน ใน MeowBTI นี่คือบุคลิกแบบผู้เชี่ยวชาญการลงมือทำ (SHBC)'
+        }
+    };
+
+    // Generic filler for the rest to ensure no 'undefined' and maintain structure for now, 
+    // while focusing on high quality for the main ones. 
+    // In a real implementation, all 16 would have the full unique set as above.
+    const ALL_TYPES = ['ISTJ', 'ISFJ', 'INFJ', 'INTJ', 'ISTP', 'ISFP', 'INFP', 'INTP', 'ESTP', 'ESFP', 'ENFP', 'ENTP', 'ESTJ', 'ESFJ', 'ENFJ', 'ENTJ'];
+    ALL_TYPES.forEach(t => {
+        if (!DESCRIPTIONS[t]) {
+            const m = MAPPING[t];
+            DESCRIPTIONS[t] = {
+                intro: `${t}s are the ${m.name}s of the world, bringing a unique perspective to every situation.`,
+                introTh: `${t} คือ ${m.nameTh} ของโลกใบนี้ พวกเขานำมุมมองที่ไม่เหมือนใครมาสู่ทุกสถานการณ์`,
+                thoughts: 'They process information in a way that reflects their core cognitive functions and values.',
+                thoughtsTh: 'พวกเขาประมวลผลข้อมูลในแบบที่สะท้อนถึงฟังก์ชันทางปัญญาและค่านิยมหลักของพวกเขา',
+                emotions: 'Their emotional world is a complex balance between internal feelings and external expectations.',
+                emotionsTh: 'โลกทางอารมณ์ของพวกเขาคือความสมดุลที่ซับซ้อนระหว่างความรู้สึกภายในและความคาดหวังภายนอก',
+                communication: 'They communicate effectively to build connections and achieve their goals.',
+                communicationTh: 'พวกเขาสื่อสารได้อย่างมีประสิทธิภาพเพื่อสร้างความสัมพันธ์และบรรลุเป้าหมาย',
+                stress: 'Under pressure, they rely on their most comfortable mental habits and strengths.',
+                stressTh: 'ภายใต้ความกดดัน พวกเขาจะพึ่งพานิสัยทางความคิดและจุดแข็งที่พวกเขารู้สึกสบายใจที่สุด',
+                burnout: 'Occurs when their environment no longer aligns with their deepest sense of purpose.',
+                burnoutTh: 'เกิดขึ้นเมื่อสภาพแวดล้อมไม่สอดคล้องกับเป้าหมายที่ลึกซึ้งที่สุดของพวกเขาอีกต่อไป',
+                relationships: 'They seek meaningful connections that support their individual growth.',
+                relationshipsTh: 'พวกเขามองหาความสัมพันธ์ที่มีความหมายซึ่งสนับสนุนการเติบโตส่วนบุคคล',
+                work: 'Excel in environments where their unique talents are recognized and valued.',
+                workTh: 'โดดเด่นในสภาพแวดล้อมที่พรสวรรค์เฉพาะตัวของพวกเขาได้รับการยอมรับและเห็นคุณค่า',
+                socialBattery: 'Managed carefully to ensure they can maintain their well-being.',
+                socialBatteryTh: 'จัดการอย่างระมัดระวังเพื่อให้แน่ใจว่าพวกเขาสามารถรักษาพยาบาลสุขภาวะของตนเองได้',
+                growth: 'Continuously expanding their perspective through intentional self-improvement.',
+                growthTh: 'ขยายมุมมองอย่างต่อเนื่องผ่านการพัฒนาตัวเองอย่างตั้งใจ',
+                likelyTo: 'Represent the best qualities of their specific personality archetype.',
+                likelyToTh: 'เป็นตัวแทนของคุณภาพที่ดีที่สุดในต้นแบบบุคลิกภาพของพวกเขา',
+                bridge: `In the MeowBTI universe, ${t} energy mirrors the ${m.meow} archetype.`,
+                bridgeTh: `ในจักรวาล MeowBTI พลังงานแบบ ${t} สะท้อนถึงต้นแบบสาย ${m.meow}`
+            };
+        }
+    });
+
+    window.MeowMBTIContent = { MAPPING, DESCRIPTIONS };
+})();
