@@ -16,9 +16,19 @@
         const bestPair = compReport ? compReport.pairs.find(p => p.isBest) : null;
         const chaoticPair = compReport ? compReport.pairs.find(p => p.isChaotic) : null;
 
-        // 1. Menace Entry
+        // Use Daily Weather check-ins to make updates more dynamic
+        const checkins = profiles.map(p => {
+            return window.MeowDaily ? window.MeowDaily.getTodayCheckin(p.id) : null;
+        });
+
+        // 1. Menace Entry (Influenced by stress)
         if (menace) {
-            updates.push(t('dramaMenace', menace.name));
+            const menaceCheckin = window.MeowDaily ? window.MeowDaily.getTodayCheckin(menace.id) : null;
+            if (menaceCheckin && menaceCheckin.answers.stress === 'overloaded') {
+                updates.push(t('dramaMenaceOverloaded', menace.name));
+            } else {
+                updates.push(t('dramaMenace', menace.name));
+            }
         } else {
             updates.push(t('dramaJudging', profiles[0].name));
         }
@@ -34,8 +44,13 @@
         const logical = profiles.find(p => p.code.includes('L')) || profiles[1];
         updates.push(t('dramaAudit', logical.name));
 
-        // 4. Random Chaos Event
-        updates.push(t('dramaStability'));
+        // 4. Random Chaos Event (Influenced by collective energy)
+        const totalEnergy = checkins.reduce((acc, c) => acc + (c ? (c.answers.energy === 'high' ? 2 : 1) : 0), 0);
+        if (totalEnergy > profiles.length) {
+            updates.push(t('dramaHighEnergyChaos'));
+        } else {
+            updates.push(t('dramaStability'));
+        }
 
         // 5. Another Archetype Action
         const vocal = profiles.find(p => p.code.includes('R')) || profiles[0];

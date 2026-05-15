@@ -1,7 +1,7 @@
 // MeowBTI Daily Emotional Weather v1.
 (function () {
     const STORAGE_KEY = 'meowbti.dailyCheckins.v2';
-    const MAX_ITEMS = 30;
+    const MAX_ITEMS = 100; // Increased to support multiple profiles
     const VERSION = 2;
 
     const ORBS = {
@@ -76,18 +76,32 @@
 
     function saveCheckin(entry) {
         const store = readStore();
-        const items = [entry].concat(store.items.filter(i => i.date !== entry.date)).slice(0, MAX_ITEMS);
+        // Support multi-profile by filtering on date AND profile ID
+        const items = [entry].concat(store.items.filter(i => {
+            const sameDate = i.date === entry.date;
+            const sameProfile = (i.profile && entry.profile && i.profile.id === entry.profile.id) || (!i.profile && !entry.profile);
+            return !(sameDate && sameProfile);
+        })).slice(0, MAX_ITEMS);
         localStorage.setItem(STORAGE_KEY, JSON.stringify({ version: VERSION, items }));
     }
 
-    function getTodayCheckin() {
+    function getTodayCheckin(profileId = null) {
         const date = todayKey();
-        return readStore().items.find(i => i.date === date) || null;
+        return readStore().items.find(i => {
+            const sameDate = i.date === date;
+            const sameProfile = profileId ? (i.profile && i.profile.id === profileId) : !i.profile;
+            return sameDate && sameProfile;
+        }) || null;
     }
 
-    function getPrimaryProfile() {
+    function getTargetProfile() {
+        const params = new URLSearchParams(window.location.search);
+        const profileId = params.get('profileId');
         if (!window.MeowStore) return null;
         const family = window.MeowStore.getFamily();
+        if (profileId) {
+            return family.find(p => p.id === profileId) || null;
+        }
         return family.find(p => p.subject === 'human') || family[0] || null;
     }
 
@@ -197,13 +211,14 @@
     function renderQuestion(host, state) {
         const { t } = i18n();
         const q = QUESTIONS[state.step];
-        const profile = getPrimaryProfile();
+        // If profile was specified in state, use it, else get primary
+        const profile = state.profile || getTargetProfile();
         
         host.innerHTML = `
             <div class="daily-question-card v2">
                 <div class="daily-question-meta">
                     <span>${state.step + 1} / ${QUESTIONS.length}</span>
-                    ${profile ? `<span>${profile.code}</span>` : ''}
+                    ${profile ? `<span>${profile.name} (${profile.code})</span>` : ''}
                 </div>
                 <h2>${t(q.questionKey)}</h2>
                 <div class="daily-options stack">
@@ -225,6 +240,8 @@
                     const entry = { date: todayKey(), answers: state.answers, result: res, profile };
                     saveCheckin(entry);
                     renderResult(host, entry);
+                    // Refresh home widget or other components if needed
+                    window.dispatchEvent(new CustomEvent('meow:daily:updated'));
                 }
             };
         });
@@ -233,14 +250,16 @@
     function init() {
         const pageApp = document.getElementById('daily-app');
         if (pageApp) {
-            const today = getTodayCheckin();
+            const primary = getTargetProfile();
+            const today = getTodayCheckin(primary ? primary.id : null);
             if (today) renderResult(pageApp, today);
-            else renderQuestion(pageApp, { step: 0, answers: {} });
+            else renderQuestion(pageApp, { step: 0, answers: {}, profile: primary });
         }
 
         const homeWidget = document.getElementById('daily-weather-home');
         if (homeWidget) {
-            const today = getTodayCheckin();
+            const primary = getTargetProfile();
+            const today = getTodayCheckin(primary ? primary.id : null);
             const { t, withLang } = i18n();
             if (today) {
                 homeWidget.innerHTML = `
@@ -269,9 +288,25 @@
 
         const mbtiResultAnchor = document.getElementById('mbti-daily-weather-anchor');
         if (mbtiResultAnchor) {
-            renderQuestion(mbtiResultAnchor, { step: 0, answers: {} });
+            // Context from URL
+            const params = new URLSearchParams(window.location.search);
+            const type = (params.get('type') || '').toUpperCase();
+            const meow = (params.get('meow') || '').toUpperCase();
+            const subject = params.get('subject') || 'cat';
+            const name = params.get('name') || (subject === 'human' ? t('defaultHumanName') : t('defaultCatName'));
+            
+            const profileContext = { code: type || meow, name: name, subject: subject, id: 'temp' };
+            const today = getTodayCheckin('temp');
+            if (today) renderResult(mbtiResultAnchor, today);
+            else renderQuestion(mbtiResultAnchor, { step: 0, answers: {}, profile: profileContext });
         }
     }
+
+    window.MeowDaily = {
+        getTodayCheckin: getTodayCheckin,
+        buildResult: buildResult,
+        ORBS: ORBS
+    };
 
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
     else init();

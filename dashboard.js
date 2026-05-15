@@ -52,9 +52,21 @@
             const archetype = window.MeowArchetypes ? window.MeowArchetypes.get(p.code) : null;
             const imgPath = archetype ? `assets/personalities/${archetype.code.toLowerCase()}-${archetype.slug}.webp` : '';
             
-            // Get daily energy for card preview
+            // Get daily energy or actual weather
             let dailyPreview = '';
-            if (archetype && archetype.dailyObservations) {
+            const todayCheckin = window.MeowDaily ? window.MeowDaily.getTodayCheckin(p.id) : null;
+            
+            if (todayCheckin) {
+                const r = todayCheckin.result;
+                dailyPreview = `
+                    <div class="fc-weather-preview">
+                        <span class="fc-weather-orb" style="--orb-a:${r.colorA};--orb-b:${r.colorB}">${r.emoji}</span>
+                        <div class="fc-weather-info">
+                            <div class="fc-weather-label">${r.label}</div>
+                            <div class="fc-weather-desc">${r.forecast}</div>
+                        </div>
+                    </div>`;
+            } else if (archetype && archetype.dailyObservations) {
                 const daily = archetype.dailyObservations;
                 const idx = getDailyHash(dateStr + archetype.code) % daily.length;
                 const lang = (window.MeowI18n && window.MeowI18n.getLang()) || 'en';
@@ -70,21 +82,26 @@
             card.innerHTML = `
                 <div class="family-card">
                     <button class="family-card-remove" aria-label="Remove from family">✕</button>
-                    <a href="${resultUrl}" style="text-decoration:none; color:inherit; display:flex; flex-direction:column; height:100%;">
-                        <div class="fc-portrait">
-                            ${imgPath ? `<img src="${imgPath}" class="fc-image" alt="${p.archetypeName}">` : ''}
-                            <span class="fc-type-tag">${p.subject}</span>
-                        </div>
-                        <div class="fc-meta">
-                            <div class="fc-name">${p.name}</div>
-                            <div class="fc-archetype">${p.archetypeName}</div>
+                    <div style="text-decoration:none; color:inherit; display:flex; flex-direction:column; height:100%;">
+                        <a href="${resultUrl}" class="fc-top-link">
+                            <div class="fc-portrait">
+                                ${imgPath ? `<img src="${imgPath}" class="fc-image" alt="${p.archetypeName}">` : ''}
+                                <span class="fc-type-tag">${p.subject}</span>
+                            </div>
+                            <div class="fc-meta">
+                                <div class="fc-name">${p.name}</div>
+                                <div class="fc-archetype">${p.archetypeName}</div>
+                            </div>
+                        </a>
+                        <div class="fc-content">
                             ${dailyPreview}
+                            ${!todayCheckin ? `<button class="fc-checkin-btn" data-id="${p.id}">${t('homeDailyWeatherCta')}</button>` : ''}
                         </div>
                         <div class="fc-footer">
                             <span class="fc-code">${p.code}</span>
                             <span class="fc-date">${formatDate(p.savedAt)}</span>
                         </div>
-                    </a>
+                    </div>
                 </div>
             `;
 
@@ -93,6 +110,16 @@
                 e.stopPropagation();
                 removeProfile(p.id, p.name);
             };
+
+            const checkinBtn = card.querySelector('.fc-checkin-btn');
+            if (checkinBtn) {
+                checkinBtn.onclick = () => {
+                    // Trigger daily check-in for this specific member
+                    // We can either redirect to daily.html?id=... or open a modal.
+                    // For now, let's redirect to keep it simple and static.
+                    window.location.href = withLang(`daily.html?profileId=${p.id}`);
+                };
+            }
 
             grid.appendChild(card);
         });

@@ -2427,3 +2427,68 @@ a { color: inherit; }
   .daily-result-top { flex-direction: column; text-align: center; gap: 20px; }
   .daily-result-card.v2 { padding: 32px 20px; }
 }
+
+/* ─── Family Weather Preview ────────────────────────── */
+.fc-weather-preview {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--bg);
+  padding: 12px;
+  border-radius: 12px;
+  margin-top: 12px;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+.fc-weather-orb {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--orb-a), var(--orb-b));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.fc-weather-info {
+  flex: 1;
+  min-width: 0;
+}
+.fc-weather-label {
+  font-size: 0.85rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.fc-weather-desc {
+  font-size: 0.75rem;
+  opacity: 0.6;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.fc-checkin-btn {
+  width: 100%;
+  margin-top: 12px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1.5px solid var(--ink);
+  background: #fff;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.fc-checkin-btn:hover { background: var(--bg); }
+
+.fc-top-link {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+}
