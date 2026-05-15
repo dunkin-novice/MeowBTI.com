@@ -445,6 +445,7 @@
         dailyCopyCta:      { en: "Copy text",                  th: "คัดลอกข้อความ" },
         dailyCopied:       { en: "copied",                     th: "คัดลอกแล้ว" },
         dailySaved:        { en: "Saved for today.",           th: "บันทึกของวันนี้แล้ว" },
+        dailyStatus:       { en: "Today's check-in complete.", th: "เช็กอินวันนี้เรียบร้อย" },
         dailyContextLine:  { en: code => `Reading through your ${code} human cat-energy.`,
                               th: code => `อ่านผ่านพลังงานร่างมนุษย์สาย ${code} ของคุณ` },
         dailyNoContextLine: { en: "No profile needed. Just check the weather inside.",
