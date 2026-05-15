@@ -411,6 +411,26 @@
         fullBreakdown:     { en: "The full breakdown",        th: "รายละเอียดเชิงลึก" },
         keyTraits:         { en: "Key traits in action",      th: "พฤติกรรมเด่น" },
 
+        // ─── MBTI Test (mbti/) ──────────────────────────────
+        mbtiHomeH1:        { en: "Free MBTI-style Personality Test", th: "แบบทดสอบบุคลิกภาพ MBTI ฟรี" },
+        mbtiHomeSub:       { en: "Find your 4-letter code and see your MeowBTI cousin. No email required.", 
+                              th: "ค้นหารหัส 4 ตัวของคุณ พร้อมดูแมวที่เป็นคู่เหมือนทางจิตวิญญาณ ไม่ต้องใช้อีเมล" },
+        mbtiHomeCta:       { en: "Start MBTI Test",           th: "เริ่มทำแบบทดสอบ MBTI" },
+        mbtiTestH1:        { en: "MBTI-style Analysis",       th: "วิเคราะห์บุคลิกภาพ MBTI" },
+        mbtiResultH1:      { en: "Your MBTI-style Result",    th: "ผลลัพธ์ MBTI ของคุณ" },
+        mbtiResultCousin:  { en: "Closest MeowBTI energy cousin:", th: "คู่เหมือนทางพลังงาน MeowBTI:" },
+        mbtiTakeHumanQuiz: { en: "Want the emotional version?", th: "อยากได้เวอร์ชันทางอารมณ์ไหม?" },
+        mbtiTakeHumanCta:  { en: "Take Human Cat-Energy Quiz →", th: "ทำแบบทดสอบร่างมนุษย์ →" },
+        mbtiCheckWeather:  { en: "Check today's Emotional Weather", th: "เช็กสภาพอากาศในใจวันนี้" },
+        mbtiBrowseArchetypes: { en: "Browse all Human Archetypes", th: "ดูร่างมนุษย์ทั้ง 16 แบบ" },
+        mbtiAgree:         { en: "Agree",                    th: "ใช่เลย" },
+        mbtiDisagree:      { en: "Disagree",                 th: "ไม่ใช่" },
+        mbtiMoreLikeMe:    { en: "More like me",             th: "เป็นเรามากกว่า" },
+        mbtiLessLikeMe:    { en: "Less like me",             th: "ไม่ค่อยเหมือนเรา" },
+        mbtiTeaserH2:      { en: "Free MBTI Personality Test", th: "แบบทดสอบ MBTI ฟรี" },
+        mbtiTeaserP:       { en: "Find your 4-letter type and meet your cat-energy cousin.", th: "ค้นหารหัสบุคลิกภาพ 4 ตัว พร้อมเจอแมวสายพันธุ์ที่ตรงกับคุณ" },
+        mbtiTeaserCta:     { en: "Take the MBTI Test →",      th: "ทำแบบทดสอบ MBTI →" },
+
         // ─── Emotional OS daily check-in (daily.html + daily.js) ──
         dailyKicker:       { en: "Daily ritual",               th: "พิธีเช็กอินประจำวัน" },
         dailyH1:           { en: "Daily Emotional Weather",    th: "สภาพอากาศในใจประจำวัน" },

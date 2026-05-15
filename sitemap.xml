@@ -369,4 +369,10 @@
       <image:title>The Peaceful Dreamer — MeowBTI Human Identity</image:title>
     </image:image>
   </url>
+  <url>
+    <loc>https://meowbti.com/mbti/</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

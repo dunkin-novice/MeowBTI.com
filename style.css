@@ -2277,3 +2277,72 @@ a { color: inherit; }
 
 /* ─── legacy classes still referenced (kept slim) ─────────── */
 .testimonial-carousel, .testimonial-track, .testimonial-card { /* legacy carousel — unused after redesign */ }
+
+/* ─── MBTI Test Styles ─────────────────────────────────────── */
+.mbti-test-container {
+  max-width: 600px;
+  margin: 40px auto;
+}
+.mbti-card {
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 32px;
+  padding: 48px 32px;
+  box-shadow: 12px 12px 0 rgba(0,0,0,0.05);
+  text-align: center;
+  position: relative;
+}
+.mbti-progress {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  opacity: 0.5;
+  margin-bottom: 24px;
+}
+.mbti-question-text {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  line-height: 1.2;
+  margin-bottom: 40px;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mbti-actions {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.mbti-btn {
+  flex: 1;
+  padding: 20px;
+  border-radius: 20px;
+  font-size: 1.1rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 0.1s, filter 0.1s;
+  border: 2.5px solid var(--ink);
+}
+.mbti-btn:active { transform: scale(0.98); }
+.mbti-btn.agree { background: #3DA17A; color: #fff; }
+.mbti-btn.disagree { background: #FF5B3B; color: #fff; }
+.mbti-footer {
+  border-top: 1px solid rgba(0,0,0,0.1);
+  padding-top: 24px;
+}
+.mbti-btn-back {
+  background: none;
+  border: none;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  opacity: 0.5;
+  cursor: pointer;
+  padding: 8px 16px;
+}
+.mbti-btn-back:hover:not(:disabled) { opacity: 1; text-decoration: underline; }
+.mbti-btn-back:disabled { cursor: default; }
+
+@media (max-width: 500px) {
+  .mbti-actions { flex-direction: column; }
+  .mbti-card { padding: 32px 20px; }
+}

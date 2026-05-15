@@ -331,7 +331,7 @@ function classify(answers) {
         (tally.C >= tally.S ? 'C' : 'S') +
         (tally.H >= tally.D ? 'H' : 'D') +
         (tally.B >= tally.N ? 'B' : 'N') +
-        (tally.R >= tally.F ? 'R' : 'F');
+        (tally.R >= tally.F ? 'R' : 'C');
     return { code, tally };
 }
 

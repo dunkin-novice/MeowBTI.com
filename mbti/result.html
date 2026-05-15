@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your MBTI-style Result | MeowBTI</title>
+    <meta name="robots" content="noindex, follow">
+    <meta name="theme-color" content="#FFF4EC">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+    <link rel="stylesheet" href="../style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945" crossorigin="anonymous"></script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2WNZ4HBJ87"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-2WNZ4HBJ87');
+    </script>
+</head>
+<body>
+
+    <header class="main-header" id="main-header"></header>
+
+    <main>
+        <section class="result-section" style="padding: 60px 0;">
+            <div class="container" style="max-width: 800px;">
+                <div id="mbti-result-content" class="mbti-result-content">
+                    <p style="text-align:center; padding: 100px 0; opacity: 0.6;">Calculating your code...</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer" id="main-footer"></footer>
+
+    <script src="../data/i18n.js"></script>
+    <script src="../data/archetypes.js"></script>
+    <script src="../script.js"></script>
+    <script>
+    (function() {
+        const { getLang, t, withLang } = window.MeowI18n;
+        const params = new URLSearchParams(window.location.search);
+        const mbti = params.get('type');
+        const meow = params.get('meow');
+        const tString = params.get('t');
+
+        const host = document.getElementById('mbti-result-content');
+        if (!host || !mbti || !meow) {
+            if (host) host.innerHTML = `<p style="text-align:center;">Invalid result. <a href="index.html">Try again</a>.</p>`;
+            return;
+        }
+
+        const archetype = window.MeowArchetypes.get(meow);
+        const lang = getLang();
+        const archName = lang === 'th' ? archetype.nameTh : archetype.name;
+
+        function parseTally(ts) {
+            const tally = { C:0, S:0, H:0, D:0, B:0, N:0, R:0, F:0 };
+            const re = /([CSHDBNRF])(\d+)/g;
+            let m;
+            while ((m = re.exec(ts)) !== null) {
+                tally[m[1]] = parseInt(m[2], 10) || 0;
+            }
+            return tally;
+        }
+        const tally = parseTally(tString || '');
+
+        function spectrumRows(tally, color) {
+            const axes = [
+                { left:t('solitary'),  right:t('commanding'), leftKey:"S", rightKey:"C" },
+                { left:t('dreamer'),   right:t('hunter'),     leftKey:"D", rightKey:"H" },
+                { left:t('nurturing'), right:t('bossy'),      leftKey:"N", rightKey:"B" },
+                { left:t('casual'),    right:t('regal'),      leftKey:"F", rightKey:"R" },
+            ];
+            return axes.map(a => {
+                const l = tally[a.leftKey] || 0;
+                const r = tally[a.rightKey] || 0;
+                const sum = l + r || 1;
+                const rightPct = Math.round((r / sum) * 100);
+                return `
+                    <div class="spec-row">
+                        <span class="spec-label left">${a.left}</span>
+                        <div class="spec-bar">
+                            <div class="spec-fill" style="width:${rightPct}%;background:${color}"></div>
+                            <div class="spec-marker" style="left:calc(${rightPct}% - 8px);background:#1F1410"></div>
+                        </div>
+                        <span class="spec-label right">${a.right}</span>
+                    </div>`;
+            }).join('');
+        }
+
+        host.innerHTML = `
+            <div style="text-align:center; margin-bottom: 48px;">
+                <h1 data-i18n="mbtiResultH1" style="font-family: var(--font-display); font-size: 3rem; margin-bottom: 16px;">${t('mbtiResultH1')}</h1>
+                <div style="display:inline-block; background: var(--ink); color: #fff; padding: 12px 24px; border-radius: 40px; font-weight: 900; font-size: 2.5rem; margin-bottom: 24px; font-family: var(--font-mono);">
+                    ${mbti}
+                </div>
+            </div>
+
+            <div class="mbti-spectrum-box" style="background:#fff; border: 2px solid var(--ink); border-radius: 24px; padding: 32px; margin-bottom: 48px; box-shadow: 8px 8px 0 var(--ink);">
+                <h2 style="font-size: 1.2rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.6; margin-bottom: 24px; text-align: center;">Your Axis Percentages</h2>
+                <div class="spectrum">
+                    ${spectrumRows(tally, archetype.color)}
+                </div>
+            </div>
+
+            <div class="mbti-cousin-box" style="background: ${archetype.bg}; border: 2px solid var(--ink); border-radius: 24px; padding: 40px; text-align: center; margin-bottom: 48px; position: relative; overflow: hidden;">
+                <div style="position:absolute; top: -10px; right: -10px; font-size: 10rem; opacity: 0.1;">${archetype.emoji}</div>
+                <h3 data-i18n="mbtiResultCousin" style="font-size: 1.1rem; opacity: 0.7; margin-bottom: 12px; position:relative; z-index:1;">${t('mbtiResultCousin')}</h3>
+                <h2 style="font-family: var(--font-display); font-size: 2.5rem; margin-bottom: 16px; position:relative; z-index:1;">${archName} (${archetype.code})</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 32px; position:relative; z-index:1;">"${lang === 'th' ? archetype.taglineTh : archetype.tagline}"</p>
+                <a href="${withLang('../human-types/' + archetype.code + '.html')}" class="big-btn" style="background: var(--ink); color: #fff; position:relative; z-index:1;">Read full personality traits →</a>
+            </div>
+
+            <div class="mbti-next-steps" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+                <div class="next-card" style="background:#fff; border: 2px solid var(--ink); border-radius: 20px; padding: 24px; text-align: center;">
+                    <h4 data-i18n="mbtiTakeHumanQuiz">${t('mbtiTakeHumanQuiz')}</h4>
+                    <p style="margin-bottom: 20px; font-size: 0.9rem; opacity: 0.8;">Our emotional energy test is deeper and focuses on your cat-like behaviors.</p>
+                    <a href="${withLang('../human-quiz.html')}" class="big-btn accent" data-i18n="mbtiTakeHumanCta">${t('mbtiTakeHumanCta')}</a>
+                </div>
+                <div class="next-card" style="background:#fff; border: 2px solid var(--ink); border-radius: 20px; padding: 24px; text-align: center;">
+                    <h4>Daily Ritual</h4>
+                    <p style="margin-bottom: 20px; font-size: 0.9rem; opacity: 0.8;">Check your emotional weather and see how your mood shifts today.</p>
+                    <a href="${withLang('../daily.html')}" class="big-btn ghost" data-i18n="mbtiCheckWeather">${t('mbtiCheckWeather')}</a>
+                </div>
+            </div>
+            
+            <div style="text-align:center; margin-top: 48px;">
+                <a href="${withLang('../human-types.html')}" style="color: var(--ink); text-decoration: underline; font-weight: 700;" data-i18n="mbtiBrowseArchetypes">${t('mbtiBrowseArchetypes')}</a>
+            </div>
+        `;
+    })();
+    </script>
+</body>
+</html>
