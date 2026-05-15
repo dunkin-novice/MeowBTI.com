@@ -22,6 +22,19 @@
         if (!store || typeof store !== 'object') return { version: SCHEMA_VERSION, profiles: [] };
         if (!Array.isArray(store.profiles)) store.profiles = [];
         store.version = store.version || SCHEMA_VERSION;
+        
+        // Migration: Ensure all profiles have an ID
+        let migrated = false;
+        store.profiles.forEach(p => {
+            if (!p.id) {
+                p.id = generateProfileId();
+                migrated = true;
+            }
+        });
+        if (migrated) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
+        }
+
         return store;
     }
 
