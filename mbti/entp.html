@@ -43,10 +43,10 @@
         const type = 'ENTP';
         
         const content = window.MeowMBTIContent;
-        if (!content || !content.DESCRIPTIONSentp) return;
+        if (!content || !content.DESCRIPTIONS[type]) return;
 
-        const data = content.DESCRIPTIONSentp;
-        const mapping = content.MAPPINGentp;
+        const data = content.DESCRIPTIONS[type];
+        const mapping = content.MAPPING[type];
         const archetype = window.MeowArchetypes.get(mapping.meow);
 
         const field = (key) => {

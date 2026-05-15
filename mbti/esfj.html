@@ -43,10 +43,10 @@
         const type = 'ESFJ';
         
         const content = window.MeowMBTIContent;
-        if (!content || !content.DESCRIPTIONSesfj) return;
+        if (!content || !content.DESCRIPTIONS[type]) return;
 
-        const data = content.DESCRIPTIONSesfj;
-        const mapping = content.MAPPINGesfj;
+        const data = content.DESCRIPTIONS[type];
+        const mapping = content.MAPPING[type];
         const archetype = window.MeowArchetypes.get(mapping.meow);
 
         const field = (key) => {

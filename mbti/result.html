@@ -99,7 +99,9 @@
                     ${mbti}
                 </div>
                 <div style="margin-bottom: 24px;">
-                    <a href="${mbti.toLowerCase()}.html" style="color: var(--ink); text-decoration: underline; font-weight: 600;">What does ${mbti} mean? Read full profile →</a>
+                    <a href="${withLang(mbti.toLowerCase() + '.html')}" style="color: var(--ink); text-decoration: underline; font-weight: 600;">
+                        ${lang === 'th' ? 'รหัส ' + mbti + ' หมายถึงอะไร? อ่านรายละเอียดทั้งหมด →' : 'What does ' + mbti + ' mean? Read full profile →'}
+                    </a>
                 </div>
             </div>
 

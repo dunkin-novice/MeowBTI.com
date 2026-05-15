@@ -43,10 +43,10 @@
         const type = 'ISTP';
         
         const content = window.MeowMBTIContent;
-        if (!content || !content.DESCRIPTIONSistp) return;
+        if (!content || !content.DESCRIPTIONS[type]) return;
 
-        const data = content.DESCRIPTIONSistp;
-        const mapping = content.MAPPINGistp;
+        const data = content.DESCRIPTIONS[type];
+        const mapping = content.MAPPING[type];
         const archetype = window.MeowArchetypes.get(mapping.meow);
 
         const field = (key) => {

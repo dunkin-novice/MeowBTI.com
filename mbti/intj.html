@@ -43,10 +43,10 @@
         const type = 'INTJ';
         
         const content = window.MeowMBTIContent;
-        if (!content || !content.DESCRIPTIONSintj) return;
+        if (!content || !content.DESCRIPTIONS[type]) return;
 
-        const data = content.DESCRIPTIONSintj;
-        const mapping = content.MAPPINGintj;
+        const data = content.DESCRIPTIONS[type];
+        const mapping = content.MAPPING[type];
         const archetype = window.MeowArchetypes.get(mapping.meow);
 
         const field = (key) => {

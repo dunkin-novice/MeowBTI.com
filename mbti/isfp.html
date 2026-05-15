@@ -43,10 +43,10 @@
         const type = 'ISFP';
         
         const content = window.MeowMBTIContent;
-        if (!content || !content.DESCRIPTIONSisfp) return;
+        if (!content || !content.DESCRIPTIONS[type]) return;
 
-        const data = content.DESCRIPTIONSisfp;
-        const mapping = content.MAPPINGisfp;
+        const data = content.DESCRIPTIONS[type];
+        const mapping = content.MAPPING[type];
         const archetype = window.MeowArchetypes.get(mapping.meow);
 
         const field = (key) => {
