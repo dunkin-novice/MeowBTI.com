@@ -98,22 +98,20 @@
                     <span style="font-size:28px">🐟</span>
                 </div>
                 <div class="sticker sticker-4" style="background:#7A5BFF;color:#fff" aria-hidden="true">
-                    <span style="font-size:11px;font-weight:800">~90s</span>
+                    <span style="font-size:30px">😼</span>
                 </div>
 
-                <h1 data-i18n="heroH1" data-i18n-html>What kind of <em>menace</em> is your cat?</h1>
-                <p class="subtitle" data-i18n="heroSubtitle">Quick quiz or Deep analysis. Receive verdict.</p>
-                <div class="hero-actions">
-                    <a href="quiz.html" class="cta-button accent large-button" data-i18n-href><span data-i18n="heroCta">Start the test</span> <span aria-hidden="true">→</span></a>
-                    <a href="human-quiz.html" class="cta-button ghost large-button" data-i18n-href style="margin-left: 12px; border: 2.5px solid var(--ink); color: var(--ink); background: var(--paper);"><span data-i18n="quizModeOwner">The Human Quiz</span></a>
-                </div>
-
-                <div class="hero-meta">
-                    <span data-i18n="heroMetaNoLogin">No login</span>
-                    <span class="dot"></span>
-                    <span data-i18n="heroMetaNoEmail">No email</span>
-                    <span class="dot"></span>
-                    <span data-i18n="heroMetaJustChaos">Just chaos</span>
+                <div class="hero-content">
+                    <div class="hero-meta">
+                        <span class="hero-badge" data-i18n="heroMetaNoLogin">No login</span>
+                        <span class="hero-badge" data-i18n="heroMetaNoEmail">No email</span>
+                        <span class="hero-badge" data-i18n="heroMetaJustChaos">Just chaos</span>
+                    </div>
+                    <h1 data-i18n="heroH1" data-i18n-html>What kind of <em>menace</em> is your cat?</h1>
+                    <p data-i18n="heroSubtitle">Quick quiz or Deep analysis. Receive verdict.</p>
+                    <div class="hero-actions">
+                        <a href="quiz.html" class="big-btn accent" data-i18n-href data-i18n="heroCta">Start the test</a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -177,96 +175,65 @@
             <div class="container">
                 <div class="family-header">
                     <h2 data-i18n="familyDashboardTitle">My Cat Family</h2>
-                    <p class="family-subtitle" data-i18n="familyDashboardSub">Meet the inhabitants of your chaotic household.</p>
+                    <p data-i18n="familyDashboardSub">Meet the inhabitants of your chaotic household.</p>
                 </div>
-
-                <div id="family-grid" class="family-grid">
-                    <!-- Cards injected by dashboard.js -->
-                </div>
-
-                <div id="family-drama-feed" class="drama-feed-section" style="display: none;">
-                    <!-- Injected by drama-feed.js -->
-                </div>
-
-                <div class="family-footer-actions">
-                    <a href="quiz.html" class="cta-button accent" data-i18n-href>
-                        <span>+</span> <span data-i18n="addAnotherCat">Add Another Cat</span>
-                    </a>
-                    <a href="human-quiz.html" class="cta-button ghost" data-i18n-href>
-                        <span>+</span> <span data-i18n="addAnotherHuman">Add Another Human</span>
-                    </a>
+                <div id="family-grid" class="family-grid"></div>
+                <div class="family-footer">
+                    <div class="family-footer-actions">
+                        <a href="quiz.html" class="big-btn ghost" data-i18n-href data-i18n="addAnotherCat">+ Add another cat</a>
+                        <a href="human-quiz.html" class="big-btn ghost" data-i18n-href data-i18n="addAnotherHuman">+ Add another human</a>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Tape marquee -->
-        <section class="tape-section" aria-hidden="true">
-            <div class="tape-track">
-                <span class="tape-item">the grand general 👑</span>
-                <span class="tape-item">the party starter 🎉</span>
-                <span class="tape-item">the silent strategist 🗝️</span>
-                <span class="tape-item">the peaceful dreamer ☁️</span>
-                <span class="tape-item">the wild debater 🧠</span>
-                <span class="tape-item">the master tinkerer 🔧</span>
-                <span class="tape-item">the affectionate warden 🫶</span>
-                <span class="tape-item">the free spirit 🌿</span>
-                <span class="tape-item">the grand general 👑</span>
-                <span class="tape-item">the party starter 🎉</span>
-                <span class="tape-item">the silent strategist 🗝️</span>
-                <span class="tape-item">the peaceful dreamer ☁️</span>
-            </div>
-        </section>
-
-        <!-- Quote cards -->
-        <section id="testimonials" class="testimonials-section">
+        <!-- Proof / Social -->
+        <section class="testimonials-section">
             <div class="container">
                 <h2 data-i18n="testimonialsH">people are saying</h2>
-                <div class="quotes-grid">
-                    <div class="qcard" style="background:#FFE3D6;transform:rotate(-1.5deg)">
-                        <p>"this is literally my cat I'm crying"</p>
-                        <span>— @minky.cat · 14k likes</span>
+                <div class="testimonials-grid">
+                    <div class="testi-card">
+                        <p>“I thought my cat was just rude. Turns out he's a <strong>Grand General (CHBR)</strong>. Now I just follow his orders.”</p>
+                        <span>— @tabby_mom</span>
                     </div>
-                    <div class="qcard" style="background:#FFEFC2;transform:rotate(1.2deg)">
-                        <p>"sent it to my group chat. now we're all doing it for our cats. and our exes."</p>
-                        <span>— @lasagna_lord</span>
-                    </div>
-                    <div class="qcard" style="background:#D2EDE0;transform:rotate(-0.8deg)">
-                        <p>"got 'The Grand General'. accurate. she just knocked over a glass."</p>
-                        <span>— @bigbiscuit</span>
+                    <div class="testi-card">
+                        <p>“My human archetype is <strong>Silent Strategist (SHBR)</strong>. It explains why I prefer staying on high shelves (my balcony).”</p>
+                        <span>— @human_shbr</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Affiliate Section -->
+        <!-- Affiliate Picks -->
         <section id="affiliate-products" class="affiliate-section">
             <div class="container">
                 <h2 data-i18n="affiliateH">our favorite cat picks</h2>
-                <p class="affiliate-sub" data-i18n="affiliateSub">Tested by judgmental cats. Approved by us. (Affiliate links — we may earn a small commission.)</p>
+                <p class="affiliate-sub" data-i18n="affiliateSub">Tested by judgmental cats. Approved by us.</p>
+                
                 <div class="product-grid">
-                    <a href="#" rel="sponsored noopener" class="product-card" style="--product-bg:#FFE3D6">
-                        <span class="product-emoji" aria-hidden="true">🛏️</span>
+                    <div class="product-card">
+                        <div class="product-icon">🛏️</div>
                         <h3 data-i18n="bedTitle">Cat Cozy Bed Deluxe</h3>
-                        <p class="product-blurb" data-i18n="bedBlurb">For cats who require a "spot" with thermal regulation.</p>
-                        <span class="product-cta" data-i18n="bedCta">Shop the bed →</span>
-                    </a>
-                    <a href="#" rel="sponsored noopener" class="product-card" style="--product-bg:#FFEFC2">
-                        <span class="product-emoji" aria-hidden="true">🪶</span>
-                        <h3 data-i18n="wandTitle">Interactive Feather Wand</h3>
-                        <p class="product-blurb" data-i18n="wandBlurb">Engineered for the "I have to murder this" personality types.</p>
-                        <span class="product-cta" data-i18n="wandCta">Shop the wand →</span>
-                    </a>
-                    <a href="#" rel="sponsored noopener" class="product-card" style="--product-bg:#D2EDE0">
-                        <span class="product-emoji" aria-hidden="true">🌿</span>
-                        <h3 data-i18n="catnipTitle">Gourmet Catnip Spray</h3>
-                        <p class="product-blurb" data-i18n="catnipBlurb">For when the vibes simply must be elevated.</p>
-                        <span class="product-cta" data-i18n="catnipCta">Shop the spray →</span>
-                    </a>
+                        <p data-i18n="bedBlurb">For cats who require a "spot" with thermal regulation.</p>
+                        <a href="#" class="product-cta" data-i18n="bedCta">Shop the bed →</a>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-icon">🧶</div>
+                        <h3 data-i18n="wandTitle">Feather Wand</h3>
+                        <p data-i18n="wandBlurb">Engineered for the "I have to murder this" personality types.</p>
+                        <a href="#" class="product-cta" data-i18n="wandCta">Shop the wand →</a>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-icon">🍃</div>
+                        <h3 data-i18n="catnipTitle">Catnip Spray</h3>
+                        <p data-i18n="catnipBlurb">For when the vibes simply must be elevated.</p>
+                        <a href="#" class="product-cta" data-i18n="catnipCta">Shop the spray →</a>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- CTA banner -->
+        <!-- CTA Banner -->
         <section id="cta-banner" class="cta-banner-section">
             <div class="container">
                 <h2 data-i18n="ctaBannerH">ready to uncover your cat's true personality?</h2>
@@ -280,12 +247,11 @@
     <script src="data/i18n.js"></script>
     <script src="data/archetypes.js"></script>
     <script src="data/store.js"></script>
+    <script src="data/daily-weather.js"></script>
     <script src="script.js"></script>
-    <script src="compatibility.js"></script>
-    <script src="family-share.js"></script>
-    <script src="drama-feed.js"></script>
-    <script src="home-daily.js"></script>
     <script src="daily.js"></script>
+    <script src="home-daily.js"></script>
     <script src="dashboard.js"></script>
+    <script src="drama-feed.js"></script>
 </body>
 </html>

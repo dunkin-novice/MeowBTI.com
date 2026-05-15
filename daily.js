@@ -1,86 +1,18 @@
-// MeowBTI Emotional Weather MVP. Static, localStorage-only daily check-in.
-
+// MeowBTI Daily Emotional Weather v1.
 (function () {
-    const STORAGE_KEY = 'meowbti.dailyCheckins.v1';
+    const STORAGE_KEY = 'meowbti.dailyCheckins.v2';
     const MAX_ITEMS = 30;
-    const VERSION = 1;
+    const VERSION = 2;
 
     const ORBS = {
-        'soft-static': {
-            labelKey: 'orbSoftStatic',
-            weather: 'soft-rain',
-            colors: ['#D8E2FF', '#9B59B6'],
-            motion: 'slow',
-            texture: 'mist',
-            emoji: '☁️'
-        },
-        'velvet-thunder': {
-            labelKey: 'orbVelvetThunder',
-            weather: 'static-pressure',
-            colors: ['#7A5BFF', '#1F1410'],
-            motion: 'shimmer',
-            texture: 'velvet',
-            emoji: '🌩️'
-        },
-        'overcaffeinated-moon': {
-            labelKey: 'orbOvercaffeinatedMoon',
-            weather: 'emotional-humidity',
-            colors: ['#FFEFC2', '#7A5BFF'],
-            motion: 'jitter',
-            texture: 'orbit',
-            emoji: '🌙'
-        },
-        'tiny-storm': {
-            labelKey: 'orbTinyStorm',
-            weather: 'tiny-thunder',
-            colors: ['#3B6FFF', '#FF5B3B'],
-            motion: 'ripple',
-            texture: 'storm',
-            emoji: '⛈️'
-        },
-        'closed-curtains': {
-            labelKey: 'orbClosedCurtains',
-            weather: 'foggy-but-safe',
-            colors: ['#2E7D7D', '#D2EDE0'],
-            motion: 'still',
-            texture: 'curtain',
-            emoji: '🪟'
-        },
-        'chosen-people-only': {
-            labelKey: 'orbChosenPeopleOnly',
-            weather: 'quiet-sunbeam',
-            colors: ['#D94E8C', '#FFE3D6'],
-            motion: 'glow',
-            texture: 'warm',
-            emoji: '🫶'
-        },
-        'clear-window': {
-            labelKey: 'orbClearWindow',
-            weather: 'clear-ish-skies',
-            colors: ['#5BA8D9', '#FFF4EC'],
-            motion: 'sweep',
-            texture: 'clear',
-            emoji: '🫧'
-        },
-        'sparkle-warning': {
-            labelKey: 'orbSparkleWarning',
-            weather: 'bright-chaos',
-            colors: ['#FFB000', '#FF6B6B'],
-            motion: 'sparkle',
-            texture: 'bright',
-            emoji: '✨'
-        }
-    };
-
-    const WEATHER_KEYS = {
-        'foggy-but-safe': ['weatherFoggySafe', 'weatherLineFoggySafe', 'weatherNeedFoggySafe', 'weatherPermissionFoggySafe'],
-        'soft-rain': ['weatherSoftRain', 'weatherLineSoftRain', 'weatherNeedSoftRain', 'weatherPermissionSoftRain'],
-        'emotional-humidity': ['weatherEmotionalHumidity', 'weatherLineEmotionalHumidity', 'weatherNeedEmotionalHumidity', 'weatherPermissionEmotionalHumidity'],
-        'tiny-thunder': ['weatherTinyThunder', 'weatherLineTinyThunder', 'weatherNeedTinyThunder', 'weatherPermissionTinyThunder'],
-        'bright-chaos': ['weatherBrightChaos', 'weatherLineBrightChaos', 'weatherNeedBrightChaos', 'weatherPermissionBrightChaos'],
-        'quiet-sunbeam': ['weatherQuietSunbeam', 'weatherLineQuietSunbeam', 'weatherNeedQuietSunbeam', 'weatherPermissionQuietSunbeam'],
-        'static-pressure': ['weatherStaticPressure', 'weatherLineStaticPressure', 'weatherNeedStaticPressure', 'weatherPermissionStaticPressure'],
-        'clear-ish-skies': ['weatherClearishSkies', 'weatherLineClearishSkies', 'weatherNeedClearishSkies', 'weatherPermissionClearishSkies']
+        'soft-static': { colors: ['#D8E2FF', '#9B59B6'], motion: 'slow', emoji: '☁️' },
+        'velvet-thunder': { colors: ['#7A5BFF', '#1F1410'], motion: 'shimmer', emoji: '🌩️' },
+        'overcaffeinated-moon': { colors: ['#FFEFC2', '#7A5BFF'], motion: 'jitter', emoji: '🌙' },
+        'tiny-storm': { colors: ['#3B6FFF', '#FF5B3B'], motion: 'ripple', emoji: '⛈️' },
+        'closed-curtains': { colors: ['#2E7D7D', '#D2EDE0'], motion: 'still', emoji: '🪟' },
+        'chosen-people-only': { colors: ['#D94E8C', '#FFE3D6'], motion: 'glow', emoji: '🫶' },
+        'clear-window': { colors: ['#5BA8D9', '#FFF4EC'], motion: 'sweep', emoji: '🫧' },
+        'sparkle-warning': { colors: ['#FFB000', '#FF6B6B'], motion: 'sparkle', emoji: '✨' }
     };
 
     const QUESTIONS = [
@@ -89,442 +21,258 @@
             questionKey: 'moodQEnergy',
             options: [
                 ['low', 'moodEnergyLow'],
-                ['steady', 'moodEnergySteady'],
-                ['wired', 'moodEnergyWired'],
-                ['chaotic', 'moodEnergyChaotic']
+                ['medium', 'moodEnergyMed'],
+                ['high', 'moodEnergyHigh']
             ]
         },
         {
             key: 'social',
             questionKey: 'moodQSocial',
             options: [
-                ['hidden', 'moodSocialHidden'],
+                ['hiding', 'moodSocialHiding'],
                 ['selective', 'moodSocialSelective'],
-                ['open', 'moodSocialOpen'],
-                ['loud', 'moodSocialLoud']
+                ['social', 'moodSocialSocial']
             ]
         },
         {
-            key: 'texture',
-            questionKey: 'moodQTexture',
+            key: 'stress',
+            questionKey: 'moodQStress',
             options: [
-                ['soft', 'moodTextureSoft'],
-                ['heavy', 'moodTextureHeavy'],
-                ['sharp', 'moodTextureSharp'],
-                ['floaty', 'moodTextureFloaty']
-            ]
-        },
-        {
-            key: 'need',
-            questionKey: 'moodQNeed',
-            options: [
-                ['rest', 'moodNeedRest'],
-                ['clarity', 'moodNeedClarity'],
-                ['validation', 'moodNeedValidation'],
-                ['movement', 'moodNeedMovement']
+                ['calm', 'moodStressCalm'],
+                ['scattered', 'moodStressScattered'],
+                ['overloaded', 'moodStressOver']
             ]
         }
     ];
 
     function i18n() {
-        return window.MeowI18n || {
-            t: k => k,
-            getLang: () => 'en',
-            withLang: href => href
-        };
+        return window.MeowI18n || { t: k => k, getLang: () => 'en', withLang: h => h };
     }
 
-    function escapeHtml(value) {
-        return String(value == null ? '' : value).replace(/[&<>"']/g, ch => ({
-            '&': '&amp;',
-            '<': '&lt;',
-            '>': '&gt;',
-            '"': '&quot;',
-            "'": '&#39;'
-        }[ch]));
+    function escapeHtml(s) {
+        return String(s || '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
     }
 
     function todayKey() {
-        const d = new Date();
-        const y = d.getFullYear();
-        const m = String(d.getMonth() + 1).padStart(2, '0');
-        const day = String(d.getDate()).padStart(2, '0');
-        return `${y}-${m}-${day}`;
+        return new Date().toISOString().split('T')[0];
+    }
+
+    function getDailyHash(seed) {
+        let hash = 0;
+        for (let i = 0; i < seed.length; i++) {
+            hash = ((hash << 5) - hash) + seed.charCodeAt(i);
+            hash |= 0;
+        }
+        return Math.abs(hash);
     }
 
     function readStore() {
         try {
             const parsed = JSON.parse(localStorage.getItem(STORAGE_KEY) || '');
-            if (!parsed || parsed.version !== VERSION || !Array.isArray(parsed.items)) {
-                return { version: VERSION, items: [] };
-            }
-            return parsed;
-        } catch (_) {
-            return { version: VERSION, items: [] };
-        }
-    }
-
-    function writeStore(store) {
-        const items = Array.isArray(store.items) ? store.items.slice(0, MAX_ITEMS) : [];
-        try {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify({ version: VERSION, items }));
+            if (parsed && parsed.version === VERSION) return parsed;
         } catch (_) {}
-    }
-
-    function getTodayCheckin() {
-        const date = todayKey();
-        return readStore().items.find(item => item && item.date === date) || null;
+        return { version: VERSION, items: [] };
     }
 
     function saveCheckin(entry) {
         const store = readStore();
-        const items = [entry].concat(store.items.filter(item => item && item.date !== entry.date));
-        writeStore({ version: VERSION, items });
+        const items = [entry].concat(store.items.filter(i => i.date !== entry.date)).slice(0, MAX_ITEMS);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({ version: VERSION, items }));
     }
 
-    function getContext() {
-        const params = new URLSearchParams(window.location.search);
-        const subject = params.get('subject') === 'human' ? 'human' : '';
-        const type = (params.get('type') || '').toUpperCase();
-        const archetype = subject === 'human' && window.MeowArchetypes && window.MeowArchetypes.byCode[type]
-            ? window.MeowArchetypes.byCode[type]
-            : null;
-        if (archetype) {
-            return { subject: 'human', code: archetype.code, title: archetype.name };
-        }
-        return null;
-    }
-
-    function profileHint(context) {
-        const { t } = i18n();
-        if (context && context.code) return t('dailyContextLine', context.code);
-        return t('dailyNoContextLine');
-    }
-
-    function determineOrb(answers, context) {
-        const energy = answers.energy;
-        const social = answers.social;
-        const texture = answers.texture;
-        const need = answers.need;
-        let orbType = 'clear-window';
-
-        if (energy === 'chaotic' && texture === 'sharp') orbType = 'tiny-storm';
-        else if (social === 'hidden' && need === 'rest') orbType = 'closed-curtains';
-        else if (energy === 'wired' && texture === 'floaty') orbType = 'overcaffeinated-moon';
-        else if (energy === 'chaotic' || (social === 'loud' && need === 'movement')) orbType = 'sparkle-warning';
-        else if (texture === 'heavy' && (need === 'validation' || need === 'clarity')) orbType = 'velvet-thunder';
-        else if (social === 'selective' && (texture === 'soft' || need === 'validation')) orbType = 'chosen-people-only';
-        else if (energy === 'low' || texture === 'soft') orbType = 'soft-static';
-        else if (energy === 'steady' && need === 'clarity') orbType = 'clear-window';
-
-        if (orbType === 'clear-window' && context && context.code) {
-            if (context.code[0] === 'C' && energy === 'steady') orbType = 'sparkle-warning';
-            if (context.code[0] === 'S' && social === 'hidden') orbType = 'closed-curtains';
-            if (context.code[1] === 'D' && texture === 'floaty') orbType = 'overcaffeinated-moon';
-            if (context.code[2] === 'N' && need === 'validation') orbType = 'chosen-people-only';
-        }
-
-        const orb = ORBS[orbType] || ORBS['clear-window'];
-        const weatherType = orb.weather;
-        return { orbType, weatherType, orb };
-    }
-
-    function buildResult(answers, context) {
-        const { t } = i18n();
-        const mapped = determineOrb(answers, context);
-        const weatherKeys = WEATHER_KEYS[mapped.weatherType] || WEATHER_KEYS['clear-ish-skies'];
-        return {
-            orbType: mapped.orbType,
-            weatherType: mapped.weatherType,
-            label: t(mapped.orb.labelKey),
-            weatherLabel: t(weatherKeys[0]),
-            forecast: t(weatherKeys[1]),
-            need: t(weatherKeys[2]),
-            permission: t(weatherKeys[3]),
-            colorA: mapped.orb.colors[0],
-            colorB: mapped.orb.colors[1],
-            motion: mapped.orb.motion,
-            texture: mapped.orb.texture,
-            emoji: mapped.orb.emoji
-        };
-    }
-
-    function makeEntry(answers, context) {
+    function getTodayCheckin() {
         const date = todayKey();
+        return readStore().items.find(i => i.date === date) || null;
+    }
+
+    function getPrimaryProfile() {
+        if (!window.MeowStore) return null;
+        const family = window.MeowStore.getFamily();
+        return family.find(p => p.subject === 'human') || family[0] || null;
+    }
+
+    function buildResult(answers, profile) {
+        const { getLang } = i18n();
+        const lang = getLang();
+        const date = todayKey();
+        const content = window.MeowDailyContent;
+        if (!content) return null;
+
+        const seed = date + answers.energy + answers.social + answers.stress + (profile ? profile.code : '');
+        const hash = getDailyHash(seed);
+
+        const label = content.labels[hash % content.labels.length];
+        const insight = content.insights[hash % content.insights.length];
+        const catEnergy = content.catEnergy[hash % content.catEnergy.length];
+        const advice = content.advice[hash % content.advice.length];
+        const shareLine = content.shareLines[hash % content.shareLines.length];
+
+        // Orb selection
+        let orbType = 'clear-window';
+        if (answers.energy === 'high' && answers.stress === 'overloaded') orbType = 'tiny-storm';
+        else if (answers.social === 'hiding') orbType = 'closed-curtains';
+        else if (answers.energy === 'low') orbType = 'soft-static';
+        else if (answers.stress === 'overloaded') orbType = 'velvet-thunder';
+        else if (answers.social === 'selective') orbType = 'chosen-people-only';
+        else if (answers.energy === 'high') orbType = 'sparkle-warning';
+
+        const orb = ORBS[orbType];
+
         return {
-            id: `daily_${date}`,
-            version: VERSION,
-            date,
-            lang: i18n().getLang(),
-            answers,
-            linkedProfile: context ? {
-                subject: context.subject,
-                code: context.code,
-                title: context.title
-            } : null,
-            result: buildResult(answers, context),
-            createdAt: new Date().toISOString(),
-            updatedAt: new Date().toISOString()
+            orbType,
+            emoji: orb.emoji,
+            colorA: orb.colors[0],
+            colorB: orb.colors[1],
+            motion: orb.motion,
+            label: label[lang] || label.en,
+            insight: insight[lang] || insight.en,
+            catEnergy: catEnergy[lang] || catEnergy.en,
+            advice: advice[lang] || advice.en,
+            shareLine: shareLine[lang] || shareLine.en
         };
     }
 
-    function orbMarkup(result, sizeClass = '') {
+    function orbMarkup(result, size = '') {
         return `
-            <div class="mood-orb ${escapeHtml(sizeClass)} motion-${escapeHtml(result.motion)}"
-                 style="--orb-a:${escapeHtml(result.colorA)};--orb-b:${escapeHtml(result.colorB)}"
-                 aria-hidden="true">
-                <span>${escapeHtml(result.emoji)}</span>
+            <div class="mood-orb ${size} motion-${result.motion}"
+                 style="--orb-a:${result.colorA};--orb-b:${result.colorB}" aria-hidden="true">
+                <span>${result.emoji}</span>
             </div>`;
     }
 
-    function resultMarkup(entry, context) {
+    function renderResult(host, entry) {
         const { t } = i18n();
-        const result = entry.result;
-        const contextLine = entry.linkedProfile && entry.linkedProfile.code
-            ? t('dailyContextLine', entry.linkedProfile.code)
-            : profileHint(context);
-        return `
-            <div class="daily-result-card" data-daily-result>
+        const r = entry.result;
+        host.innerHTML = `
+            <div class="daily-result-card v2">
                 <div class="daily-result-top">
-                    ${orbMarkup(result, 'large')}
-                    <div>
-                        <span class="daily-page-kicker">${escapeHtml(result.weatherLabel)}</span>
-                        <h2>${escapeHtml(result.label)}</h2>
-                        <p>${escapeHtml(contextLine)}</p>
+                    ${orbMarkup(r, 'large')}
+                    <div class="dr-header">
+                        <span class="daily-page-kicker">${escapeHtml(t('dailyStatus'))}</span>
+                        <h2>${escapeHtml(r.label)}</h2>
+                        ${entry.profile ? `<p class="dr-profile-line">${escapeHtml(t('dailyContextLine', entry.profile.code))}</p>` : ''}
                     </div>
                 </div>
-                <div class="weather-lines">
-                    <p class="weather-forecast">${escapeHtml(result.forecast)}</p>
-                    <p><strong>${escapeHtml(t('dailyNeedLabel'))}:</strong> ${escapeHtml(result.need)}</p>
-                    <p><strong>${escapeHtml(t('dailyPermissionLabel'))}:</strong> ${escapeHtml(result.permission)}</p>
+                
+                <div class="dr-content-grid">
+                    <div class="dr-block">
+                        <h3>${t('dailyInsightH')}</h3>
+                        <p>${escapeHtml(r.insight)}</p>
+                    </div>
+                    <div class="dr-block">
+                        <h3>${t('dailyCatLineH')}</h3>
+                        <p>${escapeHtml(r.catEnergy)}</p>
+                    </div>
+                    <div class="dr-block">
+                        <h3>${t('dailyAdviceH')}</h3>
+                        <p>${escapeHtml(r.advice)}</p>
+                    </div>
                 </div>
+
                 <div class="daily-result-actions">
-                    <button type="button" class="big-btn" id="daily-share">${escapeHtml(t('dailyShareCta'))}</button>
-                    <button type="button" class="big-btn ghost" id="daily-copy">${escapeHtml(t('dailyCopyCta'))}</button>
-                    <button type="button" class="big-btn ghost" id="daily-retake">${escapeHtml(t('dailyRetakeCta'))}</button>
+                    <button type="button" class="big-btn" id="daily-share">${t('dailyShareCta')}</button>
+                    <button type="button" class="big-btn ghost" id="daily-retake">${t('dailyRetakeCta')}</button>
                 </div>
-                <p class="daily-privacy-note">${escapeHtml(t('dailySavedOnlyDevice'))} ${escapeHtml(t('dailyPrivacyNote'))}</p>
-                <div class="share-status" id="daily-status" aria-live="polite">${escapeHtml(t('dailySaved'))}</div>
-            </div>`;
+                <div id="daily-status" class="share-status"></div>
+            </div>
+        `;
+
+        host.querySelector('#daily-retake').onclick = () => renderQuestion(host, { step: 0, answers: {} });
+        host.querySelector('#daily-share').onclick = async () => {
+            const text = `${r.shareLine}\nForecast: ${r.label}\n${window.location.origin}${i18n().withLang('/daily.html')}`;
+            const status = host.querySelector('#daily-status');
+            try {
+                if (navigator.share) {
+                    await navigator.share({ title: 'MeowBTI Daily', text });
+                } else {
+                    await navigator.clipboard.writeText(text);
+                    status.textContent = t('dailyCopied');
+                }
+            } catch (_) {
+                status.textContent = t('dailyCopyCta') + ": " + text;
+            }
+        };
     }
 
-    function renderQuestion(host, state, context) {
+    function renderQuestion(host, state) {
         const { t } = i18n();
         const q = QUESTIONS[state.step];
-        const progress = `${state.step + 1}/${QUESTIONS.length}`;
-        const previewAnswers = Object.assign({
-            energy: 'steady',
-            social: 'selective',
-            texture: 'soft',
-            need: 'clarity'
-        }, state.answers);
-        const preview = buildResult(previewAnswers, context);
+        const profile = getPrimaryProfile();
+        
         host.innerHTML = `
-            <div class="daily-question-card">
+            <div class="daily-question-card v2">
                 <div class="daily-question-meta">
-                    <span>${escapeHtml(progress)}</span>
-                    <span>${escapeHtml(profileHint(context))}</span>
+                    <span>${state.step + 1} / ${QUESTIONS.length}</span>
+                    ${profile ? `<span>${profile.code}</span>` : ''}
                 </div>
-                ${orbMarkup(preview)}
-                <h2>${escapeHtml(t(q.questionKey))}</h2>
-                <div class="daily-options">
-                    ${q.options.map(([value, key]) => `
-                        <button type="button" class="daily-option" data-value="${escapeHtml(value)}">
-                            ${escapeHtml(t(key))}
-                        </button>
+                <h2>${t(q.questionKey)}</h2>
+                <div class="daily-options stack">
+                    ${q.options.map(([val, key]) => `
+                        <button type="button" class="daily-option" data-value="${val}">${t(key)}</button>
                     `).join('')}
                 </div>
-                <p class="daily-privacy-note">${escapeHtml(t('dailySavedOnlyDevice'))}</p>
-            </div>`;
-        host.querySelectorAll('.daily-option').forEach(button => {
-            button.addEventListener('click', () => {
-                state.answers[q.key] = button.dataset.value;
+            </div>
+        `;
+
+        host.querySelectorAll('.daily-option').forEach(btn => {
+            btn.onclick = () => {
+                state.answers[q.key] = btn.dataset.value;
                 if (state.step < QUESTIONS.length - 1) {
-                    state.step += 1;
-                    renderQuestion(host, state, context);
+                    state.step++;
+                    renderQuestion(host, state);
                 } else {
-                    const entry = makeEntry(state.answers, context);
+                    const res = buildResult(state.answers, profile);
+                    const entry = { date: todayKey(), answers: state.answers, result: res, profile };
                     saveCheckin(entry);
-                    renderResult(host, entry, context);
-                    window.MeowTrack && window.MeowTrack('daily_checkin_complete', {
-                        orb_type: entry.result.orbType,
-                        weather_type: entry.result.weatherType,
-                        subject: context ? context.subject : 'none'
-                    });
+                    renderResult(host, entry);
                 }
-            });
+            };
         });
     }
 
-    function shareText(entry) {
-        const { t, withLang } = i18n();
-        return `${t('dailyShareFallback')}: ${entry.result.weatherLabel}.\n${entry.result.forecast}\n${window.location.origin}${withLang('/daily.html')}`;
-    }
+    function init() {
+        const pageApp = document.getElementById('daily-app');
+        if (pageApp) {
+            const today = getTodayCheckin();
+            if (today) renderResult(pageApp, today);
+            else renderQuestion(pageApp, { step: 0, answers: {} });
+        }
 
-    function buildShareCanvas(entry) {
-        const canvas = document.createElement('canvas');
-        canvas.width = 1080;
-        canvas.height = 1350;
-        const ctx = canvas.getContext('2d');
-        const r = entry.result;
-        const gradient = ctx.createLinearGradient(0, 0, 1080, 1350);
-        gradient.addColorStop(0, r.colorA);
-        gradient.addColorStop(1, r.colorB);
-        ctx.fillStyle = gradient;
-        ctx.fillRect(0, 0, 1080, 1350);
-        ctx.fillStyle = '#FFF4EC';
-        ctx.fillRect(70, 70, 940, 1210);
-        ctx.strokeStyle = '#1F1410';
-        ctx.lineWidth = 8;
-        ctx.strokeRect(70, 70, 940, 1210);
-        ctx.fillStyle = r.colorA;
-        ctx.beginPath();
-        ctx.arc(540, 420, 190, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.fillStyle = r.colorB;
-        ctx.globalAlpha = 0.7;
-        ctx.beginPath();
-        ctx.arc(610, 360, 130, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.globalAlpha = 1;
-        ctx.fillStyle = '#1F1410';
-        ctx.textAlign = 'center';
-        ctx.font = '900 52px Georgia, serif';
-        ctx.fillText('MeowBTI', 540, 170);
-        ctx.font = '900 68px Georgia, serif';
-        wrapCanvasText(ctx, r.label, 540, 680, 820, 76);
-        ctx.font = '700 40px Arial, sans-serif';
-        wrapCanvasText(ctx, r.weatherLabel, 540, 810, 820, 52);
-        ctx.font = '500 34px Arial, sans-serif';
-        wrapCanvasText(ctx, r.forecast, 540, 940, 820, 48);
-        ctx.font = '700 28px Arial, sans-serif';
-        ctx.fillText('meowbti.com/daily.html', 540, 1180);
-        return canvas;
-    }
-
-    function wrapCanvasText(ctx, text, x, y, maxWidth, lineHeight) {
-        const words = String(text).split(/\s+/);
-        let line = '';
-        words.forEach(word => {
-            const test = line ? `${line} ${word}` : word;
-            if (ctx.measureText(test).width > maxWidth && line) {
-                ctx.fillText(line, x, y);
-                y += lineHeight;
-                line = word;
+        const homeWidget = document.getElementById('daily-weather-home');
+        if (homeWidget) {
+            const today = getTodayCheckin();
+            const { t, withLang } = i18n();
+            if (today) {
+                homeWidget.innerHTML = `
+                    <div class="dwh-main">
+                        ${orbMarkup(today.result, 'mini')}
+                        <div>
+                            <span class="dh-badge">${t('homeDailyWeatherSavedH')}</span>
+                            <h2>${today.result.label}</h2>
+                        </div>
+                    </div>
+                    <a href="${withLang('daily.html')}" class="cta-button accent">${t('homeDailyWeatherSavedCta')}</a>
+                `;
             } else {
-                line = test;
+                homeWidget.innerHTML = `
+                    <div class="dwh-main">
+                        <div class="mood-orb mini motion-slow" style="--orb-a:#5BA8D9;--orb-b:#FFF4EC"><span>🫧</span></div>
+                        <div>
+                            <span class="dh-badge">${t('dailyKicker')}</span>
+                            <h2>${t('homeDailyWeatherH')}</h2>
+                        </div>
+                    </div>
+                    <a href="${withLang('daily.html')}" class="cta-button accent">${t('homeDailyWeatherCta')}</a>
+                `;
             }
-        });
-        if (line) ctx.fillText(line, x, y);
-    }
-
-    function renderResult(host, entry, context) {
-        const { t } = i18n();
-        host.innerHTML = resultMarkup(entry, context);
-        const status = host.querySelector('#daily-status');
-        const copyBtn = host.querySelector('#daily-copy');
-        const retakeBtn = host.querySelector('#daily-retake');
-        const shareBtn = host.querySelector('#daily-share');
-
-        copyBtn && copyBtn.addEventListener('click', async () => {
-            try {
-                await navigator.clipboard.writeText(shareText(entry));
-                if (status) status.textContent = t('dailyCopied');
-            } catch (_) {
-                if (status) status.textContent = shareText(entry);
-            }
-        });
-
-        retakeBtn && retakeBtn.addEventListener('click', () => {
-            renderQuestion(host, { step: 0, answers: {} }, context);
-        });
-
-        shareBtn && shareBtn.addEventListener('click', async () => {
-            const text = shareText(entry);
-            try {
-                const canvas = buildShareCanvas(entry);
-                const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png', 0.92));
-                const file = blob ? new File([blob], 'meowbti-daily-weather.png', { type: 'image/png' }) : null;
-                if (file && navigator.canShare && navigator.canShare({ files: [file] })) {
-                    await navigator.share({ files: [file], title: 'MeowBTI', text });
-                    if (status) status.textContent = t('sharedThanks');
-                    return;
-                }
-                if (blob) {
-                    const url = URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.href = url;
-                    a.download = 'meowbti-daily-weather.png';
-                    document.body.appendChild(a);
-                    a.click();
-                    a.remove();
-                    setTimeout(() => URL.revokeObjectURL(url), 4000);
-                    if (status) status.textContent = t('savedToDownloads');
-                    return;
-                }
-            } catch (_) {}
-            try {
-                await navigator.clipboard.writeText(text);
-                if (status) status.textContent = t('dailyCopied');
-            } catch (_) {
-                if (status) status.textContent = text;
-            }
-        });
-    }
-
-    function renderDailyPage() {
-        const host = document.getElementById('daily-app');
-        if (!host) return;
-        const context = getContext();
-        const today = getTodayCheckin();
-        if (today) {
-            renderResult(host, today, context);
-            return;
         }
-        renderQuestion(host, { step: 0, answers: {} }, context);
-    }
 
-    function renderHomeModule() {
-        const host = document.getElementById('daily-weather-home');
-        if (!host) return;
-        const { t, withLang } = i18n();
-        const entry = getTodayCheckin();
-        if (entry) {
-            host.innerHTML = `
-                <div class="dwh-main">
-                    ${orbMarkup(entry.result, 'mini')}
-                    <div>
-                        <span class="dh-badge">${escapeHtml(t('homeDailyWeatherSavedH'))}</span>
-                        <h2>${escapeHtml(entry.result.label)}</h2>
-                        <p>${escapeHtml(entry.result.forecast)}</p>
-                    </div>
-                </div>
-                <a href="${withLang('daily.html')}" class="cta-button accent">${escapeHtml(t('homeDailyWeatherSavedCta'))}</a>`;
-        } else {
-            host.innerHTML = `
-                <div class="dwh-main">
-                    ${orbMarkup(buildResult({ energy: 'steady', social: 'open', texture: 'soft', need: 'clarity' }, null), 'mini')}
-                    <div>
-                        <span class="dh-badge">${escapeHtml(t('dailyKicker'))}</span>
-                        <h2>${escapeHtml(t('homeDailyWeatherH'))}</h2>
-                        <p>${escapeHtml(t('homeDailyWeatherSub'))}</p>
-                    </div>
-                </div>
-                <div class="daily-cta-group">
-                    <a href="${withLang('daily.html')}" class="cta-button accent">${escapeHtml(t('homeDailyWeatherCta'))}</a>
-                    <a href="${withLang('human-quiz.html')}" class="cta-button ghost">${escapeHtml(t('quizModeOwner'))}</a>
-                </div>`;
+        const mbtiResultAnchor = document.getElementById('mbti-daily-weather-anchor');
+        if (mbtiResultAnchor) {
+            renderQuestion(mbtiResultAnchor, { step: 0, answers: {} });
         }
     }
 
-    function boot() {
-        renderDailyPage();
-        renderHomeModule();
-    }
-
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', boot);
-    } else {
-        boot();
-    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+    else init();
 })();
