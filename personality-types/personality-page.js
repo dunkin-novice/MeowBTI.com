@@ -830,6 +830,28 @@
 
             ${longFormSection(p)}
 
+            <!-- Ecosystem Navigation -->
+            <section class="module-section">
+                <h3 class="module-h">The Identity OS</h3>
+                <div class="ecosystem-nav">
+                    <a href="${withLang(quizRoot + 'mbti/index.html')}" class="eco-card">
+                        <span class="eco-label">${t('ecoLabelMind')}</span>
+                        <span class="eco-title">${t('navMBTI')}</span>
+                        <span class="eco-desc">${t('ecoDescMBTI')}</span>
+                    </a>
+                    <a href="${withLang(quizRoot + 'enneagram/index.html')}" class="eco-card">
+                        <span class="eco-label">${t('ecoLabelDrive')}</span>
+                        <span class="eco-title">${t('navEnnea')}</span>
+                        <span class="eco-desc">${t('ecoDescEnnea')}</span>
+                    </a>
+                    <a href="${withLang(quizRoot + 'daily.html')}" class="eco-card">
+                        <span class="eco-label">${t('ecoLabelLoop')}</span>
+                        <span class="eco-title">${t('dailyH1')}</span>
+                        <span class="eco-desc">${t('ecoDescWeather')}</span>
+                    </a>
+                </div>
+            </section>
+
             <section class="result-affiliate">
                 <h3 class="result-affiliate-h">${escapeHtml(isHuman ? (isEvergreen ? t('picksForHumanEvergreen') : t('picksForHuman')) : (isEvergreen ? t('picksForEvergreen', name) : t('picksFor', name)))}</h3>
                 <div class="product-grid">

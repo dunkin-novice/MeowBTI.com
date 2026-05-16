@@ -4,6 +4,8 @@
  */
 (function() {
     const section = document.getElementById('family-dashboard');
+    const emptyState = document.getElementById('family-empty-state');
+    const content = document.getElementById('family-content');
     const grid = document.getElementById('family-grid');
 
     if (!section || !grid || !window.MeowStore || !window.MeowI18n) return;
@@ -38,11 +40,30 @@
         const dateStr = now.toISOString().split('T')[0];
         
         if (profiles.length === 0) {
-            section.style.display = 'none';
+            if (emptyState) {
+                emptyState.style.display = 'block';
+                emptyState.innerHTML = `
+                    <div class="empty-state-card">
+                        <span style="font-size: 3.5rem; display: block; margin-bottom: 24px;">🏠</span>
+                        <h2 style="font-family: var(--font-display); font-size: 2.2rem; margin-bottom: 16px;">Your Emotional Home Base</h2>
+                        <p style="max-width: 500px; margin: 0 auto 32px; font-size: 1.1rem; line-height: 1.5; opacity: 0.7;">
+                            Save your results, compare types with friends, and see your daily household drama. Take a test to start your family.
+                        </p>
+                        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                            <a href="quiz.html" class="big-btn accent" data-i18n-href>${t('navTakeTest')}</a>
+                            <a href="mbti/index.html" class="big-btn ghost">MBTI</a>
+                            <a href="enneagram/index.html" class="big-btn ghost" style="border-color:#9B59B6; color:#9B59B6;">Enneagram</a>
+                        </div>
+                    </div>
+                `;
+            }
+            if (content) content.style.display = 'none';
             return;
         }
 
-        section.style.display = 'block';
+        if (emptyState) emptyState.style.display = 'none';
+        if (content) content.style.display = 'block';
+        
         grid.innerHTML = '';
 
         profiles.forEach(p => {

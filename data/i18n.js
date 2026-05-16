@@ -14,8 +14,26 @@
         navMBTI:           { en: "MBTI",                      th: "MBTI" },
         navEnnea:          { en: "Enneagram",                 th: "Enneagram" },
         navPicks:          { en: "Picks",                     th: "ของแนะนำ" },
+        
+        ecoLabelMind:      { en: "Mind Framework",            th: "โครงสร้างทางสติปัญญา" },
+        ecoLabelDrive:     { en: "Emotional Drive",           th: "แรงขับเคลื่อนทางอารมณ์" },
+        ecoLabelLoop:      { en: "Retention Loop",            th: "กิจวัตรประจำวัน" },
+        ecoDescMBTI:       { en: "How your mind processes information and makes decisions.", 
+                              th: "วิธีที่สมองคุณประมวลผลข้อมูลและตัดสินใจสิ่งต่างๆ" },
+        ecoDescEnnea:      { en: "The core motivation and fear running under your skin.", 
+                              th: "แรงจูงใจและความกลัวลึกๆ ที่ขับเคลื่อนตัวตนของคุณ" },
+        ecoDescWeather:    { en: "Check your emotional forecast for today.", 
+                              th: "เช็กพยากรณ์อารมณ์ของคุณในวันนี้" },
 
         navTakeTest:       { en: "Take the test",             th: "เริ่มทำแบบทดสอบ" },
+        
+        pathForYou:        { en: "For Humans",                th: "สำหรับมนุษย์" },
+        pathForCat:        { en: "For Cats",                  th: "สำหรับแมว" },
+        pathForYouSub:     { en: "Discover your archetypes.", th: "ค้นหาตัวตนของคุณ" },
+        pathForCatSub:     { en: "Analyze your cat's menace.", th: "วิเคราะห์ความแสบของแมวคุณ" },
+        pathTakeMBTI:      { en: "Mind Analysis",             th: "วิเคราะห์สติปัญญา" },
+        pathTakeEnnea:     { en: "Emotional Drive",           th: "แรงขับเคลื่อนทางอารมณ์" },
+        pathTakeCat:       { en: "Cat Energy",                th: "พลังงานร่างแมว" },
 
         // ─── footer (loaded from /footer.html partial) ────────
         footerSponsor:     { en: 'A <a href="#">CatGuy.</a> production.', th: 'ผลิตโดย <a href="#">CatGuy.</a>' },
@@ -505,6 +523,7 @@
         dailyShareCta:     { en: "Share Forecast",             th: "แชร์พยากรณ์" },
         dailyCopyCta:      { en: "Copy Result",                th: "คัดลอกผลลัพธ์" },
         dailyRetakeCta:    { en: "Update check-in",            th: "อัปเดตเช็กอิน" },
+        backToDashboard:   { en: "Back to Dashboard",          th: "กลับไปหน้าแดชบอร์ด" },
         dailyShareFallback:{ en: "Today's emotional forecast", th: "พยากรณ์อารมณ์วันนี้" },
 
         orbSoftStatic:     { en: "Soft Static",                th: "สัญญาณนุ่มๆ" },

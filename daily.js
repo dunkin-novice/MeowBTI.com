@@ -187,6 +187,9 @@
                     <button type="button" class="big-btn" id="daily-share">${t('dailyShareCta')}</button>
                     <button type="button" class="big-btn ghost" id="daily-retake">${t('dailyRetakeCta')}</button>
                 </div>
+                <div style="text-align:center; margin-top:24px;">
+                    <a href="${withLang('/')}" style="color: var(--ink); text-decoration: underline; font-weight: 700; font-size: 0.9rem;">← ${t('backToDashboard')}</a>
+                </div>
                 <div id="daily-status" class="share-status"></div>
             </div>
         `;

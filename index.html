@@ -119,6 +119,27 @@
         <!-- Today's Cat Energy Daily Loop (v1) -->
         <section id="daily-loop" class="daily-loop-section">
             <div class="container">
+                <!-- Dual Paths Onboarding (v1) -->
+                <div class="paths-onboarding">
+                    <div class="path-card">
+                        <div class="path-icon">👤</div>
+                        <h3 data-i18n="pathForYou">For Humans</h3>
+                        <p data-i18n="pathForYouSub">Discover your archetypes.</p>
+                        <div class="path-actions">
+                            <a href="mbti/index.html" class="mbti-pill small" data-i18n="pathTakeMBTI">Mind Analysis</a>
+                            <a href="enneagram/index.html" class="mbti-pill small" style="background:#9B59B6;color:#fff;border-color:#9B59B6" data-i18n="pathTakeEnnea">Emotional Drive</a>
+                        </div>
+                    </div>
+                    <div class="path-card">
+                        <div class="path-icon">😼</div>
+                        <h3 data-i18n="pathForCat">For Cats</h3>
+                        <p data-i18n="pathForCatSub">Analyze your cat's menace.</p>
+                        <div class="path-actions">
+                            <a href="quiz.html" class="mbti-pill small" data-i18n="pathTakeCat">Cat Energy</a>
+                        </div>
+                    </div>
+                </div>
+
                 <div id="daily-loop-content" class="daily-loop-card-wrapper">
                     <!-- Injected by home-daily.js -->
                     <p style="text-align:center; opacity:0.5; padding:40px 0">Loading today's energy…</p>
@@ -136,68 +157,66 @@
             </div>
         </section>
 
-        <!-- Human Curiosity Loop (v1) -->
-        <section class="human-teaser-section">
+        <!-- Unified Identity Engine (v1) -->
+        <section class="identity-engine-section">
             <div class="container">
-                <div class="human-teaser-card">
-                    <div class="ht-content">
-                        <h2 data-i18n="hTeaserH2">What cat energy are YOU?</h2>
-                        <p data-i18n="hTeaserP">Your boss, your ex, and your group chat all have a MeowBTI. Find your human archetype.</p>
-                        <a href="human-quiz.html" class="cta-button ghost" data-i18n-href data-i18n="hTeaserCta">Take the Human Quiz →</a>
-                    </div>
-                    <div class="ht-visual" aria-hidden="true">
-                        <span class="ht-emoji">👤</span>
-                        <span class="ht-heart">❤️</span>
-                        <span class="ht-emoji">😼</span>
-                    </div>
+                <div class="section-header center">
+                    <span class="daily-page-kicker" data-i18n="navTakeTest">Take the test</span>
+                    <h2 style="font-family: var(--font-display); font-size: 2.5rem; margin-bottom: 40px;" data-i18n="hBrowseH1">16 ways to be a cat.</h2>
                 </div>
-            </div>
-        </section>
+                
+                <div class="identity-grid">
+                    <!-- MeowBTI Human Mode -->
+                    <div class="human-teaser-card small">
+                        <div class="ht-content">
+                            <h3 data-i18n="hTeaserH2">Human Archetypes</h3>
+                            <p data-i18n="hTeaserP">Find the cat energy hiding under your human skin.</p>
+                            <a href="human-quiz.html" class="cta-button ghost" data-i18n-href data-i18n="hTeaserCta">Take Human Quiz →</a>
+                        </div>
+                    </div>
 
-        <!-- MBTI Bridge Loop (v1) -->
-        <section class="mbti-teaser-section" style="padding: 40px 0 80px;">
-            <div class="container">
-                <div class="human-teaser-card" style="background: var(--ink); color: #fff;">
-                    <div class="ht-content">
-                        <h2 data-i18n="mbtiTeaserH2" style="color: #fff;">Free MBTI Personality Test</h2>
-                        <p data-i18n="mbtiTeaserP" style="opacity: 0.9;">Find your 4-letter type and meet your cat-energy cousin.</p>
-                        <a href="mbti/index.html" class="cta-button" data-i18n-href data-i18n="mbtiTeaserCta" style="background: #fff; color: var(--ink);">Take the MBTI Test →</a>
+                    <!-- MBTI -->
+                    <div class="human-teaser-card small" style="background: var(--ink); color: #fff;">
+                        <div class="ht-content">
+                            <h3 data-i18n="mbtiTeaserH2" style="color:#fff">MBTI Analysis</h3>
+                            <p data-i18n="mbtiTeaserP">Find your 4-letter type and meet your cat cousin.</p>
+                            <a href="mbti/index.html" class="cta-button" data-i18n-href data-i18n="mbtiTeaserCta" style="background: #fff; color: var(--ink);">Take MBTI Test →</a>
+                        </div>
                     </div>
-                    <div class="ht-visual" aria-hidden="true">
-                        <img src="assets/personalities/sdbr-the-observant-theorist.webp" alt="" loading="lazy" style="width: 100%; height: 100%; object-fit: contain;">
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- Enneagram Teaser (v1) -->
-        <section class="ennea-teaser-section" style="padding: 0 0 80px;">
-            <div class="container">
-                <div class="human-teaser-card" style="background: #9B59B6; color: #fff;">
-                    <div class="ht-content">
-                        <h2 data-i18n="enneaHomeH1" style="color: #fff;">Free Enneagram Test</h2>
-                        <p data-i18n="enneaHomeSub" style="opacity: 0.9;">Discover your core motivation and emotional drive.</p>
-                        <a href="enneagram/index.html" class="cta-button" data-i18n-href data-i18n="enneaHomeCta" style="background: #fff; color: #9B59B6;">Take the Enneagram Test →</a>
-                    </div>
-                    <div class="ht-visual" aria-hidden="true">
-                        <img src="assets/personalities/sdnr-the-empathetic-muse.webp" alt="" loading="lazy" style="width: 100%; height: 100%; object-fit: contain;">
+                    <!-- Enneagram -->
+                    <div class="human-teaser-card small" style="background: #9B59B6; color: #fff;">
+                        <div class="ht-content">
+                            <h3 data-i18n="enneaHomeH1" style="color:#fff">Enneagram Test</h3>
+                            <p data-i18n="enneaHomeSub">Discover your core motivation and drive.</p>
+                            <a href="enneagram/index.html" class="cta-button" data-i18n-href data-i18n="enneaHomeCta" style="background: #fff; color: #9B59B6;">Take Enneagram →</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- My Cat Family Dashboard (v3) -->
-        <section id="family-dashboard" class="family-section" style="display: none;">
+        <section id="family-dashboard" class="family-section">
             <div class="container">
-                <div class="family-header">
-                    <h2 data-i18n="familyDashboardTitle">My Cat Family</h2>
-                    <p data-i18n="familyDashboardSub">Meet the inhabitants of your chaotic household.</p>
+                <div id="family-empty-state" style="display: none; text-align: center; padding: 60px 20px; background: rgba(255,255,255,0.5); border: 2px dashed var(--line-soft); border-radius: 32px;">
+                    <span style="font-size: 3rem; display: block; margin-bottom: 16px;">🏠</span>
+                    <h2 style="font-family: var(--font-display); margin-bottom: 12px;">Your Emotional Home Base</h2>
+                    <p style="max-width: 500px; margin: 0 auto 32px; opacity: 0.7;">Save your results, compare with friends, and see your daily household drama. Take a test to start your family.</p>
+                    <a href="quiz.html" class="big-btn accent" data-i18n-href data-i18n="heroCta">Start the test</a>
                 </div>
-                <div id="family-grid" class="family-grid"></div>
-                <div class="family-footer">
-                    <div class="family-footer-actions">
-                        <a href="quiz.html" class="big-btn ghost" data-i18n-href data-i18n="addAnotherCat">+ Add another cat</a>
-                        <a href="human-quiz.html" class="big-btn ghost" data-i18n-href data-i18n="addAnotherHuman">+ Add another human</a>
+
+                <div id="family-content" style="display: none;">
+                    <div class="family-header">
+                        <h2 data-i18n="familyDashboardTitle">My Cat Family</h2>
+                        <p data-i18n="familyDashboardSub">Meet the inhabitants of your chaotic household.</p>
+                    </div>
+                    <div id="family-grid" class="family-grid"></div>
+                    <div class="family-footer">
+                        <div class="family-footer-actions">
+                            <a href="quiz.html" class="big-btn ghost" data-i18n-href data-i18n="addAnotherCat">+ Add another cat</a>
+                            <a href="human-quiz.html" class="big-btn ghost" data-i18n-href data-i18n="addAnotherHuman">+ Add another human</a>
+                        </div>
                     </div>
                 </div>
             </div>
