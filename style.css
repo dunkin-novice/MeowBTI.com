@@ -2715,3 +2715,13 @@ a { color: inherit; }
 @media (max-width: 500px) {
   .paths-onboarding { grid-template-columns: 1fr; }
 }
+
+/* ─── Performance: CLS Reduction ──────────────────────── */
+#daily-weather-home { min-height: 120px; }
+#family-dashboard { min-height: 200px; }
+#daily-loop-content { min-height: 140px; }
+.drama-feed-section { min-height: 300px; }
+.identity-engine-section { min-height: 400px; }
+
+/* Image sizing for CLS */
+.bc-image, .fc-image { aspect-ratio: 1 / 1; height: auto; }

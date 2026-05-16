@@ -27,6 +27,9 @@
       gtag('js', new Date());
       gtag('config', 'G-2WNZ4HBJ87');
     </script>
+    <script src="../data/i18n.js" defer></script>
+    <script src="../data/enneagram/content.js" defer></script>
+    <script src="../script.js" defer></script>
 </head>
 <body>
 
@@ -109,14 +112,12 @@
     </main>
 
     <footer class="main-footer" id="main-footer"></footer>
-
-    <script src="../data/i18n.js"></script>
-    <script src="../data/enneagram/content.js"></script>
-    <script src="../script.js"></script>
     <script>
-    (function() {
+    window.addEventListener('DOMContentLoaded', () => {
         const grid = document.getElementById('ennea-grid');
-        const types = window.MeowEnneaContent.TYPES;
+        const content = window.MeowEnneaContent;
+        if (!grid || !content) return;
+        const types = content.TYPES;
         const { getLang, withLang } = window.MeowI18n;
         const lang = getLang();
 
@@ -126,11 +127,11 @@
             return `
                 <a href="type-${num}.html" class="mbti-grid-card" style="background:#fff; border: 2px solid var(--ink); border-radius: 16px; padding: 20px; text-align: center; text-decoration: none; color: inherit; transition: transform 0.2s, box-shadow 0.2s;">
                     <div style="font-family: var(--font-mono); font-weight: 900; font-size: 1.4rem; margin-bottom: 4px;">Type ${num}</div>
-                    <div style="font-size: 0.9rem; opacity: 0.6; line-height: 1.2;">${name}</div>
+                    <div style="font-size: 0.8rem; opacity: 0.6; line-height: 1.2;">${name}</div>
                 </a>
             `;
         }).join('');
-    })();
+    });
     </script>
-</body>
-</html>
+    </body>
+    </html>

@@ -5,13 +5,19 @@
 (function() {
     const STORAGE_KEY = 'meow-bti-family';
     const SCHEMA_VERSION = 1;
+    let _cachedStore = null;
 
     function getRawStore() {
+        if (_cachedStore) return _cachedStore;
         try {
             const raw = localStorage.getItem(STORAGE_KEY);
-            if (!raw) return { version: SCHEMA_VERSION, profiles: [] };
+            if (!raw) {
+                _cachedStore = { version: SCHEMA_VERSION, profiles: [] };
+                return _cachedStore;
+            }
             const parsed = JSON.parse(raw);
-            return normalizeStore(parsed);
+            _cachedStore = normalizeStore(parsed);
+            return _cachedStore;
         } catch (e) {
             console.error('MeowStore: Failed to parse localStorage:', e);
             return { version: SCHEMA_VERSION, profiles: [] };
@@ -54,6 +60,7 @@
         if (isDup) return false;
 
         store.profiles.push(profile);
+        _cachedStore = store;
         localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
         return true;
     }
@@ -61,6 +68,7 @@
     function removeFamilyProfile(id) {
         const store = getRawStore();
         store.profiles = store.profiles.filter(p => p.id !== id);
+        _cachedStore = store;
         localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
         return true;
     }

@@ -57,6 +57,8 @@
         return new Date().toISOString().split('T')[0];
     }
 
+    let _cachedStore = null;
+
     function getDailyHash(seed) {
         let hash = 0;
         for (let i = 0; i < seed.length; i++) {
@@ -67,11 +69,16 @@
     }
 
     function readStore() {
+        if (_cachedStore) return _cachedStore;
         try {
             const parsed = JSON.parse(localStorage.getItem(STORAGE_KEY) || '');
-            if (parsed && parsed.version === VERSION) return parsed;
+            if (parsed && parsed.version === VERSION) {
+                _cachedStore = parsed;
+                return _cachedStore;
+            }
         } catch (_) {}
-        return { version: VERSION, items: [] };
+        _cachedStore = { version: VERSION, items: [] };
+        return _cachedStore;
     }
 
     function saveCheckin(entry) {
@@ -82,7 +89,8 @@
             const sameProfile = (i.profile && entry.profile && i.profile.id === entry.profile.id) || (!i.profile && !entry.profile);
             return !(sameDate && sameProfile);
         })).slice(0, MAX_ITEMS);
-        localStorage.setItem(STORAGE_KEY, JSON.stringify({ version: VERSION, items }));
+        _cachedStore = { version: VERSION, items };
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(_cachedStore));
     }
 
     function getTodayCheckin(profileId = null) {

@@ -31,6 +31,10 @@
 
       gtag('config', 'G-2WNZ4HBJ87');
     </script>
+    <!-- Performance Optimizations: Deferred Scripts -->
+    <script src="data/i18n.js" defer></script>
+    <script src="data/archetypes.js" defer></script>
+    <script src="script.js" defer></script>
 </head>
 <body>
 
@@ -87,15 +91,8 @@
     </main>
 
     <footer class="main-footer" id="main-footer"></footer>
-
-    <script src="data/i18n.js"></script>
-    <script src="data/archetypes.js"></script>
-    <script src="script.js"></script>
     <script>
-    // Render the 16 archetypes as 4 thematic groups, keyed by axes 2 (H/D)
-    // and 4 (R/C). Each group's order matches the canonical xHxR / xDxR /
-    // xHxC / xDxC slicing of the cube.
-    (function () {
+    window.addEventListener('DOMContentLoaded', () => {
         if (!window.MeowArchetypes || !window.MeowI18n) return;
         const A = window.MeowArchetypes;
         const { t, withLang, getLang } = window.MeowI18n;
@@ -119,7 +116,6 @@
 
         function card(a, i) {
             const tilt = i % 2 === 0 ? '0.6deg' : '-0.6deg';
-            // CHNC's color is yellow → keep dark ink for legibility, like the original markup did.
             const colorOverride = a.code === 'CHNC' ? ';color:#1F1410' : '';
             return `
                 <a class="browse-card" href="${withLang('personality-types/' + a.code + '.html')}"
@@ -132,25 +128,25 @@
                 </a>`;
         }
 
-        // Within each group, preserve the original B-before-N, then C-before-S
-        // ordering so the grid reads the same visually.
         function rank(code) {
             return (code[2] === 'B' ? 0 : 2) + (code[0] === 'C' ? 0 : 1);
         }
 
         const host = document.getElementById('browse-groups');
-        host.innerHTML = GROUPS.map(g => {
-            const members = A.all.filter(a => g.match(a.code))
-                                 .sort((a, b) => rank(a.code) - rank(b.code));
-            return `
-                <div class="type-group">
-                    <h2 class="type-group-title">${escapeHtml(t(g.titleKey))}</h2>
-                    <div class="browse-grid">
-                        ${members.map(card).join('')}
-                    </div>
-                </div>`;
-        }).join('');
-    })();
+        if (host) {
+            host.innerHTML = GROUPS.map(g => {
+                const members = A.all.filter(a => g.match(a.code))
+                                     .sort((a, b) => rank(a.code) - rank(b.code));
+                return `
+                    <div class="type-group">
+                        <h2 class="type-group-title">${escapeHtml(t(g.titleKey))}</h2>
+                        <div class="browse-grid">
+                            ${members.map(card).join('')}
+                        </div>
+                    </div>`;
+            }).join('');
+        }
+    });
     </script>
 </body>
 </html>
