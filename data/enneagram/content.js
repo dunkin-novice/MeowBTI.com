@@ -19,7 +19,18 @@
             work: 'Organized and efficient. They thrive in environments with clear standards and integrity.',
             workTh: 'เป็นระเบียบและมีประสิทธิภาพ พวกเขารุ่งเรืองในสภาพแวดล้อมที่มีมาตรฐานชัดเจนและความซื่อสัตย์',
             likelyTo: 'Have a perfectly color-coded bookshelf and feel a tiny spike of stress when someone moves a single book.',
-            likelyToTh: 'จัดชั้นหนังสือตามสีอย่างสมบูรณ์แบบ และรู้สึกเครียดเล็กน้อยเมื่อมีคนขยับหนังสือไปเพียงเล่มเดียว'
+            likelyToTh: 'จัดชั้นหนังสือตามสีอย่างสมบูรณ์แบบ และรู้สึกเครียดเล็กน้อยเมื่อมีคนขยับหนังสือไปเพียงเล่มเดียว',
+            bridge: {
+                code: 'SHBR',
+                headline: 'The Ethical Perfectionist',
+                headlineTh: 'แมวสายเป๊ะผู้รักความถูกต้อง',
+                reason: 'Type 1 energy is the cat that notices the crooked blanket before anyone else. You thrive on order and high standards.',
+                reasonTh: 'พลังงานลักษณ์ 1 คือแมวที่มองเห็นผ้าห่มที่เบี้ยวได้ก่อนใครเพื่อน คุณรุ่งเรืองด้วยระเบียบวินัยและมาตรฐานที่สูงส่ง',
+                metaphor: 'The Quality-Control Cat',
+                metaphorTh: 'แมวฝ่ายควบคุมคุณภาพ',
+                oneLiner: 'If it isn\'t perfect, it isn\'t finished.',
+                oneLinerTh: 'ถ้าไม่สมบูรณ์แบบ ก็ถือว่ายังไม่เสร็จ'
+            }
         },
         2: {
             name: 'The Helper',
@@ -40,7 +51,18 @@
             work: 'Thrive in supportive roles and environments where they can build meaningful connections.',
             workTh: 'รุ่งเรืองในบทบาทที่ได้สนับสนุนผู้อื่นและสภาพแวดล้อมที่สามารถสร้างความสัมพันธ์ที่มีความหมายได้',
             likelyTo: 'Remember your birthday, your half-birthday, and your cat\'s birthday without a calendar.',
-            likelyToTh: 'จำวันเกิดของคุณ วันครบรอบครึ่งปี และวันเกิดแมวของคุณได้โดยไม่ต้องดูปฏิทิน'
+            likelyToTh: 'จำวันเกิดของคุณ วันครบรอบครึ่งปี และวันเกิดแมวของคุณได้โดยไม่ต้องดูปฏิทิน',
+            bridge: {
+                code: 'SHNR',
+                headline: 'The Dedicated Guardian',
+                headlineTh: 'ผู้พิทักษ์ที่ทุ่มเท',
+                reason: 'Type 2 energy maps to the cat that greets you at the door and stays by your side when you are sad.',
+                reasonTh: 'พลังงานลักษณ์ 2 ตรงกับแมวที่คอยมารอรับคุณที่ประตูบ้าน และจะอยู่ข้างๆ เสมอในวันที่คุณเศร้า',
+                metaphor: 'The Empathy-Spounge Cat',
+                metaphorTh: 'แมวฟองน้ำดูดซับความรู้สึก',
+                oneLiner: 'I am here for you, always.',
+                oneLinerTh: 'ฉันอยู่ตรงนี้เพื่อคุณเสมอ'
+            }
         },
         3: {
             name: 'The Achiever',
@@ -61,7 +83,18 @@
             work: 'Competitive and efficient. They love clear KPIs and being at the top of their field.',
             workTh: 'ชอบการแข่งขันและมีประสิทธิภาพ พวกเขาชอบตัวชี้วัดที่ชัดเจนและการได้เป็นที่หนึ่งในสายงาน',
             likelyTo: 'Have three different calendars synced and unironically use the word \"optimization\" daily.',
-            likelyToTh: 'มีปฏิทิน 3 อันที่ซิงค์กัน และใช้คำว่า \"เพิ่มประสิทธิภาพ\" (optimization) ในชีวิตประจำวันอย่างจริงจัง'
+            likelyToTh: 'มีปฏิทิน 3 อันที่ซิงค์กัน และใช้คำว่า \"เพิ่มประสิทธิภาพ\" (optimization) ในชีวิตประจำวันอย่างจริงจัง',
+            bridge: {
+                code: 'CHBC',
+                headline: 'The Ambitious Executive',
+                headlineTh: 'ผู้บริหารผู้ทะเยอทะยาน',
+                reason: 'Type 3 energy matches the result-oriented, high-stakes cat that runs the neighborhood like a CEO.',
+                reasonTh: 'พลังงานลักษณ์ 3 ตรงกับแมวที่เน้นผลลัพธ์และมีเป้าหมายสูง บริหารจัดการละแวกบ้านเหมือนเป็น CEO',
+                metaphor: 'The LinkedIn-Profile Cat',
+                metaphorTh: 'แมวสายสร้างโพรไฟล์ LinkedIn',
+                oneLiner: 'Success is the only option.',
+                oneLinerTh: 'ความสำเร็จคือทางเลือกเดียว'
+            }
         },
         4: {
             name: 'The Individualist',
@@ -82,7 +115,18 @@
             work: 'Need creative freedom and a sense of personal expression in their tasks.',
             workTh: 'ต้องการอิสระในการสร้างสรรค์และความรู้สึกว่าได้แสดงออกถึงตัวตนในงานที่ทำ',
             likelyTo: 'Listen to a sad song on loop because it perfectly matches their current very specific internal mood.',
-            likelyToTh: 'ฟังเพลงเศร้าวนไปเรื่อยๆ เพราะมันตรงกับอารมณ์ข้างในที่เฉพาะเจาะจงของพวกเขาในตอนนี้พอดี'
+            likelyToTh: 'ฟังเพลงเศร้าวนไปเรื่อยๆ เพราะมันตรงกับอารมณ์ข้างในที่เฉพาะเจาะจงของพวกเขาในตอนนี้พอดี',
+            bridge: {
+                code: 'SDNR',
+                headline: 'The Artistic Muse',
+                headlineTh: 'เทพธิดาพยากรณ์ผู้มีศิลปะ',
+                reason: 'Type 4 energy maps to the sensitive, meaning-seeking cat that finds beauty in the shadows.',
+                reasonTh: 'พลังงานลักษณ์ 4 ตรงกับแมวที่อ่อนไหวและแสวงหาความหมาย ซึ่งมักจะพบความงามท่ามกลางเงามืด',
+                metaphor: 'The Melancholy-Main-Character Cat',
+                metaphorTh: 'แมวตัวเอกสายเศร้าแต่สวยงาม',
+                oneLiner: 'I don\'t want to be normal.',
+                oneLinerTh: 'ฉันไม่ได้อยากเป็นคนธรรมดา'
+            }
         },
         5: {
             name: 'The Investigator',
@@ -103,7 +147,18 @@
             work: 'Excel in analytical and research-heavy roles where they can work autonomously.',
             workTh: 'โดดเด่นในบทบาทที่เน้นการวิเคราะห์และการวิจัยที่สามารถทำงานได้อย่างเป็นอิสระ',
             likelyTo: 'Know a frightening amount of detail about a niche topic they researched at 3 AM.',
-            likelyToTh: 'รู้รายละเอียดที่น่าตกใจเกี่ยวกับหัวข้อเฉพาะทางที่พวกเขาแอบไปหาข้อมูลมาตอนตี 3'
+            likelyToTh: 'รู้รายละเอียดที่น่าตกใจเกี่ยวกับหัวข้อเฉพาะทางที่พวกเขาแอบไปหาข้อมูลมาตอนตี 3',
+            bridge: {
+                code: 'SDBR',
+                headline: 'The Observant Theorist',
+                headlineTh: 'นักทฤษฎีผู้ช่างสังเกต',
+                reason: 'Type 5 energy is the cat that watches from the highest shelf, gathering data before deciding if you are worth approaching.',
+                reasonTh: 'พลังงานลักษณ์ 5 คือแมวที่เฝ้ามองจากหิ้งที่สูงที่สุด คอยเก็บข้อมูลก่อนจะตัดสินใจว่าคุณควรค่าแก่การเข้าไปหาหรือไม่',
+                metaphor: 'The Wikipedia-Rabbit-Hole Cat',
+                metaphorTh: 'แมวสายจมดิ่งในหลุมวิกิพีเดีย',
+                oneLiner: 'Knowledge is power. And privacy is peace.',
+                oneLinerTh: 'ความรู้คือพลัง และความเป็นส่วนตัวคือความสงบ'
+            }
         },
         6: {
             name: 'The Loyalist',
@@ -124,7 +179,18 @@
             work: 'Reliable team players who excel at identifying risks and building secure systems.',
             workTh: 'เป็นผู้เล่นทีมที่เชื่อถือได้ โดดเด่นในการระบุความเสี่ยงและสร้างระบบที่ปลอดภัย',
             likelyTo: 'Have a backup plan for their backup plan, and their friends know they are the best person to call in a crisis.',
-            likelyToTh: 'มีแผนสำรองสำหรับแผนสำรอง และเพื่อนๆ ต่างรู้ดีว่าพวกเขาคือคนแรกที่ต้องโทรหาเมื่อเกิดวิกฤต'
+            likelyToTh: 'มีแผนสำรองสำหรับแผนสำรอง และเพื่อนๆ ต่างรู้ดีว่าพวกเขาคือคนแรกที่ต้องโทรหาเมื่อเกิดวิกฤต',
+            bridge: {
+                code: 'CHNR',
+                headline: 'The Vigilant Guardian',
+                headlineTh: 'ผู้พิทักษ์ที่ระแวดระวัง',
+                reason: 'Type 6 energy maps to the loyal, security-oriented cat that scans the room for potential vacuum cleaners.',
+                reasonTh: 'พลังงานลักษณ์ 6 ตรงกับแมวที่ซื่อสัตย์และรักความปลอดภัย ซึ่งจะคอยสแกนหาอันตราย (อย่างเครื่องดูดฝุ่น) อยู่เสมอ',
+                metaphor: 'The Security-Sweep Cat',
+                metaphorTh: 'แมวสายตรวจความปลอดภัย',
+                oneLiner: 'I trust you, but let me check your ID first.',
+                oneLinerTh: 'ฉันเชื่อใจคุณนะ แต่ขอดูบัตรประชาชนก่อน'
+            }
         },
         7: {
             name: 'The Enthusiast',
@@ -145,7 +211,18 @@
             work: 'Thrive in fast-paced, creative roles that involve variety and big-picture thinking.',
             workTh: 'รุ่งเรืองในบทบาทที่สร้างสรรค์และรวดเร็ว ซึ่งมีความหลากหลายและได้คิดภาพรวม',
             likelyTo: 'Have 50 tabs open, 3 trips planned, and just signed up for a pottery class they might go to once.',
-            likelyToTh: 'เปิดแท็บเบราว์เซอร์ไว้ 50 แท็บ วางแผนเที่ยวไว้ 3 ทริป และเพิ่งสมัครเรียนปั้นเซรามิกที่อาจจะไปแค่ครั้งเดียว'
+            likelyToTh: 'เปิดแท็บเบราว์เซอร์ไว้ 50 แท็บ วางแผนเที่ยวไว้ 3 ทริป และเพิ่งสมัครเรียนปั้นเซรามิกที่อาจจะไปแค่ครั้งเดียว',
+            bridge: {
+                code: 'CHNC',
+                headline: 'The Joyful Adventurer',
+                headlineTh: 'นักผจญภัยที่ร่าเริง',
+                reason: 'Type 7 energy matches the high-energy, fun-seeking cat that sees a closed door as a personal challenge.',
+                reasonTh: 'พลังงานลักษณ์ 7 ตรงกับแมวบ้าพลังที่รักสนุก ซึ่งมองว่าประตูที่ปิดอยู่คือความท้าทายส่วนตัว',
+                metaphor: 'The 3AM-Zoomies Cat',
+                metaphorTh: 'แมวสายดีดตอนตี 3',
+                oneLiner: 'Let\'s go! Everything is an adventure.',
+                oneLinerTh: 'ไปกันเถอะ! ทุกอย่างคือการผจญภัย'
+            }
         },
         8: {
             name: 'The Challenger',
@@ -166,7 +243,18 @@
             work: 'Natural leaders who thrive in high-stakes roles where they can protect and command.',
             workTh: 'ผู้นำโดยธรรมชาติที่รุ่งเรืองในบทบาทที่มีเดิมพันสูง ซึ่งพวกเขาสามารถปกป้องและสั่งการได้',
             likelyTo: 'Accidentally sound like they are shouting when they are just excited about a new idea.',
-            likelyToTh: 'เผลอทำเสียงเหมือนกำลังตะโกน ทั้งที่จริงๆ แค่กำลังตื่นเต้นกับไอเดียใหม่เท่านั้นเอง'
+            likelyToTh: 'เผลอทำเสียงเหมือนกำลังตะโกน ทั้งที่จริงๆ แค่กำลังตื่นเต้นกับไอเดียใหม่เท่านั้นเอง',
+            bridge: {
+                code: 'CHBR',
+                headline: 'The Powerful Commander',
+                headlineTh: 'ผู้นำที่ทรงพลัง',
+                reason: 'Type 8 energy maps to the commanding cat that sits in the middle of the hallway and makes you walk around them.',
+                reasonTh: 'พลังงานลักษณ์ 8 ตรงกับแมวที่มีอำนาจ ซึ่งจะมานั่งกลางทางเดินแล้วกดดันให้คุณต้องเดินอ้อมมันไปเอง',
+                metaphor: 'The Doorway-Blocker Cat',
+                metaphorTh: 'แมวสายขวางประตู',
+                oneLiner: 'I run this house. You just live here.',
+                oneLinerTh: 'ฉันคุมบ้านหลังนี้ คุณแค่มาขออาศัยอยู่'
+            }
         },
         9: {
             name: 'The Peacemaker',
@@ -187,7 +275,18 @@
             work: 'Excel in roles involving mediation, coordination, and building harmonious teamwork.',
             workTh: 'โดดเด่นในบทบาทที่เกี่ยวกับการไกล่เกลี่ย การประสานงาน และการสร้างทีมเวิร์คที่ปรองดอง',
             likelyTo: 'Say \"I\'m fine with whatever\" for lunch when they actually have a very specific craving they won\'t mention.',
-            likelyToTh: 'พูดว่า \"กินอะไรก็ได้\" สำหรับมื้อเที่ยง ทั้งที่จริงๆ มีสิ่งที่อยากกินมากๆ อยู่ในหัวแต่ไม่ยอมบอก'
+            likelyToTh: 'พูดว่า \"กินอะไรก็ได้\" สำหรับมื้อเที่ยง ทั้งที่จริงๆ มีสิ่งที่อยากกินมากๆ อยู่ในหัวแต่ไม่ยอมบอก',
+            bridge: {
+                code: 'SDNC',
+                headline: 'The Peaceful Mediator',
+                headlineTh: 'ผู้ไกล่เกลี่ยที่รักความสงบ',
+                reason: 'Type 9 energy maps to the zen cat that can nap through a thunderstorm and just wants everyone to be happy.',
+                reasonTh: 'พลังงานลักษณ์ 9 ตรงกับแมวสายเซนที่สามารถนอนหลับทะลุเสียงฟ้าร้อง และแค่อยากให้ทุกคนมีความสุข',
+                metaphor: 'The Sunbeam-Nap Cat',
+                metaphorTh: 'แมวสายหลับตากแดด',
+                oneLiner: 'Can\'t we all just get along?',
+                oneLinerTh: 'เรามารักกันไม่ได้เหรอ?'
+            }
         }
     };
 
