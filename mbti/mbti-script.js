@@ -15,6 +15,9 @@
     }
 
     function renderQuestion() {
+        if (currentIdx === 0 && answers.length === 0) {
+            window.MeowTrack && window.MeowTrack('quiz_start', { framework: 'mbti', lang: getLang() });
+        }
         const q = QUESTIONS[currentIdx];
         const lang = getLang();
         const text = q.text[lang] || q.text.en;
@@ -88,6 +91,14 @@
             'ESTJ': 'CHBR', 'ESFJ': 'CHNR', 'ENFJ': 'CDNR', 'ENTJ': 'CDBR'
         };
         const meowCode = mapping[mbti];
+
+        window.MeowTrack && window.MeowTrack('quiz_complete', {
+            framework: 'mbti',
+            result_type: mbti,
+            meow_cousin: meowCode,
+            lang: getLang()
+        });
+
         const tParams = `C${scores.E}S${scores.I}H${scores.S}D${scores.N}B${scores.T}N${scores.F}R${scores.J}F${scores.P}`;
         
         const langSuffix = getLang() !== 'en' ? `&lang=${getLang()}` : '';

@@ -15,6 +15,9 @@
     }
 
     function renderQuestion() {
+        if (currentIdx === 0 && answers.length === 0) {
+            window.MeowTrack && window.MeowTrack('quiz_start', { framework: 'enneagram', lang: getLang() });
+        }
         const q = QUESTIONS[currentIdx];
         const lang = getLang();
         const text = q.text[lang] || q.text.en;
@@ -74,6 +77,12 @@
         });
 
         const topType = sorted[0];
+
+        window.MeowTrack && window.MeowTrack('quiz_complete', {
+            framework: 'enneagram',
+            result_type: topType,
+            lang: getLang()
+        });
         
         // Build tally string for URL (T1S5T2S3...)
         const tParams = sorted.map(type => `T${type}S${scores[type]}`).join('');

@@ -93,6 +93,12 @@ function startQuiz(mode, resumeData = null) {
         resumed: !!resumeData,
         subject: isHuman ? 'human' : 'cat'
     });
+    window.MeowTrack && window.MeowTrack('quiz_start', {
+        framework: isHuman ? 'human' : 'cat',
+        mode: mode,
+        lang: getLang()
+    });
+
     if (isHuman) {
         window.MeowTrack && window.MeowTrack('human_quiz_start', { mode: currentMode, lang: getLang() });
     }
@@ -342,7 +348,13 @@ function finish() {
     const lang = getLang();
     
     clearState();
-    window.MeowTrack && window.MeowTrack('quiz_complete', { code, mode: currentMode, lang: lang, subject: isHuman ? 'human' : 'cat' });
+    window.MeowTrack && window.MeowTrack('quiz_complete', { 
+        framework: isHuman ? 'human' : 'cat',
+        result_type: code, 
+        mode: currentMode, 
+        lang: lang, 
+        subject: isHuman ? 'human' : 'cat' 
+    });
     
     const langSuffix = lang !== 'en' ? `&lang=${lang}` : '';
     const subjectSuffix = isHuman ? `&subject=human` : '';

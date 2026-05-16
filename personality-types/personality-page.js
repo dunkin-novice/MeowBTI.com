@@ -565,8 +565,12 @@
         const illustrationUrl = imagePath(p);
 
         async function build() {
-            window.MeowTrack && window.MeowTrack('share_clicked', {
-                code: p.code, has_user_photo: !!chosenFile,
+            window.MeowTrack && window.MeowTrack('share_attempt', {
+                framework: p.subject || 'cat',
+                result_type: p.code,
+                share_method: 'poster',
+                has_user_photo: !!chosenFile,
+                lang: getLang()
             });
             statusEl.textContent = t('buildingPoster');
             shareBtn.disabled = true;
@@ -747,6 +751,13 @@
             view_type: renderMode
         });
 
+        window.MeowTrack && window.MeowTrack('result_view', {
+            framework: isHuman ? 'human' : 'cat',
+            result_type: p.code,
+            lang: getLang(),
+            source: renderMode
+        });
+
         if (isHuman) {
             if (isResultPage) {
                 window.MeowTrack && window.MeowTrack('human_result_view', { archetype_code: p.code, language: getLang() });
@@ -899,6 +910,11 @@
                     
                     const success = window.MeowStore.saveFamilyProfile(profile);
                     if (success || true) {
+                        window.MeowTrack && window.MeowTrack('profile_save', {
+                            framework: isHuman ? 'human' : 'cat',
+                            profile_type: p.code,
+                            lang: getLang()
+                        });
                         saveBtn.textContent = t('savedToFamily');
                         saveBtn.classList.add('saved');
                         nameInput.disabled = true;
@@ -961,6 +977,13 @@
             btn.addEventListener('click', async (e) => {
                 e.preventDefault();
                 e.stopPropagation();
+
+                window.MeowTrack && window.MeowTrack('share_attempt', {
+                    framework: isHuman ? 'human' : 'cat',
+                    result_type: p.code,
+                    share_method: 'card_' + (btn.dataset.shareType || 'unknown'),
+                    lang: getLang()
+                });
 
                 if (!window.MeowShare || !window.MeowShare.buildCard) return;
 

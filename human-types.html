@@ -32,6 +32,7 @@
       gtag('config', 'G-2WNZ4HBJ87');
     </script>
     <!-- Performance Optimizations: Deferred Scripts -->
+    <script src="analytics.js" defer></script>
     <script src="data/i18n.js" defer></script>
     <script src="data/archetypes.js" defer></script>
     <script src="script.js" defer></script>
@@ -102,6 +103,7 @@
     <footer class="main-footer" id="main-footer"></footer>
     <script>
     window.addEventListener('DOMContentLoaded', () => {
+        window.MeowTrack && window.MeowTrack('hub_view', { framework: 'human_all', lang: window.MeowI18n.getLang() });
         if (!window.MeowArchetypes || !window.MeowI18n) return;
         const A = window.MeowArchetypes;
         const { t, withLang, getLang } = window.MeowI18n;

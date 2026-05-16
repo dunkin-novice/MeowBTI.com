@@ -3,12 +3,14 @@
 
 // Thin wrapper around gtag for funnel events. Safe to call before gtag loads
 // (push lands in dataLayer; gtag flushes on init). Other scripts call this.
-window.MeowTrack = function (name, params) {
-    try {
-        if (typeof gtag === 'function') gtag('event', name, params || {});
-        else if (window.dataLayer) window.dataLayer.push({ event: name, ...(params || {}) });
-    } catch (_) {}
-};
+if (!window.MeowTrack) {
+    window.MeowTrack = function (name, params) {
+        try {
+            if (typeof gtag === 'function') gtag('event', name, params || {});
+            else if (window.dataLayer) window.dataLayer.push({ event: name, ...(params || {}) });
+        } catch (_) {}
+    };
+}
 
 document.addEventListener('DOMContentLoaded', () => {
 

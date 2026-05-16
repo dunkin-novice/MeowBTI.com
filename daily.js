@@ -206,6 +206,14 @@
         host.querySelector('#daily-share').onclick = async () => {
             const text = `${r.shareLine}\nForecast: ${r.label}\n${window.location.origin}${i18n().withLang('/daily.html')}`;
             const status = host.querySelector('#daily-status');
+
+            window.MeowTrack && window.MeowTrack('share_attempt', {
+                framework: 'daily_weather',
+                result_type: r.label,
+                share_method: navigator.share ? 'native' : 'clipboard',
+                lang: i18n().getLang()
+            });
+
             try {
                 if (navigator.share) {
                     await navigator.share({ title: 'MeowBTI Daily', text });
@@ -220,6 +228,13 @@
     }
 
     function renderQuestion(host, state) {
+        if (state.step === 0 && Object.keys(state.answers).length === 0) {
+            window.MeowTrack && window.MeowTrack('daily_weather_start', {
+                source_route: window.location.pathname,
+                has_profile: !!state.profile,
+                lang: i18n().getLang()
+            });
+        }
         const { t } = i18n();
         const q = QUESTIONS[state.step];
         // If profile was specified in state, use it, else get primary
@@ -250,6 +265,16 @@
                     const res = buildResult(state.answers, profile);
                     const entry = { date: todayKey(), answers: state.answers, result: res, profile };
                     saveCheckin(entry);
+
+                    window.MeowTrack && window.MeowTrack('daily_weather_complete', {
+                        source_route: window.location.pathname,
+                        has_profile: !!profile,
+                        energy_level: state.answers.energy,
+                        social_battery: state.answers.social,
+                        stress_weather: state.answers.stress,
+                        lang: i18n().getLang()
+                    });
+
                     renderResult(host, entry);
                     // Refresh home widget or other components if needed
                     window.dispatchEvent(new CustomEvent('meow:daily:updated'));
@@ -269,6 +294,10 @@
 
         const homeWidget = document.getElementById('daily-weather-home');
         if (homeWidget) {
+            window.MeowTrack && window.MeowTrack('homepage_weather_view', {
+                has_checkin: !!getTodayCheckin(getTargetProfile() ? getTargetProfile().id : null),
+                lang: i18n().getLang()
+            });
             const primary = getTargetProfile();
             const today = getTodayCheckin(primary ? primary.id : null);
             const { t, withLang } = i18n();

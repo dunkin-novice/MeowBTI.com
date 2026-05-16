@@ -10,7 +10,7 @@
 
     if (!section || !grid || !window.MeowStore || !window.MeowI18n) return;
 
-    const { t, withLang } = window.MeowI18n;
+    const { t, withLang, getLang } = window.MeowI18n;
 
     function removeProfile(id, name) {
         if (confirm(t('confirmRemove', name))) {
@@ -38,6 +38,12 @@
         const profiles = window.MeowStore.getFamily();
         const now = new Date();
         const dateStr = now.toISOString().split('T')[0];
+
+        window.MeowTrack && window.MeowTrack('dashboard_view', {
+            profile_count: profiles.length,
+            has_daily_weather: profiles.some(p => window.MeowDaily && window.MeowDaily.getTodayCheckin(p.id)),
+            lang: getLang()
+        });
         
         if (profiles.length === 0) {
             if (emptyState) {

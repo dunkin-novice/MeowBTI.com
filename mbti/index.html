@@ -27,6 +27,7 @@
       gtag('js', new Date());
       gtag('config', 'G-2WNZ4HBJ87');
     </script>
+    <script src="../analytics.js" defer></script>
     <script src="../data/i18n.js" defer></script>
     <script src="../data/mbti/content.js" defer></script>
     <script src="../script.js" defer></script>
@@ -113,6 +114,7 @@
     <footer class="main-footer" id="main-footer"></footer>
     <script>
     window.addEventListener('DOMContentLoaded', () => {
+        window.MeowTrack && window.MeowTrack('hub_view', { framework: 'mbti', lang: window.MeowI18n.getLang() });
         const grid = document.getElementById('mbti-grid');
         const content = window.MeowMBTIContent;
         if (!grid || !content) return;
