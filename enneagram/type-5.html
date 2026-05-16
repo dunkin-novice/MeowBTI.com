@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Enneagram Type 5 Meaning: The Investigator | MeowBTI</title>
+    <meta name='description' content='Discover the meaning, core motivations, and stress patterns of Enneagram Type 5 (The Investigator). Detailed personality breakdown.'>
+    <link rel='canonical' href='https://meowbti.com/enneagram/type-5.html'>
+    <link rel='stylesheet' href='../style.css'>
+    <script async src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945' crossorigin='anonymous'></script>
+    <style>
+        .ennea-content-grid { display: grid; gap: 40px; margin-top: 40px; }
+        .ennea-section-h { font-family: var(--font-display); font-size: 1.8rem; margin-bottom: 16px; border-bottom: 2px solid rgba(0,0,0,0.05); padding-bottom: 8px; }
+        .ennea-card-box { background: #fff; border: 2px solid var(--ink); border-radius: 24px; padding: 32px; box-shadow: 8px 8px 0 rgba(0,0,0,0.05); }
+        .bridge-box { display: flex; align-items: center; gap: 24px; background: #fff; border: 2.5px solid var(--ink); border-radius: 32px; padding: 32px; margin-top: 60px; position: relative; overflow: hidden; }
+        @media (max-width: 600px) { .bridge-box { flex-direction: column; text-align: center; } }
+    </style>
+</head>
+<body class='ennea-evergreen-page'>
+    <header class='main-header' id='main-header'></header>
+    <main>
+        <section class='evergreen-section'>
+            <div class='container' style='max-width: 900px; padding: 80px 20px;'>
+                <div id='ennea-evergreen-content'>
+                    <p style='text-align:center; opacity:0.6;'>Loading type data...</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class='main-footer' id='main-footer'></footer>
+
+    <script src='../data/i18n.js'></script>
+    <script src='../data/enneagram/content.js'></script>
+    <script src='../script.js'></script>
+    <script>
+    (function() {
+        const { getLang, t, withLang } = window.MeowI18n;
+        const lang = getLang();
+        const typeNum = 5;
+        
+        const content = window.MeowEnneaContent;
+        if (!content || !content.TYPES[typeNum]) return;
+
+        const data = content.TYPES[typeNum];
+
+        const field = (key) => {
+            if (lang === 'th') {
+                const thKey = key + 'Th';
+                return data[thKey] || data[key];
+            }
+            return data[key];
+        };
+
+        const typeName = lang === 'th' ? data.nameTh : data.name;
+        document.title = 'Enneagram Type ' + typeNum + ' Meaning: ' + typeName + ' | MeowBTI';
+
+        document.getElementById('ennea-evergreen-content').innerHTML = "<div style='text-align:center; margin-bottom: 60px;'><div style='display:inline-block; background:#9B59B6; color:#fff; padding:8px 24px; border-radius:40px; font-family:var(--font-mono); font-weight:900; margin-bottom:16px;'>TYPE " + typeNum + "</div><h1 style='font-family: var(--font-display); font-size: clamp(2.5rem, 8vw, 4rem); line-height:1; margin-bottom:12px;'>" + typeName + "</h1><p style='font-size: 1.3rem; opacity: 0.7; max-width: 700px; margin: 0 auto;'>" + field('summary') + "</p></div><div class='ennea-content-grid'><div style='display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px;'><div class='ennea-card-box'><h2 class='ennea-section-h'>" + (lang === 'th' ? 'แรงจูงใจหลัก' : 'Core Motivation') + "</h2><p style='font-size: 1.1rem; line-height:1.6;'>" + field('motivation') + "</p></div><div class='ennea-card-box'><h2 class='ennea-section-h'>" + (lang === 'th' ? 'ความกลัวลึกๆ' : 'Core Fear') + "</h2><p style='font-size: 1.1rem; line-height:1.6;'>" + field('fear') + "</p></div></div><div class='ennea-card-box'><h2 class='ennea-section-h'>" + (lang === 'th' ? 'โลกทางอารมณ์' : 'Emotional World') + "</h2><p style='font-size: 1.1rem; line-height:1.7;'>" + field('emotions') + "</p></div><div style='display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px;'><div class='ennea-card-box'><h2 class='ennea-section-h'>" + (lang === 'th' ? 'พฤติกรรมยามเครียด' : 'Stress Pattern') + "</h2><p>" + field('stress') + "</p></div><div class='ennea-card-box'><h2 class='ennea-section-h'>" + (lang === 'th' ? 'ทิศทางการเติบโต' : 'Growth Direction') + "</h2><p>" + field('growth') + "</p></div></div><div class='ennea-card-box'><h2 class='ennea-section-h'>" + (lang === 'th' ? 'สไตล์การทำงาน' : 'Work Style') + "</h2><p>" + field('work') + "</p></div><div class='ennea-card-box' style='background:var(--paper);'><h2 class='ennea-section-h'>" + (lang === 'th' ? 'เกร็ดขำๆ' : 'Quick Vibes') + "</h2><p><strong>" + (lang === 'th' ? 'มักจะ: ' : 'Most likely to: ') + "</strong> " + field('likelyTo') + "</p></div></div><div class='bridge-box'><div style='flex:1; position:relative; z-index:1;'><h3 style='font-family:var(--font-display); font-size:1.5rem; margin-bottom:8px;'>" + (lang === 'th' ? 'อยากรู้ร่างแมวของคุณไหม?' : 'What is your Cat Energy?') + "</h3><p style='margin-bottom:16px; line-height:1.5;'>" + (lang === 'th' ? 'แบบทดสอบ MeowBTI จะช่วยแปลบุคลิกภาพของคุณให้กลายเป็นพลังงานแมวที่จับต้องได้' : 'The MeowBTI test translates your deep motivations into a feline archetype you can actually relate to.') + "</p><a href='" + withLang('../human-quiz.html') + "' class='big-btn' style='background:var(--ink); color:#fff;'>" + (lang === 'th' ? 'ทำแบบทดสอบ MeowBTI' : 'Take the MeowBTI Quiz') + " →</a></div></div><div style='margin-top: 100px; text-align: center; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 60px;'><h2 style='font-family:var(--font-display); margin-bottom:24px;'>" + (lang === 'th' ? 'คุณคือลักษณ์ ' + typeNum + ' จริงหรือเปล่า?' : 'Are you really a Type ' + typeNum + '?') + "</h2><a href='" + withLang('test.html') + "' class='big-btn accent'>" + (lang === 'th' ? 'ทำแบบทดสอบ Enneagram ฟรี' : 'Take the Free Enneagram Test') + "</a></div>";
+    })();
+    </script>
+</body>
+</html>

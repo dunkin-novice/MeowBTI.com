@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Enneagram Result | MeowBTI</title>
+    <meta name="robots" content="noindex, follow">
+    <meta name="theme-color" content="#FFF4EC">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+    <link rel="stylesheet" href="../style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945" crossorigin="anonymous"></script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2WNZ4HBJ87"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-2WNZ4HBJ87');
+    </script>
+</head>
+<body>
+
+    <header class="main-header" id="main-header"></header>
+
+    <main>
+        <section class="result-section" style="padding: 60px 0;">
+            <div class="container" style="max-width: 800px;">
+                <div id="ennea-result-content">
+                    <p style="text-align:center; padding: 100px 0; opacity: 0.6;">Calculating your motivation profile...</p>
+                </div>
+
+                <!-- Retention Bridge -->
+                <div style="margin-top: 80px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+                    <div class="next-card" style="background:#fff; border: 2px solid var(--ink); border-radius: 20px; padding: 32px; text-align: center;">
+                        <h4 style="margin-bottom:12px;">The Mind Type</h4>
+                        <p style="margin-bottom: 24px; font-size: 0.95rem; opacity: 0.8;">Already know your motivation? Now see how your mind processes the world.</p>
+                        <a href="../mbti/test.html" class="big-btn accent" data-i18n="enneaTakeMBTI">Compare with your MBTI →</a>
+                    </div>
+                    <div class="next-card" style="background:#fff; border: 2px solid var(--ink); border-radius: 20px; padding: 32px; text-align: center;">
+                        <h4 style="margin-bottom:12px;">Cat Energy</h4>
+                        <p style="margin-bottom: 24px; font-size: 0.95rem; opacity: 0.8;">What if your personality was a cat? Find your feline archetype.</p>
+                        <a href="../human-quiz.html" class="big-btn ghost" data-i18n="enneaTakeMeow">See your Cat Energy →</a>
+                    </div>
+                    <div class="next-card" style="background:#fff; border: 2px solid var(--ink); border-radius: 20px; padding: 32px; text-align: center;">
+                        <h4 style="margin-bottom:12px;">Daily Ritual</h4>
+                        <p style="margin-bottom: 24px; font-size: 0.95rem; opacity: 0.8;">Check your emotional weather and see how your mood shifts today.</p>
+                        <a href="../daily.html" class="big-btn ghost" data-i18n="enneaCheckWeather">Check today's Emotional Weather</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer" id="main-footer"></footer>
+
+    <script src="../data/i18n.js"></script>
+    <script src="../data/enneagram/content.js"></script>
+    <script src="../script.js"></script>
+    <script>
+    (function() {
+        const { getLang, t, withLang } = window.MeowI18n;
+        const params = new URLSearchParams(window.location.search);
+        const typeNum = params.get('type');
+        const tString = params.get('t');
+
+        const host = document.getElementById('ennea-result-content');
+        if (!host || !typeNum || !window.MeowEnneaContent) {
+            if (host) host.innerHTML = `<p style="text-align:center;">Invalid result. <a href="index.html">Try again</a>.</p>`;
+            return;
+        }
+
+        const data = window.MeowEnneaContent.TYPES[typeNum];
+        if (!data) {
+            host.innerHTML = `<p style="text-align:center;">Type not found. <a href="index.html">Try again</a>.</p>`;
+            return;
+        }
+
+        const lang = getLang();
+        const typeName = lang === 'th' ? data.nameTh : data.name;
+        const summary = lang === 'th' ? data.summaryTh : data.summary;
+
+        // Parse top 3 scores
+        // tString format: T1S6T2S4...
+        function parseScores(ts) {
+            const results = [];
+            const re = /T(\d)S(\d+)/g;
+            let m;
+            while ((m = re.exec(ts)) !== null) {
+                results.push({ type: m[1], score: parseInt(m[2], 10) });
+            }
+            return results.slice(0, 3);
+        }
+        const topScores = parseScores(tString || '');
+
+        host.innerHTML = `
+            <div style="text-align:center; margin-bottom: 48px;">
+                <h1 data-i18n="enneaResultH1" style="font-family: var(--font-display); font-size: clamp(2rem, 6vw, 3.5rem); margin-bottom: 16px;">${t('enneaResultH1')}</h1>
+                <div style="display:inline-block; background: #9B59B6; color: #fff; padding: 12px 32px; border-radius: 40px; font-weight: 900; font-size: 2.5rem; margin-bottom: 12px; font-family: var(--font-mono);">
+                    Type ${typeNum}
+                </div>
+                <h2 style="font-family: var(--font-display); font-size: 2.2rem; margin-bottom: 12px;">${typeName}</h2>
+                <p style="font-size: 1.2rem; opacity: 0.8; max-width: 600px; margin: 0 auto;">${summary}</p>
+                <div style="margin-top: 24px;">
+                    <a href="type-${typeNum}.html" style="color: var(--ink); text-decoration: underline; font-weight: 700;">${t('enneaReadFull')}</a>
+                </div>
+            </div>
+
+            <div class="ennea-score-box" style="background:#fff; border: 2px solid var(--ink); border-radius: 24px; padding: 32px; margin-bottom: 48px; box-shadow: 8px 8px 0 var(--ink);">
+                <h3 style="font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.6; margin-bottom: 24px; text-align: center;">${t('enneaTopScores')}</h3>
+                <div class="top-scores-grid" style="display: grid; gap: 16px;">
+                    ${topScores.map(s => {
+                        const pct = Math.round((s.score / 6) * 100); // 3 questions * 2 pts max = 6
+                        return `
+                            <div class="score-row">
+                                <div style="display:flex; justify-content:space-between; margin-bottom:8px; font-weight:700;">
+                                    <span>Type ${s.type}</span>
+                                    <span>${pct}%</span>
+                                </div>
+                                <div style="height:12px; background:var(--bg); border-radius:10px; border:1px solid var(--ink); overflow:hidden;">
+                                    <div style="width:${pct}%; height:100%; background:#9B59B6;"></div>
+                                </div>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+            </div>
+
+            <div class="ennea-insight-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
+                <div class="insight-card" style="background:#fff; border: 2px solid var(--ink); border-radius: 20px; padding: 24px;">
+                    <h4 style="font-size: 0.8rem; text-transform: uppercase; opacity: 0.5; margin-bottom: 12px;">${t('enneaMotivationH')}</h4>
+                    <p style="font-weight: 600;">${lang === 'th' ? data.motivationTh : data.motivation}</p>
+                </div>
+                <div class="insight-card" style="background:#fff; border: 2px solid var(--ink); border-radius: 20px; padding: 24px;">
+                    <h4 style="font-size: 0.8rem; text-transform: uppercase; opacity: 0.5; margin-bottom: 12px;">${t('enneaFearH')}</h4>
+                    <p style="font-weight: 600;">${lang === 'th' ? data.fearTh : data.fear}</p>
+                </div>
+                <div class="insight-card" style="background:#fff; border: 2px solid var(--ink); border-radius: 20px; padding: 24px;">
+                    <h4 style="font-size: 0.8rem; text-transform: uppercase; opacity: 0.5; margin-bottom: 12px;">${t('enneaStressH')}</h4>
+                    <p style="font-weight: 600;">${lang === 'th' ? data.stressTh : data.stress}</p>
+                </div>
+                <div class="insight-card" style="background:#fff; border: 2px solid var(--ink); border-radius: 20px; padding: 24px;">
+                    <h4 style="font-size: 0.8rem; text-transform: uppercase; opacity: 0.5; margin-bottom: 12px;">${t('enneaGrowthH')}</h4>
+                    <p style="font-weight: 600;">${lang === 'th' ? data.growthTh : data.growth}</p>
+                </div>
+            </div>
+        `;
+    })();
+    </script>
+</body>
+</html>

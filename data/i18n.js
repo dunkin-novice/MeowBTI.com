@@ -435,6 +435,27 @@
         mbtiTeaserP:       { en: "Find your 4-letter type and meet your cat-energy cousin.", th: "ค้นหารหัสบุคลิกภาพ 4 ตัว พร้อมเจอแมวสายพันธุ์ที่ตรงกับคุณ" },
         mbtiTeaserCta:     { en: "Take the MBTI Test →",      th: "ทำแบบทดสอบ MBTI →" },
 
+        // ─── Enneagram (enneagram/) ──────────────────────────
+        enneaHomeH1:       { en: "Free Enneagram Personality Test", th: "แบบทดสอบบุคลิกภาพ Enneagram ฟรี" },
+        enneaHomeSub:      { en: "Discover your core motivation and emotional drive. 27 questions. No email.", 
+                              th: "ค้นพบแรงจูงใจหลักและแรงขับเคลื่อนทางอารมณ์ของคุณ 27 คำถาม ไม่ต้องใช้อีเมล" },
+        enneaHomeCta:      { en: "Start Enneagram Test",       th: "เริ่มทำแบบทดสอบ Enneagram" },
+        enneaTestH1:       { en: "Enneagram Analysis",         th: "วิเคราะห์บุคลิกภาพ Enneagram" },
+        enneaResultH1:     { en: "Your Enneagram Result",      th: "ผลลัพธ์ Enneagram ของคุณ" },
+        enneaTypeLabel:    { en: (n) => `Type ${n}`,           th: (n) => `ลักษณ์ ${n}` },
+        enneaLikeMe:       { en: "Like me",                    th: "ใช่เลย" },
+        enneaSometimes:    { en: "Sometimes",                  th: "บางครั้ง" },
+        enneaNotMe:        { en: "Not like me",                th: "ไม่ใช่" },
+        enneaTopScores:    { en: "Your Top 3 Types",           th: "3 ลักษณ์ที่โดดเด่นของคุณ" },
+        enneaMotivationH:  { en: "Core Motivation",            th: "แรงจูงใจหลัก" },
+        enneaFearH:        { en: "Core Fear",                  th: "ความกลัวหลัก" },
+        enneaStressH:      { en: "Stress Pattern",             th: "พฤติกรรมยามเครียด" },
+        enneaGrowthH:      { en: "Growth Direction",           th: "ทิศทางการเติบโต" },
+        enneaReadFull:     { en: "Read full profile →",        th: "อ่านรายละเอียดทั้งหมด →" },
+        enneaTakeMBTI:     { en: "Compare with your MBTI →",   th: "เปรียบเทียบกับ MBTI ของคุณ →" },
+        enneaTakeMeow:     { en: "See your Cat Energy →",      th: "ดูพลังงานแมวของคุณ →" },
+        enneaCheckWeather: { en: "Check today's Emotional Weather", th: "เช็กสภาพอากาศในใจวันนี้" },
+
         // ─── Emotional OS daily check-in (daily.html + daily.js) ──
         dailyKicker:       { en: "Daily ritual",               th: "พิธีเช็กอินประจำวัน" },
         dailyH1:           { en: "Daily Emotional Weather",    th: "สภาพอากาศในใจประจำวัน" },
