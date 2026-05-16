@@ -319,6 +319,12 @@
         ORBS: ORBS
     };
 
+    window.addEventListener('storage', (e) => {
+        if (e.key === STORAGE_KEY) _cachedStore = null;
+    });
+
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
     else init();
+
+    window.addEventListener('meow:daily:updated', init);
 })();

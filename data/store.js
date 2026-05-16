@@ -77,6 +77,10 @@
         return 'p-' + Math.random().toString(36).substr(2, 9) + '-' + Date.now().toString(36);
     }
 
+    window.addEventListener('storage', (e) => {
+        if (e.key === STORAGE_KEY) _cachedStore = null;
+    });
+
     window.MeowStore = {
         getFamily,
         saveFamilyProfile,

@@ -84,7 +84,7 @@
                         <span class="fc-weather-orb" style="--orb-a:${r.colorA};--orb-b:${r.colorB}">${r.emoji}</span>
                         <div class="fc-weather-info">
                             <div class="fc-weather-label">${r.label}</div>
-                            <div class="fc-weather-desc">${r.forecast}</div>
+                            <div class="fc-weather-desc">${r.insight}</div>
                         </div>
                     </div>`;
             } else if (archetype && archetype.dailyObservations) {
@@ -248,4 +248,6 @@
     window.addEventListener('storage', (e) => {
         if (e.key === 'meow-bti-family') render();
     });
+
+    window.addEventListener('meow:daily:updated', render);
 })();

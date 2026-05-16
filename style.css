@@ -2724,4 +2724,4 @@ a { color: inherit; }
 .identity-engine-section { min-height: 400px; }
 
 /* Image sizing for CLS */
-.bc-image, .fc-image { aspect-ratio: 1 / 1; height: auto; }
+.bc-image, .fc-image, .tc-image { aspect-ratio: 1 / 1; height: auto; }
