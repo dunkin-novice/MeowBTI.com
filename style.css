@@ -2551,3 +2551,59 @@ a { color: inherit; }
   border-top: 1px solid rgba(0,0,0,0.1);
   padding-top: 24px;
 }
+
+/* ─── Human Teaser & Info Grid ────────────────────────── */
+.human-teaser-card {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 32px;
+  overflow: hidden;
+  box-shadow: 8px 8px 0 rgba(0,0,0,0.05);
+  margin-bottom: 32px;
+}
+.ht-content {
+  flex: 1;
+  padding: 40px;
+}
+.ht-content h2 { font-family: var(--font-display); font-size: 2rem; margin-bottom: 12px; }
+.ht-content p { font-size: 1.1rem; opacity: 0.8; margin-bottom: 24px; line-height: 1.4; }
+.ht-visual {
+  width: 240px;
+  height: 240px;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 2px solid var(--ink);
+}
+.ht-visual img { width: 180px; height: 180px; object-fit: contain; }
+
+.mbti-pill {
+  display: inline-block;
+  background: #fff;
+  border: 1.5px solid var(--ink);
+  padding: 8px 20px;
+  border-radius: 40px;
+  font-family: var(--font-mono);
+  font-weight: 800;
+  text-decoration: none;
+  color: var(--ink);
+  transition: transform 0.2s, background 0.2s;
+}
+.mbti-pill:hover { transform: translateY(-2px); background: var(--bg); }
+
+.mbti-grid-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 12px 12px 0 var(--ink);
+}
+
+@media (max-width: 600px) {
+  .human-teaser-card { flex-direction: column; }
+  .ht-visual { width: 100%; border-left: none; border-top: 2px solid var(--ink); padding: 32px 0; }
+  .ht-content { padding: 32px 24px; text-align: center; }
+}
+
+.info-card { transition: transform 0.2s; }
+.info-card:hover { transform: translateY(-4px); }

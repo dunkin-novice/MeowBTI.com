@@ -11,6 +11,8 @@
         navHome:           { en: "Home",                      th: "หน้าหลัก" },
         navAll16:          { en: "All 16",                    th: "ทั้งหมด 16" },
         navHumanMode:      { en: "Human Energy",              th: "ตัวตนในร่างแมว" },
+        navMBTI:           { en: "MBTI",                      th: "MBTI" },
+        navEnnea:          { en: "Enneagram",                 th: "Enneagram" },
         navPicks:          { en: "Picks",                     th: "ของแนะนำ" },
 
         navTakeTest:       { en: "Take the test",             th: "เริ่มทำแบบทดสอบ" },
