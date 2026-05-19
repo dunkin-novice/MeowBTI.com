@@ -185,14 +185,14 @@
             <!-- Next Steps Cohesion -->
             <div style="margin-top: 80px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
                 <div class="next-card" style="background:#fff; border: 2px solid var(--ink); border-radius: 20px; padding: 32px; text-align: center;">
-                    <h4 style="margin-bottom:12px;">The Mind Type</h4>
-                    <p style="margin-bottom: 24px; font-size: 0.95rem; opacity: 0.8;">How does your mind process information? See your 4-letter MBTI code.</p>
-                    <a href="../mbti/test.html" class="big-btn accent">${t('enneaTakeMBTI')}</a>
+                    <h4 style="margin-bottom:12px;">Duo Analysis</h4>
+                    <p style="margin-bottom: 24px; font-size: 0.95rem; opacity: 0.8;">How do your motivations mix with others? Compare your type with anyone.</p>
+                    <a href="${withLang('../compare.html') + '?a=' + typeNum + '&af=enneagram'}" class="big-btn accent">Compare Identities →</a>
                 </div>
                 <div class="next-card" style="background:#fff; border: 2px solid var(--ink); border-radius: 20px; padding: 32px; text-align: center;">
-                    <h4 style="margin-bottom:12px;">Daily Ritual</h4>
-                    <p style="margin-bottom: 24px; font-size: 0.95rem; opacity: 0.8;">Check your emotional weather and see how your mood shifts today.</p>
-                    <a href="../daily.html" class="big-btn ghost">${t('enneaCheckWeather')}</a>
+                    <h4 style="margin-bottom:12px;">The Mind Type</h4>
+                    <p style="margin-bottom: 24px; font-size: 0.95rem; opacity: 0.8;">How does your mind process information? See your 4-letter MBTI code.</p>
+                    <a href="../mbti/test.html" class="big-btn ghost">${t('enneaTakeMBTI')}</a>
                 </div>
             </div>
         `;

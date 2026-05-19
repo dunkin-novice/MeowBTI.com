@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Identity Deep Dive — MeowBTI Comparison Tool</title>
+    <meta name="description" content="What happens when two personalities collide? Compare MBTI, Enneagram, and Cat Energy to see your relationship dynamics.">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Identity Deep Dive: Compare Any Two Personalities | MeowBTI">
+    <meta property="og:description" content="Analyze the chemistry, chaos, and conflict between any two MBTI, Enneagram, or Cat Energy types. Socially realistic relationship insights.">
+    <meta property="og:image" content="https://meowbti.com/assets/personalities/shbr-the-silent-strategist.webp">
+    <meta property="og:image:width" content="1024">
+    <meta property="og:image:height" content="1024">
+    <meta property="og:image:alt" content="MeowBTI Identity Deep Dive illustration">
+    <meta property="og:url" content="https://meowbti.com/compare.html">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Identity Deep Dive: Comparison Tool">
+    <meta name="twitter:description" content="What happens when your personality meets theirs? Real relationship dynamics analysis.">
+    <meta name="twitter:image" content="https://meowbti.com/assets/personalities/shbr-the-silent-strategist.webp">
+
+    <link rel="stylesheet" href="style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823470980745945" crossorigin="anonymous"></script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2WNZ4HBJ87"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-2WNZ4HBJ87');
+    </script>
+    <!-- Performance & Analytics -->
+    <script src="analytics.js" defer></script>
+    <script src="data/i18n.js" defer></script>
+    <script src="data/archetypes.js" defer></script>
+    <script src="data/mbti/content.js" defer></script>
+    <script src="data/enneagram/content.js" defer></script>
+    <script src="compatibility.js" defer></script>
+    <script src="script.js" defer></script>
+    <script src="compare.js" defer></script>
+</head>
+<body class="compare-page">
+    <header class="main-header" id="main-header"></header>
+
+    <main>
+        <section class="hero-section" style="padding: 60px 0 40px;">
+            <div class="container center">
+                <h1 data-i18n="compareH1" style="font-family: var(--font-display); font-size: 3.5rem; margin-bottom: 12px;">Identity Deep Dive</h1>
+                <p data-i18n="compareIntro" style="max-width: 600px; margin: 0 auto; opacity: 0.7; font-size: 1.2rem;">What happens when two worlds collide? Choose two identities to see their dynamic.</p>
+            </div>
+        </section>
+
+        <section class="compare-tool-section">
+            <div class="container">
+                <div class="compare-grid">
+                    <!-- Person A -->
+                    <div class="compare-selector-card" id="selector-a">
+                        <h2 data-i18n="comparePersonA">Person A</h2>
+                        <div class="selector-controls">
+                            <select class="framework-select" id="framework-a">
+                                <option value="mbti">MBTI</option>
+                                <option value="enneagram">Enneagram</option>
+                                <option value="cat" selected>Cat Energy</option>
+                            </select>
+                            <div class="type-select-container" id="types-a">
+                                <!-- JS Injected Types -->
+                            </div>
+                        </div>
+                        <div class="selected-display" id="display-a">
+                            <div class="empty-placeholder" data-i18n="compareEmptyA">Select Person A</div>
+                        </div>
+                    </div>
+
+                    <div class="compare-vs" data-i18n="compareVS">VS</div>
+
+                    <!-- Person B -->
+                    <div class="compare-selector-card" id="selector-b">
+                        <h2 data-i18n="comparePersonB">Person B</h2>
+                        <div class="selector-controls">
+                            <select class="framework-select" id="framework-b">
+                                <option value="mbti">MBTI</option>
+                                <option value="enneagram">Enneagram</option>
+                                <option value="cat" selected>Cat Energy</option>
+                            </select>
+                            <div class="type-select-container" id="types-b">
+                                <!-- JS Injected Types -->
+                            </div>
+                        </div>
+                        <div class="selected-display" id="display-b">
+                            <div class="empty-placeholder" data-i18n="compareEmptyB">Select Person B</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="compare-result" class="compare-result-container" style="display:none;">
+                    <!-- JS Injected Result -->
+                </div>
+
+                <div class="popular-comparisons" style="margin-top: 80px; text-align: center;">
+                    <h3 data-i18n="comparePopular" style="font-family: var(--font-display); margin-bottom: 24px; opacity: 0.5; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.1em;">Popular Pairings</h3>
+                    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px;">
+                        <a href="?a=INTJ&af=mbti&b=ENFP&bf=mbti" class="mbti-pill small">INTJ + ENFP</a>
+                        <a href="?a=INFJ&af=mbti&b=ENTP&bf=mbti" class="mbti-pill small">INFJ + ENTP</a>
+                        <a href="?a=SDBR&af=cat&b=CHNC&bf=cat" class="mbti-pill small">Strategist + Party Starter</a>
+                        <a href="?a=5&af=enneagram&b=4&bf=enneagram" class="mbti-pill small">Type 5 + Type 4</a>
+                        <a href="?a=ISTJ&af=mbti&b=ENFP&bf=mbti" class="mbti-pill small">ISTJ + ENFP</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer" id="main-footer"></footer>
+</body>
+</html>

@@ -13,7 +13,24 @@
         navHumanMode:      { en: "Human Energy",              th: "ตัวตนในร่างแมว" },
         navMBTI:           { en: "MBTI",                      th: "MBTI" },
         navEnnea:          { en: "Enneagram",                 th: "Enneagram" },
+        navCompare:        { en: "Compare",                   th: "เปรียบเทียบ" },
         navPicks:          { en: "Picks",                     th: "ของแนะนำ" },
+
+        // ─── Comparison Tool (compare.html) ──────────────────
+        compareH1:         { en: "Identity Deep Dive",        th: "เจาะลึกเคมีตัวตน" },
+        compareIntro:      { en: "What happens when two worlds collide? Choose two identities to see their dynamic.", 
+                              th: "จะเกิดอะไรขึ้นเมื่อสองขั้วมาเจอกัน? เลือกตัวตนที่ต้องการเพื่อดูบทวิเคราะห์ความสัมพันธ์" },
+        comparePersonA:    { en: "Person A",                  th: "คนที่หนึ่ง" },
+        comparePersonB:    { en: "Person B",                  th: "คนที่สอง" },
+        compareFramework:  { en: "Framework",                 th: "ระบบวิเคราะห์" },
+        compareType:       { en: "Type",                      th: "ประเภท" },
+        compareResultH:    { en: "The Duo Dynamic",           th: "ไดนามิกของคู่นี้" },
+        compareShareDuo:   { en: "Share this Duo",            th: "แชร์บทวิเคราะห์คู่" },
+        compareEmptyA:     { en: "Select Person A",           th: "เลือกคนที่หนึ่ง" },
+        compareEmptyB:     { en: "Select Person B",           th: "เลือกคนที่สอง" },
+        compareVS:         { en: "VS",                        th: "VS" },
+        compareChoose:     { en: "Choose Identity",           th: "เลือกตัวตน" },
+        comparePopular:    { en: "Popular Pairings",           th: "คู่ยอดฮิต" },
         
         ecoLabelMind:      { en: "Mind Framework",            th: "โครงสร้างทางสติปัญญา" },
         ecoLabelDrive:     { en: "Emotional Drive",           th: "แรงขับเคลื่อนทางอารมณ์" },
@@ -332,6 +349,22 @@
         tagHouseholdMenace:   { en: "Household Menace",        th: "ตัวแสบประจำบ้าน" },
         tagRivalMatch:        { en: "Rival Analysis",          th: "บทวิเคราะห์คู่ปรับ" },
         dynamicsTitle:        { en: "Relationship Dynamics",   th: "ไดนามิกความสัมพันธ์" },
+
+        // Duo Observations
+        duoObsSideQuest:      { en: "Most likely to start a business that lasts 48 hours.", 
+                                 th: "มีโอกาสสูงมากที่จะเริ่มทำธุรกิจร่วมกันแล้วเลิกใน 48 ชั่วโมง" },
+        duoObsArgument:       { en: "Most likely to argue about the correct way to fold a towel.",
+                                 th: "มักจะเถียงกันเรื่องวิธีพับผ้าที่ถูกต้อง" },
+        duoObsEscape:         { en: "Most likely to plan an escape from a party within 5 minutes of arriving.",
+                                 th: "มักจะวางแผนหนีออกจากงานปาร์ตี้ภายใน 5 นาทีที่ไปถึง" },
+        
+        // Warning Labels
+        warnNoLogic:          { en: "Logic is offline. Expect pure vibe-based decisions.", 
+                                 th: "ตรรกะถูกปิดใช้งาน โปรดเตรียมใจรับการตัดสินใจด้วยฟีลลิ่งล้วนๆ" },
+        warnHighTension:      { en: "Emotional pressure cooker. Vent frequently.",
+                                 th: "หม้อความดันทางอารมณ์ โปรดระบายออกบ่อยๆ" },
+        warnProductive:       { en: "Dangerously productive. Avoid if you want to relax.",
+                                 th: "ขยันเกินเหตุ โปรดหลีกเลี่ยงถ้าคุณอยากพักผ่อน" },
 
         // Observations
         obsScream:            { en: "These two definitely scream before dinner.", 
