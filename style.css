@@ -3152,3 +3152,90 @@ a { color: inherit; }
 @media (max-width: 500px) {
   .fc-header { flex-direction: column; align-items: flex-start; gap: 12px; }
 }
+
+/* ─── Emotional Timeline & Memory v1 ──────────────── */
+.memory-system-container {
+  margin-top: 60px;
+  padding: 40px;
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-radius: 40px;
+  text-align: left;
+}
+.memory-header { text-align: center; margin-bottom: 40px; }
+.memory-h2 { font-family: var(--font-display); font-size: 2.2rem; margin-bottom: 8px; }
+
+.era-badge {
+  display: inline-block;
+  padding: 8px 20px;
+  background: var(--ink);
+  color: #fff;
+  border-radius: 40px;
+  font-family: var(--font-mono);
+  font-weight: 900;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 24px;
+}
+
+.timeline-scroll {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  padding-left: 24px;
+}
+.timeline-scroll::before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--line-soft);
+}
+.timeline-moment {
+  position: relative;
+  background: #fff;
+  border: 1.5px solid var(--ink);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 6px 6px 0 rgba(0,0,0,0.03);
+}
+.timeline-moment::before {
+  content: '';
+  position: absolute;
+  left: -22px;
+  top: 24px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--ink);
+  border: 2px solid var(--paper);
+}
+.moment-date { font-size: 0.75rem; font-weight: 800; opacity: 0.4; text-transform: uppercase; margin-bottom: 4px; display: block; }
+.moment-title { font-weight: 700; font-size: 1.1rem; margin-bottom: 4px; }
+.moment-desc { font-size: 0.95rem; opacity: 0.7; line-height: 1.4; }
+
+.memory-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 40px;
+}
+.memory-card {
+  background: #fff;
+  border: 2px dashed var(--line-soft);
+  border-radius: 24px;
+  padding: 24px;
+  position: relative;
+}
+.memory-card .micro-share-icon { position: absolute; top: 16px; right: 16px; }
+.memory-card-label { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; opacity: 0.4; margin-bottom: 12px; display: block; }
+.memory-card-text { font-size: 1.05rem; font-weight: 600; line-height: 1.5; color: var(--ink); }
+
+@media (max-width: 600px) {
+  .memory-system-container { padding: 24px; }
+  .memory-h2 { font-size: 1.8rem; }
+}

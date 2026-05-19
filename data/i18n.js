@@ -249,6 +249,30 @@
         socialStatusSpotlight: { en: "High visibility. The household is currently main character energy.", th: "ความโดดเด่นสูงมาก ทั้งบ้านกำลังแผ่พลังงานตัวเอก" },
         socialStatusBalanced: { en: "Balanced social rhythm. Low friction detected.", th: "จังหวะโซเชียลสมดุล ตรวจพบแรงเสียดทานต่ำ" },
 
+        // ─── Emotional Timeline & Memory ───────────────────
+        memoryTitle:       { en: "Emotional Memory",          th: "ความทรงจำทางอารมณ์" },
+        memoryTimeline:    { en: "Household Timeline",        th: "ไทม์ไลน์ของบ้าน" },
+        memoryEras:        { en: "Emotional Eras",            th: "ยุคสมัยทางอารมณ์" },
+        
+        // Era Names
+        eraIsolation:      { en: "The Quiet Isolation Era",   th: "ยุคสมัยแห่งความสันโดษ" },
+        eraChaos:          { en: "The Chaotic Coordination Arc", th: "ช่วงเวลาแห่งความวุ่นวายที่จัดระเบียบไม่ได้" },
+        eraTired:          { en: "The Tired But Functional Phase", th: "ช่วงเวลาที่เหนื่อยแต่ยังไหว" },
+        eraLoud:           { en: "The Emotionally Loud Era",  th: "ยุคสมัยแห่งอารมณ์เสียงดัง" },
+        eraStable:         { en: "The Golden Stability Age",  th: "ยุคทองแห่งความมั่นคง" },
+
+        // Turning Points
+        tpStabilized:      { en: "The atmosphere stabilized after prolonged overload.", th: "บรรยากาศกลับมาคงที่หลังจากผ่านช่วงเวลาที่หนักหน่วง" },
+        tpChaosSurge:      { en: "Volatility sharply increased after a calm streak.", th: "ความวุ่นวายพุ่งสูงขึ้นอย่างรวดเร็วหลังผ่านช่วงเวลาที่เงียบสงบ" },
+        tpRecoveryEntry:   { en: "The household entered Recovery Mode.",     th: "คนทั้งบ้านเข้าสู่โหมดพักฟื้น" },
+
+        // Memory Observations
+        memNoRecharge:     { en: "Nobody emotionally recharged properly this week.", th: "สัปดาห์นี้ไม่มีใครได้ชาร์จพลังงานทางอารมณ์อย่างเต็มที่เลย" },
+        memCollectivePeace: { en: "The household briefly achieved collective peace.", th: "คนทั้งบ้านเข้าสู่สภาวะสงบสุขร่วมกันในช่วงเวลาสั้นๆ" },
+        memDualBurnout:    { en: "Two emotional stabilizers burned out simultaneously.", th: "ผู้แบกรับอารมณ์ของบ้านสองคนหมดไฟพร้อมกัน" },
+        memLoudestDay:     { en: "This was the loudest day in recent household history.", th: "นี่คือวันที่เสียงดังที่สุดในประวัติศาสตร์บ้านเมื่อเร็วๆ นี้" },
+        memSideQuestSpike: { en: "Collective focus lost to a surge of side quests.", th: "สมาธิของคนทั้งบ้านหลุดลอยไปกับเควสย่อยที่พุ่งเข้ามา" },
+
         dynChaosHigh:      { en: "Shared Chaos: HIGH",        th: "ระดับความวุ่นวาย: สูง" },
         dynChaosMed:       { en: "Shared Chaos: MODERATE",    th: "ระดับความวุ่นวาย: ปานกลาง" },
         dynChaosLow:       { en: "Shared Chaos: LOW",         th: "ระดับความวุ่นวาย: ต่ำ" },
