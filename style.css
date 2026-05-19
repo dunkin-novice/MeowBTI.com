@@ -2755,3 +2755,105 @@ a { color: inherit; }
 @media (max-width: 600px) {
   .micro-share-icon { width: 36px; height: 36px; font-size: 1.1rem; }
 }
+
+/* ─── Relationship Dynamics Engine v1 ──────────────── */
+.relationship-spotlight {
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-radius: 32px;
+  padding: 40px;
+  margin: 40px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 12px 12px 0 rgba(0,0,0,0.05);
+}
+.rs-header {
+  margin-bottom: 32px;
+}
+.rs-title {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  margin-bottom: 12px;
+  color: var(--ink);
+}
+.rs-desc {
+  font-size: 1.2rem;
+  opacity: 0.8;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+.rs-duo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+.rs-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3px solid var(--ink);
+  background: #fff;
+  overflow: hidden;
+  position: relative;
+}
+.rs-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.rs-vs {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--ink);
+  background: var(--bg);
+  padding: 8px 16px;
+  border-radius: 40px;
+  border: 2px solid var(--ink);
+}
+.rs-stats {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.rs-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.rs-stat-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.5; margin-bottom: 4px; }
+.rs-stat-value { font-weight: 900; font-size: 1.5rem; }
+
+.dynamic-card {
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 24px;
+  padding: 24px;
+  margin-bottom: 24px;
+  position: relative;
+}
+.dynamic-card .micro-share-icon {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
+@media (max-width: 600px) {
+  .rs-avatar { width: 80px; height: 80px; }
+  .rs-title { font-size: 1.8rem; }
+}
+
+.pair-dynamic-callout {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--line-soft);
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+.pair-dynamic-callout strong {
+  color: var(--ink);
+  display: block;
+  margin-bottom: 4px;
+  font-family: var(--font-display);
+}

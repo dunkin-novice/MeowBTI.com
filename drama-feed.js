@@ -29,37 +29,41 @@
             } else {
                 updates.push(t('dramaMenace', menace.name));
             }
-        } else {
-            updates.push(t('dramaJudging', profiles[0].name));
         }
 
-        // 2. Pair Dynamic (Alliance or Brain Cell)
+        // 2. Relationship Dynamics (The core of the drama)
+        if (compReport && compReport.pairs) {
+            compReport.pairs.slice(0, 3).forEach(pair => {
+                const dyn = pair.dynamic;
+                if (dyn.key === 'dynSpreadsheet') {
+                    updates.push(t('dramaSpreadsheet', pair.a.name, pair.b.name));
+                } else if (dyn.key === 'dynSideQuests') {
+                    updates.push(t('dramaSideQuests', pair.a.name, pair.b.name));
+                } else if (dyn.key === 'dynPowerStruggle') {
+                    updates.push(t('dramaPowerStruggle', pair.a.name, pair.b.name));
+                } else if (dyn.key === 'dynImprov') {
+                    updates.push(t('dramaImprov', pair.a.name, pair.b.name));
+                }
+            });
+        }
+
+        // 3. Best Pair Status
+        if (bestPair) {
+            updates.push(t('dramaAlliance', bestPair.a.name, bestPair.b.name));
+        }
+
+        // 4. Chaotic Pair Warning
         if (chaoticPair) {
-            updates.push(t('dramaAlliance', chaoticPair.a.name, chaoticPair.b.name));
-        } else if (bestPair) {
-            updates.push(t('dramaBrainCell', bestPair.a.name, bestPair.b.name));
+            updates.push(t('dramaChaosWarning', chaoticPair.a.name, chaoticPair.b.name));
         }
 
-        // 3. Archetype Activity (Audit or Meeting)
-        const logical = profiles.find(p => p.code.includes('L')) || profiles[1];
-        updates.push(t('dramaAudit', logical.name));
-
-        // 4. Random Chaos Event (Influenced by collective energy)
+        // 5. collective energy
         const totalEnergy = checkins.reduce((acc, c) => acc + (c ? (c.answers.energy === 'high' ? 2 : 1) : 0), 0);
         if (totalEnergy > profiles.length) {
             updates.push(t('dramaHighEnergyChaos'));
-        } else {
-            updates.push(t('dramaStability'));
         }
 
-        // 5. Another Archetype Action
-        const vocal = profiles.find(p => p.code.includes('R')) || profiles[0];
-        updates.push(t('dramaMeeting', vocal.name));
-
-        // 6. Generic Stats
-        updates.push(t('dramaChaos'));
-
-        return updates;
+        return updates.sort(() => Math.random() - 0.5).slice(0, 6);
     }
 
     function renderFeed(profiles, containerId) {

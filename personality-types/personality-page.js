@@ -421,11 +421,27 @@
         const cards = displayRels.map(r => {
             const target = window.MeowArchetypes.get(r.data.type);
             const blurb = field(r.data, 'blurb');
+            
+            // Get dynamic analysis
+            const dynamic = window.MeowCompatibility ? window.MeowCompatibility.getDuoDynamic(p, target) : null;
+            const dynamicHtml = dynamic ? `
+                <div class="pair-dynamic-callout">
+                    <strong>${dynamic.title}:</strong> ${dynamic.desc}
+                    <div style="margin-top:12px; height:6px; background:var(--line-soft); border-radius:3px; overflow:hidden;">
+                        <div style="width:${dynamic.chaosLevel}%; height:100%; background:${dynamic.chaosLevel > 70 ? '#FF5B3B' : (dynamic.chaosLevel > 40 ? '#FFB000' : '#3DA17A')}"></div>
+                    </div>
+                    <span style="font-size:0.75rem; opacity:0.5; text-transform:uppercase; letter-spacing:0.05em; margin-top:4px; display:block;">${t('statsChaos')} ${dynamic.chaosLevel}%</span>
+                </div>
+            ` : '';
+
             return `
                 <div class="comp-card" data-comp-type="${r.key}">
                     <div class="comp-label-row">
                         <span class="comp-label">${escapeHtml(r.label)}</span>
-                        <button class="card-share-btn mini" data-share-type="pair" data-share-title="${escapeHtml(r.label)}" data-share-target="${target.code}" data-share-blurb="${escapeHtml(blurb)}" title="${escapeHtml(t('sharePairBtn'))}">📥</button>
+                        <div style="display:flex; gap:8px;">
+                            <button class="micro-share-icon mini" data-type="relationship" data-text="${escapeHtml(field(p, 'name'))} + ${escapeHtml(field(target, 'name'))}: ${dynamic ? dynamic.title : ''}. ${blurb}">📤</button>
+                            <button class="card-share-btn mini" data-share-type="pair" data-share-title="${escapeHtml(r.label)}" data-share-target="${target.code}" data-share-blurb="${escapeHtml(blurb)}" title="${escapeHtml(t('sharePairBtn'))}">📥</button>
+                        </div>
                     </div>
                     <a href="${withLang(root + target.code + '.html')}" class="comp-target">
                         <span class="comp-emoji" aria-hidden="true">${target.emoji}</span>
@@ -435,8 +451,11 @@
                         </div>
                     </a>
                     <p class="comp-blurb">${escapeHtml(blurb)}</p>
+                    ${dynamicHtml}
                 </div>`;
         }).join('');
+
+        window.MeowTrack && window.MeowTrack('compatibility_view', { archetype_code: p.code, subject: subject });
 
         const footerCta = isResultPage ? `
             <div class="comp-footer">
@@ -708,6 +727,54 @@
             </section>`;
     }
 
+    function renderRelationshipDeepDive(p) {
+        const rival = window.MeowArchetypes.get(p.rival);
+        const dynamic = window.MeowCompatibility ? window.MeowCompatibility.getDuoDynamic(p, rival) : null;
+        if (!dynamic) return '';
+
+        const subject = getSubject();
+        const isHuman = subject === 'human';
+
+        return `
+            <section class="module-section relationship-deep-dive">
+                <h3 class="module-h">${escapeHtml(t('dynamicsTitle'))}</h3>
+                <div class="relationship-spotlight" style="margin-top:24px;">
+                    <div class="rs-header">
+                        <span class="dh-badge">${t('tagRivalMatch')}</span>
+                        <h2 class="rs-title">${dynamic.title}</h2>
+                        <p class="rs-desc">${dynamic.desc}</p>
+                    </div>
+                    <div class="rs-duo">
+                        <div class="rs-avatar"><img src="${imagePath(p)}" alt="${field(p, 'name')}"></div>
+                        <div class="rs-vs">VS</div>
+                        <div class="rs-avatar"><img src="${isResultPage ? '' : '../'}${window.MeowArchetypes.imagePath(rival.code)}" alt="${field(rival, 'name')}"></div>
+                    </div>
+                    <div class="rs-modules" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; margin-top: 32px; text-align: left;">
+                        <div class="rs-module-mini">
+                            <span class="rs-stat-label">${t('chemTitle')}</span>
+                            <div style="font-weight:700; font-size:0.9rem;">${dynamic.modules.chemistry}</div>
+                        </div>
+                        <div class="rs-module-mini">
+                            <span class="rs-stat-label">${t('drainTitle')}</span>
+                            <div style="font-weight:700; font-size:0.9rem;">${dynamic.modules.drain}</div>
+                        </div>
+                        <div class="rs-module-mini">
+                            <span class="rs-stat-label">${t('confTitle')}</span>
+                            <div style="font-weight:700; font-size:0.9rem;">${dynamic.modules.conflict}</div>
+                        </div>
+                        <div class="rs-module-mini">
+                            <span class="rs-stat-label">${t('recTitle')}</span>
+                            <div style="font-weight:700; font-size:0.9rem;">${dynamic.modules.recovery}</div>
+                        </div>
+                    </div>
+                    <button class="micro-share-icon" style="position:absolute; top:20px; right:20px;" 
+                            data-type="relationship_deep" 
+                            data-text="${field(p, 'name')} + ${field(rival, 'name')}: ${dynamic.title}. ${dynamic.desc}">📤</button>
+                </div>
+            </section>
+        `;
+    }
+
     function render() {
         const host = document.getElementById('personality-content');
         if (!host) return;
@@ -852,6 +919,7 @@
             ${renderBehavioralHooks(p)}
             ${renderHumanGrowthLoop(p)}
             ${renderCompatibilityGraph(p)}
+            ${renderRelationshipDeepDive(p)}
 
             ${rivalTile(p)}
 

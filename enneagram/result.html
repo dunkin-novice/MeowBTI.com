@@ -165,7 +165,18 @@
                     <h3 style="font-family:var(--font-display); font-size:1.8rem; margin-bottom:8px;">${lang === 'th' ? 'ร่างแมวที่ใช่สำหรับลักษณ์ ' + typeNum : 'Cat Energy for Type ' + typeNum}</h3>
                     <h4 style="font-size: 1.2rem; margin-bottom: 12px; color: var(--ink);">${lang === 'th' ? data.bridge.headlineTh : data.bridge.headline}</h4>
                     <p style="margin-bottom:20px; line-height:1.5; font-size: 1.05rem;">${lang === 'th' ? data.bridge.reasonTh : data.bridge.reason}</p>
-                    <a href="${withLang('../human-types/' + archetype.code + '.html')}" class="big-btn" style="background:var(--ink); color:#fff;">
+
+                    <!-- Relationship Insight v1 -->
+                    <div style="background: rgba(255,255,255,0.7); border-radius: 20px; padding: 24px; margin-top: 24px; text-align: left; border: 1.5px solid var(--ink); position:relative; z-index:1;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                            <span class="rs-stat-label" style="font-size:0.7rem; color:var(--ink);">${t('dynamicsTitle')}</span>
+                            <button class="micro-share-icon mini" data-type="relationship" data-text="Enneagram ${typeNum} + ${archetype.code}: ${t('dynEchoTitle')}. ${t('dynEchoDesc')}">📤</button>
+                        </div>
+                        <div style="font-weight:900; font-family:var(--font-display); font-size:1.4rem; margin-bottom:4px;">${t('dynEchoTitle')}</div>
+                        <p style="font-size:0.95rem; opacity:0.8;">${t('dynEchoDesc')}</p>
+                    </div>
+
+                    <a href="${withLang('../human-types/' + archetype.code + '.html')}" class="big-btn" style="background:var(--ink); color:#fff; margin-top:32px;">
                         ${lang === 'th' ? 'ดูรายละเอียดร่างแมวสาย ' + (archetype.nameTh || archetype.name) : 'View ' + archetype.name + ' traits'} →
                     </a>
                 </div>
@@ -185,6 +196,18 @@
                 </div>
             </div>
         `;
+
+        document.querySelectorAll('.micro-share-icon').forEach(btn => {
+            btn.onclick = () => {
+                if (window.MeowAnalytics) {
+                    window.MeowAnalytics.microShare({
+                        framework: 'relationship',
+                        content_type: 'ennea_cousin',
+                        text: btn.getAttribute('data-text')
+                    });
+                }
+            };
+        });
     })();
     </script>
 </body>

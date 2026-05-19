@@ -174,12 +174,70 @@
         
         const stats = window.MeowCompatibility.getStats(profiles);
         const report = window.MeowCompatibility.getFullReport(profiles);
+        const topPair = report.pairs.find(p => p.isBest) || report.pairs[0];
+
+        // Analytics: track relationship view
+        if (topPair && window.MeowTrack) {
+            window.MeowTrack('relationship_view', {
+                framework_a: topPair.a.subject,
+                framework_b: topPair.b.subject,
+                relationship_type: topPair.dynamic.key,
+                route: '/',
+                lang: getLang()
+            });
+        }
+
+        const spotlight = `
+            <div class="relationship-spotlight">
+                <div class="rs-header">
+                    <span class="dh-badge">${t('dynamicsTitle')}</span>
+                    <h2 class="rs-title">${topPair.dynamic.title}</h2>
+                    <p class="rs-desc">${topPair.dynamic.desc}</p>
+                </div>
+                <div class="rs-duo">
+                    <div class="rs-avatar"><img src="assets/personalities/${topPair.a.code.toLowerCase()}-${window.MeowArchetypes.get(topPair.a.code).slug}.webp" alt="${topPair.a.name}"></div>
+                    <div class="rs-vs">VS</div>
+                    <div class="rs-avatar"><img src="assets/personalities/${topPair.b.code.toLowerCase()}-${window.MeowArchetypes.get(topPair.b.code).slug}.webp" alt="${topPair.b.name}"></div>
+                </div>
+                <div class="rs-stats">
+                    <div class="rs-stat">
+                        <span class="rs-stat-label">${t('statsChaos')}</span>
+                        <span class="rs-stat-value">${topPair.dynamic.chaosLevel}%</span>
+                    </div>
+                    <div class="rs-stat">
+                        <span class="rs-stat-label">${t('compatSurvival')}</span>
+                        <span class="rs-stat-value">${topPair.score}%</span>
+                    </div>
+                </div>
+                <div class="rs-modules" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; margin-top: 32px; text-align: left;">
+                    <div class="rs-module-mini">
+                        <span class="rs-stat-label">${t('chemTitle')}</span>
+                        <div style="font-weight:700; font-size:0.9rem;">${topPair.dynamic.modules.chemistry}</div>
+                    </div>
+                    <div class="rs-module-mini">
+                        <span class="rs-stat-label">${t('drainTitle')}</span>
+                        <div style="font-weight:700; font-size:0.9rem;">${topPair.dynamic.modules.drain}</div>
+                    </div>
+                    <div class="rs-module-mini">
+                        <span class="rs-stat-label">${t('confTitle')}</span>
+                        <div style="font-weight:700; font-size:0.9rem;">${topPair.dynamic.modules.conflict}</div>
+                    </div>
+                    <div class="rs-module-mini">
+                        <span class="rs-stat-label">${t('recTitle')}</span>
+                        <div style="font-weight:700; font-size:0.9rem;">${topPair.dynamic.modules.recovery}</div>
+                    </div>
+                </div>
+                <button class="micro-share-icon" style="position:absolute; top:20px; right:20px;" 
+                        data-type="relationship" 
+                        data-text="${topPair.a.name} + ${topPair.b.name}: ${topPair.dynamic.title}. ${topPair.dynamic.desc}">📤</button>
+            </div>
+        `;
 
         dynamics.innerHTML = `
-            <h3 class="dynamic-h">${t('dynamicsTitle')}</h3>
+            ${spotlight}
             
             <div class="pairs-grid">
-                ${report.pairs.map(p => {
+                ${report.pairs.slice(1, 4).map(p => {
                     const archA = window.MeowArchetypes.get(p.a.code);
                     const archB = window.MeowArchetypes.get(p.b.code);
                     const imgA = `assets/personalities/${archA.code.toLowerCase()}-${archA.slug}.webp`;
@@ -197,8 +255,8 @@
                             </div>
                             <div class="pair-info">
                                 ${specialTag}
-                                <span class="pair-vibe">${t(p.vibeKey)}</span>
-                                <p class="pair-desc">${p.a.name} + ${p.b.name}: ${p.desc}</p>
+                                <span class="pair-vibe">${p.dynamic.title}</span>
+                                <p class="pair-desc">${p.a.name} + ${p.b.name}: ${p.dynamic.desc}</p>
                                 <div class="pair-score-bar">
                                     <div class="pair-score-fill" style="width:${p.score}%"></div>
                                 </div>
@@ -229,7 +287,7 @@
                 ` : ''}
             </div>
 
-            <div style="text-align:center; margin-top:32px;">
+            <div style="text-align:center; margin-top:32px; display: flex; justify-content: center; gap: 16px;">
                 <button id="btn-family-poster" class="big-btn accent">
                     <span aria-hidden="true">📸</span> ${t('posterDownloadBtn')}
                 </button>
@@ -241,8 +299,29 @@
         document.getElementById('btn-family-poster').onclick = () => {
             if (window.MeowFamilyShare) {
                 window.MeowFamilyShare.generatePoster(profiles);
+                window.MeowTrack && window.MeowTrack('duo_share_attempt', {
+                    framework_a: 'household',
+                    framework_b: 'household',
+                    lang: getLang()
+                });
             }
         };
+
+        dynamics.querySelectorAll('.micro-share-icon').forEach(btn => {
+            btn.onclick = () => {
+                if (window.MeowAnalytics) {
+                    window.MeowAnalytics.microShare({
+                        framework: 'relationship',
+                        content_type: 'spotlight',
+                        text: btn.getAttribute('data-text')
+                    });
+                    window.MeowTrack && window.MeowTrack('duo_share_attempt', {
+                        relationship_type: topPair.dynamic.key,
+                        lang: getLang()
+                    });
+                }
+            };
+        });
     }
 
     if (document.readyState === 'loading') {

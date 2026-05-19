@@ -51,6 +51,68 @@
         };
     }
 
+    function getDuoDynamic(a, b) {
+        const t = getT();
+        
+        // Axis check
+        const aCode = a.code;
+        const bCode = b.code;
+
+        const bothHighEnergy = aCode[0] === 'V' && bCode[0] === 'V';
+        const bothLowEnergy = aCode[0] === 'v' && bCode[0] === 'v';
+        const energyMismatch = aCode[0] !== bCode[0];
+
+        const bothLogical = aCode[1] === 'H' && bCode[1] === 'H';
+        const bothEmotional = aCode[1] === 'D' && bCode[1] === 'D';
+        const logicMismatch = aCode[1] !== bCode[1];
+
+        const bothChaos = aCode[2] === 'l' && bCode[2] === 'l';
+        const bothStructured = aCode[2] === 'B' && bCode[2] === 'B';
+        const chaosMismatch = aCode[2] !== bCode[2];
+
+        const bothRegal = aCode[3] === 'R' && bCode[3] === 'R';
+        const bothCasual = aCode[3] === 'F' && bCode[3] === 'F';
+
+        let dynamicKey = "dynRoommates";
+        
+        if ((aCode[2] === 'B' && bCode[2] === 'l') || (bCode[2] === 'B' && aCode[2] === 'l')) {
+            dynamicKey = "dynSpreadsheet";
+        } else if (bothCasual && bothChaos) {
+            dynamicKey = "dynImprov";
+        } else if (bothHighEnergy && bothChaos) {
+            dynamicKey = "dynSideQuests";
+        } else if ((aCode[1] === 'N' && bCode[2] === 'l') || (bCode[1] === 'N' && aCode[2] === 'l')) {
+            dynamicKey = "dynExhaustion";
+        } else if (aCode === bCode) {
+            dynamicKey = "dynEcho";
+        } else if (bothLowEnergy && bothCasual) {
+            dynamicKey = "dynStagnation";
+        } else if (bothRegal && bothStructured) {
+            dynamicKey = "dynPowerStruggle";
+        } else if (logicMismatch && chaosMismatch) {
+            dynamicKey = "dynAnchorKite";
+        }
+
+        // Expanded Relational Modules
+        const chemistry = (bothEmotional || bothHighEnergy) ? t('chemHigh') : (logicMismatch ? t('chemMagnetic') : t('chemStable'));
+        const drain = (energyMismatch && bothLogical) ? t('drainHigh') : t('drainLow');
+        const conflict = (bothRegal) ? t('confExplosive') : (bothCasual ? t('confAvoidant') : t('confConstructive'));
+        const recovery = (bothLowEnergy) ? t('recHigh') : (energyMismatch ? t('recMismatched') : t('recModerate'));
+
+        return {
+            title: t(dynamicKey + "Title"),
+            desc: t(dynamicKey + "Desc"),
+            key: dynamicKey,
+            chaosLevel: (bothChaos ? 90 : (chaosMismatch ? 50 : 20)),
+            modules: {
+                chemistry,
+                drain,
+                conflict,
+                recovery
+            }
+        };
+    }
+
     function getFullReport(profiles) {
         const pairs = [];
         for (let i = 0; i < profiles.length; i++) {
@@ -58,11 +120,13 @@
                 const a = profiles[i];
                 const b = profiles[j];
                 const comp = compareCodes(a, b);
+                const dynamic = getDuoDynamic(a, b);
                 pairs.push({
                     a, b, 
                     score: comp.score,
                     vibeKey: comp.vibeKey,
                     desc: comp.desc,
+                    dynamic: dynamic,
                     isBest: false,
                     isChaotic: false
                 });
@@ -74,9 +138,9 @@
             const best = pairs.reduce((prev, current) => (prev.score > current.score) ? prev : current);
             best.isBest = true;
 
-            // Find Most Chaotic (lowest score or One Brain Cell vibe)
+            // Find Most Chaotic (highest shared chaos or lowest score)
             const chaotic = pairs.reduce((prev, current) => {
-                if (current.vibeKey === "vibeOneBrainCell") return current;
+                if (current.dynamic.key === "dynSideQuests" || current.dynamic.key === "dynImprov") return current;
                 return (prev.score < current.score) ? prev : current;
             });
             chaotic.isChaotic = true;
@@ -99,7 +163,7 @@
         });
 
         return {
-            pairs: pairs.slice(0, 6), // Limit display
+            pairs: pairs, // Return all for dashboard selection
             menace: maxMenaceScore >= 2 ? menace : null
         };
     }
@@ -126,6 +190,7 @@
     window.MeowCompatibility = {
         compare: compareCodes,
         getStats: getHouseholdStats,
-        getFullReport: getFullReport
+        getFullReport: getFullReport,
+        getDuoDynamic: getDuoDynamic
     };
 })();
