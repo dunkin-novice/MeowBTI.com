@@ -3005,3 +3005,94 @@ a { color: inherit; }
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* ─── Household Weather Map v1 ───────────────────── */
+.weather-map-container {
+  margin-top: 60px;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.4);
+  border: 2px solid var(--ink);
+  border-radius: 40px;
+  box-shadow: 0 12px 24px rgba(0,0,0,0.02);
+}
+.wm-header { text-align: center; margin-bottom: 40px; }
+.wm-title { font-family: var(--font-display); font-size: 2rem; margin-bottom: 8px; }
+.wm-intro { opacity: 0.6; font-size: 1rem; max-width: 500px; margin: 0 auto; }
+
+.climate-spotlight {
+  background: #fff;
+  border: 1.5px solid var(--ink);
+  border-radius: 32px;
+  padding: 32px;
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.cs-orb {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  background: var(--bg);
+  border: 2px solid var(--ink);
+  flex-shrink: 0;
+}
+.cs-info { text-align: left; }
+.cs-title { font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 4px; }
+.cs-desc { font-size: 0.95rem; opacity: 0.7; line-height: 1.4; }
+
+.weather-timeline {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 40px;
+  overflow-x: auto;
+  padding-bottom: 16px;
+}
+.wt-day {
+  flex: 1;
+  min-width: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.wt-dot {
+  width: 100%;
+  height: 40px;
+  border-radius: 12px;
+  border: 1.5px solid var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  background: #fff;
+}
+.wt-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; opacity: 0.4; }
+
+.wm-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+.wm-stat-card {
+  background: #fff;
+  border: 1.5px solid var(--ink);
+  border-radius: 24px;
+  padding: 24px;
+  text-align: left;
+  position: relative;
+}
+.wm-stat-card .micro-share-icon { position: absolute; top: 16px; right: 16px; }
+.wm-stat-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.5; margin-bottom: 12px; display: block; }
+.wm-stat-val { font-weight: 800; font-size: 1.1rem; line-height: 1.4; }
+
+@media (max-width: 600px) {
+  .climate-spotlight { flex-direction: column; text-align: center; }
+  .cs-info { text-align: center; }
+  .weather-map-container { padding: 24px; }
+}

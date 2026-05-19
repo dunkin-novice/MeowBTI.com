@@ -194,6 +194,35 @@
         dynAnchorKiteDesc:  { en: "One keeps the logic grounded. The other is currently floating away.", 
                                th: "คนหนึ่งคอยดึงสติด้วยตรรกะ อีกคนกำลังลอยละล่องไปไกลแล้ว" },
         
+        // ─── Household Weather Map ──────────────────────────
+        weatherMapTitle:   { en: "Household Climate",         th: "ภูมิอากาศประจำบ้าน" },
+        weatherMapIntro:   { en: "The collective emotional atmosphere of your household over the last 7 days.", 
+                              th: "มวลบรรยากาศทางอารมณ์โดยรวมของบ้านคุณในช่วง 7 วันที่ผ่านมา" },
+        
+        climateCalmTitle:  { en: "Emotionally Balanced",      th: "สมดุลทางอารมณ์" },
+        climateCalmDesc:   { en: "The air is clear. Everyone is charging their batteries at a healthy pace.", 
+                              th: "ท้องฟ้าโปร่งใส ทุกคนกำลังชาร์จพลังในจังหวะที่เหมาะสม" },
+        climateLoudTitle:  { en: "Emotionally Loud",          th: "อารมณ์เสียงดัง" },
+        climateLoudDesc:   { en: "High energy, high volume. The household is one minor inconvenience away from a riot.", 
+                              th: "พลังงานสูง เสียงดัง บ้านนี้ห่างจากความวุ่นวายแค่ก้าวเดียวเท่านั้น" },
+        climateHeavyTitle: { en: "Collective Burnout",        th: "หมดไฟกันยกบ้าน" },
+        climateHeavyDesc:  { en: "The social battery is at 1%. Everyone needs a nap and zero human interaction.", 
+                              th: "โซเชียลแบตเหลือ 1% ทุกคนต้องการการงีบหลับและงดการคุยกับมนุษย์" },
+        climateUnstableTitle: { en: "Atmospheric Chaos",       th: "มวลความวุ่นวายในอากาศ" },
+        climateUnstableDesc: { en: "A mismatch of energy and stress levels. Someone is vibing while another is collapsing.", 
+                                th: "ระดับพลังงานและความเครียดไม่ตรงกัน มีคนกำลังแฮปปี้ในขณะที่มีคนกำลังจะระเบิด" },
+        
+        weatherDuoBurnout: { en: "Your household has entered coordinated burnout.", th: "บ้านคุณได้เข้าสู่โหมดหมดไฟพร้อมกันโดยมิได้นัดหมาย" },
+        weatherLeaderless: { en: "Nobody here is emotionally qualified to lead.", th: "ไม่มีใครในที่นี้ที่มีวุฒิภาวะทางอารมณ์พอจะนำทีมได้" },
+        weatherRecovery:   { en: "Collectively? Terrible recovery instincts.", th: "โดยรวมน่ะเหรอ? สัญชาตญาณการพักฟื้นยอดแย่" },
+        weatherStabilizer: { en: name => `${name} is currently stabilizing this entire ecosystem.`, th: name => `${name} กำลังเป็นผู้แบกรับและสร้างสมดุลให้ระบบนิเวศนี้` },
+
+        socialStatusAwaiting: { en: "Awaiting daily social data.", th: "กำลังรอข้อมูลโซเชียลประจำวัน" },
+        socialStatusHiding: { en: "Collective isolation. Everyone is currently a ghost.", th: "โหมดสันโดษยกบ้าน ทุกคนกำลังทำตัวเป็นวิญญาณ" },
+        socialStatusMismatch: { en: "Social mismatch. One person wants a party; another wants a bunker.", th: "ความต้องการโซเชียลไม่ตรงกัน คนหนึ่งอยากปาร์ตี้ อีกคนอยากเข้าถ้ำ" },
+        socialStatusSpotlight: { en: "High visibility. The household is currently main character energy.", th: "ความโดดเด่นสูงมาก ทั้งบ้านกำลังแผ่พลังงานตัวเอก" },
+        socialStatusBalanced: { en: "Balanced social rhythm. Low friction detected.", th: "จังหวะโซเชียลสมดุล ตรวจพบแรงเสียดทานต่ำ" },
+
         dynChaosHigh:      { en: "Shared Chaos: HIGH",        th: "ระดับความวุ่นวาย: สูง" },
         dynChaosMed:       { en: "Shared Chaos: MODERATE",    th: "ระดับความวุ่นวาย: ปานกลาง" },
         dynChaosLow:       { en: "Shared Chaos: LOW",         th: "ระดับความวุ่นวาย: ต่ำ" },

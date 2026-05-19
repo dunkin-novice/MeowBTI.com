@@ -365,6 +365,7 @@
 
     window.MeowDaily = {
         getTodayCheckin: getTodayCheckin,
+        getHistory: () => readStore().items,
         buildResult: buildResult,
         ORBS: ORBS
     };
