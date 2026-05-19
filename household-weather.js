@@ -289,6 +289,13 @@
         });
     }
 
+    window.MeowClimate = {
+        getCollectiveClimate,
+        getMomentum,
+        getSocialDistribution,
+        getPressureAlerts
+    };
+
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', renderMap);
     } else {

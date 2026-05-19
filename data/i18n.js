@@ -273,6 +273,41 @@
         memLoudestDay:     { en: "This was the loudest day in recent household history.", th: "นี่คือวันที่เสียงดังที่สุดในประวัติศาสตร์บ้านเมื่อเร็วๆ นี้" },
         memSideQuestSpike: { en: "Collective focus lost to a surge of side quests.", th: "สมาธิของคนทั้งบ้านหลุดลอยไปกับเควสย่อยที่พุ่งเข้ามา" },
 
+        // ─── Household Rituals & Ceremonies ────────────────
+        ritualTitle:       { en: "Recommended Ritual",        th: "พิธีกรรมที่แนะนำ" },
+        ritualIntro:       { en: "Symbolic actions to restore your household's emotional balance.", th: "กิจกรรมเชิงสัญลักษณ์เพื่อกู้คืนสมดุลทางอารมณ์ของบ้านคุณ" },
+        
+        // Ritual Cards
+        ritSilentRot:      { en: "Silent Rotting Together",   th: "เน่าเปื่อยไปด้วยกันอย่างเงียบๆ" },
+        ritSilentRotDesc:  { en: "Horizontal existence in the same room. No eye contact or verbal requirements.", 
+                              th: "นอนราบไปกับพื้นในห้องเดียวกัน ไม่ต้องสบตาหรือพูดจาใดๆ" },
+        ritParallelPlay:   { en: "Parallel Play",             th: "เล่นขนาน" },
+        ritParallelPlayDesc: { en: "Everyone does their own separate weird thing in close physical proximity.", 
+                               th: "ต่างคนต่างทำเรื่องแปลกๆ ของตัวเองในระยะที่มองเห็นกันได้" },
+        ritCornerDisappear: { en: "The 90-Minute Disappearance", th: "การหายตัว 90 นาที" },
+        ritCornerDisappearDesc: { en: "Everyone retreats to separate corners. Total social blackout.", 
+                                   th: "ทุกคนแยกย้ายเข้ามุมของตัวเอง ตัดการเชื่อมต่อทางสังคมโดยสมบูรณ์" },
+        ritSharedFood:     { en: "The Silent Feast",          th: "งานเลี้ยงที่เงียบงัน" },
+        ritSharedFoodDesc: { en: "Shared food with zero conversation. Focus entirely on the textures.", 
+                              th: "กินข้าวด้วยกันโดยไม่พูดสักคำ จดจ่ออยู่กับรสสัมผัสเท่านั้น" },
+        
+        // Ceremonies
+        cerDetox:          { en: "Digital Detox Arc",         th: "ช่วงเวลาดีท็อกซ์ดิจิทัล" },
+        cerBlanket:        { en: "Collective Blanket Burrito", th: "โหมดห่อผ้าห่มยกบ้าน" },
+        cerTuna:           { en: "Emergency Tuna Feast",      th: "งานฉลองทูน่าฉุกเฉิน" },
+        cerQuiet:          { en: "The Hour of Great Silence",  th: "หนึ่งชั่วโมงแห่งความเงียบสงัด" },
+        
+        // Recovery Archetypes
+        archCave:          { en: "The Cave Recovery Household", th: "บ้านสายฟื้นฟูในถ้ำ" },
+        archLoud:          { en: "The Loud Recovery Household", th: "บ้านสายฟื้นฟูด้วยเสียง" },
+        archSnack:         { en: "The Snack-Based Healing Household", th: "บ้านสายเยียวยาด้วยของกิน" },
+        archChaos:         { en: "The Emotional Support Chaos Household", th: "บ้านสายวุ่นวายค้ำจุนใจ" },
+
+        // Post-Chaos Repair
+        repairInWalls:     { en: "Conflict energy remains in the walls.", th: "มวลความขัดแย้งยังคงวนเวียนอยู่ในบ้าน" },
+        repairSlower:      { en: "Atmosphere recovering slower than expected.", th: "บรรยากาศฟื้นตัวช้ากว่าที่คิด" },
+        repairInterrupted: { en: "Recovery interrupted by fresh emotional improvisation.", th: "การพักฟื้นถูกขัดจังหวะด้วยการด้นสดทางอารมณ์ครั้งใหม่" },
+
         dynChaosHigh:      { en: "Shared Chaos: HIGH",        th: "ระดับความวุ่นวาย: สูง" },
         dynChaosMed:       { en: "Shared Chaos: MODERATE",    th: "ระดับความวุ่นวาย: ปานกลาง" },
         dynChaosLow:       { en: "Shared Chaos: LOW",         th: "ระดับความวุ่นวาย: ต่ำ" },
