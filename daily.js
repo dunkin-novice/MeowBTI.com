@@ -178,15 +178,24 @@
                 
                 <div class="dr-content-grid">
                     <div class="dr-block">
-                        <h3>${t('dailyInsightH')}</h3>
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                            <h3 style="margin:0;">${t('dailyInsightH')}</h3>
+                            <button class="micro-share-icon" data-type="insight" data-text="${escapeHtml(r.insight)}">📤</button>
+                        </div>
                         <p>${escapeHtml(r.insight)}</p>
                     </div>
                     <div class="dr-block">
-                        <h3>${t('dailyCatLineH')}</h3>
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                            <h3 style="margin:0;">${t('dailyCatLineH')}</h3>
+                            <button class="micro-share-icon" data-type="cat_energy" data-text="${escapeHtml(r.catEnergy)}">📤</button>
+                        </div>
                         <p>${escapeHtml(r.catEnergy)}</p>
                     </div>
                     <div class="dr-block">
-                        <h3>${t('dailyAdviceH')}</h3>
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                            <h3 style="margin:0;">${t('dailyAdviceH')}</h3>
+                            <button class="micro-share-icon" data-type="advice" data-text="${escapeHtml(r.advice)}">📤</button>
+                        </div>
                         <p>${escapeHtml(r.advice)}</p>
                     </div>
                 </div>
@@ -225,6 +234,18 @@
                 status.textContent = t('dailyCopyCta') + ": " + text;
             }
         };
+
+        host.querySelectorAll('.micro-share-icon').forEach(btn => {
+            btn.onclick = () => {
+                if (window.MeowAnalytics) {
+                    window.MeowAnalytics.microShare({
+                        framework: 'daily_weather',
+                        content_type: btn.getAttribute('data-type'),
+                        text: btn.getAttribute('data-text')
+                    });
+                }
+            };
+        });
     }
 
     function renderQuestion(host, state) {

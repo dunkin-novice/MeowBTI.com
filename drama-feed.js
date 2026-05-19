@@ -87,10 +87,24 @@
                             <p>${text}</p>
                             <span class="drama-post-time">${t('dramaTimeMinutesAgo', i + 1)}</span>
                         </div>
+                        <button class="micro-share-icon drama" data-text="${text.replace(/"/g, '&quot;')}">📤</button>
                     </div>
                 `).join('')}
             </div>
         `;
+
+        container.querySelectorAll('.micro-share-icon').forEach(btn => {
+            btn.onclick = () => {
+                if (window.MeowAnalytics) {
+                    window.MeowAnalytics.microShare({
+                        framework: 'household_drama',
+                        content_type: 'drama_line',
+                        text: btn.getAttribute('data-text'),
+                        route: '/'
+                    });
+                }
+            };
+        });
 
         // Analytics Hook
         window.dispatchEvent(new CustomEvent('household_drama_feed_rendered', {

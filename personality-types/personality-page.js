@@ -299,7 +299,10 @@
             const label = t(labelKey);
             return `
                 <div class="during-card">
-                    <span class="during-event">${escapeHtml(label)}</span>
+                    <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                        <span class="during-event">${escapeHtml(label)}</span>
+                        <button class="micro-share-icon mini" data-type="event" data-text="${escapeHtml(label)}: ${escapeHtml(events[key])}">📤</button>
+                    </div>
                     <p class="during-desc">${escapeHtml(events[key])}</p>
                 </div>`;
         }).join('');
@@ -327,7 +330,10 @@
                 <section class="module-section hooks-section compact">
                     <div class="module-h-row">
                         <h3 class="module-h">${escapeHtml(t('hooksMostLikely'))}</h3>
-                        <button class="card-share-btn mini" data-share-type="list" data-share-title="${escapeHtml(t('hooksMostLikely'))}" data-share-items='${JSON.stringify(mostLikelyTo)}' title="${escapeHtml(t('shareCardBtn'))}">📥</button>
+                        <div style="display:flex; gap:8px;">
+                            <button class="micro-share-icon mini" data-type="list" data-text="${escapeHtml(t('hooksMostLikely'))}: ${escapeHtml(mostLikelyTo.join(', '))}">📤</button>
+                            <button class="card-share-btn mini" data-share-type="list" data-share-title="${escapeHtml(t('hooksMostLikely'))}" data-share-items='${JSON.stringify(mostLikelyTo)}' title="${escapeHtml(t('shareCardBtn'))}">📥</button>
+                        </div>
                     </div>
                     <ul class="likely-list teaser">
                         ${mostLikelyTo.slice(0, 2).map(item => `<li class="likely-item">${escapeHtml(item)}</li>`).join('')}
@@ -337,7 +343,11 @@
         }
 
         // Full version for Meaning Page
-        const likelyHtml = mostLikelyTo.map(item => `<li class="likely-item">${escapeHtml(item)}</li>`).join('');
+        const likelyHtml = mostLikelyTo.map(item => `
+            <li class="likely-item">
+                <span>${escapeHtml(item)}</span>
+                <button class="micro-share-icon mini" data-type="hook" data-text="${escapeHtml(item)}">📤</button>
+            </li>`).join('');
         const textsHtml = field(hooks, 'textsLike').map(item => `<div class="chat-bubble">${escapeHtml(item)}</div>`).join('');
 
         const gridItems = [
@@ -353,7 +363,10 @@
                 <div class="hook-card-header">
                     <span class="hook-icon">${item.icon}</span>
                     <span class="hook-label">${escapeHtml(item.label)}</span>
-                    <button class="card-share-btn mini" data-share-type="hook" data-share-title="${escapeHtml(item.label)}" data-share-value="${escapeHtml(item.value)}" data-share-icon="${item.icon}" title="${escapeHtml(t('shareCardBtn'))}">📥</button>
+                    <div style="display:flex; gap:8px;">
+                        <button class="micro-share-icon mini" data-type="hook" data-text="${escapeHtml(item.label)}: ${escapeHtml(item.value)}">📤</button>
+                        <button class="card-share-btn mini" data-share-type="hook" data-share-title="${escapeHtml(item.label)}" data-share-value="${escapeHtml(item.value)}" data-share-icon="${item.icon}" title="${escapeHtml(t('shareCardBtn'))}">📥</button>
+                    </div>
                 </div>
                 <p class="hook-value">${escapeHtml(item.value)}</p>
             </div>
@@ -670,7 +683,10 @@
 
         const cards = compatData.map(c => `
             <div class="compat-card">
-                <span class="compat-type">${escapeHtml(c.type)}</span>
+                <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                    <span class="compat-type">${escapeHtml(c.type)}</span>
+                    <button class="micro-share-icon mini" data-type="compatibility" data-text="${escapeHtml(c.type)}: ${escapeHtml(c.desc || '')}">📤</button>
+                </div>
                 <div class="compat-stats">
                     <div class="compat-stat">
                         <span>${escapeHtml(t('compatChaos'))}</span>
@@ -1039,6 +1055,18 @@
                     }, 2000);
                 }
             });
+        });
+
+        document.querySelectorAll('.micro-share-icon').forEach(btn => {
+            btn.onclick = () => {
+                if (window.MeowAnalytics) {
+                    window.MeowAnalytics.microShare({
+                        framework: 'cat_energy',
+                        content_type: btn.getAttribute('data-type'),
+                        text: btn.getAttribute('data-text')
+                    });
+                }
+            };
         });
 
         bindShare(p);

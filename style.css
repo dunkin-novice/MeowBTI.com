@@ -2725,3 +2725,33 @@ a { color: inherit; }
 
 /* Image sizing for CLS */
 .bc-image, .fc-image, .tc-image { aspect-ratio: 1 / 1; height: auto; }
+
+/* ─── Micro-Viral Sharing ────────────────────────── */
+.micro-share-icon {
+  background: var(--bg);
+  border: 1.5px solid var(--ink);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: transform 0.2s, background 0.2s;
+  padding: 0;
+  line-height: 1;
+}
+.micro-share-icon:hover {
+  transform: scale(1.1);
+  background: var(--paper);
+}
+.micro-share-icon.drama {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #fff;
+}
+@media (max-width: 600px) {
+  .micro-share-icon { width: 36px; height: 36px; font-size: 1.1rem; }
+}

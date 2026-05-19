@@ -39,10 +39,10 @@
             { en: "Your boundaries are your power. Use them.", th: "ขอบเขตของคุณคือพลังของคุณ จงใช้มัน" }
         ],
         shareLines: [
-            { en: "Today’s forecast: selectively available.", th: "พยากรณ์วันนี้: พร้อมคุยเฉพาะคน" },
-            { en: "Current status: overstimulated but elegant.", th: "สถานะปัจจุบัน: ถูกกระตุ้นเกินไปแต่ยังดูดีอยู่" },
+            { en: "Today’s forecast: selectively available.", th: "พยากรณ์วันนี้: พร้อมคุยแบบเลือกคน" },
+            { en: "Current status: overstimulated but elegant.", th: "สถานะปัจจุบัน: ตัวมัมเวอร์ชันสู้ชีวิตแต่สิ่งเร้าสู้กลับ" },
             { en: "My emotional weather is a whole vibe.", th: "สภาพอากาศในใจวันนี้คือตัวตนที่แท้ทรู" },
-            { en: "Diagnostic report: need more cat energy.", th: "รายงานการวิเคราะห์: ต้องการพลังงานแมวเพิ่ม" },
+            { en: "Diagnostic report: need more cat energy.", th: "รายงานการวิเคราะห์: ร่างกายต้องการแมวปะทะ" },
             { en: "Mental status: out of office, in a sunbeam.", th: "สถานะทางใจ: ไม่อยู่ที่ทำงาน ไปนอนตากแดดอยู่" }
         ]
     };

@@ -22,7 +22,41 @@
 
     // Replace or augment the thin wrapper in script.js
     window.MeowTrack = track;
-    window.MeowAnalytics = { track };
+    window.MeowAnalytics = { 
+        track,
+        microShare: async function(payload) {
+            const { framework, content_type, text, route } = payload;
+            const lang = (window.MeowI18n && window.MeowI18n.getLang()) || 'en';
+            const url = window.location.origin + (route || window.location.pathname);
+            const shareText = `${text}\n\n${url}`;
+
+            track('micro_share_attempt', {
+                framework,
+                content_type,
+                route: route || window.location.pathname,
+                lang
+            });
+
+            if (navigator.share) {
+                try {
+                    await navigator.share({
+                        title: 'MeowBTI Insight',
+                        text: shareText
+                    });
+                } catch (e) {
+                    console.warn('Share cancelled or failed', e);
+                }
+            } else {
+                try {
+                    await navigator.clipboard.writeText(shareText);
+                    const msg = lang === 'th' ? 'คัดลอกข้อความแล้ว!' : 'Text copied to clipboard!';
+                    alert(msg);
+                } catch (e) {
+                    console.error('Clipboard failed', e);
+                }
+            }
+        }
+    };
 
     // --- Global Bridge Click Listener ---
     document.addEventListener('click', (e) => {
