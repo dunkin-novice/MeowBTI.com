@@ -69,6 +69,103 @@
         return t('socialStatusBalanced');
     }
 
+    function getMomentum(history) {
+        if (history.length < 2) return { key: 'stabilizing', title: t('momStabilizing') };
+        
+        const todayStr = new Date().toISOString().split('T')[0];
+        const yesterdayStr = new Date(Date.now() - 86400000).toISOString().split('T')[0];
+
+        const todayCheckins = history.filter(h => h.date === todayStr);
+        const yesterdayCheckins = history.filter(h => h.date === yesterdayStr);
+
+        const getStressScore = (list) => {
+            if (list.length === 0) return 0;
+            return list.reduce((acc, c) => acc + (c.answers.stress === 'overloaded' ? 2 : (c.answers.stress === 'unstable' ? 1 : 0)), 0) / list.length;
+        };
+
+        const todayScore = getStressScore(todayCheckins);
+        const yesterdayScore = getStressScore(yesterdayCheckins);
+
+        if (todayScore > yesterdayScore + 0.5) return { key: 'escalating', title: t('momEscalating') };
+        if (todayScore < yesterdayScore - 0.5) return { key: 'recovering', title: t('momRecovering') };
+        if (todayScore > 1.5) return { key: 'fragile', title: t('momFragile') };
+        
+        return { key: 'stabilizing', title: t('momStabilizing') };
+    }
+
+    function renderForecast(profiles, history) {
+        const momentum = getMomentum(history);
+        const climate = getCollectiveClimate(profiles, history);
+        
+        let tmrKey = 'Calm';
+        if (momentum.key === 'escalating') tmrKey = 'Loud';
+        else if (climate.key === 'heavy' || momentum.key === 'recovering') tmrKey = 'Calm';
+        else if (climate.key === 'unstable') tmrKey = 'Chaos';
+        else if (profiles.some(p => {
+            const c = window.MeowDaily.getTodayCheckin(p.id);
+            return c && c.answers.stress === 'overloaded';
+        })) tmrKey = 'Loud';
+
+        const tmrTitle = t(`tmr${tmrKey}Title`);
+        const tmrDesc = t(`tmr${tmrKey}Desc`);
+
+        return `
+            <div class="forecast-container animate-fade-in">
+                <div class="fc-header">
+                    <h3 class="fc-title">${t('forecastTitle')}</h3>
+                    <div class="fc-momentum">
+                        <span class="rs-stat-label" style="margin-right:8px;">${t('forecastMomentum')}</span>
+                        <span class="fc-momentum-chip ${momentum.key}">${momentum.title}</span>
+                    </div>
+                </div>
+
+                <div class="fc-tmr-card">
+                    <span class="fc-tmr-label">${t('forecastTomorrow')}</span>
+                    <h4 class="fc-tmr-title">${tmrTitle}</h4>
+                    <p class="fc-tmr-desc">${tmrDesc}</p>
+                </div>
+
+                <div class="fc-alerts-grid">
+                    ${getPressureAlerts(profiles, history).map(alert => `
+                        <div class="fc-alert-item">
+                            <span>🚨</span>
+                            <span>${alert}</span>
+                            <button class="micro-share-icon mini" data-type="forecast_alert" data-text="Household Alert: ${alert}">📤</button>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+    }
+
+    function getPressureAlerts(profiles, history) {
+        const alerts = [];
+        const checkins = profiles.map(p => window.MeowDaily.getTodayCheckin(p.id)).filter(c => c);
+        
+        // 1. Stress Absorber
+        const overloaded = checkins.filter(c => c.answers.stress === 'overloaded');
+        const calm = checkins.filter(c => c.answers.stress === 'calm');
+        if (overloaded.length === 1 && calm.length > 2) {
+            alerts.push(t('alertAbsorbing'));
+        }
+
+        // 2. Leaderless
+        if (checkins.length > 0 && !checkins.some(c => c.answers.stress === 'calm' && c.answers.energy === 'high')) {
+            alerts.push(t('alertLeaderless'));
+        }
+
+        // 3. Coordination warning
+        if (overloaded.length > profiles.length / 2) {
+            alerts.push(t('weatherDuoBurnout'));
+        }
+
+        if (alerts.length === 0) {
+            alerts.push("Atmospheric stability maintained. No immediate threats detected.");
+        }
+
+        return alerts.slice(0, 2);
+    }
+
     function renderMap() {
         const host = document.getElementById('family-content');
         if (!host) return;
@@ -145,7 +242,9 @@
                 `).join('')}
             </div>
 
-            <div class="wm-grid">
+            ${renderForecast(profiles, history)}
+
+            <div class="wm-grid" style="margin-top:32px;">
                 <div class="wm-stat-card">
                     <span class="wm-stat-label">Recovery State</span>
                     <div class="wm-stat-val">

@@ -217,6 +217,32 @@
         weatherRecovery:   { en: "Collectively? Terrible recovery instincts.", th: "โดยรวมน่ะเหรอ? สัญชาตญาณการพักฟื้นยอดแย่" },
         weatherStabilizer: { en: name => `${name} is currently stabilizing this entire ecosystem.`, th: name => `${name} กำลังเป็นผู้แบกรับและสร้างสมดุลให้ระบบนิเวศนี้` },
 
+        // ─── Household Mood Forecast ───────────────────────
+        forecastTitle:     { en: "Emotional Forecast",        th: "พยากรณ์อากาศทางใจ" },
+        forecastTomorrow:  { en: "Tomorrow's Atmosphere",     th: "บรรยากาศในวันพรุ่งนี้" },
+        forecastMomentum:  { en: "Household Momentum",        th: "แรงเหวี่ยงของบ้าน" },
+        
+        // Momentum States
+        momEscalating:     { en: "Escalating",                th: "กำลังพุ่งสูง" },
+        momStabilizing:    { en: "Stabilizing",               th: "กำลังคงที่" },
+        momRecovering:     { en: "Recovering",                th: "กำลังพักฟื้น" },
+        momFragile:        { en: "Emotionally Fragile",       th: "เปราะบางทางอารมณ์" },
+        
+        // Tomorrow States
+        tmrLoudTitle:      { en: "Potentially Loud",          th: "อาจมีเสียงดัง" },
+        tmrLoudDesc:       { en: "Accumulated stress suggests tomorrow may be emotionally noisy.", th: "ความเครียดสะสมบ่งบอกว่าพรุ่งนี้อาจจะมีเสียงดังทางอารมณ์" },
+        tmrCalmTitle:      { en: "Recovery Energy",           th: "พลังงานแห่งการพักฟื้น" },
+        tmrCalmDesc:       { en: "A shift toward quiet energy is expected. Low stimulation recommended.", th: "คาดว่าจะมีการเปลี่ยนไปสู่พลังงานที่เงียบสงบ แนะนำให้ลดสิ่งเร้า" },
+        tmrChaosTitle:     { en: "Chaos Surge",               th: "ความวุ่นวายพุ่งพล่าน" },
+        tmrChaosDesc:      { en: "Unpredictable energy patterns detected. Expect unnecessary side quests.", th: "ตรวจพบรูปแบบพลังงานที่คาดเดาไม่ได้ เตรียมรับมือกับเควสย่อยที่ไม่จำเป็น" },
+        tmrBurnoutTitle:   { en: "Coordinated Burnout",       th: "หมดไฟพร้อมเพรียง" },
+        tmrBurnoutDesc:    { en: "Critical battery levels across the board. Emotional maintenance required.", th: "ระดับแบตเตอรี่วิกฤตยกบ้าน จำเป็นต้องมีการบำรุงรักษาทางอารมณ์" },
+
+        // Pressure Alerts
+        alertAbsorbing:    { en: "One member is absorbing everyone else's stress.", th: "มีสมาชิกคนหนึ่งกำลังรับเอาความเครียดของทุกคนไปไว้ที่ตัวเอง" },
+        alertAvoidance:    { en: "Conflict avoidance is becoming structural.", th: "การหลีกเลี่ยงความขัดแย้งกำลังกลายเป็นโครงสร้างของบ้าน" },
+        alertLeaderless:   { en: "Nobody currently has the emotional qualifications to lead.", th: "ตอนนี้ยังไม่มีใครมีวุฒิภาวะทางอารมณ์พอจะนำทีมได้" },
+
         socialStatusAwaiting: { en: "Awaiting daily social data.", th: "กำลังรอข้อมูลโซเชียลประจำวัน" },
         socialStatusHiding: { en: "Collective isolation. Everyone is currently a ghost.", th: "โหมดสันโดษยกบ้าน ทุกคนกำลังทำตัวเป็นวิญญาณ" },
         socialStatusMismatch: { en: "Social mismatch. One person wants a party; another wants a bunker.", th: "ความต้องการโซเชียลไม่ตรงกัน คนหนึ่งอยากปาร์ตี้ อีกคนอยากเข้าถ้ำ" },
