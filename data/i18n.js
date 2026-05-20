@@ -394,6 +394,34 @@
         mythBlanketIncident: { en: "Peace negotiations began after the Great Blanket Incident.", th: "การเจรจาสันติภาพเริ่มต้นขึ้นหลังจากเหตุการณ์ผ้าห่มครั้งใหญ่" },
         mythChaosAlliance: { en: "Two members entered a temporary alliance against overstimulation.", th: "สมาชิกสองคนทำพันธมิตรชั่วคราวเพื่อต่อต้านการถูกกระตุ้นที่มากเกินไป" },
 
+        // ─── Household Canon & Worldbuilding ─────────────
+        canonTitle:        { en: "Household Canon",           th: "กฎเหล็กประจำบ้าน" },
+        canonIntro:        { en: "Established truths and persistent mythology of this emotional ecosystem.", th: "ความจริงที่ประจักษ์ชัดและตำนานที่สืบทอดกันมาของระบบนิเวศทางอารมณ์นี้" },
+        
+        // Canon Truths
+        canParallel:       { en: "This household communicates primarily through parallel existence.", th: "บ้านหลังนี้สื่อสารกันผ่านการมีอยู่แบบขนานเป็นหลัก" },
+        canNoRest:         { en: "Nobody here rests correctly. It's canon.", th: "ไม่มีใครที่นี่พักผ่อนเป็นเรื่องเป็นราว เป็นที่รู้กันดี" },
+        canSnackInfra:     { en: "Snacks are currently functioning as emotional infrastructure.", th: "ขนมขบเคี้ยวทำหน้าที่เป็นโครงสร้างพื้นฐานทางอารมณ์ในขณะนี้" },
+        canAvoidance:      { en: "Avoidance remains a legally recognized coping strategy here.", th: "การหลีกเลี่ยงยังคงเป็นกลยุทธ์การรับมือที่ได้รับการยอมรับตามกฎหมายของบ้าน" },
+
+        // Legendary Events
+        evBlanketRedist:   { en: "The Great Blanket Redistribution", th: "เหตุการณ์การจัดสรรผ้าห่มครั้งมโหฬาร" },
+        evNoSocial:        { en: "The Week Nobody Socialized Correctly", th: "สัปดาห์ที่ไม่มีใครเข้าสังคมได้อย่างปกติ" },
+        evRottingMarathon: { en: "The Emergency Rotting Marathon", th: "การมาราธอนเน่าเปื่อยฉุกเฉิน" },
+        evLoudWeekend:     { en: "The Infamous Loud Weekend",     th: "เหตุการณ์วันหยุดอารมณ์เสียงดังอันเลื่องชื่อ" },
+
+        // Internal Culture
+        cultConflictTitle: { en: "Conflict Culture",          th: "วัฒนธรรมการปะทะ" },
+        cultConflictDesc:  { en: "Passive-aggressive silence mixed with emotional support snacks.", th: "ความเงียบแบบประชดประชันผสมกับขนมค้ำจุนใจ" },
+        cultRecoveryTitle: { en: "Recovery Culture",          th: "วัฒนธรรมการพักฟื้น" },
+        cultRecoveryDesc:  { en: "Everyone disappears independently and returns emotionally rehydrated.", th: "ทุกคนหายตัวไปอย่างเป็นอิสระและกลับมาพร้อมใจที่อิ่มฟู" },
+        cultSocialTitle:   { en: "Social Culture",            th: "วัฒนธรรมโซเชียล" },
+        cultSocialDesc:    { en: "Simultaneous togetherness without direct interaction.", th: "ความใกล้ชิดที่เกิดขึ้นพร้อมกันโดยไม่มีการปฏิสัมพันธ์โดยตรง" },
+
+        // Relationship Legends
+        legAlliance:       { en: "The Strategic Duo specializes in mutual overstimulation.", th: "คู่หูสายยุทธศาสตร์เชี่ยวชาญการกระตุ้นอารมณ์ซึ่งกันและกัน" },
+        legChaosDoc:       { en: "One creates the chaos. The other documents it emotionally.", th: "คนหนึ่งสร้างความวุ่นวาย อีกคนบันทึกมันไว้ในใจ" },
+
         dynChaosHigh:      { en: "Shared Chaos: HIGH",        th: "ระดับความวุ่นวาย: สูง" },
         dynChaosMed:       { en: "Shared Chaos: MODERATE",    th: "ระดับความวุ่นวาย: ปานกลาง" },
         dynChaosLow:       { en: "Shared Chaos: LOW",         th: "ระดับความวุ่นวาย: ต่ำ" },
