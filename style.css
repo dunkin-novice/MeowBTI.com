@@ -3721,3 +3721,43 @@ a { color: inherit; }
 @media (max-width: 500px) {
   .forging-card { padding: 32px 24px; }
 }
+
+/* ─── Relic Evolution & Auras v1 ────────────────── */
+.artifact-card.legendary {
+  border: 2.5px solid #FFB000;
+  box-shadow: 0 0 20px rgba(255, 176, 0, 0.2);
+  background: linear-gradient(135deg, #fff 0%, #FFF9E6 100%);
+}
+.artifact-card.legendary::before {
+  content: 'LEGENDARY';
+  position: absolute;
+  top: -12px; left: 50%; transform: translateX(-50%);
+  background: #FFB000; color: #fff;
+  padding: 2px 10px; border-radius: 10px;
+  font-size: 0.6rem; font-weight: 900; letter-spacing: 0.1em;
+}
+
+.aura-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: 0.05;
+  mix-blend-mode: multiply;
+}
+.aura-recovery { background: #5BA8D9; }
+.aura-chaos { background: #FF5B3B; }
+.aura-survival { background: #FFB000; }
+.aura-stability { background: #3DA17A; }
+
+.artifact-scar {
+  position: absolute;
+  bottom: 8px; right: 8px;
+  font-size: 0.8rem;
+  opacity: 0.3;
+}
+
+.relic-visual.evolved {
+  border-style: double;
+  border-width: 4px;
+}

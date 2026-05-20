@@ -434,6 +434,21 @@
         relSoup:           { en: "Soup of Collective Survival", th: "ซุปแห่งการอยู่รอดร่วมกัน" },
         relCharger:        { en: "The Last Functional Charger", th: "สายชาร์จสุดท้ายที่ยังใช้ได้" },
 
+        // Relic Evolution & Residue
+        relEvolvedPrefix:  { en: "The Ancient",               th: "ตำนาน" },
+        relEvolvedSuffix:  { en: "of Functional Adulthood",   th: "แห่งวุฒิภาวะที่สมบูรณ์" },
+        
+        auraRecovery:      { en: "Recovery Aura",             th: "ออร่าแห่งการพักฟื้น" },
+        auraChaos:         { en: "Chaos Residue",             th: "เศษเสี้ยวความวุ่นวาย" },
+        auraSurvival:      { en: "Survival Radiation",        th: "รังสีการเอาชีวิตรอด" },
+        auraStability:     { en: "Soft Stability",            th: "ความมั่นคงที่นุ่มนวล" },
+        
+        reputeFeared:      { en: "feared",                    th: "เป็นที่ยำเกรง" },
+        reputeTrusted:      { en: "trusted",                   th: "ที่ไว้วางใจได้" },
+        reputeUnstable:    { en: "emotionally unstable",      th: "อารมณ์ไม่คงที่" },
+        reputeProtective:  { en: "protective",                 th: "คอยปกป้อง" },
+        reputeHaunted:     { en: "slightly haunted",          th: "มีพลังงานบางอย่างซ่อนอยู่" },
+
         // Keepsakes
         keepMutualAvoid:   { en: "Treaty of Mutual Avoidance", th: "สนธิสัญญาการเลี่ยงหน้ากัน" },
         keepOverstimCert:  { en: "Certificate of Overstimulation", th: "ใบประกาศเกียรติคุณการถูกกระตุ้นเกินเหตุ" },

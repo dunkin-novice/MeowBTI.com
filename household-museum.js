@@ -11,6 +11,24 @@
         return window.MeowDaily.getHistory() || [];
     }
 
+    function getAura(history) {
+        if (history.length === 0) return null;
+        const recent = history.slice(0, 10);
+        const stress = recent.filter(h => h.answers.stress === 'overloaded').length;
+        const recovery = recent.filter(h => h.answers.stress === 'calm').length;
+        
+        if (stress > 5) return { key: 'chaos', title: t('auraChaos') };
+        if (recovery > 5) return { key: 'recovery', title: t('auraRecovery') };
+        return { key: 'stability', title: t('auraStability') };
+    }
+
+    function getReputation(history, relicId) {
+        // Deterministic based on relicId + history length
+        const reps = [t('reputeTrusted'), t('reputeHaunted'), t('reputeProtective'), t('reputeUnstable')];
+        const seed = relicId.length + history.length;
+        return reps[seed % reps.length];
+    }
+
     function generateRelics(history, profiles) {
         const relics = [];
         if (history.length < 3) return relics;
@@ -18,15 +36,29 @@
         const recent = history.slice(0, 30);
         const stressAvg = recent.reduce((acc, h) => acc + (h.answers.stress === 'overloaded' ? 2 : 0), 0) / recent.length;
         const lowEnergyCount = recent.filter(h => h.answers.energy === 'low').length;
+        
+        const forged = window.MeowStore.getForgedRelics ? window.MeowStore.getForgedRelics() : [];
 
-        // 1. Blanket of Reconstruction
+        // 1. Blanket of Reconstruction -> Ancient Blanket
         if (lowEnergyCount > recent.length * 0.4) {
-            relics.push({ id: 'relBlanket', icon: '🛌', name: t('relBlanket') });
+            const base = { id: 'relBlanket', icon: '🛌', name: t('relBlanket') };
+            const isForged = forged.some(f => f.id === base.id);
+            if (isForged && history.length > 20) {
+                base.name = `${t('relEvolvedPrefix')} ${base.name}`;
+                base.isEvolved = true;
+            }
+            relics.push(base);
         }
 
-        // 2. Mug of Survival
+        // 2. Mug of Survival -> Mug of Adulthood
         if (stressAvg > 0.8) {
-            relics.push({ id: 'relMug', icon: '☕', name: t('relMug') });
+            const base = { id: 'relMug', icon: '☕', name: t('relMug') };
+            const isForged = forged.some(f => f.id === base.id);
+            if (isForged && history.length > 30) {
+                base.name = `${base.name} ${t('relEvolvedSuffix')}`;
+                base.isEvolved = true;
+            }
+            relics.push(base);
         }
 
         // 3. Couch of Parallel Play
@@ -68,7 +100,15 @@
             }
         }
 
-        return relics.slice(0, 6);
+        // Handle Returning Artifact detection
+        relics.forEach(r => {
+            const wasForgedBefore = forged.find(f => f.id === r.id);
+            if (wasForgedBefore && !r.isEvolved) {
+                r.isReturning = true;
+            }
+        });
+
+        return relics.slice(0, 8);
     }
 
     function generateTrophies(history, profiles) {
@@ -227,6 +267,7 @@
         const forgedRelics = window.MeowStore.getForgedRelics ? window.MeowStore.getForgedRelics() : [];
         const trophies = generateTrophies(history, profiles);
         const myth = getMyth(history);
+        const aura = getAura(history);
 
         if (availableRelics.length === 0 && forgedRelics.length === 0 && trophies.length === 0 && keepsakes.length === 0) {
             container.style.display = 'none';
@@ -235,8 +276,8 @@
         container.style.display = 'block';
 
         // Categorize Relics
-        const legendaryRelics = forgedRelics.filter(r => r.dedicatedTo !== 'General History');
-        const standardRelics = forgedRelics.filter(r => r.dedicatedTo === 'General History');
+        const legendaryRelics = forgedRelics.filter(r => r.dedicatedTo !== 'General History' || r.isEvolved);
+        const standardRelics = forgedRelics.filter(r => r.dedicatedTo === 'General History' && !r.isEvolved);
 
         container.innerHTML = `
             <div class="museum-header">
@@ -246,15 +287,16 @@
 
             ${legendaryRelics.length > 0 ? `
                 <div class="museum-category-section">
-                    <h3 class="museum-category-title">📜 Legendary Relics</h3>
+                    <h3 class="museum-category-title">📜 Legendary Heirlooms</h3>
                     <div class="museum-grid">
                         ${legendaryRelics.map(r => `
-                            <div class="artifact-card">
+                            <div class="artifact-card legendary">
+                                ${aura ? `<div class="aura-overlay aura-${aura.key}" title="${aura.title}"></div>` : ''}
                                 <span class="artifact-sticker">${r.icon}</span>
-                                <span class="artifact-meta">Forged Artifact</span>
+                                <span class="artifact-meta">Legendary ${getReputation(history, r.id)}</span>
                                 <div class="artifact-name">${r.customName || r.name}</div>
                                 <div class="artifact-binding">Bound to: ${r.dedicatedTo}</div>
-                                <button class="micro-share-icon mini" data-type="forged_relic" data-text="Household Relic Forged: ${r.customName || r.name}. Dedicated to ${r.dedicatedTo}.">📤</button>
+                                <button class="micro-share-icon mini" data-type="forged_relic" data-text="Heirloom Unlocked: ${r.customName || r.name}. Status: ${getReputation(history, r.id)}.">📤</button>
                             </div>
                         `).join('')}
                     </div>
@@ -270,7 +312,7 @@
                                 <span class="artifact-sticker">${k.icon}</span>
                                 <span class="artifact-meta">${k.isSacred ? 'Sacred Object' : 'Social Keepsake'}</span>
                                 <div class="artifact-name">${k.name}</div>
-                                <button class="micro-share-icon mini" data-type="keepsake" data-text="Relationship Keepsake Earned: ${k.name} ${k.icon}.">📤</button>
+                                <button class="micro-share-icon mini" data-type="keepsake" data-text="Relationship Keepsake: ${k.name} ${k.icon}.">📤</button>
                             </div>
                         `).join('')}
                     </div>
@@ -282,7 +324,10 @@
                 <div class="relic-shelf">
                     ${availableRelics.filter(ar => !forgedRelics.some(fr => fr.id === ar.id)).map(r => `
                         <div class="relic-item" id="relic-trigger-${r.id}">
-                            <div class="relic-visual">${r.icon}</div>
+                            <div class="relic-visual ${r.isEvolved ? 'evolved' : ''}">
+                                ${r.icon}
+                                ${r.isReturning ? `<span class="artifact-scar" title="Returning Artifact">♻️</span>` : ''}
+                            </div>
                             <span class="relic-name">${r.name}</span>
                         </div>
                     `).join('')}
@@ -313,6 +358,7 @@
             </div>
         `;
 
+        // Bind clicks and share listeners as before...
         availableRelics.forEach(r => {
             const btn = container.querySelector(`#relic-trigger-${r.id}`);
             if (btn) btn.onclick = () => openForgingUI(r);
@@ -333,15 +379,17 @@
         });
 
         // Analytics
-        window.MeowTrack && window.MeowTrack('museum_expand_view', {
-            relic_count: forgedRelics.length,
-            trophy_count: trophies.length,
-            keepsake_count: keepsakes.length,
-            lang: getLang()
-        });
-
         if (window.MeowTrack) {
-            keepsakes.forEach(k => window.MeowTrack('keepsake_generated', { keepsake_type: k.id, is_sacred: !!k.isSacred, lang: getLang() }));
+            window.MeowTrack('museum_expand_view', {
+                relic_count: forgedRelics.length,
+                trophy_count: trophies.length,
+                keepsake_count: keepsakes.length,
+                aura_type: aura ? aura.key : 'none',
+                lang: getLang()
+            });
+
+            legendaryRelics.forEach(r => window.MeowTrack('legendary_relic_detected', { relic_type: r.id, lang: getLang() }));
+            if (aura) window.MeowTrack('artifact_aura_detected', { aura_type: aura.key, lang: getLang() });
         }
     }
 
