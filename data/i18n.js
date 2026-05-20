@@ -459,6 +459,31 @@
         mythBelievedToContain: { en: relic => `Believed to contain traces of survival iced coffee.`, th: relic => `เชื่อกันว่ามีร่องรอยของกาแฟดำแห่งการเอาชีวิตรอดซ่อนอยู่` },
         mythCanonObject:   { en: relic => `This relic was recovered during a historical turning point.`, th: relic => `วัตถุนี้ถูกกู้คืนมาได้ในช่วงหัวเลี้ยวหัวต่อของประวัติศาสตร์` },
 
+        // ─── Relic Synthesis & Fusion ─────────────────────
+        synthesisTitle:    { en: "Emotional Synthesis",       th: "การสังเคราะห์ทางอารมณ์" },
+        synthesisIntro:    { en: "Combine two artifacts to forge a new symbol of collective survival.", th: "รวมวัตถุสองชิ้นเข้าด้วยกันเพื่อสร้างสัญลักษณ์ใหม่ของการอยู่รอดร่วมกัน" },
+        synthesisAction:   { en: "Fuse Artifacts",            th: "หลอมรวมวัตถุ" },
+        synthesisChoose:   { en: "Select two items to synthesize.", th: "เลือกวัตถุสองชิ้นเพื่อสังเคราะห์" },
+        
+        // Fusion Artifacts
+        fusHoodieCollapse: { en: "Hoodie of Functional Collapse", th: "ฮู้ดดี้แห่งการล่มสลายที่ยังทำงานได้" },
+        fusRecoveryNest:   { en: "The Recovery Nest Core",    th: "แกนกลางรังแห่งการพักฟื้น" },
+        fusParallelStation: { en: "The Parallel Play Station", th: "สถานีแห่งการเล่นขนาน" },
+        fusSilenceDevice:  { en: "Shared Silence Device",     th: "อุปกรณ์แห่งความเงียบงันร่วมกัน" },
+        fusDiplomacyMug:   { en: "The Diplomacy Mug",         th: "แก้วกาแฟแห่งการทูต" },
+        fusSupportInventory: { en: "Emotional Support Inventory", th: "คลังแสงประคองใจ" },
+        fusRottingTreaty:  { en: "Treaty of Simultaneous Rotting", th: "สนธิสัญญาการเน่าเปื่อยพร้อมเพรียง" },
+
+        // Legendary Fusion Objects
+        fusThrone:         { en: "The Nervous System Throne", th: "บัลลังก์แห่งระบบประสาท" },
+        fusSoupEngine:     { en: "The Ancient Soup Engine",   th: "เครื่องยนต์ซุปโบราณ" },
+        fusBlanketSingularity: { en: "The Blanket Singularity", th: "เอกภาวะแห่งผ้าห่ม" },
+
+        // Fusion Descriptions
+        fusDescHybrid:     { en: (repA, repB) => `A ${repA} yet ${repB} artifact.`, th: (repA, repB) => `วัตถุที่${repA}แต่${repB}` },
+        fusDescMyth:       { en: "Forged during simultaneous nervous-system failure.", th: "ถูกสร้างขึ้นในช่วงที่ระบบประสาทล้มเหลวพร้อมกัน" },
+        fusDescResidue:    { en: "Contains traces of survival ramen and emotional buffering.", th: "ประกอบด้วยร่องรอยของราเม็งแห่งการอยู่รอดและการแบกรับอารมณ์" },
+
         dynChaosHigh:      { en: "Shared Chaos: HIGH",        th: "ระดับความวุ่นวาย: สูง" },
         dynChaosMed:       { en: "Shared Chaos: MODERATE",    th: "ระดับความวุ่นวาย: ปานกลาง" },
         dynChaosLow:       { en: "Shared Chaos: LOW",         th: "ระดับความวุ่นวาย: ต่ำ" },

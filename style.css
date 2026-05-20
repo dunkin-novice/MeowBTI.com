@@ -3761,3 +3761,83 @@ a { color: inherit; }
   border-style: double;
   border-width: 4px;
 }
+
+/* ─── Relic Synthesis & Fusion v1 ────────────────── */
+.synthesis-section {
+  margin-top: 60px;
+  padding: 48px;
+  background: radial-gradient(circle at center, #2D1B24 0%, #1F1410 100%);
+  color: #fff;
+  border-radius: 48px;
+  border: 2px solid #9B59B6;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 30px rgba(155, 89, 182, 0.2);
+}
+.synthesis-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='1' fill='rgba(155,89,182,0.3)'/%3E%3C/svg%3E");
+  background-size: 20px 24px;
+  opacity: 0.2;
+}
+
+.fusion-slots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  margin: 40px 0;
+}
+.fusion-slot {
+  width: 100px;
+  height: 100px;
+  background: rgba(255,255,255,0.05);
+  border: 2px dashed rgba(255,255,255,0.2);
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  transition: transform 0.3s, border-color 0.3s;
+  cursor: pointer;
+}
+.fusion-slot.filled {
+  border-style: solid;
+  border-color: #9B59B6;
+  background: rgba(155, 89, 182, 0.1);
+  transform: scale(1.1);
+}
+.fusion-plus { font-size: 2rem; font-family: var(--font-display); opacity: 0.5; }
+
+.fusion-result-preview {
+  margin-top: 40px;
+  padding: 32px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 32px;
+  display: inline-block;
+  min-width: 300px;
+  border: 1.5px solid rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+}
+
+.artifact-card.fusion {
+  background: linear-gradient(135deg, #1F1410 0%, #2D1B24 100%);
+  color: #fff;
+  border: 2px solid #9B59B6;
+  box-shadow: 0 0 20px rgba(155, 89, 182, 0.3);
+}
+.artifact-card.fusion .artifact-meta { color: #9B59B6; }
+.artifact-card.fusion .artifact-binding { border-top-color: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); }
+
+.aura-mix {
+  background: linear-gradient(45deg, var(--aura-a), var(--aura-b));
+  opacity: 0.15;
+}
+
+@media (max-width: 600px) {
+  .fusion-slots { gap: 16px; }
+  .fusion-slot { width: 80px; height: 80px; font-size: 2rem; }
+}

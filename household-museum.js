@@ -246,6 +246,85 @@
         return keepsakes.slice(0, 3);
     }
 
+    function generateFusions(forged, profiles, history) {
+        if (forged.length < 2) return [];
+        const fusions = [];
+        
+        const has = (id) => forged.find(r => r.id === id);
+
+        // 1. Hoodie + Mug -> Hoodie of Functional Collapse
+        if (has('relHoodie') && has('relMug')) {
+            fusions.push({ id: 'fusHoodieCollapse', icon: '🧥', name: t('fusHoodieCollapse'), parents: ['relHoodie', 'relMug'] });
+        }
+
+        // 2. Blanket + Charger -> Recovery Nest
+        if (has('relBlanket') && has('relCharger')) {
+            fusions.push({ id: 'fusRecoveryNest', icon: '🧶', name: t('fusRecoveryNest'), parents: ['relBlanket', 'relCharger'] });
+        }
+
+        // 3. Couch + Headphones -> Parallel Play Station
+        if (has('relCouch') && has('relHeadphones')) {
+            fusions.push({ id: 'fusParallelStation', icon: '🚉', name: t('fusParallelStation'), parents: ['relCouch', 'relHeadphones'] });
+        }
+
+        // 4. Mug + Snack Basket -> Diplomacy Mug
+        if (has('relMug') && has('relSnackBasket')) {
+            fusions.push({ id: 'fusDiplomacyMug', icon: '🍵', name: t('fusDiplomacyMug'), parents: ['relMug', 'relSnackBasket'] });
+        }
+
+        // 6. Treaty of Mutual Avoidance + Silence -> Shared Silence Device
+        if (has('keepMutualAvoid') && has('relHeadphones')) {
+            fusions.push({ id: 'fusSilenceDevice', icon: '🔇', name: t('fusSilenceDevice'), parents: ['keepMutualAvoid', 'relHeadphones'] });
+        }
+
+        // 7. Beanbag + Blanket -> Treaty of Simultaneous Rotting
+        if (has('relBeanbag') && has('relBlanket')) {
+            fusions.push({ id: 'fusRottingTreaty', icon: '🫓', name: t('fusRottingTreaty'), parents: ['relBeanbag', 'relBlanket'] });
+        }
+
+        // 8. Ancient Soup Engine (Legendary)
+        if (has('relSoup') && has('relCharger') && history.length > 40) {
+            fusions.push({ id: 'fusSoupEngine', icon: '🍲', name: t('fusSoupEngine'), parents: ['relSoup', 'relCharger'], isLegendary: true });
+        }
+
+        // 9. Nervous System Throne (Legendary)
+        if (has('relCouch') && has('relHeadphones') && has('relBlanket') && history.length > 60) {
+            fusions.push({ id: 'fusThrone', icon: '👑', name: t('fusThrone'), parents: ['relCouch', 'relHeadphones'], isLegendary: true });
+        }
+
+        // 5. Legendary: Blanket + Soup + Hoodie -> Blanket Singularity
+        if (has('relBlanket') && has('relSoup') && has('relHoodie') && history.length > 50) {
+            fusions.push({ id: 'fusBlanketSingularity', icon: '🌌', name: t('fusBlanketSingularity'), parents: ['relBlanket', 'relSoup'], isLegendary: true });
+        }
+
+        return fusions;
+    }
+
+    function renderSynthesis(forged, profiles, history) {
+        if (forged.length < 2) return '';
+        
+        return `
+            <div class="synthesis-section animate-fade-in" id="synthesis-engine">
+                <div class="wm-header">
+                    <h2 class="wm-title" style="color:#fff;">${t('synthesisTitle')}</h2>
+                    <p class="wm-intro" style="color:rgba(255,255,255,0.7);">${t('synthesisIntro')}</p>
+                </div>
+                
+                <div class="fusion-slots">
+                    <div class="fusion-slot" id="slot-0">?</div>
+                    <div class="fusion-plus">+</div>
+                    <div class="fusion-slot" id="slot-1">?</div>
+                </div>
+
+                <div id="fusion-preview-host"></div>
+
+                <button class="big-btn accent" id="btn-fuse-relics" disabled style="opacity:0.3;">
+                    ${t('synthesisAction')}
+                </button>
+            </div>
+        `;
+    }
+
     function renderMuseum() {
         const host = document.getElementById('family-content');
         if (!host) return;
@@ -276,14 +355,36 @@
         container.style.display = 'block';
 
         // Categorize Relics
-        const legendaryRelics = forgedRelics.filter(r => r.dedicatedTo !== 'General History' || r.isEvolved);
-        const standardRelics = forgedRelics.filter(r => r.dedicatedTo === 'General History' && !r.isEvolved);
+        const legendaryRelics = forgedRelics.filter(r => (r.dedicatedTo !== 'General History' || r.isEvolved) && !r.isFusion);
+        const standardRelics = forgedRelics.filter(r => r.dedicatedTo === 'General History' && !r.isEvolved && !r.isFusion);
+        const fusionRelics = forgedRelics.filter(r => r.isFusion);
 
         container.innerHTML = `
             <div class="museum-header">
                 <h2 class="museum-h2">${t('museumTitle')}</h2>
                 <p class="wm-intro">${t('museumIntro')}</p>
             </div>
+
+            ${fusionRelics.length > 0 ? `
+                <div class="museum-category-section">
+                    <h3 class="museum-category-title">🌌 Fusion Artifacts</h3>
+                    <div class="museum-grid">
+                        ${fusionRelics.map(r => {
+                            const rep = getReputation(history, r.id);
+                            return `
+                                <div class="artifact-card fusion ${r.isLegendary ? 'legendary' : ''}">
+                                    ${aura ? `<div class="aura-overlay aura-${aura.key} aura-mix" title="${aura.title}"></div>` : ''}
+                                    <span class="artifact-sticker">${r.icon}</span>
+                                    <span class="artifact-meta">${r.isLegendary ? 'Legendary Fusion' : 'Fusion Artifact'}</span>
+                                    <div class="artifact-name">${r.name}</div>
+                                    <div class="artifact-binding">${t('fusDescMyth')}</div>
+                                    <button class="micro-share-icon mini" data-type="fusion_relic" data-text="Fusion Artifact Forged: ${r.name}. Status: ${rep}.">📤</button>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                </div>
+            ` : ''}
 
             ${legendaryRelics.length > 0 ? `
                 <div class="museum-category-section">
@@ -318,6 +419,8 @@
                     </div>
                 </div>
             ` : ''}
+
+            ${renderSynthesis(forgedRelics, profiles, history)}
 
             <div class="museum-category-section">
                 <h3 class="museum-category-title">🏺 Available to Forge</h3>
@@ -358,6 +461,9 @@
             </div>
         `;
 
+        // Bind synthesis UI logic
+        bindSynthesis(forgedRelics, container, profiles, history);
+
         // Bind clicks and share listeners as before...
         availableRelics.forEach(r => {
             const btn = container.querySelector(`#relic-trigger-${r.id}`);
@@ -391,6 +497,92 @@
             legendaryRelics.forEach(r => window.MeowTrack('legendary_relic_detected', { relic_type: r.id, lang: getLang() }));
             if (aura) window.MeowTrack('artifact_aura_detected', { aura_type: aura.key, lang: getLang() });
         }
+    }
+
+    function bindSynthesis(forged, container, profiles, history) {
+        const slots = [null, null];
+        const slotEls = [container.querySelector('#slot-0'), container.querySelector('#slot-1')];
+        const btn = container.querySelector('#btn-fuse-relics');
+        const preview = container.querySelector('#fusion-preview-host');
+
+        if (!btn) return;
+
+        // Allow clicking standard relics to fill slots
+        container.querySelectorAll('.relic-item.forged').forEach((item, idx) => {
+            item.onclick = () => {
+                const relic = forged.find(r => (r.customName || r.name) === item.querySelector('.relic-name').textContent);
+                if (!relic) return;
+
+                if (!slots[0]) slots[0] = relic;
+                else if (!slots[1] && slots[0].id !== relic.id) slots[1] = relic;
+                else { slots[0] = relic; slots[1] = null; }
+
+                updateSlots();
+            };
+        });
+
+        function updateSlots() {
+            slots.forEach((s, i) => {
+                if (s) {
+                    slotEls[i].innerHTML = s.icon;
+                    slotEls[i].classList.add('filled');
+                } else {
+                    slotEls[i].innerHTML = '?';
+                    slotEls[i].classList.remove('filled');
+                }
+            });
+
+            if (slots[0] && slots[1]) {
+                btn.disabled = false;
+                btn.style.opacity = '1';
+                showPreview();
+            } else {
+                btn.disabled = true;
+                btn.style.opacity = '0.3';
+                preview.innerHTML = '';
+            }
+        }
+
+        function showPreview() {
+            const possible = generateFusions(forged, profiles, history);
+            const match = possible.find(p => p.parents.includes(slots[0].id) && p.parents.includes(slots[1].id));
+            
+            if (match) {
+                preview.innerHTML = `
+                    <div class="fusion-result-preview animate-fade-in">
+                        <span class="rs-stat-label">Potential Synthesis</span>
+                        <div style="font-size:3rem; margin:16px 0;">${match.icon}</div>
+                        <div style="font-weight:900; font-family:var(--font-display); font-size:1.5rem;">${match.name}</div>
+                    </div>
+                `;
+            } else {
+                preview.innerHTML = `<p style="opacity:0.6; margin-top:20px;">No harmonic resonance detected between these objects.</p>`;
+                btn.disabled = true;
+                btn.style.opacity = '0.3';
+            }
+        }
+
+        btn.onclick = () => {
+            const possible = generateFusions(forged, profiles, history);
+            const match = possible.find(p => p.parents.includes(slots[0].id) && p.parents.includes(slots[1].id));
+            if (!match) return;
+
+            const fusion = {
+                ...match,
+                isFusion: true,
+                forgedAt: new Date().toISOString()
+            };
+            window.MeowStore.saveForgedRelic(fusion);
+            
+            window.MeowTrack && window.MeowTrack('fusion_relic_created', {
+                relic_a: slots[0].id,
+                relic_b: slots[1].id,
+                fusion_type: match.id,
+                lang: getLang()
+            });
+
+            renderMuseum();
+        };
     }
 
     if (document.readyState === 'loading') {
