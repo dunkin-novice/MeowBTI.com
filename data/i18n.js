@@ -488,6 +488,31 @@
         fusDescMyth:       { en: "Forged during simultaneous nervous-system failure.", th: "ถูกสร้างขึ้นในช่วงที่ระบบประสาทล้มเหลวพร้อมกัน" },
         fusDescResidue:    { en: "Contains traces of survival ramen and emotional buffering.", th: "ประกอบด้วยร่องรอยของราเม็งแห่งการอยู่รอดและการแบกรับอารมณ์" },
 
+        // ─── Relic Echoes & Living Museum ────────────────
+        echoTitle:         { en: "Museum Echoes",             th: "เสียงสะท้อนจากพิพิธภัณฑ์" },
+        echoIntro:         { en: "Ambient observations from your collection of emotional artifacts.", th: "การสังเกตการณ์รอบข้างจากคลังสะสมวัตถุทางอารมณ์ของคุณ" },
+        
+        // Relic Echoes
+        echoBlanketLoud:   { en: "The Ancient Blanket of Survival refuses to remain near the Loud Relics.", th: "ผ้าห่มแห่งการอยู่รอดในตำนานปฏิเสธที่จะอยู่ใกล้กับวัตถุที่เสียงดัง" },
+        echoChargerExhaust: { en: "The Last Functional Charger appears emotionally exhausted.", th: "สายชาร์จสุดท้ายที่ยังใช้ได้ดูเหมือนจะหมดแรงทางอารมณ์" },
+        echoTreatyHumming: { en: "The Treaty Engine has started humming again.", th: "เครื่องยนต์แห่งสนธิสัญญาเริ่มส่งเสียงครางฮืออีกครั้ง" },
+        echoHoodieCursed:  { en: "The Sacred Rotting Hoodie is reportedly still cursed.", th: "มีรายงานว่าฮู้ดดี้เน่าศักดิ์สิทธิ์ยังคงติดคำสาปอยู่" },
+        echoReceiptCollapse: { en: "The Ancient DoorDash Receipt has resurfaced during another collective collapse.", th: "ใบเสร็จ DoorDash ยุคโบราณโผล่ขึ้นมาอีกครั้งในช่วงที่ทุกคนล่มสลายพร้อมกัน" },
+        echoSyncFields:    { en: "The Parallel Play Station and Shared Silence Device have synchronized their recovery fields.", th: "สถานีแห่งการเล่นขนานและอุปกรณ์ความเงียบร่วมกันได้ปรับจูนสนามพลังการพักฟื้นให้ตรงกันแล้ว" },
+        echoChargerPower:  { en: "The Last Functional Charger is providing power to the Fusion Artifacts.", th: "สายชาร์จสุดท้ายที่ยังใช้ได้กำลังจ่ายไฟให้กับวัตถุหลอมรวม" },
+        echoBlanketRequest: { en: "Collective nervous system requesting blanket deployment.", th: "ระบบประสาทส่วนกลางของบ้านกำลังร้องขอการติดตั้งผ้าห่มพร้อมกัน" },
+        echoBunkerReinforce: { en: "Bunker architecture currently reinforced by collective silence.", th: "โครงสร้างบังเกอร์กำลังถูกเสริมความแข็งแกร่งด้วยความเงียบงันร่วมกัน" },
+        
+        // Shelf Conversations
+        convSustained:     { en: "Together, they have sustained multiple recovery cycles.", th: "เมื่ออยู่ด้วยกัน พวกเขาได้ค้ำจุนวงจรการพักฟื้นมาหลายต่อหลายครั้ง" },
+        convStabilized:    { en: "Historically associated with simultaneous nervous-system stabilization.", th: "ในทางประวัติศาสตร์ มีความเกี่ยวข้องกับการรักษาระบบประสาทให้คงที่พร้อมๆ กัน" },
+        convDiplomatic:    { en: "The Treaty Engine and Shared Silence Device have entered another diplomatic cycle.", th: "เครื่องยนต์แห่งสนธิสัญญาและอุปกรณ์ความเงียบร่วมกันได้เข้าสู่รอบการทูตอีกครั้ง" },
+        
+        // Recurring Motifs
+        motifBlanket:      { en: "This household repeatedly turns stress into blanket-based solutions.", th: "บ้านหลังนี้เปลี่ยนความเครียดให้เป็นทางออกด้วยผ้าห่มซ้ำแล้วซ้ำเล่า" },
+        motifSoup:         { en: "Recovery rituals appear soup-adjacent.", th: "พิธีกรรมการพักฟื้นดูเหมือนจะเกี่ยวข้องกับซุป" },
+        motifAvoidance:    { en: "Avoidance has become architectural.", th: "การหลีกเลี่ยงได้กลายเป็นส่วนหนึ่งของโครงสร้างไปแล้ว" },
+
         dynChaosHigh:      { en: "Shared Chaos: HIGH",        th: "ระดับความวุ่นวาย: สูง" },
         dynChaosMed:       { en: "Shared Chaos: MODERATE",    th: "ระดับความวุ่นวาย: ปานกลาง" },
         dynChaosLow:       { en: "Shared Chaos: LOW",         th: "ระดับความวุ่นวาย: ต่ำ" },

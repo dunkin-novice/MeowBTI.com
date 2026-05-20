@@ -3867,3 +3867,57 @@ a { color: inherit; }
   border-style: dashed;
   background: rgba(255,255,255,0.03);
 }
+
+/* ─── Household Emotional Relic Echoes v1 ───────── */
+.echoes-container {
+  margin-top: 48px;
+  padding: 32px;
+  background: rgba(31, 20, 16, 0.03);
+  border: 1px dashed var(--line-soft);
+  border-radius: 32px;
+  text-align: left;
+}
+.echo-header { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; opacity: 0.6; }
+.echo-title { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; }
+
+.echo-list { display: flex; flex-direction: column; gap: 16px; }
+.echo-item {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  line-height: 1.4;
+  color: var(--ink);
+  opacity: 0.8;
+  position: relative;
+  padding-left: 20px;
+  transition: opacity 0.3s;
+  cursor: default;
+}
+.echo-item:hover { opacity: 1; }
+.echo-item::before {
+  content: '✦';
+  position: absolute;
+  left: 0;
+  color: #9B59B6;
+  font-size: 0.8rem;
+}
+
+.echo-conversation {
+  background: #fff;
+  border-radius: 20px;
+  padding: 16px 20px;
+  border: 1px solid var(--line-soft);
+  box-shadow: 4px 4px 0 rgba(0,0,0,0.02);
+}
+.echo-conversation .echo-meta {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  font-weight: 800;
+  opacity: 0.4;
+  margin-bottom: 8px;
+  display: block;
+}
+
+@media (max-width: 600px) {
+  .echoes-container { padding: 24px; }
+  .echo-item { font-size: 0.95rem; }
+}

@@ -341,6 +341,119 @@
         `;
     }
 
+    function getEchoes(history, forged) {
+        const echoes = [];
+        const has = (id) => forged.find(r => r.id === id);
+
+        if (has('relBlanket') && history.some(h => h.answers.stress === 'overloaded')) {
+            echoes.push(t('echoBlanketLoud'));
+        }
+        if (has('relCharger') && history.slice(0, 5).every(h => h.answers.energy === 'low')) {
+            echoes.push(t('echoChargerExhaust'));
+        }
+        if (has('fusTreatyEngine')) {
+            echoes.push(t('echoTreatyHumming'));
+        }
+        if (has('relHoodie')) {
+            echoes.push(t('echoHoodieCursed'));
+        }
+        if (has('relReceipt') && history.filter(h => h.answers.stress === 'overloaded').length > 5) {
+            echoes.push(t('echoReceiptCollapse'));
+        }
+        if (has('fusParallelStation') && has('fusSilenceDevice')) {
+            echoes.push(t('echoSyncFields'));
+        }
+        if (has('relCharger') && forged.some(r => r.isFusion)) {
+            echoes.push(t('echoChargerPower'));
+        }
+
+        const todayCheckins = history.filter(h => h.date === new Date().toISOString().split('T')[0]);
+        if (todayCheckins.length >= 2 && todayCheckins.every(c => c.answers.energy === 'low')) {
+            echoes.push(t('echoBlanketRequest'));
+            if (window.MeowTrack) window.MeowTrack('shared_survival_object', { type: 'blanket_request', lang: getLang() });
+        }
+        if (todayCheckins.length >= 2 && todayCheckins.every(c => c.answers.social === 'hiding')) {
+            echoes.push(t('echoBunkerReinforce'));
+            if (window.MeowTrack) window.MeowTrack('shared_survival_object', { type: 'bunker_reinforce', lang: getLang() });
+        }
+
+        return echoes.slice(0, 5);
+    }
+
+    function getConversations(forged) {
+        const convs = [];
+        const has = (id) => forged.find(r => r.id === id);
+
+        if (has('relMug') && has('fusSoupEngine')) {
+            convs.push({ items: [t('relMug'), t('fusSoupEngine')], text: t('convSustained') });
+        }
+        if (has('fusBlanketSingularity') && has('fusCoregulationCouch')) {
+            convs.push({ items: [t('fusBlanketSingularity'), t('fusCoregulationCouch')], text: t('convStabilized') });
+        }
+        if (has('fusTreatyEngine') && has('fusSilenceDevice')) {
+            convs.push({ items: [t('fusTreatyEngine'), t('fusSilenceDevice')], text: t('convDiplomatic') });
+        }
+
+        return convs.slice(0, 1);
+    }
+
+    function getMotifs(history) {
+        const motifs = [];
+        const recent = history.slice(0, 30);
+        
+        const lowEnergyCount = recent.filter(h => h.answers.energy === 'low').length;
+        if (lowEnergyCount > recent.length * 0.6) motifs.push(t('motifBlanket'));
+        
+        const highStressCount = recent.filter(h => h.answers.stress === 'overloaded').length;
+        if (highStressCount > recent.length * 0.4) motifs.push(t('motifSoup'));
+        
+        const socialHidingCount = recent.filter(h => h.answers.social === 'hiding').length;
+        if (socialHidingCount > recent.length * 0.5) motifs.push(t('motifAvoidance'));
+
+        return motifs.slice(0, 1);
+    }
+
+    function renderEchoes(history, forged) {
+        const echoes = getEchoes(history, forged);
+        const convs = getConversations(forged);
+        const motifs = getMotifs(history);
+
+        if (echoes.length === 0 && convs.length === 0 && motifs.length === 0) return '';
+
+        return `
+            <div class="echoes-container animate-fade-in" id="museum-echoes-section">
+                <div class="echo-header">
+                    <span>✨</span>
+                    <span class="echo-title">${t('echoTitle')}</span>
+                </div>
+                
+                <div class="echo-list">
+                    ${echoes.map(e => `
+                        <div class="echo-item">
+                            ${e}
+                            <button class="micro-share-icon mini" data-type="echo" data-text="Museum Echo: ${e}">📤</button>
+                        </div>
+                    `).join('')}
+                    ${motifs.map(m => `
+                        <div class="echo-item" style="color:#FFB000;">
+                            ${m}
+                            <button class="micro-share-icon mini" data-type="motif" data-text="Recurring Motif: ${m}">📤</button>
+                        </div>
+                    `).join('')}
+                    ${convs.map(c => `
+                        <div class="echo-conversation">
+                            <span class="echo-meta">Artifact Dialogue</span>
+                            <div class="echo-item" style="padding-left:0;">
+                                "${c.text}"
+                                <button class="micro-share-icon mini" data-type="conversation" data-text="Shelf Conversation: ${c.text}">📤</button>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+    }
+
     function renderMuseum() {
         const host = document.getElementById('family-content');
         if (!host) return;
@@ -472,6 +585,8 @@
                 `).join('')}
             </div>
 
+            ${renderEchoes(history, forgedRelics)}
+
             <div class="myth-scrawl">
                 "${myth}"
             </div>
@@ -512,6 +627,21 @@
 
             legendaryRelics.forEach(r => window.MeowTrack('legendary_relic_detected', { relic_type: r.id, lang: getLang() }));
             if (aura) window.MeowTrack('artifact_aura_detected', { aura_type: aura.key, lang: getLang() });
+            
+            const echoes = getEchoes(history, forgedRelics);
+            if (echoes.length > 0) window.MeowTrack('artifact_echo_detected', { echo_count: echoes.length, lang: getLang() });
+            const convs = getConversations(forgedRelics);
+            if (convs.length > 0) window.MeowTrack('shelf_conversation', { conv_type: convs[0].text, lang: getLang() });
+            
+            const motifs = getMotifs(history);
+            if (motifs.length > 0) window.MeowTrack('myth_resonance', { motif_type: motifs[0], lang: getLang() });
+            
+            window.MeowTrack('living_museum_view', {
+                has_echoes: echoes.length > 0,
+                has_conversations: convs.length > 0,
+                has_motifs: motifs.length > 0,
+                lang: getLang()
+            });
         }
     }
 
