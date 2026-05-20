@@ -555,6 +555,32 @@
         commCivNormal:     { en: "Parallel Play Civilization considers this normal.", th: "อารยธรรมการเล่นขนานถือว่าสิ่งนี้เป็นเรื่องปกติ" },
         commHorizontal:    { en: "The house continues to worship horizontal surfaces.", th: "บ้านหลังนี้ยังคงบูชาพื้นผิวแนวราบต่อไป" },
 
+        // ─── Household Possession Arcs ───────────────────
+        arcPossessionTitle: { en: "Possession Arc",           th: "ช่วงเวลาต้องมนตร์" },
+        
+        // Blanket Civilization
+        arcBlanketTitle:   { en: "Blanket Civilization",      th: "อารยธรรมผ้าห่ม" },
+        arcBlanketDay1:    { en: "The Blanket Singularity has resurfaced.", th: "เอกภาวะแห่งผ้าห่มได้โผล่ขึ้นมาอีกครั้ง" },
+        arcBlanketDay2:    { en: "Blanket governance is now culturally binding. No major decisions should be made upright.", th: "ระบอบผ้าห่มมีผลผูกพันทางวัฒนธรรมแล้ว ไม่ควรตัดสินใจเรื่องใหญ่ในแนวตั้ง" },
+        arcBlanketDay3:    { en: "The household may never emotionally stand again. The atmosphere is spiritually horizontal.", th: "คนทั้งบ้านอาจไม่กลับมายืนหยัดทางอารมณ์ได้อีก บรรยากาศกลายเป็นแนวราบอย่างสมบูรณ์" },
+        
+        // Loud Saga
+        arcLoudTitle:      { en: "The Loud Saga",             th: "มหากาพย์เสียงดัง" },
+        arcLoudDay1:       { en: "The house has become emotionally loud. Everything feels slightly flammable.", th: "บ้านเริ่มส่งเสียงดังทางอารมณ์ ทุกอย่างดูเหมือนจะติดไฟได้ง่าย" },
+        arcLoudDay2:       { en: "The Treaty Engine is overheating. High-frequency chaos detected.", th: "เครื่องยนต์แห่งสนธิสัญญาร้อนจัด ตรวจพบความวุ่นวายความถี่สูง" },
+        arcLoudDay3:       { en: "Survival instincts have replaced standard domestic logic.", th: "สัญชาตญาณการเอาตัวรอดได้เข้ามาแทนที่ตรรกะในบ้านแบบปกติ" },
+        
+        // Parallel Play
+        arcParallelTitle:  { en: "Parallel Play Doctrine",    th: "ลัทธิการเล่นขนาน" },
+        arcParallelDay1:   { en: "Parallel presence is currently considered intimacy.", th: "การมีอยู่แบบขนานถูกนับเป็นความใกล้ชิดในขณะนี้" },
+        arcParallelDay2:   { en: "Nobody is speaking. Morale remains acceptable.", th: "ไม่มีใครพูดจา ขวัญและกำลังใจยังอยู่ในระดับที่รับได้" },
+        arcParallelDay3:   { en: "The silence has become structural. Deep co-regulation achieved.", th: "ความเงียบกลายเป็นโครงสร้างของบ้าน การปรับจูนอารมณ์ระดับลึกสำเร็จลุล่วง" },
+
+        // Fallout
+        arcFalloutBlanket: { en: "Blanket Civilization has officially receded. Horizontal memories remain.", th: "อารยธรรมผ้าห่มถอยร่นไปอย่างเป็นทางการ เหลือไว้เพียงความทรงจำแนวราบ" },
+        arcFalloutLoud:    { en: "The household survived the Loud Saga. Ears are still ringing emotionally.", th: "คนทั้งบ้านรอดพ้นมหากาพย์เสียงดังมาได้ แต่หูยังคงแว่วเสียงอารมณ์อยู่" },
+        arcFalloutParallel: { en: "The silence lifts. The house feels strangely crowded with words.", th: "ความเงียบจางไป บ้านดูเหมือนจะแออัดไปด้วยคำพูดอย่างประหลาด" },
+
         dynChaosHigh:      { en: "Shared Chaos: HIGH",        th: "ระดับความวุ่นวาย: สูง" },
         dynChaosMed:       { en: "Shared Chaos: MODERATE",    th: "ระดับความวุ่นวาย: ปานกลาง" },
         dynChaosLow:       { en: "Shared Chaos: LOW",         th: "ระดับความวุ่นวาย: ต่ำ" },

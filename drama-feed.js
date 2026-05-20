@@ -70,6 +70,18 @@
             if (window.MeowTrack) window.MeowTrack('drama_haunting', { relic_key: haunt.relic.id, lang: window.MeowI18n.getLang() });
         }
 
+        // 7. Worldview Override (Possession Arcs)
+        if (window.MeowActiveArc) {
+            const arc = window.MeowActiveArc;
+            if (arc.key === 'blanket') updates.push({ text: "Blanket Civilization remains operational.", isHaunted: true });
+            else if (arc.key === 'loud') updates.push({ text: "Soup has replaced standard governance.", isHaunted: true });
+            else if (arc.key === 'parallel') updates.push({ text: "Morale remains acceptable despite the silence.", isHaunted: true });
+            
+            if (window.MeowTrack) {
+                window.MeowTrack('worldview_override_triggered', { arc_key: arc.key, module: 'drama_feed', lang: window.MeowI18n.getLang() });
+            }
+        }
+
         return updates.sort(() => Math.random() - 0.5).slice(0, 6);
     }
 

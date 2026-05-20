@@ -418,6 +418,13 @@
         const convs = getConversations(forged);
         const motifs = getMotifs(history);
 
+        if (window.MeowActiveArc) {
+            const arc = window.MeowActiveArc;
+            if (arc.key === 'blanket') echoes.push("The relics have accepted horizontal governance.");
+            else if (arc.key === 'loud') echoes.push("High-frequency chaotic interference detected in the museum.");
+            else if (arc.key === 'parallel') echoes.push("The artifacts are maintaining synchronized silence.");
+        }
+
         if (echoes.length === 0 && convs.length === 0 && motifs.length === 0) return '';
 
         return `

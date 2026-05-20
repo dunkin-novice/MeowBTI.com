@@ -111,6 +111,18 @@
 
         const internalizedCount = thoughts.filter(([id, data]) => data.status === 'INTERNALIZED').length;
         const dominantIdeo = internalizedCount >= 2 ? t('ideoBlanketColl') : null;
+        
+        let arcCommentary = null;
+        if (window.MeowActiveArc) {
+            const arc = window.MeowActiveArc;
+            if (arc.key === 'blanket') arcCommentary = "Blanket Civilization remains operational.";
+            else if (arc.key === 'loud') arcCommentary = "Emotional infrastructure remains theoretical.";
+            else if (arc.key === 'parallel') arcCommentary = "Morale remains acceptable despite the silence.";
+            
+            if (arcCommentary && window.MeowTrack) {
+                window.MeowTrack('worldview_override_triggered', { arc_key: arc.key, module: 'thought_cabinet', lang: getLang() });
+            }
+        }
 
         container.innerHTML = `
             <div class="thought-header">
@@ -139,11 +151,15 @@
                 }).join('')}
             </div>
 
-            ${dominantIdeo ? `
+            ${arcCommentary ? `
+                <div class="passive-commentary animate-fade-in" style="border-color:#9B59B6;">
+                    "${arcCommentary}"
+                </div>
+            ` : (dominantIdeo ? `
                 <div class="passive-commentary animate-fade-in">
                     "${t('commTheoryRelevant')}"
                 </div>
-            ` : ''}
+            ` : '')}
         `;
 
         container.querySelectorAll('.micro-share-icon').forEach(btn => {

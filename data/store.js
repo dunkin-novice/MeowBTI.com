@@ -115,6 +115,18 @@
         return true;
     }
 
+    function getActiveArc() {
+        return getRawStore().activeArc || null;
+    }
+
+    function updateActiveArc(arcData) {
+        const store = getRawStore();
+        store.activeArc = arcData;
+        _cachedStore = store;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
+        return true;
+    }
+
     window.MeowStore = {
         getFamily,
         saveFamilyProfile,
@@ -123,6 +135,8 @@
         getForgedRelics,
         saveForgedRelic,
         getThoughtCabinet,
-        updateThought
+        updateThought,
+        getActiveArc,
+        updateActiveArc
     };
 })();

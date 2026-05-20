@@ -106,8 +106,25 @@
             return c && c.answers.stress === 'overloaded';
         })) tmrKey = 'Loud';
 
-        const tmrTitle = t(`tmr${tmrKey}Title`);
-        const tmrDesc = t(`tmr${tmrKey}Desc`);
+        let tmrTitle = t(`tmr${tmrKey}Title`);
+        let tmrDesc = t(`tmr${tmrKey}Desc`);
+
+        if (window.MeowActiveArc) {
+            const arc = window.MeowActiveArc;
+            if (arc.key === 'blanket') {
+                tmrTitle = "Horizontal Stability";
+                tmrDesc = "The atmosphere has become spiritually horizontal. High probability of nesting.";
+            } else if (arc.key === 'loud') {
+                tmrTitle = "Chaotic Resonance";
+                tmrDesc = "Everything feels slightly flammable. Standard domestic logic is failing.";
+            } else if (arc.key === 'parallel') {
+                tmrTitle = "Deep Silence";
+                tmrDesc = "Synchronized recovery fields are stable. No verbal interaction required.";
+            }
+            if (window.MeowTrack) {
+                window.MeowTrack('worldview_override_triggered', { arc_key: arc.key, module: 'weather_map', lang: getLang() });
+            }
+        }
 
         const omen = window.MeowMuseum ? window.MeowMuseum.getApparition('forecast') : null;
         if (omen && window.MeowTrack) {

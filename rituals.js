@@ -70,9 +70,28 @@
         const climate = window.MeowClimate ? window.MeowClimate.getCollectiveClimate(profiles, history) : { key: 'calm' };
         const momentum = window.MeowClimate ? window.MeowClimate.getMomentum(history) : { key: 'stabilizing' };
         
-        const ritual = getRitualRecommendation(climate.key, momentum.key, history);
-        const archetype = getRecoveryArchetype(history);
-        const ceremonies = getCeremonies(climate.key);
+        let ritual = getRitualRecommendation(climate.key, momentum.key, history);
+        let archetype = getRecoveryArchetype(history);
+        let ceremonies = getCeremonies(climate.key);
+        
+        if (window.MeowActiveArc) {
+            const arc = window.MeowActiveArc;
+            if (arc.key === 'blanket') {
+                ritual = { title: "Parallel Rotting Ceremony", desc: "No verbal requirements. Total horizontal existence.", key: 'arc_ritual' };
+                ceremonies = ["Blanket Deployment", "Silent Nesting", "Light Blackout"];
+            } else if (arc.key === 'loud') {
+                ritual = { title: "Emergency Soup Protocol", desc: "Minimal interaction. High-frequency recovery.", key: 'arc_ritual' };
+                ceremonies = ["Noise Cancellation", "Broth Maintenance", "Crisis Diffusion"];
+            } else if (arc.key === 'parallel') {
+                ritual = { title: "Silent Coexistence Window", desc: "Deep co-regulation without eye contact.", key: 'arc_ritual' };
+                ceremonies = ["Mutual Ghosting", "Vibe Synchronization", "Zero Feedback"];
+            }
+            
+            if (window.MeowTrack) {
+                window.MeowTrack('worldview_override_triggered', { arc_key: arc.key, module: 'rituals', lang: getLang() });
+            }
+        }
+        
         const repair = getRepairAlert(history);
         const guidance = window.MeowMuseum ? window.MeowMuseum.getApparition('ritual') : null;
         if (guidance && window.MeowTrack) {
@@ -117,7 +136,7 @@
                 if (window.MeowAnalytics) {
                     window.MeowAnalytics.microShare({
                         framework: 'household_rituals',
-                        content_type: 'ritual_recommendation',
+                        content_type: btn.getAttribute('data-type') || 'ritual_recommendation',
                         text: btn.getAttribute('data-text'),
                         route: '/'
                     });
