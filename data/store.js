@@ -98,12 +98,31 @@
         return true;
     }
 
+    function getThoughtCabinet() {
+        return getRawStore().thoughts || {};
+    }
+
+    function updateThought(id, data) {
+        const store = getRawStore();
+        store.thoughts = store.thoughts || {};
+        store.thoughts[id] = {
+            ...store.thoughts[id],
+            ...data,
+            lastUpdated: new Date().toISOString()
+        };
+        _cachedStore = store;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
+        return true;
+    }
+
     window.MeowStore = {
         getFamily,
         saveFamilyProfile,
         removeFamilyProfile,
         generateProfileId,
         getForgedRelics,
-        saveForgedRelic
+        saveForgedRelic,
+        getThoughtCabinet,
+        updateThought
     };
 })();

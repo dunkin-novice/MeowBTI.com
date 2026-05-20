@@ -528,6 +528,33 @@
         posSoupProtocols:  { en: "Soup-adjacent recovery protocols detected.", th: "ตรวจพบโปรโตคอลการพักฟื้นที่เกี่ยวข้องกับซุป" },
         posSpiritClaimed:  { en: "Multiple members appear spiritually claimed by the Co-Regulation Couch.", th: "สมาชิกหลายคนดูเหมือนจะถูกโซฟาแห่งการปรับจูนอารมณ์ดึงดูดวิญญาณไป" },
 
+        // ─── Household Thought Cabinet ────────────────────
+        thoughtTitle:      { en: "Thought Cabinet",           th: "ตู้เก็บความคิด" },
+        thoughtIntro:      { en: "Passive emotional philosophies developed by the collective subconscious.", th: "ปรัชญาทางอารมณ์ที่พัฒนาขึ้นโดยจิตใต้สำนึกของคนทั้งบ้าน" },
+        
+        thoughtDiscovered: { en: "DISCOVERED",                th: "ค้นพบแล้ว" },
+        thoughtProcessing: { en: "PROCESSING",                th: "กำลังประมวลผล" },
+        thoughtInternalized: { en: "INTERNALIZED",            th: "ซึมซับแล้ว" },
+
+        // Thought Keys
+        thBlanketGov:      { en: "Blanket-Based Governance",  th: "ระบอบการปกครองด้วยผ้าห่ม" },
+        thAvoidanceArch:   { en: "Avoidance Is Architecture", th: "การหลีกเลี่ยงคือสถาปัตยกรรม" },
+        thSoupLabor:       { en: "Soup Counts As Labor",      th: "ซุปนับเป็นแรงงานทางอารมณ์" },
+        thParallelIntimacy: { en: "Parallel Play Is Intimacy", th: "การเล่นขนานคือความใกล้ชิด" },
+        thQuietBuffer:     { en: "Universal Buffering",       th: "การโหลดข้อมูลสากล" },
+        thHorizontalCiv:   { en: "Horizontal Civilization",   th: "อารยธรรมแนวราบ" },
+        thFunctionalMeltdown: { en: "Functional Meltdown Theory", th: "ทฤษฎีการล่มสลายที่ยังทำงานได้" },
+        thHauntedStable:   { en: "Emotionally Haunted, Technically Stable", th: "ใจสลายแต่กายยังนิ่ง" },
+
+        // Ideologies
+        ideoBlanketColl:   { en: "Blanket Collectivism",      th: "ลัทธิรวมกลุ่มใต้ผ้าห่ม" },
+        ideoParallelCiv:   { en: "Parallel Play Civilization", th: "อารยธรรมการเล่นขนาน" },
+
+        // Commentary
+        commTheoryRelevant: { en: "Functional Meltdown Theory remains relevant.", th: "ทฤษฎีการล่มสลายที่ยังทำงานได้ยังคงใช้ได้จริง" },
+        commCivNormal:     { en: "Parallel Play Civilization considers this normal.", th: "อารยธรรมการเล่นขนานถือว่าสิ่งนี้เป็นเรื่องปกติ" },
+        commHorizontal:    { en: "The house continues to worship horizontal surfaces.", th: "บ้านหลังนี้ยังคงบูชาพื้นผิวแนวราบต่อไป" },
+
         dynChaosHigh:      { en: "Shared Chaos: HIGH",        th: "ระดับความวุ่นวาย: สูง" },
         dynChaosMed:       { en: "Shared Chaos: MODERATE",    th: "ระดับความวุ่นวาย: ปานกลาง" },
         dynChaosLow:       { en: "Shared Chaos: LOW",         th: "ระดับความวุ่นวาย: ต่ำ" },

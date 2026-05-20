@@ -3981,3 +3981,85 @@ a { color: inherit; }
   font-weight: 900;
   letter-spacing: 0.1em;
 }
+
+/* ─── Household Thought Cabinet v1 ───────────────── */
+.thought-cabinet-container {
+  margin-top: 60px;
+  padding: 48px;
+  background: #1F1410; /* Dark Archival */
+  color: rgba(255, 255, 255, 0.8);
+  border-radius: 40px;
+  text-align: left;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+}
+.thought-header { text-align: center; margin-bottom: 48px; }
+.thought-h2 { font-family: var(--font-display); font-size: 2.2rem; color: #fff; margin-bottom: 12px; }
+
+.thought-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+.thought-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 24px;
+  position: relative;
+  transition: transform 0.3s, background 0.3s;
+}
+.thought-card:hover { transform: translateY(-4px); background: rgba(255, 255, 255, 0.05); }
+.thought-card.internalized { border-color: #9B59B6; background: rgba(155, 89, 182, 0.05); }
+
+.thought-status {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+  color: #FF5B3B;
+  margin-bottom: 12px;
+  display: block;
+}
+.thought-card.internalized .thought-status { color: #9B59B6; }
+
+.thought-name {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: #fff;
+  margin-bottom: 12px;
+}
+.thought-progress-bar {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+.thought-progress-fill {
+  height: 100%;
+  background: #FF5B3B;
+  transition: width 0.5s ease;
+}
+.thought-card.internalized .thought-progress-fill { background: #9B59B6; }
+
+.thought-description {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  opacity: 0.6;
+}
+
+.passive-commentary {
+  margin-top: 40px;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 20px;
+  font-style: italic;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  border-left: 4px solid #FF5B3B;
+}
+
+@media (max-width: 600px) {
+  .thought-cabinet-container { padding: 32px 20px; }
+}
