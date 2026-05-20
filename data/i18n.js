@@ -364,6 +364,36 @@
         idCoordinatedDelusion: { en: "Coordinated Delusion",    th: "ความเข้าใจผิดที่พร้อมเพรียง" },
         idSideways:        { en: "Functional But Emotionally Sideways", th: "ยังไหวแต่ใจออกอาการเฉียง" },
 
+        // ─── Household Museum & Relics ────────────────────
+        museumTitle:       { en: "The Household Museum",      th: "พิพิธภัณฑ์ประจำบ้าน" },
+        museumIntro:       { en: "A collection of symbolic artifacts from your shared emotional history.", th: "คลังสะสมวัตถุเชิงสัญลักษณ์จากประวัติศาสตร์ทางอารมณ์ร่วมกันของคุณ" },
+        relicShelf:        { en: "Artifact Shelf",            th: "หิ้งวัตถุโบราณ" },
+        trophyRoom:        { en: "Trophy Room",               th: "ห้องเก็บถ้วยรางวัล" },
+        
+        // Relic Archetypes
+        relBlanket:        { en: "Blanket of Emotional Reconstruction", th: "ผ้าห่มแห่งการประกอบสร้างทางอารมณ์" },
+        relMug:            { en: "Mug of Collective Survival", th: "แก้วกาแฟแห่งการอยู่รอดร่วมกัน" },
+        relCouch:          { en: "Couch of Silent Parallel Play", th: "โซฟาแห่งการเล่นขนานที่เงียบงัน" },
+        relHeadphones:     { en: "Sacred Noise-Canceling Headphones", th: "หูฟังตัดเสียงรบกวนอันศักดิ์สิทธิ์" },
+        relBeanbag:        { en: "The Rotting Together Beanbag", th: "บีนแบคแห่งการเน่าเปื่อยไปด้วยกัน" },
+        relTuna:           { en: "Emergency Tuna Artifact",   th: "วัตถุโบราณทูน่าฉุกเฉิน" },
+        relReceipt:        { en: "Ancient DoorDash Receipt",  th: "ใบเสร็จ DoorDash ยุคโบราณ" },
+        
+        // Relationship Relics
+        relSharedDoc:      { en: "Shared Google Doc of Panic", th: "Google Doc แห่งความตระหนกที่ใช้ร่วมกัน" },
+        relTreaty:         { en: "Treaty of Blanket Distribution", th: "สนธิสัญญาการจัดสรรผ้าห่ม" },
+        relSnackBasket:    { en: "Passive-Aggressive Snack Basket", th: "ตะกร้าขนมแนวประชดประชัน" },
+        
+        // Recovery Trophies
+        troCalmWeekend:    { en: "The First Calm Weekend",     th: "รางวัลวันหยุดที่สุดแสนจะสงบครั้งแรก" },
+        troNervousReboot:  { en: "Nervous System Reboot",     th: "การรีบูตระบบประสาทครั้งใหญ่" },
+        troEveryoneNap:    { en: "The Collective Nap Trophy",  th: "ถ้วยรางวัลแห่งการงีบหลับพร้อมเพรียง" },
+        
+        // Myth Lines
+        mythSnackHealing:  { en: "This household heals primarily through snacks and mutual silence.", th: "บ้านหลังนี้เยียวยาจิตใจผ่านขนมและความเงียบงันร่วมกันเป็นหลัก" },
+        mythBlanketIncident: { en: "Peace negotiations began after the Great Blanket Incident.", th: "การเจรจาสันติภาพเริ่มต้นขึ้นหลังจากเหตุการณ์ผ้าห่มครั้งใหญ่" },
+        mythChaosAlliance: { en: "Two members entered a temporary alliance against overstimulation.", th: "สมาชิกสองคนทำพันธมิตรชั่วคราวเพื่อต่อต้านการถูกกระตุ้นที่มากเกินไป" },
+
         dynChaosHigh:      { en: "Shared Chaos: HIGH",        th: "ระดับความวุ่นวาย: สูง" },
         dynChaosMed:       { en: "Shared Chaos: MODERATE",    th: "ระดับความวุ่นวาย: ปานกลาง" },
         dynChaosLow:       { en: "Shared Chaos: LOW",         th: "ระดับความวุ่นวาย: ต่ำ" },
