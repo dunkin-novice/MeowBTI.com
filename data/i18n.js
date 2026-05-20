@@ -308,6 +308,33 @@
         repairSlower:      { en: "Atmosphere recovering slower than expected.", th: "บรรยากาศฟื้นตัวช้ากว่าที่คิด" },
         repairInterrupted: { en: "Recovery interrupted by fresh emotional improvisation.", th: "การพักฟื้นถูกขัดจังหวะด้วยการด้นสดทางอารมณ์ครั้งใหม่" },
 
+        // ─── Household Goal Milestones & Lore ──────────────
+        loreTitle:         { en: "Household Lore",            th: "ตำนานประจำบ้าน" },
+        loreIntro:         { en: "Symbolic landmarks and shared history of your emotional journey.", th: "หมุดหมายสำคัญและประวัติศาสตร์ร่วมกันในการเดินทางทางอารมณ์ของบ้านคุณ" },
+        
+        // Milestone Types
+        msStableWeek:      { en: "The First Stable Week Achieved", th: "ความมั่นคงสัปดาห์แรกสำเร็จ" },
+        msNoCollapse:      { en: "7 Days Without Collective Collapse", th: "7 วันที่ไร้ซึ่งการระเบิดยกบ้าน" },
+        msFunctionalOS:    { en: "Collective Nervous System Functional", th: "ระบบประสาทส่วนกลางของบ้านทำงานปกติ" },
+        msEraSurvivor:     { en: "Loud Era Survivor",          th: "ผู้รอดชีวิตจากยุคอารมณ์เสียงดัง" },
+
+        // Lore Archive Entries
+        loreBlanketBurrito: { en: "The Great Blanket Burrito Recovery", th: "ตำนานการกู้คืนด้วยห่อผ้าห่มครั้งใหญ่" },
+        loreNoSpeech:       { en: "The Week Nobody Spoke Properly", th: "สัปดาห์ที่ไม่มีใครพูดเป็นภาษามนุษย์" },
+        loreSideQuest:      { en: "The Side Quest Escalation Event", th: "เหตุการณ์เควสย่อยพุ่งพล่าน" },
+        loreGoldenWindow:   { en: "The Golden Stability Window",  th: "ช่วงเวลาทองแห่งความสงบสุข" },
+
+        // Achievement / Recognition
+        achStabilizer:     { en: name => `${name} buffered emotional instability for a significant period.`, 
+                              th: name => `${name} ได้แบกรับความไม่คงที่ทางอารมณ์มาอย่างยาวนาน` },
+        achRotatingLead:   { en: "Emotional leadership rotated successfully.", th: "การผลัดกันนำทางอารมณ์เป็นไปอย่างราบรื่น" },
+        achDuoPermanent:   { en: "Strategic Alliance became structurally permanent.", th: "พันธมิตรทางยุทธศาสตร์กลายเป็นโครงสร้างถาวรของบ้าน" },
+        
+        // Era Completion
+        eraEndLoud:        { en: "The Emotionally Loud Era officially ended.", th: "ยุคสมัยแห่งอารมณ์เสียงดังได้จบลงอย่างเป็นทางการ" },
+        eraRecoveryArc:    { en: "Recovery Arc achieved.",        th: "บรรลุเป้าหมายช่วงการพักฟื้น" },
+        eraExitedBunker:   { en: "The household exited bunker mode.", th: "คนทั้งบ้านออกจากโหมดหลบภัยแล้ว" },
+
         dynChaosHigh:      { en: "Shared Chaos: HIGH",        th: "ระดับความวุ่นวาย: สูง" },
         dynChaosMed:       { en: "Shared Chaos: MODERATE",    th: "ระดับความวุ่นวาย: ปานกลาง" },
         dynChaosLow:       { en: "Shared Chaos: LOW",         th: "ระดับความวุ่นวาย: ต่ำ" },
