@@ -473,6 +473,10 @@
         fusDiplomacyMug:   { en: "The Diplomacy Mug",         th: "แก้วกาแฟแห่งการทูต" },
         fusSupportInventory: { en: "Emotional Support Inventory", th: "คลังแสงประคองใจ" },
         fusRottingTreaty:  { en: "Treaty of Simultaneous Rotting", th: "สนธิสัญญาการเน่าเปื่อยพร้อมเพรียง" },
+        fusTreatyEngine:   { en: "The Treaty Engine",         th: "เครื่องยนต์แห่งสนธิสัญญา" },
+        fusSupportBunker:  { en: "The Emotional Support Bunker", th: "บังเกอร์ประคองใจ" },
+        fusCoregulationCouch: { en: "The Co-Regulation Couch",   th: "โซฟาแห่งการปรับจูนอารมณ์" },
+        fusDiplomacyCouch: { en: "The Couch of Emotional Diplomacy", th: "โซฟาแห่งการทูตทางอารมณ์" },
 
         // Legendary Fusion Objects
         fusThrone:         { en: "The Nervous System Throne", th: "บัลลังก์แห่งระบบประสาท" },

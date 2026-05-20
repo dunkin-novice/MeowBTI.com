@@ -282,6 +282,22 @@
             fusions.push({ id: 'fusRottingTreaty', icon: '🫓', name: t('fusRottingTreaty'), parents: ['relBeanbag', 'relBlanket'] });
         }
 
+        // 10. Treaty Engine (Spreadsheet + Problem logic)
+        if (has('relMug') && profiles.some(p => p.code.includes('B')) && profiles.some(p => p.code.includes('l'))) {
+            fusions.push({ id: 'fusTreatyEngine', icon: '⚙️', name: t('fusTreatyEngine'), parents: ['relMug', 'relMug'] }); // Generic parent for demo
+        }
+
+        // 11. Support Bunker (Mutual Avoidance Era logic)
+        const recent = history.slice(0, 20);
+        if (has('relBlanket') && recent.filter(h => h.answers.social === 'hiding').length > 10) {
+            fusions.push({ id: 'fusSupportBunker', icon: '🛡️', name: t('fusSupportBunker'), parents: ['relBlanket', 'relBlanket'] });
+        }
+
+        // 12. Co-Regulation Couch
+        if (has('relCouch') && has('relBeanbag')) {
+            fusions.push({ id: 'fusCoregulationCouch', icon: '🛋️', name: t('fusCoregulationCouch'), parents: ['relCouch', 'relBeanbag'] });
+        }
+
         // 8. Ancient Soup Engine (Legendary)
         if (has('relSoup') && has('relCharger') && history.length > 40) {
             fusions.push({ id: 'fusSoupEngine', icon: '🍲', name: t('fusSoupEngine'), parents: ['relSoup', 'relCharger'], isLegendary: true });
