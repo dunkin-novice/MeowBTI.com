@@ -109,6 +109,11 @@
         const tmrTitle = t(`tmr${tmrKey}Title`);
         const tmrDesc = t(`tmr${tmrKey}Desc`);
 
+        const omen = window.MeowMuseum ? window.MeowMuseum.getApparition('forecast') : null;
+        if (omen && window.MeowTrack) {
+            window.MeowTrack('forecast_omen', { relic_key: omen.relic.id, lang: getLang() });
+        }
+
         return `
             <div class="forecast-container animate-fade-in">
                 <div class="fc-header">
@@ -124,6 +129,14 @@
                     <h4 class="fc-tmr-title">${tmrTitle}</h4>
                     <p class="fc-tmr-desc">${tmrDesc}</p>
                 </div>
+
+                ${omen ? `
+                    <div class="apparition-card animate-fade-in">
+                        <span class="apparition-header">Relic Omen</span>
+                        <div class="apparition-text">${omen.text}</div>
+                        <button class="micro-share-icon mini" data-type="apparition" data-text="Omen: ${omen.text}">📤</button>
+                    </div>
+                ` : ''}
 
                 <div class="fc-alerts-grid">
                     ${getPressureAlerts(profiles, history).map(alert => `
@@ -187,8 +200,9 @@
 
         const history = window.MeowDaily.getHistory();
         const climate = getCollectiveClimate(profiles, history);
+        const possession = window.MeowMuseum ? window.MeowMuseum.getApparition('possession') : null;
 
-        // Timeline data
+        // Timeline data...
         const now = new Date();
         const days = [];
         for (let i = 6; i >= 0; i--) {
@@ -207,7 +221,7 @@
             days.push({ label: d.toLocaleDateString(undefined, { weekday: 'short' }), emoji });
         }
 
-        // Recovery & Stabilizer
+        // Recovery & Stabilizer...
         const overloaded = profiles.filter(p => {
             const c = window.MeowDaily.getTodayCheckin(p.id);
             return c && c.answers.stress === 'overloaded';
@@ -220,6 +234,14 @@
         const stabilizer = stable.length > 0 ? stable[0] : null;
 
         container.innerHTML = `
+            ${possession ? `
+                <div class="apparition-card animate-fade-in" style="margin-bottom:24px; border-style:double; border-width:3px;">
+                    <span class="apparition-header">Spiritual Possession Detected</span>
+                    <div class="apparition-text" style="font-size:1.1rem; font-weight:800;">${possession.text}</div>
+                    <button class="micro-share-icon mini" data-type="possession" data-text="Possession: ${possession.text}">📤</button>
+                </div>
+            ` : ''}
+
             <div class="wm-header">
                 <h2 class="wm-title">${t('weatherMapTitle')}</h2>
                 <p class="wm-intro">${t('weatherMapIntro')}</p>
@@ -264,6 +286,17 @@
                         ${getSocialDistribution(profiles)}
                     </div>
                 </div>
+                ${(function() {
+                    const omen = window.MeowMuseum ? window.MeowMuseum.getApparition('relationship') : null;
+                    if (!omen) return '';
+                    return `
+                        <div class="apparition-card animate-fade-in" style="margin-top:0;">
+                            <span class="apparition-header">Relic Omen</span>
+                            <div class="apparition-text">${omen.text}</div>
+                            <button class="micro-share-icon mini" data-type="apparition" data-text="Relationship Omen: ${omen.text}">📤</button>
+                        </div>
+                    `;
+                })()}
             </div>
         `;
 
@@ -281,12 +314,19 @@
         });
 
         // Analytics
-        window.MeowTrack && window.MeowTrack('household_weather_view', {
-            profile_count: profiles.length,
-            climate_type: climate.key,
-            volatility_level: overloaded.length,
-            lang: getLang()
-        });
+        if (window.MeowTrack) {
+            window.MeowTrack('household_weather_view', {
+                profile_count: profiles.length,
+                climate_type: climate.key,
+                volatility_level: overloaded.length,
+                lang: getLang()
+            });
+
+            if (possession) window.MeowTrack('possession_event', { relic_key: possession.relic.id, lang: getLang() });
+            
+            const relOmen = window.MeowMuseum ? window.MeowMuseum.getApparition('relationship') : null;
+            if (relOmen) window.MeowTrack('relationship_omen', { relic_key: relOmen.relic.id, lang: getLang() });
+        }
     }
 
     window.MeowClimate = {

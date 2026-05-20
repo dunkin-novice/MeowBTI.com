@@ -74,6 +74,10 @@
         const archetype = getRecoveryArchetype(history);
         const ceremonies = getCeremonies(climate.key);
         const repair = getRepairAlert(history);
+        const guidance = window.MeowMuseum ? window.MeowMuseum.getApparition('ritual') : null;
+        if (guidance && window.MeowTrack) {
+            window.MeowTrack('ritual_manifestation', { relic_key: guidance.relic.id, lang: getLang() });
+        }
 
         container.innerHTML = `
             <div class="wm-header">
@@ -87,6 +91,14 @@
                 <h3 class="ritual-name">${ritual.title}</h3>
                 <p class="ritual-desc">${ritual.desc}</p>
             </div>
+
+            ${guidance ? `
+                <div class="apparition-card animate-fade-in">
+                    <span class="apparition-header">Relic Guidance</span>
+                    <div class="apparition-text">${guidance.text}</div>
+                    <button class="micro-share-icon mini" data-type="apparition" data-text="Relic Guidance: ${guidance.text}">📤</button>
+                </div>
+            ` : ''}
 
             <div class="ceremony-row">
                 ${ceremonies.map(c => `<div class="ceremony-chip" data-text="${c}">📤 ${c}</div>`).join('')}

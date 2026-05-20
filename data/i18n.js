@@ -513,6 +513,21 @@
         motifSoup:         { en: "Recovery rituals appear soup-adjacent.", th: "พิธีกรรมการพักฟื้นดูเหมือนจะเกี่ยวข้องกับซุป" },
         motifAvoidance:    { en: "Avoidance has become architectural.", th: "การหลีกเลี่ยงได้กลายเป็นส่วนหนึ่งของโครงสร้างไปแล้ว" },
 
+        // ─── Relic Apparitions & Hauntings ───────────────
+        appTitle:          { en: "Relic Apparition",          th: "นิมิตวัตถุโบราณ" },
+        appResurfaced:     { en: r => `The ${r} has reportedly resurfaced.`, th: r => `${r} มีรายงานว่าได้โผล่ขึ้นมาอีกครั้ง` },
+        appHumming:        { en: r => `The ${r} has started humming again.`, th: r => `${r} เริ่มส่งเสียงครางฮืออีกครั้ง` },
+        appOmenUnstable:   { en: r => `Atmospheric Signal: The ${r} appears unstable.`, th: r => `สัญญาณบรรยากาศ: ${r} ดูเหมือนจะไม่คงที่` },
+        appOmenKitchen:    { en: r => `Forecast Update: The ${r} has entered the kitchen again.`, th: r => `อัปเดตคำพยากรณ์: ${r} เข้าสู่ห้องครัวอีกครั้งแล้ว` },
+        
+        hauntSoupEngine:   { en: "The Ancient Soup Engine is reportedly overworking itself again.", th: "เครื่องยนต์ซุปโบราณมีรายงานว่ากำลังทำงานหนักเกินไปอีกแล้ว" },
+        hauntSilenceDevice: { en: "The Shared Silence Device has activated.", th: "อุปกรณ์ความเงียบร่วมกันได้เริ่มทำงานแล้ว" },
+        hauntBlanketSing:  { en: "Authorities are monitoring the Blanket Singularity.", th: "เจ้าหน้าที่กำลังเฝ้าระวังเอกภาวะแห่งผ้าห่ม" },
+        
+        posBlanketCiv:     { en: "The house has entered Blanket Civilization mode.", th: "บ้านได้เข้าสู่โหมดอารยธรรมผ้าห่มแล้ว" },
+        posSoupProtocols:  { en: "Soup-adjacent recovery protocols detected.", th: "ตรวจพบโปรโตคอลการพักฟื้นที่เกี่ยวข้องกับซุป" },
+        posSpiritClaimed:  { en: "Multiple members appear spiritually claimed by the Co-Regulation Couch.", th: "สมาชิกหลายคนดูเหมือนจะถูกโซฟาแห่งการปรับจูนอารมณ์ดึงดูดวิญญาณไป" },
+
         dynChaosHigh:      { en: "Shared Chaos: HIGH",        th: "ระดับความวุ่นวาย: สูง" },
         dynChaosMed:       { en: "Shared Chaos: MODERATE",    th: "ระดับความวุ่นวาย: ปานกลาง" },
         dynChaosLow:       { en: "Shared Chaos: LOW",         th: "ระดับความวุ่นวาย: ต่ำ" },

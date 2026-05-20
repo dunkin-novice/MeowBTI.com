@@ -63,6 +63,13 @@
             updates.push(t('dramaHighEnergyChaos'));
         }
 
+        // 6. Relic Hauntings
+        const haunt = window.MeowMuseum ? window.MeowMuseum.getApparition('drama') : null;
+        if (haunt) {
+            updates.push({ text: haunt.text, isHaunted: true });
+            if (window.MeowTrack) window.MeowTrack('drama_haunting', { relic_key: haunt.relic.id, lang: window.MeowI18n.getLang() });
+        }
+
         return updates.sort(() => Math.random() - 0.5).slice(0, 6);
     }
 
@@ -84,16 +91,21 @@
                 <p class="drama-feed-sub">${t('dramaFeedSub')}</p>
             </div>
             <div class="drama-posts-scroll">
-                ${updates.map((text, i) => `
-                    <div class="drama-post" style="animation-delay: ${i * 0.1}s">
-                        <div class="drama-post-icon">💬</div>
-                        <div class="drama-post-content">
-                            <p>${text}</p>
-                            <span class="drama-post-time">${t('dramaTimeMinutesAgo', i + 1)}</span>
+                ${updates.map((update, i) => {
+                    const text = typeof update === 'string' ? update : update.text;
+                    const isHaunted = update.isHaunted || false;
+                    return `
+                        <div class="drama-post ${isHaunted ? 'haunted' : ''}" style="animation-delay: ${i * 0.1}s">
+                            ${isHaunted ? '<span class="haunted-badge">RELIC</span>' : ''}
+                            <div class="drama-post-icon">${isHaunted ? '👻' : '💬'}</div>
+                            <div class="drama-post-content">
+                                <p>${text}</p>
+                                <span class="drama-post-time">${t('dramaTimeMinutesAgo', i + 1)}</span>
+                            </div>
+                            <button class="micro-share-icon drama" data-text="${text.replace(/"/g, '&quot;')}">📤</button>
                         </div>
-                        <button class="micro-share-icon drama" data-text="${text.replace(/"/g, '&quot;')}">📤</button>
-                    </div>
-                `).join('')}
+                    `;
+                }).join('')}
             </div>
         `;
 

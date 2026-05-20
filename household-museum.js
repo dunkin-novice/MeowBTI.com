@@ -731,6 +731,48 @@
         };
     }
 
+    function getApparition(context) {
+        const forged = window.MeowStore.getForgedRelics ? window.MeowStore.getForgedRelics() : [];
+        if (forged.length === 0) return null;
+
+        const history = getHistory();
+        const profiles = window.MeowStore.getFamily();
+
+        // Deterministic but feels random per context/day
+        const seed = new Date().toDateString() + context + forged.length;
+        let hash = 0;
+        for (let i = 0; i < seed.length; i++) hash = ((hash << 5) - hash) + seed.charCodeAt(i);
+        const relic = forged[Math.abs(hash) % forged.length];
+
+        if (context === 'forecast') {
+             return { type: 'omen', text: t('appOmenUnstable', relic.customName || relic.name), relic };
+        }
+        if (context === 'drama') {
+             return { type: 'haunting', text: t('appHumming', relic.customName || relic.name), relic };
+        }
+        if (context === 'ritual') {
+             return { type: 'guidance', text: t('appResurfaced', relic.customName || relic.name), relic };
+        }
+        if (context === 'relationship') {
+            const duoRelic = forged.find(r => r.id === 'fusTreatyEngine' || r.id === 'fusParallelStation');
+            if (duoRelic) return { type: 'omen', text: `This pairing historically summons the ${duoRelic.customName || duoRelic.name}.`, relic: duoRelic };
+            return { type: 'omen', text: `Known side effect: ${relic.customName || relic.name} manifestation.`, relic };
+        }
+        if (context === 'possession') {
+            // Rare 10% chance
+            if (Math.abs(hash) % 10 === 0) {
+                if (relic.id === 'relBlanket' || relic.id === 'fusBlanketSingularity') return { type: 'possession', text: t('posBlanketCiv'), relic };
+                if (relic.id === 'fusSoupEngine' || relic.id === 'relTuna') return { type: 'possession', text: t('posSoupProtocols'), relic };
+                if (relic.id === 'fusCoregulationCouch') return { type: 'possession', text: t('posSpiritClaimed'), relic };
+            }
+        }
+        return null;
+    }
+
+    window.MeowMuseum = {
+        getApparition
+    };
+
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', renderMuseum);
     } else {
