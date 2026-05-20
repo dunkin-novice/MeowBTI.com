@@ -335,6 +335,35 @@
         eraRecoveryArc:    { en: "Recovery Arc achieved.",        th: "บรรลุเป้าหมายช่วงการพักฟื้น" },
         eraExitedBunker:   { en: "The household exited bunker mode.", th: "คนทั้งบ้านออกจากโหมดหลบภัยแล้ว" },
 
+        // ─── Household Seasons & Arcs ──────────────────────
+        seasonTitle:       { en: "Current Season",            th: "ฤดูกาลปัจจุบัน" },
+        seasonIntro:       { en: "The narrative arc of your household's emotional evolution.", th: "เรื่องราวการวิวัฒนาการทางอารมณ์ของบ้านคุณ" },
+        
+        // Seasonal Archetypes
+        seaQuietRebuilding: { en: "The Quiet Rebuilding Season", th: "ฤดูกาลแห่งการสร้างใหม่ที่เงียบสงบ" },
+        seaLoudSaga:       { en: "The Emotionally Loud Saga",  th: "มหากาพย์แห่งอารมณ์เสียงดัง" },
+        seaSoftRecovery:   { en: "The Soft Recovery Arc",      th: "ช่วงเวลาแห่งการพักฟื้นที่นุ่มนวล" },
+        seaParallelPlay:   { en: "The Parallel Play Era",      th: "ยุคสมัยแห่งการเล่นขนาน" },
+        seaOverstimulated: { en: "The Great Overstimulation Chapter", th: "บทแห่งการถูกกระตุ้นครั้งยิ่งใหญ่" },
+        seaFunctionalHaunted: { en: "The Functional But Haunted Phase", th: "ช่วงเวลาที่ยังไหวแต่ใจสลาย" },
+        seaAccidentalHealing: { en: "The Accidental Healing Timeline", th: "ไทม์ไลน์แห่งการเยียวยาโดยบังเอิญ" },
+
+        // Evolution Arcs
+        arcStabilizing:    { en: "This household is slowly stabilizing.", th: "บ้านหลังนี้กำลังค่อยๆ มั่นคงขึ้น" },
+        arcSurvivalToRecovery: { en: "Transitioning from survival mode into recovery.", th: "กำลังเปลี่ยนผ่านจากโหมดเอาตัวรอดสู่การพักฟื้น" },
+        arcVolatilitySoftening: { en: "Emotional volatility has softened into avoidant peace.", th: "ความผันผวนทางอารมณ์เริ่มเบาบางลงสู่ความสงบแบบเลี่ยงปะทะ" },
+        arcNervousSystemCalm: { en: "Collective nervous systems are no longer permanently on fire.", th: "ระบบประสาทส่วนกลางของบ้านไม่ได้ลุกเป็นไฟตลอดเวลาอีกต่อไป" },
+
+        // Drift Observations
+        driftQuieter:      { en: "The household has become quieter lately.", th: "ช่วงนี้บ้านเงียบลงอย่างเห็นได้ชัด" },
+        driftImproving:    { en: "Energy output remains high, but emotional recovery is improving.", th: "ยังใช้พลังงานสูงอยู่ แต่การฟื้นตัวทางอารมณ์เริ่มดีขึ้น" },
+        driftBuffering:    { en: "Everyone is technically functional but spiritually buffering.", th: "ทุกคนยังทำงานได้ตามปกติ แต่จิตใจกำลังโหลดข้อมูลอยู่" },
+
+        // Identity Cards
+        idResurrection:    { en: "Slow Resurrection",         th: "การฟื้นคืนชีพที่เชื่องช้า" },
+        idCoordinatedDelusion: { en: "Coordinated Delusion",    th: "ความเข้าใจผิดที่พร้อมเพรียง" },
+        idSideways:        { en: "Functional But Emotionally Sideways", th: "ยังไหวแต่ใจออกอาการเฉียง" },
+
         dynChaosHigh:      { en: "Shared Chaos: HIGH",        th: "ระดับความวุ่นวาย: สูง" },
         dynChaosMed:       { en: "Shared Chaos: MODERATE",    th: "ระดับความวุ่นวาย: ปานกลาง" },
         dynChaosLow:       { en: "Shared Chaos: LOW",         th: "ระดับความวุ่นวาย: ต่ำ" },
