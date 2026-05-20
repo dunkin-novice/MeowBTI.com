@@ -101,12 +101,109 @@
     }
 
     function getMyth(history) {
+        const forged = window.MeowStore.getForgedRelics ? window.MeowStore.getForgedRelics() : [];
         const myths = [t('mythSnackHealing'), t('mythBlanketIncident'), t('mythChaosAlliance')];
+        
+        if (forged.length > 0) {
+            const r = forged[0];
+            myths.push(t('mythRelicReappeared', r.customName || r.name));
+            myths.push(t('mythBelievedToContain', r.customName || r.name));
+        }
+
         // Deterministic but feels varied
         const seed = history.length > 0 ? history[0].date : '2026';
         let hash = 0;
         for (let i = 0; i < seed.length; i++) hash = ((hash << 5) - hash) + seed.charCodeAt(i);
         return myths[Math.abs(hash) % myths.length];
+    }
+
+    function openForgingUI(relic) {
+        const overlay = document.createElement('div');
+        overlay.className = 'forging-overlay active';
+        
+        const history = getHistory();
+        const events = window.MeowCanon ? window.MeowCanon.getLegendaryEvents(history) : [];
+        const lang = getLang();
+
+        overlay.innerHTML = `
+            <div class="forging-card animate-fade-in">
+                <span class="forging-icon">${relic.icon}</span>
+                <h3 class="rs-title">${t('forgeAction')}</h3>
+                <p class="rs-desc">${t('forgeIntro')}</p>
+                
+                <div class="forging-input-group">
+                    <label>${t('forgeNameLabel')}</label>
+                    <input type="text" id="forge-name" value="${relic.name}" maxlength="32">
+                </div>
+
+                <div class="forging-input-group">
+                    <label>${t('forgeEventLabel')}</label>
+                    <select id="forge-event">
+                        ${events.map(e => `<option value="${e.id}">${e.emoji} ${e.title}</option>`).join('')}
+                        <option value="none">General History</option>
+                    </select>
+                </div>
+
+                <button class="big-btn accent" id="btn-forge-submit">${t('forgeSubmit')}</button>
+                <button class="big-btn ghost" id="btn-forge-cancel" style="margin-top:12px;">Cancel</button>
+            </div>
+        `;
+
+        document.body.append(overlay);
+
+        const close = () => overlay.remove();
+        overlay.querySelector('#btn-forge-cancel').onclick = close;
+        
+        overlay.querySelector('#btn-forge-submit').onclick = () => {
+            const customName = overlay.querySelector('#forge-name').value.trim();
+            const eventId = overlay.querySelector('#forge-event').value;
+            const event = events.find(e => e.id === eventId);
+            
+            const forged = {
+                ...relic,
+                customName,
+                dedicatedTo: event ? event.title : 'General History',
+                forgedAt: new Date().toISOString()
+            };
+
+            window.MeowStore.saveForgedRelic(forged);
+            
+            window.MeowTrack && window.MeowTrack('relic_forged', {
+                relic_type: relic.id,
+                event_type: eventId,
+                lang: getLang()
+            });
+
+            close();
+            renderMuseum();
+        };
+    }
+
+    function generateKeepsakes(history, profiles) {
+        const keepsakes = [];
+        if (profiles.length < 2) return keepsakes;
+
+        const recent = history.slice(0, 30);
+        
+        // 1. Treaty of Mutual Avoidance
+        const isolationDays = recent.filter(h => h.answers.social === 'hiding').length;
+        if (isolationDays > recent.length * 0.5) {
+            keepsakes.push({ id: 'keepMutualAvoid', icon: '📜', name: t('keepMutualAvoid') });
+        }
+
+        // 2. Silent Support Pact
+        const logical = profiles.some(p => p.code.includes('L'));
+        const emotional = profiles.some(p => p.code.includes('F'));
+        if (logical && emotional && recent.length > 10) {
+            keepsakes.push({ id: 'keepSupportPact', icon: '🤝', name: t('keepSupportPact') });
+        }
+
+        // 3. Sacred Charger (Sacred Object)
+        if (recent.filter(h => h.answers.energy === 'low').length > 10) {
+            keepsakes.push({ id: 'relCharger', icon: '🔌', name: t('relCharger'), isSacred: true });
+        }
+
+        return keepsakes.slice(0, 3);
     }
 
     function renderMuseum() {
@@ -125,15 +222,21 @@
         }
 
         const history = getHistory();
-        const relics = generateRelics(history, profiles);
+        const availableRelics = generateRelics(history, profiles);
+        const keepsakes = generateKeepsakes(history, profiles);
+        const forgedRelics = window.MeowStore.getForgedRelics ? window.MeowStore.getForgedRelics() : [];
         const trophies = generateTrophies(history, profiles);
         const myth = getMyth(history);
 
-        if (relics.length === 0 && trophies.length === 0) {
+        if (availableRelics.length === 0 && forgedRelics.length === 0 && trophies.length === 0 && keepsakes.length === 0) {
             container.style.display = 'none';
             return;
         }
         container.style.display = 'block';
+
+        // Categorize Relics
+        const legendaryRelics = forgedRelics.filter(r => r.dedicatedTo !== 'General History');
+        const standardRelics = forgedRelics.filter(r => r.dedicatedTo === 'General History');
 
         container.innerHTML = `
             <div class="museum-header">
@@ -141,13 +244,55 @@
                 <p class="wm-intro">${t('museumIntro')}</p>
             </div>
 
-            <div class="relic-shelf">
-                ${relics.map(r => `
-                    <div class="relic-item" onclick="window.MeowAnalytics && window.MeowAnalytics.microShare({framework:'relics', content_type:'artifact', text:'Household Relic Acquired: ${r.name} ${r.icon}', route:'/'})">
-                        <div class="relic-visual">${r.icon}</div>
-                        <span class="relic-name">${r.name}</span>
+            ${legendaryRelics.length > 0 ? `
+                <div class="museum-category-section">
+                    <h3 class="museum-category-title">📜 Legendary Relics</h3>
+                    <div class="museum-grid">
+                        ${legendaryRelics.map(r => `
+                            <div class="artifact-card">
+                                <span class="artifact-sticker">${r.icon}</span>
+                                <span class="artifact-meta">Forged Artifact</span>
+                                <div class="artifact-name">${r.customName || r.name}</div>
+                                <div class="artifact-binding">Bound to: ${r.dedicatedTo}</div>
+                                <button class="micro-share-icon mini" data-type="forged_relic" data-text="Household Relic Forged: ${r.customName || r.name}. Dedicated to ${r.dedicatedTo}.">📤</button>
+                            </div>
+                        `).join('')}
                     </div>
-                `).join('')}
+                </div>
+            ` : ''}
+
+            ${keepsakes.length > 0 ? `
+                <div class="museum-category-section">
+                    <h3 class="museum-category-title">💞 Relationship Keepsakes</h3>
+                    <div class="museum-grid">
+                        ${keepsakes.map(k => `
+                            <div class="artifact-card" style="border-style: ${k.isSacred ? 'solid' : 'dashed'}; border-color: ${k.isSacred ? '#FFB000' : 'var(--ink)'}">
+                                <span class="artifact-sticker">${k.icon}</span>
+                                <span class="artifact-meta">${k.isSacred ? 'Sacred Object' : 'Social Keepsake'}</span>
+                                <div class="artifact-name">${k.name}</div>
+                                <button class="micro-share-icon mini" data-type="keepsake" data-text="Relationship Keepsake Earned: ${k.name} ${k.icon}.">📤</button>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            ` : ''}
+
+            <div class="museum-category-section">
+                <h3 class="museum-category-title">🏺 Available to Forge</h3>
+                <div class="relic-shelf">
+                    ${availableRelics.filter(ar => !forgedRelics.some(fr => fr.id === ar.id)).map(r => `
+                        <div class="relic-item" id="relic-trigger-${r.id}">
+                            <div class="relic-visual">${r.icon}</div>
+                            <span class="relic-name">${r.name}</span>
+                        </div>
+                    `).join('')}
+                    ${standardRelics.map(r => `
+                        <div class="relic-item forged" style="opacity:0.6; filter:grayscale(0.5);">
+                            <div class="relic-visual">${r.icon}</div>
+                            <span class="relic-name">${r.customName || r.name}</span>
+                        </div>
+                    `).join('')}
+                </div>
             </div>
 
             <div class="trophy-cabinet">
@@ -168,6 +313,11 @@
             </div>
         `;
 
+        availableRelics.forEach(r => {
+            const btn = container.querySelector(`#relic-trigger-${r.id}`);
+            if (btn) btn.onclick = () => openForgingUI(r);
+        });
+
         container.querySelectorAll('.micro-share-icon').forEach(btn => {
             btn.onclick = (e) => {
                 e.stopPropagation();
@@ -183,16 +333,15 @@
         });
 
         // Analytics
-        window.MeowTrack && window.MeowTrack('museum_view', {
-            relic_count: relics.length,
+        window.MeowTrack && window.MeowTrack('museum_expand_view', {
+            relic_count: forgedRelics.length,
             trophy_count: trophies.length,
-            household_density: profiles.length,
+            keepsake_count: keepsakes.length,
             lang: getLang()
         });
 
         if (window.MeowTrack) {
-            relics.forEach(r => window.MeowTrack('relic_unlocked', { relic_type: r.id, lang: getLang() }));
-            trophies.forEach(tr => window.MeowTrack('trophy_earned', { trophy_type: tr.id, lang: getLang() }));
+            keepsakes.forEach(k => window.MeowTrack('keepsake_generated', { keepsake_type: k.id, is_sacred: !!k.isSacred, lang: getLang() }));
         }
     }
 

@@ -422,6 +422,28 @@
         legAlliance:       { en: "The Strategic Duo specializes in mutual overstimulation.", th: "คู่หูสายยุทธศาสตร์เชี่ยวชาญการกระตุ้นอารมณ์ซึ่งกันและกัน" },
         legChaosDoc:       { en: "One creates the chaos. The other documents it emotionally.", th: "คนหนึ่งสร้างความวุ่นวาย อีกคนบันทึกมันไว้ในใจ" },
 
+        // ─── Relic Forging & Canon Binding ────────────────
+        forgeAction:       { en: "Forge this Relic",          th: "ตีตราวัตถุโบราณนี้" },
+        forgeIntro:        { en: "Give this artifact a name and dedicate it to a legendary event.", th: "ตั้งชื่อให้วัตถุนี้และอุทิศให้กับเหตุการณ์ในตำนาน" },
+        forgeNameLabel:    { en: "Artifact Name",             th: "ชื่อวัตถุโบราณ" },
+        forgeEventLabel:   { en: "Dedicate to Event",         th: "อุทิศให้แก่เหตุการณ์" },
+        forgeSubmit:       { en: "Bind to Canon",             th: "บันทึกเข้าสู่กฎเหล็ก" },
+        
+        relSpoon:          { en: "Emotional Support Spoon",   th: "ช้อนประคองใจ" },
+        relHoodie:         { en: "Sacred Rotting Hoodie",     th: "ฮู้ดดี้เน่าศักดิ์สิทธิ์" },
+        relSoup:           { en: "Soup of Collective Survival", th: "ซุปแห่งการอยู่รอดร่วมกัน" },
+        relCharger:        { en: "The Last Functional Charger", th: "สายชาร์จสุดท้ายที่ยังใช้ได้" },
+
+        // Keepsakes
+        keepMutualAvoid:   { en: "Treaty of Mutual Avoidance", th: "สนธิสัญญาการเลี่ยงหน้ากัน" },
+        keepOverstimCert:  { en: "Certificate of Overstimulation", th: "ใบประกาศเกียรติคุณการถูกกระตุ้นเกินเหตุ" },
+        keepSupportPact:   { en: "The Silent Support Pact",   th: "พันธสัญญาแห่งการซัพพอร์ตเงียบๆ" },
+
+        // Mythology Continuity
+        mythRelicReappeared: { en: relic => `The ${relic} has reappeared during another Heavy Era.`, th: relic => `${relic} ได้ปรากฏขึ้นอีกครั้งในช่วงยุคสมัยที่หนักหน่วง` },
+        mythBelievedToContain: { en: relic => `Believed to contain traces of survival iced coffee.`, th: relic => `เชื่อกันว่ามีร่องรอยของกาแฟดำแห่งการเอาชีวิตรอดซ่อนอยู่` },
+        mythCanonObject:   { en: relic => `This relic was recovered during a historical turning point.`, th: relic => `วัตถุนี้ถูกกู้คืนมาได้ในช่วงหัวเลี้ยวหัวต่อของประวัติศาสตร์` },
+
         dynChaosHigh:      { en: "Shared Chaos: HIGH",        th: "ระดับความวุ่นวาย: สูง" },
         dynChaosMed:       { en: "Shared Chaos: MODERATE",    th: "ระดับความวุ่นวาย: ปานกลาง" },
         dynChaosLow:       { en: "Shared Chaos: LOW",         th: "ระดับความวุ่นวาย: ต่ำ" },

@@ -81,10 +81,29 @@
         if (e.key === STORAGE_KEY) _cachedStore = null;
     });
 
+    function getForgedRelics() {
+        return getRawStore().relics || [];
+    }
+
+    function saveForgedRelic(relic) {
+        const store = getRawStore();
+        store.relics = store.relics || [];
+        // Update if exists, else push
+        const idx = store.relics.findIndex(r => r.id === relic.id);
+        if (idx >= 0) store.relics[idx] = relic;
+        else store.relics.push(relic);
+        
+        _cachedStore = store;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
+        return true;
+    }
+
     window.MeowStore = {
         getFamily,
         saveFamilyProfile,
         removeFamilyProfile,
-        generateProfileId
+        generateProfileId,
+        getForgedRelics,
+        saveForgedRelic
     };
 })();

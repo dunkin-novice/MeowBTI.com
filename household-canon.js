@@ -182,6 +182,12 @@
         }
     }
 
+    window.MeowCanon = {
+        getLegendaryEvents,
+        generateCanon,
+        getCulture
+    };
+
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', renderCanon);
     } else {
