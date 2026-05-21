@@ -676,6 +676,35 @@
         // ─── Civilization Ranks & Ascension ──────────────
         rankTitle:         { en: "Civilization Rank",         th: "อันดับอารยธรรม" },
         rankAscension:     { en: "Emotional Ascension",       th: "การเลื่อนระดับทางจิตวิญญาณ" },
+
+        // ─── Global Emotional Seasons & World Events ──────
+        evtTitle:          { en: "Global World Event",        th: "เหตุการณ์ระดับโลก" },
+        evtStatus:         { en: "Ecosystem Status",          th: "สถานะระบบนิเวศ" },
+        evtParticipation:  { en: "Global Participation",      th: "การมีส่วนร่วมทั่วโลก" },
+        evtModifier:       { en: "Seasonal Doctrine Shift",   th: "การเปลี่ยนขั้วอุดมการณ์ตามฤดูกาล" },
+        
+        // World Events
+        evtSoupWeek:       { en: "Soup Recovery Week",        th: "สัปดาห์แห่งการกู้คืนด้วยซุป" },
+        evtSoupProv:       { en: "Liquid emotional infrastructure for the masses.", th: "โครงสร้างพื้นฐานทางอารมณ์แบบของเหลวสำหรับมวลชน" },
+        evtBlanketSeason:  { en: "Blanket Collapse Season",   th: "ฤดูกาลแห่งการล่มสลายภายใต้ผ้าห่ม" },
+        evtBlanketProv:    { en: "The ecosystem is spiritually horizontal.", th: "ระบบนิเวศกำลังกลายเป็นแนวราบในระดับจิตวิญญาณ" },
+        evtParallelMonth:  { en: "Parallel Play Month",       th: "เดือนแห่งการเล่นขนาน" },
+        evtParallelProv:   { en: "Collective silence has become legally binding.", th: "ความเงียบงันร่วมกันมีผลผูกพันตามกฎหมาย" },
+        evtLoudSurge:      { en: "Loud Civilization Surge",    th: "คลื่นความถี่อารยธรรมเสียงดัง" },
+        evtLoudProv:       { en: "Flammable energy detected across all borders.", th: "ตรวจพบพลังงานที่พร้อมจะปะทุในทุกพรมแดน" },
+        evtGreatRecharge:  { en: "The Great Recharge",        th: "การชาร์จพลังครั้งยิ่งใหญ่" },
+        evtRechargeProv:   { en: "Nervous systems are rebooting in unison.", th: "ระบบประสาทกำลังรีบูตพร้อมๆ กัน" },
+        evtBatteryCrisis:  { en: "Social Battery Crisis",      th: "วิกฤตโซเชียลแบตเตอรี่" },
+        evtBatteryProv:    { en: "Infrastructure failing due to depletion.", th: "โครงสร้างพื้นฐานกำลังล้มเหลวเนื่องจากการขาดแคลนพลังงาน" },
+        evtHorizontalEra:  { en: "Era of Horizontal Governance", th: "ยุคสมัยแห่งการปกครองแนวราบ" },
+        evtHorizontalProv: { en: "Verticality is no longer prioritized.", th: "การยืนหยัดในแนวตั้งไม่ใช่อีกต่อไป" },
+        evtEmergencyRot:   { en: "Emergency Rotting Protocol", th: "โปรโตคอลเน่าเปื่อยฉุกเฉิน" },
+        evtEmergencyProv:  { en: "Authorities recommend maximum nesting.", th: "ทางการแนะนำให้จำศีลในรังขั้นสูงสุด" },
+
+        // Status Lines
+        evtInfraUnstable:  { en: "Emotional infrastructure remains unstable.", th: "โครงสร้างพื้นฐานทางอารมณ์ยังคงไม่คงที่" },
+        evtSynchronized:   { en: "Civilizations have entered synchronized buffering.", th: "อารยธรรมต่างๆ เข้าสู่ช่วงโหลดข้อมูลพร้อมๆ กัน" },
+        evtTradeRoute:     { en: "An emotional trade route has formed.", th: "เส้นทางการค้าทางอารมณ์ได้ก่อตัวขึ้นแล้ว" },
         rankLegacy:        { en: "Emotional Legacy Score",    th: "คะแนนมรดกทางอารมณ์" },
         rankPrestige:      { en: "Prestige Identity",         th: "ตัวตนอันทรงเกียรติ" },
         rankYears:         { en: "Days Survived",             th: "จำนวนวันที่อยู่รอด" },

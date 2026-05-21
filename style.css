@@ -4750,3 +4750,76 @@ a { color: inherit; }
   .rank-banner-container { flex-direction: column; text-align: center; gap: 24px; }
   .rank-progress-outer { max-width: none; }
 }
+
+/* ─── Global Emotional Seasons & World Events v1 ── */
+.world-event-container {
+  margin-top: 60px;
+  padding: 48px;
+  background: linear-gradient(135deg, #1F1410 0%, #2D1B24 100%);
+  color: #fff;
+  border-radius: 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+.world-event-container::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 86c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zm66-3c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM37 17c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23fff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+  opacity: 0.2;
+}
+
+.event-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: #FFB000;
+  margin-bottom: 16px;
+  display: block;
+}
+.event-name { font-family: var(--font-display); font-size: clamp(2rem, 8vw, 3.5rem); margin-bottom: 12px; }
+.event-proverb { font-style: italic; opacity: 0.6; font-size: 1.1rem; margin-bottom: 40px; }
+
+.ecosystem-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+}
+.ecosystem-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 24px;
+  text-align: left;
+  backdrop-filter: blur(10px);
+}
+.ecosystem-card h4 {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  opacity: 0.5;
+  margin-bottom: 12px;
+}
+.ecosystem-val { font-weight: 700; font-size: 1rem; line-height: 1.4; color: #fff; }
+
+.participation-meter {
+  height: 6px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 3px;
+  margin-top: 12px;
+  overflow: hidden;
+}
+.participation-fill {
+  height: 100%;
+  background: #FF5B3B;
+  transition: width 2s ease;
+}
+
+@media (max-width: 600px) {
+  .world-event-container { padding: 40px 24px; }
+}
