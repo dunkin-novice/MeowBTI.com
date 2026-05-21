@@ -507,6 +507,12 @@
         window.history.replaceState({}, '', newUrl);
     }
 
+    window.MeowFederation = {
+        getLocalCivilizationSnapshot,
+        getAllianceType,
+        getCivilizationComparison
+    };
+
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', renderFederationUI);
     } else {

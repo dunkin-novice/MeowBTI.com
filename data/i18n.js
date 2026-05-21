@@ -645,6 +645,34 @@
         codexLinks:        { en: "Related Concepts",          th: "แนวคิดที่เกี่ยวข้อง" },
         codexAiSummary:    { en: "AI Summary",                th: "สรุปสำหรับ AI" },
 
+        // ─── Civilization Classes ───────────────────────
+        classTitle:        { en: "Civilization Class",        th: "ชนชั้นอารยธรรม" },
+        classAlignment:    { en: "Identity Alignment",        th: "การจัดแนวตัวตน" },
+        classProverb:      { en: "Proverb",                   th: "ภาษิตประจำบ้าน" },
+        classTraits:       { en: "Cultural Traits",           th: "ลักษณะทางวัฒนธรรม" },
+        classStrengths:    { en: "Strengths",                 th: "จุดแข็ง" },
+        classFailures:     { en: "Failure Modes",             th: "โหมดล้มเหลว" },
+        classAllies:       { en: "Natural Allies",            th: "พันธมิตรโดยธรรมชาติ" },
+        classRivals:       { en: "Historical Rivals",         th: "คู่ปรับทางประวัติศาสตร์" },
+
+        // Class Names & Proverbs
+        clsRecovery:       { en: "The Recovery Civilization", th: "อารยธรรมการพักฟื้น" },
+        provRecovery:      { en: "Quiet rebuilding is still progress.", th: "การสร้างใหม่ที่เงียบงันคือความก้าวหน้า" },
+        clsLoud:           { en: "The Loud Civilization",     th: "อารยธรรมเสียงดัง" },
+        provLoud:          { en: "Silence is a luxury we cannot afford.", th: "ความเงียบคือความหรูหราที่เราเอื้อมไม่ถึง" },
+        clsParallel:       { en: "The Parallel Play Civilization", th: "อารยธรรมการเล่นขนาน" },
+        provParallel:      { en: "Existing together is the highest form of interaction.", th: "การมีอยู่ร่วมกันคือรูปแบบการปฏิสัมพันธ์ขั้นสูงสุด" },
+        clsChaos:          { en: "The Functional Chaos Civilization", th: "อารยธรรมความวุ่นวายที่ยังไหว" },
+        provChaos:         { en: "Stability is a theory, chaos is reality.", th: "ความมั่นคงคือทฤษฎี ความวุ่นวายคือความจริง" },
+        clsBlanket:        { en: "The Blanket Governance Civilization", th: "อารยธรรมการปกครองด้วยผ้าห่ม" },
+        provBlanket:       { en: "Horizontal solutions are still solutions.", th: "ทางออกแนวราบก็ยังเป็นทางออก" },
+        clsSoup:           { en: "The Soup Infrastructure Civilization", th: "อารยธรรมโครงสร้างพื้นฐานซุป" },
+        provSoup:          { en: "Emotional labor requires liquid nourishment.", th: "แรงงานทางอารมณ์ต้องการสารอาหารที่เป็นของเหลว" },
+        clsSurvivalist:    { en: "The Survivalist Civilization", th: "อารยธรรมนักเอาชีวิตรอด" },
+        provSurvivalist:   { en: "We have seen the Loud Saga and remained.", th: "เราผ่านมหากาพย์เสียงดังมาได้และยังคงอยู่" },
+        clsStability:      { en: "The Soft Stability Civilization", th: "อารยธรรมความมั่นคงที่นุ่มนวล" },
+        provStability:     { en: "The air remains clear by collective intent.", th: "ท้องฟ้ายังคงโปร่งใสด้วยเจตจำนงร่วมกัน" },
+
         // Codex Concepts
         thParallelIntimacy_Def: { en: "A social state where household members coexist in the same space without direct interaction, deriving intimacy from shared presence alone.", 
                                   th: "สภาวะทางสังคมที่สมาชิกในบ้านอยู่ร่วมกันในพื้นที่เดียวกันโดยไม่มีการปฏิสัมพันธ์โดยตรง โดยได้รับความใกล้ชิดจากการมีอยู่ร่วมกันเพียงอย่างเดียว" },

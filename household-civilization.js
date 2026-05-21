@@ -1,0 +1,158 @@
+/**
+ * MeowBTI Household Civilization Class System v1
+ * Deterministically assigns a civilization class based on long-term emotional data.
+ */
+(function() {
+    if (!window.MeowI18n || !window.MeowStore || !window.MeowDaily) return;
+
+    const { t, getLang } = window.MeowI18n;
+
+    function getHistory() {
+        return window.MeowDaily.getHistory() || [];
+    }
+
+    const CLASSES = {
+        recovery: { id: 'recovery', title: t('clsRecovery'), icon: '🕊️', proverb: t('provRecovery') },
+        loud: { id: 'loud', title: t('clsLoud'), icon: '📢', proverb: t('provLoud') },
+        parallel: { id: 'parallel', title: t('clsParallel'), icon: '🧘', proverb: t('provParallel') },
+        chaos: { id: 'chaos', title: t('clsChaos'), icon: '🌪️', proverb: t('provChaos') },
+        blanket: { id: 'blanket', title: t('clsBlanket'), icon: '🛌', proverb: t('provBlanket') },
+        soup: { id: 'soup', title: t('clsSoup'), icon: '🍲', proverb: t('provSoup') },
+        survivalist: { id: 'survivalist', title: t('clsSurvivalist'), icon: '🛡️', proverb: t('provSurvivalist') },
+        stability: { id: 'stability', title: t('clsStability'), icon: '⚖️', proverb: t('provStability') }
+    };
+
+    function detectClass(history, profiles) {
+        if (history.length < 5) return CLASSES.stability; // Default
+
+        const recent = history.slice(0, 30);
+        const stressAvg = recent.reduce((acc, h) => acc + (h.answers.stress === 'overloaded' ? 2 : (h.answers.stress === 'unstable' ? 1 : 0)), 0) / recent.length;
+        const lowEnergyCount = recent.filter(h => h.answers.energy === 'low').length;
+        const parallelPlayCount = recent.filter(h => h.answers.social === 'hiding').length;
+
+        // Check for specific internalized thoughts (proxies)
+        const cabinet = window.MeowStore.getThoughtCabinet ? window.MeowStore.getThoughtCabinet() : {};
+        const isSoupInternalized = cabinet.thSoupLabor?.status === 'INTERNALIZED';
+        const isBlanketInternalized = cabinet.thBlanketGov?.status === 'INTERNALIZED';
+
+        if (isSoupInternalized) return CLASSES.soup;
+        if (isBlanketInternalized) return CLASSES.blanket;
+        if (parallelPlayCount > recent.length * 0.5) return CLASSES.parallel;
+        if (stressAvg > 1.2) return CLASSES.loud;
+        if (lowEnergyCount > recent.length * 0.6) return CLASSES.recovery;
+        if (stressAvg > 0.8 && recent.filter(h => h.answers.energy === 'high').length > recent.length * 0.4) return CLASSES.chaos;
+        
+        // Survivalist check: Loud Saga survivor milestones
+        const stickers = window.MeowStore.getUnlockedStickers ? window.MeowStore.getUnlockedStickers() : {};
+        if (stickers.stk_loud_survivor) return CLASSES.survivalist;
+
+        return CLASSES.stability;
+    }
+
+    function renderCivAlignment() {
+        const host = document.getElementById('family-content');
+        if (!host) return;
+
+        const profiles = window.MeowStore.getFamily();
+        if (profiles.length < 2) return;
+
+        let container = document.getElementById('household-civ-alignment');
+        if (!container) {
+            container = document.createElement('div');
+            container.id = 'household-civ-alignment';
+            container.className = 'civ-alignment-container animate-fade-in';
+            // Insert after federation or at the end
+            const fed = document.getElementById('household-federation-section');
+            if (fed) fed.after(container);
+            else host.append(container);
+        }
+
+        const history = getHistory();
+        const civClass = detectClass(history, profiles);
+
+        container.innerHTML = `
+            <span class="civ-crest">${civClass.icon}</span>
+            <h2 class="civ-class-name">${civClass.title}</h2>
+            <p class="civ-proverb">“${civClass.proverb}”</p>
+
+            <div class="civ-traits-grid">
+                <div class="civ-trait-card">
+                    <h4>${t('classStrengths')}</h4>
+                    <ul class="civ-trait-list">
+                        ${getStrengths(civClass.id).map(s => `<li>${s}</li>`).join('')}
+                    </ul>
+                </div>
+                <div class="civ-trait-card">
+                    <h4>${t('classFailures')}</h4>
+                    <ul class="civ-trait-list">
+                        ${getFailures(civClass.id).map(f => `<li>${f}</li>`).join('')}
+                    </ul>
+                </div>
+            </div>
+
+            <div class="civ-faction-links">
+                <a href="/civilizations/${civClass.id}-civilization.html" class="big-btn ghost mini">
+                    📖 View Faction Doctrine
+                </a>
+                <button class="micro-share-icon mini" data-type="civ_class" data-text="Our household has been recognized as ${civClass.title}. “${civClass.proverb}”">📤</button>
+            </div>
+        `;
+
+        container.querySelector('.micro-share-icon').onclick = () => {
+            if (window.MeowAnalytics) {
+                window.MeowAnalytics.microShare({
+                    framework: 'civilization_class',
+                    content_type: 'alignment',
+                    text: container.querySelector('.micro-share-icon').getAttribute('data-text'),
+                    route: '/'
+                });
+            }
+        };
+
+        // Analytics
+        window.MeowTrack && window.MeowTrack('civilization_class_detected', {
+            class_id: civClass.id,
+            history_depth: history.length,
+            lang: getLang()
+        });
+    }
+
+    function getStrengths(id) {
+        const data = {
+            recovery: ["High emotional resilience", "Coordinated rest protocols", "Bunker-ready"],
+            loud: ["Direct communication", "High survival energy", "Unfiltered honesty"],
+            parallel: ["Minimal social drain", "Extreme autonomy", "Atmospheric trust"],
+            chaos: ["Improvisational recovery", "Adaptive logic", "Side-quest optimized"],
+            blanket: ["Superior comfort logistics", "Horizontal stability", "Soft boundary mastery"],
+            soup: ["Efficient nutrient delivery", "Non-verbal caretaking", "Ramen-fueled persistence"],
+            survivalist: ["Era-hardened", "Emotional scar mastery", "Crisis-tolerant"],
+            stability: ["Predictable atmosphere", "Low friction daily", "Sustainable peace"]
+        };
+        return data[id] || [];
+    }
+
+    function getFailures(id) {
+        const data = {
+            recovery: ["Prolonged inactivity", "Decision-making paralysis", "Fear of sunlight"],
+            loud: ["Emotional burnout", "Aggressive sarcasm", "Permanent overstimulation"],
+            parallel: ["Total social ghosting", "Emotional isolation", "Misread silences"],
+            chaos: ["Structural collapse", "Lost original quest", "Burnout through movement"],
+            blanket: ["Universal avoidance", "Furniture dependence", "Leg atrophy"],
+            soup: ["Executive function failure", "Excessive sodium levels", "Chopstick fatigue"],
+            survivalist: ["Hyper-vigilance", "Cynical outlook", "Relic-based obsession"],
+            stability: ["Stagnation", "Conflict avoidance", "Boredom-induced chaos"]
+        };
+        return data[id] || [];
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', renderCivAlignment);
+    } else {
+        renderCivAlignment();
+    }
+
+    window.addEventListener('meow:daily:updated', renderCivAlignment);
+    window.addEventListener('storage', (e) => {
+        if (e.key === 'meow-bti-family' || e.key === 'meowbti.dailyCheckins.v2') renderCivAlignment();
+    });
+})();
