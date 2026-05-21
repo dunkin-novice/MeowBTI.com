@@ -153,6 +153,12 @@
         const idx = store.federation.findIndex(f => f.id === member.id);
         if (idx >= 0) store.federation[idx] = member;
         else store.federation.push(member);
+        
+        // Prune to latest 20 members
+        if (store.federation.length > 20) {
+            store.federation = store.federation.slice(-20);
+        }
+
         _cachedStore = store;
         localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
         return true;
@@ -181,11 +187,22 @@
     function saveDiplomaticGift(gift) {
         const store = getRawStore();
         store.diplomaticGifts = store.diplomaticGifts || [];
+        
+        // Prevent exact duplicates (same key from same origin)
+        const isDup = store.diplomaticGifts.some(g => g.key === gift.key && g.origin === gift.origin);
+        if (isDup) return false;
+
         // Add gift with arrival timestamp
         store.diplomaticGifts.push({
             ...gift,
             receivedAt: new Date().toISOString()
         });
+
+        // Prune to latest 50 gifts
+        if (store.diplomaticGifts.length > 50) {
+            store.diplomaticGifts = store.diplomaticGifts.slice(-50);
+        }
+
         _cachedStore = store;
         localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
         return true;

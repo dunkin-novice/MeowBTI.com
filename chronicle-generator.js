@@ -6,6 +6,7 @@
     if (!window.MeowI18n || !window.MeowStore || !window.MeowDaily) return;
 
     const { t, getLang } = window.MeowI18n;
+    const sanitize = window.MeowSanitize || ((s) => s);
 
     function getHistory() {
         return window.MeowDaily.getHistory() || [];
@@ -42,8 +43,8 @@
 
         // 2. Relationship Mythology
         if (profiles.length >= 2) {
-            const duoA = profiles[0].name;
-            const duoB = profiles[1].name;
+            const duoA = sanitize(profiles[0].name);
+            const duoB = sanitize(profiles[1].name);
             data.cards.push({
                 type: 'relationship',
                 title: "Duo Mythology",
@@ -57,7 +58,7 @@
             const topRelic = forged[forged.length - 1];
             data.cards.push({
                 type: 'relic',
-                title: topRelic.customName || topRelic.name,
+                title: sanitize(topRelic.customName || topRelic.name),
                 icon: topRelic.icon,
                 status: "Civilizational Infrastructure",
                 aura: "Recovery Radiation",

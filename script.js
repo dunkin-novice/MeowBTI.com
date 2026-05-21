@@ -12,6 +12,14 @@ if (!window.MeowTrack) {
     };
 }
 
+// Global sanitization helper to prevent XSS
+window.MeowSanitize = function(str, limit = 50) {
+    if (typeof str !== 'string') return '';
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML.slice(0, limit);
+};
+
 document.addEventListener('DOMContentLoaded', () => {
 
     // Walk every [data-i18n] in a root and apply the translation. Also patches

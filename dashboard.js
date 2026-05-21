@@ -11,6 +11,7 @@
     if (!section || !grid || !window.MeowStore || !window.MeowI18n) return;
 
     const { t, withLang, getLang } = window.MeowI18n;
+    const sanitize = window.MeowSanitize || ((s) => s);
 
     function removeProfile(id, name) {
         if (confirm(t('confirmRemove', name))) {
@@ -116,7 +117,7 @@
                                 <span class="fc-type-tag">${p.subject}</span>
                             </div>
                             <div class="fc-meta">
-                                <div class="fc-name">${p.name}</div>
+                                <div class="fc-name">${sanitize(p.name)}</div>
                                 <div class="fc-archetype">${p.archetypeName}</div>
                             </div>
                         </a>
@@ -195,9 +196,9 @@
                     <p class="rs-desc">${topPair.dynamic.desc}</p>
                 </div>
                 <div class="rs-duo">
-                    <div class="rs-avatar"><img src="assets/personalities/${topPair.a.code.toLowerCase()}-${window.MeowArchetypes.get(topPair.a.code).slug}.webp" alt="${topPair.a.name}"></div>
+                    <div class="rs-avatar"><img src="assets/personalities/${topPair.a.code.toLowerCase()}-${window.MeowArchetypes.get(topPair.a.code).slug}.webp" alt="${sanitize(topPair.a.name)}"></div>
                     <div class="rs-vs">VS</div>
-                    <div class="rs-avatar"><img src="assets/personalities/${topPair.b.code.toLowerCase()}-${window.MeowArchetypes.get(topPair.b.code).slug}.webp" alt="${topPair.b.name}"></div>
+                    <div class="rs-avatar"><img src="assets/personalities/${topPair.b.code.toLowerCase()}-${window.MeowArchetypes.get(topPair.b.code).slug}.webp" alt="${sanitize(topPair.b.name)}"></div>
                 </div>
                 <div class="rs-stats">
                     <div class="rs-stat">
@@ -229,7 +230,7 @@
                 </div>
                 <button class="micro-share-icon" style="position:absolute; top:20px; right:20px;" 
                         data-type="relationship" 
-                        data-text="${topPair.a.name} + ${topPair.b.name}: ${topPair.dynamic.title}. ${topPair.dynamic.desc}">📤</button>
+                        data-text="${sanitize(topPair.a.name)} + ${sanitize(topPair.b.name)}: ${topPair.dynamic.title}. ${topPair.dynamic.desc}">📤</button>
             </div>
         `;
 
@@ -250,13 +251,13 @@
                     return `
                         <div class="pair-card">
                             <div class="pair-avatars">
-                                <div class="pair-avatar"><img src="${imgA}" alt="${p.a.name}"></div>
-                                <div class="pair-avatar"><img src="${imgB}" alt="${p.b.name}"></div>
+                                <div class="pair-avatar"><img src="${imgA}" alt="${sanitize(p.a.name)}"></div>
+                                <div class="pair-avatar"><img src="${imgB}" alt="${sanitize(p.b.name)}"></div>
                             </div>
                             <div class="pair-info">
                                 ${specialTag}
                                 <span class="pair-vibe">${p.dynamic.title}</span>
-                                <p class="pair-desc">${p.a.name} + ${p.b.name}: ${p.dynamic.desc}</p>
+                                <p class="pair-desc">${sanitize(p.a.name)} + ${sanitize(p.b.name)}: ${p.dynamic.desc}</p>
                                 <div class="pair-score-bar">
                                     <div class="pair-score-fill" style="width:${p.score}%"></div>
                                 </div>

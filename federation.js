@@ -6,6 +6,7 @@
     if (!window.MeowI18n || !window.MeowStore || !window.MeowDaily) return;
 
     const { t, getLang } = window.MeowI18n;
+    const sanitize = window.MeowSanitize || ((s) => s);
 
     const GIGT_DEFINITIONS = {
         treaty_blanket: { name: t('giftTreatyBlanket'), icon: '🛌', plaque: t('lpLowEnergyAuth'), alliance: 'allBlanketAccord', bonus: t('bonusBlanket') },
@@ -29,7 +30,7 @@
 
         return {
             id: 'house_' + Math.random().toString(36).substr(2, 9),
-            name: profiles.length > 0 ? profiles[0].name + "'s Household" : "Unknown Civilization",
+            name: profiles.length > 0 ? sanitize(profiles[0].name) + "'s Household" : "Unknown Civilization",
             profilesCount: profiles.length,
             doctrine,
             activeArcKey: activeArc ? activeArc.key : null,
@@ -46,10 +47,14 @@
     }
 
     function importCivilization(code) {
+        if (!code) return null;
         try {
             const json = atob(code);
             const data = JSON.parse(json);
             if (data.id && data.profilesCount !== undefined) {
+                // Sanitize imported data
+                data.name = sanitize(data.name);
+                
                 window.MeowStore.saveFederationMember(data);
                 
                 if (data.giftKey && GIGT_DEFINITIONS[data.giftKey]) {
@@ -66,13 +71,14 @@
                 return data;
             }
         } catch (e) {
-            console.error("Failed to import civilization", e);
+            console.error("MeowFederation: Failed to import civilization - possibly malformed or old code.", e);
         }
         return null;
     }
 
     function showGiftCeremony(giftKey, originName) {
         const def = GIGT_DEFINITIONS[giftKey];
+        const cleanName = sanitize(originName);
         let overlay = document.getElementById('gift-ceremony-overlay');
         if (!overlay) {
             overlay = document.createElement('div');
@@ -88,7 +94,7 @@
                 <h2 class="card-title" style="font-size:1.5rem; color:var(--ink);">${t('fedGiftArrived')}</h2>
                 <div class="card-content" style="color:var(--ink);">
                     <p style="font-weight:800; font-size:1.5rem; margin-bottom:12px;">${def.name}</p>
-                    <p class="gift-origin">From: ${originName}</p>
+                    <p class="gift-origin">From: ${cleanName}</p>
                     <div class="gift-plaque" style="margin-top:24px;">
                         ${def.plaque}
                     </div>

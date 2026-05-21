@@ -6,6 +6,7 @@
     if (!window.MeowI18n || !window.MeowDaily || !window.MeowStore) return;
 
     const { t, getLang } = window.MeowI18n;
+    const sanitize = window.MeowSanitize || ((s) => s);
 
     function getHistory() {
         return window.MeowDaily.getHistory() || [];
@@ -195,7 +196,7 @@
         overlay.querySelector('#btn-forge-cancel').onclick = close;
         
         overlay.querySelector('#btn-forge-submit').onclick = () => {
-            const customName = overlay.querySelector('#forge-name').value.trim();
+            const customName = sanitize(overlay.querySelector('#forge-name').value.trim());
             const eventId = overlay.querySelector('#forge-event').value;
             const event = events.find(e => e.id === eventId);
             
