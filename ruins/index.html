@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotional Ruins Archive | MeowBTI Archaeology</title>
+    <meta name="description" content="Explore the Emotional Ruins Archive. A structured collection of extinct emotional eras, forgotten household doctrines, and fossilized relics discovered through archaeology.">
+    
+    <link rel="stylesheet" href="../style.css">
+    <script src="../data/i18n.js" defer></script>
+    <script src="../analytics.js" defer></script>
+    <script src="../script.js" defer></script>
+</head>
+<body style="background:#1a1817;">
+    <div class="home-grain" aria-hidden="true"></div>
+    <header class="main-header" id="main-header"></header>
+
+    <main class="codex-container">
+        <header class="codex-hero" style="text-align: center; border-color:#3d3a38;">
+            <h1 class="codex-h1" style="color:#fff;" data-i18n="archTitle">Emotional Archaeology</h1>
+            <p class="codex-p" style="max-width: 600px; margin: 0 auto; color:#a8a09a;" data-i18n="archIntro">
+                Uncover the forgotten history and emotional ruins of your household.
+            </p>
+        </header>
+
+        <section class="codex-section">
+            <h2 class="codex-h2" style="color:#fff;">The Known Ruins</h2>
+            <div class="codex-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+                <a href="silent-kitchen-era.html" class="codex-card" style="text-decoration: none; color: #a8a09a; background: #252220; border: 1px solid #4d4a48; border-radius: 24px; padding: 32px; transition: transform 0.2s;">
+                    <h3 class="card-title" style="font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 12px; color:#fff;" data-i18n="ruinSilentKitchen">The Silent Kitchen Era</h3>
+                    <p class="codex-p" style="font-size: 0.95rem; opacity: 0.6;">Traces of a time when communication failed and parallel silence reigned.</p>
+                </a>
+                <div class="codex-card" style="opacity:0.3; background: #252220; border: 1px solid #4d4a48; border-radius: 24px; padding: 32px; display:flex; flex-direction:column; justify-content:center; align-items:center;">
+                    <span style="font-size:2rem;">🔒</span>
+                    <p style="font-family:var(--font-mono); font-size:0.7rem; margin-top:16px;">[DATA ENCRYPTED BY LOUD SAGA]</p>
+                </div>
+            </div>
+        </section>
+
+        <section style="margin-top: 80px; text-align: center;">
+            <a href="/" class="big-btn accent" data-i18n="profStartCiv">Return to the Dig Site →</a>
+        </section>
+    </main>
+
+    <footer class="main-footer" id="main-footer"></footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.MeowTrack) {
+                window.MeowTrack('archaeology_archive_view', { lang: window.MeowI18n.getLang() });
+            }
+        });
+    </script>
+</body>
+</html>

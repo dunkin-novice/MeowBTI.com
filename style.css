@@ -4823,3 +4823,96 @@ a { color: inherit; }
 @media (max-width: 600px) {
   .world-event-container { padding: 40px 24px; }
 }
+
+/* ─── Emotional Archaeology & Ruins v1 ──────────── */
+.archaeology-container {
+  margin-top: 60px;
+  padding: 48px;
+  background: #252220; /* Dusty Dark */
+  color: #a8a09a;
+  border-radius: 48px;
+  border: 2px solid #3d3a38;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+  font-family: var(--font-mono);
+}
+.archaeology-container::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: repeating-linear-gradient(0deg, rgba(0,0,0,0.1) 0px, rgba(0,0,0,0.1) 1px, transparent 1px, transparent 2px);
+  background-size: 100% 4px;
+  pointer-events: none;
+}
+
+.arch-h2 { font-family: var(--font-display); font-size: 2rem; color: #fff; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 0.1em; }
+
+.ruin-card {
+  background: rgba(0,0,0,0.2);
+  border: 1px solid #4d4a48;
+  border-radius: 20px;
+  padding: 24px;
+  margin-bottom: 24px;
+  position: relative;
+  transition: border-color 0.3s;
+}
+.ruin-card:hover { border-color: #9B59B6; }
+.ruin-label { font-size: 0.65rem; color: #9B59B6; font-weight: 900; margin-bottom: 8px; display: block; }
+.ruin-name { font-family: var(--font-display); font-size: 1.4rem; color: #fff; margin-bottom: 8px; }
+
+.fossil-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
+  margin-top: 32px;
+}
+.fossil-item {
+  aspect-ratio: 1;
+  background: rgba(255,255,255,0.02);
+  border: 1.5px dashed #4d4a48;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 16px;
+  filter: grayscale(0.8) contrast(0.8);
+}
+.fossil-icon { font-size: 2.5rem; margin-bottom: 8px; opacity: 0.5; }
+.fossil-status { font-size: 0.6rem; font-weight: 900; text-transform: uppercase; color: #a8a09a; }
+
+.corruption-text {
+  color: #FF5B3B;
+  font-family: var(--font-mono);
+  animation: flicker 0.15s infinite;
+}
+@keyframes flicker {
+  0% { opacity: 0.8; }
+  50% { opacity: 1; }
+  100% { opacity: 0.9; }
+}
+
+.excavation-btn {
+  margin-top: 32px;
+  background: transparent;
+  border: 1.5px solid #a8a09a;
+  color: #a8a09a;
+  padding: 12px 24px;
+  border-radius: 40px;
+  font-family: var(--font-mono);
+  font-weight: 900;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.excavation-btn:hover { background: #a8a09a; color: #252220; }
+
+.scanline-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
+  background-size: 100% 4px, 3px 100%;
+  pointer-events: none;
+  z-index: 5;
+}

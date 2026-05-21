@@ -705,6 +705,34 @@
         evtInfraUnstable:  { en: "Emotional infrastructure remains unstable.", th: "โครงสร้างพื้นฐานทางอารมณ์ยังคงไม่คงที่" },
         evtSynchronized:   { en: "Civilizations have entered synchronized buffering.", th: "อารยธรรมต่างๆ เข้าสู่ช่วงโหลดข้อมูลพร้อมๆ กัน" },
         evtTradeRoute:     { en: "An emotional trade route has formed.", th: "เส้นทางการค้าทางอารมณ์ได้ก่อตัวขึ้นแล้ว" },
+
+        // ─── Emotional Archaeology & Ruins ───────────────
+        archTitle:         { en: "Emotional Archaeology",     th: "โบราณคดีทางอารมณ์" },
+        archIntro:         { en: "Uncover the forgotten history and emotional ruins of your household.", th: "ขุดค้นประวัติศาสตร์ที่ถูกลืมและซากปรักหักพังทางอารมณ์ของบ้านคุณ" },
+        archWing:          { en: "Archaeology Wing",          th: "โซนโบราณคดี" },
+        archExcavate:      { en: "Start Excavation",          th: "เริ่มการขุดค้น" },
+        archRecovered:     { en: "Fragment Recovered",        th: "กู้คืนชิ้นส่วนสำเร็จ" },
+        archCorrupted:     { en: "[DATA CORRUPTED]",          th: "[ข้อมูลเสียหาย]" },
+        
+        // Ruins
+        ruinSilentKitchen: { en: "The Silent Kitchen Era",    th: "ยุคสมัยห้องครัวที่เงียบงัน" },
+        ruinAncientRecharge: { en: "Ancient Recharge Site",   th: "แหล่งชาร์จพลังโบราณ" },
+        ruinForgottenSoup: { en: "Forgotten Soup Infrastructure", th: "โครงสร้างพื้นฐานซุปที่ถูกลืม" },
+        ruinParallelRuins: { en: "Ruins of Parallel Governance", th: "ซากปรักหักพังของการปกครองแบบขนาน" },
+        
+        // Fossilized Status
+        fosDormant:        { en: "Dormant",                   th: "หลับใหล" },
+        fosCracked:        { en: "Cracked",                   th: "แตกร้าว" },
+        fosFragmented:     { en: "Fragmented",                th: "แตกสลาย" },
+        fosAncientHusk:    { en: "Ancient Husk",              th: "ซากโบราณ" },
+        
+        // Timeline & Echoes
+        lostTimeline:      { en: "Lost Timeline Detected",    th: "ตรวจพบไทม์ไลน์ที่สูญหาย" },
+        buriedEcho:        { en: "Buried Echo",               th: "เสียงสะท้อนที่ถูกฝังไว้" },
+        ancientDoctrine:   { en: "Extinct Doctrine",          th: "อุดมการณ์ที่สูญสิ้น" },
+        
+        archScore:         { en: "Archaeological Score",      th: "คะแนนการขุดค้น" },
+        archAncientStatus: { en: "Ancient Status",            th: "สถานะความโบราณ" },
         rankLegacy:        { en: "Emotional Legacy Score",    th: "คะแนนมรดกทางอารมณ์" },
         rankPrestige:      { en: "Prestige Identity",         th: "ตัวตนอันทรงเกียรติ" },
         rankYears:         { en: "Days Survived",             th: "จำนวนวันที่อยู่รอด" },

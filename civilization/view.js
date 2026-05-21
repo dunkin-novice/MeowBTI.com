@@ -84,6 +84,14 @@
                     <span class="module-label">${t('profFederation')}</span>
                     <div class="module-val">${sanitize(data.federation)}</div>
                 </div>
+
+                ${data.archScore ? `
+                    <div class="profile-module animate-fade-in" style="animation-delay: 0.7s">
+                        <span class="module-label">${t('archScore')}</span>
+                        <div class="module-val">${sanitize(data.archScore)}</div>
+                        <div class="module-desc">${sanitize(data.archStatus || '')}</div>
+                    </div>
+                ` : ''}
             </div>
         `;
 

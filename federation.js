@@ -370,7 +370,9 @@
                 relicIcon: topRelic.icon,
                 philosophy: t('cultSocialDesc'), // Anthropological placeholder
                 infrastructure: history.filter(h => h.answers.energy === 'low').length > history.length * 0.5 ? "Blanket-Based" : "Highly Flammable",
-                federation: federation.length > 0 ? `Member of ${federation.length} Alliances` : "Independent Civilization"
+                federation: federation.length > 0 ? `Member of ${federation.length} Alliances` : "Independent Civilization",
+                archScore: history.length > 30 ? (history.length * 1.5).toFixed(0) : "N/A",
+                archStatus: history.length > 50 ? "Ancient Discovery" : (history.length > 10 ? "Modern Ruins Found" : "Undiscovered History")
             };
 
             const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(payload))));
