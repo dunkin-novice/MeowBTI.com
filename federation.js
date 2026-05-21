@@ -28,11 +28,16 @@
         const internalized = Object.entries(cabinet).filter(([id, d]) => d.status === 'INTERNALIZED');
         const doctrine = internalized.length > 0 ? internalized[0][0] : null;
 
+        // Calculate prestige for export
+        const relics = window.MeowStore.getForgedRelics ? window.MeowStore.getForgedRelics().length : 0;
+        const prestige = (history.length * 2) + (relics * 10);
+
         return {
             id: 'house_' + Math.random().toString(36).substr(2, 9),
             name: profiles.length > 0 ? sanitize(profiles[0].name) + "'s Household" : "Unknown Civilization",
             profilesCount: profiles.length,
             doctrine,
+            prestige,
             activeArcKey: activeArc ? activeArc.key : null,
             recentClimate: history.length > 0 ? history[0].answers.stress : 'calm',
             giftKey,
@@ -285,6 +290,7 @@
                                     <div class="alliance-seal">${alliance.icon}</div>
                                     <div class="alliance-name">${member.name}</div>
                                     <div class="alliance-status">${alliance.title}</div>
+                                    <div class="pm-label">Prestige: ${member.prestige || 0} ${member.prestige > 100 ? '(Elder Civilization)' : ''}</div>
                                     
                                     ${sharedEvent ? `
                                         <div class="dip-line" style="color:#FFB000;">

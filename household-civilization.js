@@ -49,12 +49,112 @@
         return CLASSES.stability;
     }
 
+    const RANKS = [
+        { id: 'emerging', title: t('rnkEmerging'), threshold: 0 },
+        { id: 'settlement', title: t('rnkSettlement'), threshold: 10 },
+        { id: 'municipality', title: t('rnkMunicipality'), threshold: 30 },
+        { id: 'republic', title: t('rnkRepublic'), threshold: 60 },
+        { id: 'mythic', title: t('rnkMythic'), threshold: 100 },
+        { id: 'empire', title: t('rnkEmpire'), threshold: 200 },
+        { id: 'legendary', title: t('rnkLegendary'), threshold: 500 },
+        { id: 'canonized', title: t('rnkCanonized'), threshold: 1000 }
+    ];
+
+    function calculatePrestige(history, profiles) {
+        const relics = window.MeowStore.getForgedRelics ? window.MeowStore.getForgedRelics().length : 0;
+        const chronicles = window.MeowStore.getChronicles ? window.MeowStore.getChronicles().length : 0;
+        const federation = window.MeowStore.getFederation ? window.MeowStore.getFederation().length : 0;
+        const stickers = window.MeowStore.getUnlockedStickers ? Object.keys(window.MeowStore.getUnlockedStickers()).length : 0;
+        
+        // Prestige formula
+        return (history.length * 2) + (relics * 10) + (chronicles * 15) + (federation * 10) + (stickers * 5);
+    }
+
+    function getRank(prestige) {
+        let current = RANKS[0];
+        for (let r of RANKS) {
+            if (prestige >= r.threshold) current = r;
+            else break;
+        }
+        return current;
+    }
+
+    function renderCivRank(history, profiles) {
+        const prestige = calculatePrestige(history, profiles);
+        const currentRank = getRank(prestige);
+        const nextRank = RANKS[RANKS.indexOf(currentRank) + 1] || null;
+        
+        const progress = nextRank ? ((prestige - currentRank.threshold) / (nextRank.threshold - currentRank.threshold)) * 100 : 100;
+        const isHighTier = RANKS.indexOf(currentRank) >= 4;
+
+        let container = document.getElementById('household-civ-rank');
+        if (!container) {
+            container = document.createElement('div');
+            container.id = 'household-civ-rank';
+            container.className = 'rank-banner-container animate-fade-in';
+            const alignment = document.getElementById('household-civ-alignment');
+            if (alignment) alignment.before(container);
+        }
+
+        if (isHighTier) container.classList.add('rank-tier-high');
+        else container.classList.remove('rank-tier-high');
+
+        container.innerHTML = `
+            <div class="rank-info">
+                <span class="rank-tier-label">${t('rankTitle')} • TIER ${RANKS.indexOf(currentRank) + 1}</span>
+                <h3 class="rank-name">${currentRank.title}</h3>
+                <div class="rank-progress-outer">
+                    <div class="rank-progress-inner" style="width: ${progress}%"></div>
+                </div>
+            </div>
+            <div class="legacy-score-badge">
+                <div class="legacy-val">${prestige}</div>
+                <div class="legacy-label">${t('rankLegacy')}</div>
+            </div>
+        `;
+
+        // Check for new Rank Ascension (local session only for v1 ceremony)
+        const lastRankId = localStorage.getItem('meowbti.last_rank');
+        if (lastRankId && lastRankId !== currentRank.id) {
+            showAscensionCeremony(currentRank);
+        }
+        localStorage.setItem('meowbti.last_rank', currentRank.id);
+
+        if (window.MeowTrack) {
+            window.MeowTrack('civilization_rank_view', { rank_id: currentRank.id, prestige, lang: getLang() });
+        }
+    }
+
+    function showAscensionCeremony(rank) {
+        let overlay = document.getElementById('ascension-overlay');
+        if (!overlay) {
+            overlay = document.createElement('div');
+            overlay.id = 'ascension-overlay';
+            overlay.className = 'ascension-ceremony-overlay';
+            document.body.append(overlay);
+        }
+        overlay.classList.add('active');
+        overlay.innerHTML = `
+            <div class="animate-fade-in">
+                <span style="font-size:4rem; display:block; margin-bottom:16px;">✨</span>
+                <span class="rank-tier-label" style="color:#FFB000;">${t('rankAscension')}</span>
+                <h1 class="ascension-title">${rank.title}</h1>
+                <p class="codex-p" style="color:rgba(255,255,255,0.7); max-width:400px; margin:0 auto 32px;">${t('ascensionLore')}</p>
+                <button class="big-btn accent" onclick="document.getElementById('ascension-overlay').classList.remove('active')">Accept Legacy</button>
+            </div>
+        `;
+        window.MeowTrack && window.MeowTrack('ascension_event', { rank_id: rank.id, lang: getLang() });
+    }
+
     function renderCivAlignment() {
         const host = document.getElementById('family-content');
         if (!host) return;
 
         const profiles = window.MeowStore.getFamily();
         if (profiles.length < 2) return;
+
+        const history = getHistory();
+        renderCivRank(history, profiles);
 
         let container = document.getElementById('household-civ-alignment');
         if (!container) {

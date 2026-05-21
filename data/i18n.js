@@ -673,6 +673,29 @@
         clsStability:      { en: "The Soft Stability Civilization", th: "อารยธรรมความมั่นคงที่นุ่มนวล" },
         provStability:     { en: "The air remains clear by collective intent.", th: "ท้องฟ้ายังคงโปร่งใสด้วยเจตจำนงร่วมกัน" },
 
+        // ─── Civilization Ranks & Ascension ──────────────
+        rankTitle:         { en: "Civilization Rank",         th: "อันดับอารยธรรม" },
+        rankAscension:     { en: "Emotional Ascension",       th: "การเลื่อนระดับทางจิตวิญญาณ" },
+        rankLegacy:        { en: "Emotional Legacy Score",    th: "คะแนนมรดกทางอารมณ์" },
+        rankPrestige:      { en: "Prestige Identity",         th: "ตัวตนอันทรงเกียรติ" },
+        rankYears:         { en: "Days Survived",             th: "จำนวนวันที่อยู่รอด" },
+        rankEras:          { en: "Eras Completed",            th: "ยุคสมัยที่ผ่านพ้น" },
+        rankRelics:        { en: "Relics Forged",             th: "วัตถุโบราณที่ตีตรา" },
+        rankTreaties:      { en: "Treaties Ratified",         th: "สนธิสัญญาที่ลงนาม" },
+
+        // Rank Tiers
+        rnkEmerging:       { en: "Emerging Civilization",     th: "อารยธรรมเกิดใหม่" },
+        rnkSettlement:     { en: "Functional Settlement",     th: "ชุมชนที่มั่นคง" },
+        rnkMunicipality:   { en: "Emotional Municipality",    th: "เทศบาลทางอารมณ์" },
+        rnkRepublic:       { en: "Parallel Republic",         th: "สาธารณรัฐคู่ขนาน" },
+        rnkMythic:         { en: "Mythic Civilization",       th: "อารยธรรมในตำนาน" },
+        rnkEmpire:         { en: "Ancient Recovery Empire",   th: "อาณาจักรการพักฟื้นโบราณ" },
+        rnkLegendary:      { en: "Legendary Emotional State", th: "รัฐทางอารมณ์ระดับตำนาน" },
+        rnkCanonized:      { en: "Canonized Civilization",    th: "อารยธรรมที่ถูกจารึก" },
+
+        ascensionEvent:    { en: "The civilization has stabilized.", th: "อารยธรรมได้บรรลุความมั่นคงแล้ว" },
+        ascensionLore:     { en: "This household survived enough to become canon.", th: "บ้านหลังนี้ผ่านร้อนผ่านหนาวมามากพอที่จะถูกจารึกไว้ในประวัติศาสตร์" },
+
         // Codex Concepts
         thParallelIntimacy_Def: { en: "A social state where household members coexist in the same space without direct interaction, deriving intimacy from shared presence alone.", 
                                   th: "สภาวะทางสังคมที่สมาชิกในบ้านอยู่ร่วมกันในพื้นที่เดียวกันโดยไม่มีการปฏิสัมพันธ์โดยตรง โดยได้รับความใกล้ชิดจากการมีอยู่ร่วมกันเพียงอย่างเดียว" },
