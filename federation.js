@@ -47,6 +47,69 @@
         return null;
     }
 
+    function checkMilestones(federation, local) {
+        if (!window.MeowStore.unlockSticker) return;
+
+        // 1. Embassy Opened
+        if (federation.length > 0) {
+            if (window.MeowStore.unlockSticker('stk_embassy_open')) {
+                window.MeowTrack && window.MeowTrack('federation_sticker_unlocked', { sticker_type: 'stk_embassy_open', lang: getLang() });
+            }
+        }
+
+        // 2. Mega-Alliance Detection (3+ households)
+        const soupCount = federation.filter(m => m.doctrine === 'thSoupLabor' || (local.doctrine === 'thSoupLabor' && m.id === local.id)).length + (local.doctrine === 'thSoupLabor' ? 1 : 0);
+        if (soupCount >= 3) {
+            if (window.MeowStore.unlockSticker('mega_soup')) {
+                window.MeowTrack && window.MeowTrack('mega_alliance_detected', { alliance_type: 'mega_soup', lang: getLang() });
+            }
+        }
+
+        const heavyCount = federation.filter(m => m.recentClimate === 'heavy').length + (local.recentClimate === 'heavy' ? 1 : 0);
+        if (heavyCount >= 3) {
+            if (window.MeowStore.unlockSticker('mega_blanket')) {
+                window.MeowTrack && window.MeowTrack('mega_alliance_detected', { alliance_type: 'mega_blanket', lang: getLang() });
+            }
+        }
+
+        const parallelCount = federation.filter(m => m.doctrine === 'thParallelIntimacy').length + (local.doctrine === 'thParallelIntimacy' ? 1 : 0);
+        if (parallelCount >= 3) {
+            if (window.MeowStore.unlockSticker('mega_silent')) {
+                window.MeowTrack && window.MeowTrack('mega_alliance_detected', { alliance_type: 'mega_silent', lang: getLang() });
+            }
+        }
+    }
+
+    function renderStickerWall() {
+        const unlocked = window.MeowStore.getUnlockedStickers ? window.MeowStore.getUnlockedStickers() : {};
+        if (Object.keys(unlocked).length === 0) return '';
+
+        const stickers = [
+            { id: 'stk_embassy_open', icon: '🏛️', label: t('stkEmbassyOpen'), desc: "Established diplomatic infrastructure." },
+            { id: 'mega_soup', icon: '🍲', label: t('megaSoup'), desc: t('stkSoupDesc') },
+            { id: 'mega_blanket', icon: '🛌', label: t('megaBlanket'), desc: t('stkBlanketDesc') },
+            { id: 'mega_silent', icon: '🔇', label: t('megaSilent'), desc: t('stkSilentDesc') }
+        ];
+
+        return `
+            <div class="sticker-wall-container animate-fade-in">
+                <span class="sticker-wall-title">${t('fedStickerWall')}</span>
+                <div class="sticker-grid">
+                    ${stickers.map(stk => {
+                        if (!unlocked[stk.id]) return '';
+                        return `
+                            <div class="sticker-item" title="${stk.desc}">
+                                <div class="sticker-icon">${stk.icon}</div>
+                                <span class="sticker-label">${stk.label}</span>
+                                <button class="micro-share-icon mini" data-type="sticker" data-text="Federation Sticker Earned: ${stk.label}. ${stk.desc}">📤</button>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+            </div>
+        `;
+    }
+
     function renderFederationUI() {
         const host = document.getElementById('family-content');
         if (!host) return;
@@ -64,6 +127,8 @@
 
         const federation = window.MeowStore.getFederation();
         const local = getLocalCivilizationSnapshot();
+
+        checkMilestones(federation, local);
 
         container.innerHTML = `
             <div class="chronicle-header">
@@ -85,8 +150,29 @@
                     <div class="embassy-header">
                         <h3 class="embassy-title">${t('fedEmbassy')}</h3>
                     </div>
+
+                    ${(function() {
+                        const unlocked = window.MeowStore.getUnlockedStickers ? window.MeowStore.getUnlockedStickers() : {};
+                        const megaKeys = ['mega_soup', 'mega_blanket', 'mega_silent'];
+                        const latestMega = megaKeys.reverse().find(k => unlocked[k]);
+                        if (!latestMega) return '';
+                        
+                        let title, desc;
+                        if (latestMega === 'mega_soup') { title = t('megaSoup'); desc = t('stkSoupDesc'); }
+                        else if (latestMega === 'mega_blanket') { title = t('megaBlanket'); desc = t('stkBlanketDesc'); }
+                        else { title = t('megaSilent'); desc = t('stkSilentDesc'); }
+
+                        return `
+                            <div class="mega-alliance-alert animate-fade-in">
+                                <div class="mega-alliance-title">🌟 ${title}</div>
+                                <div class="mega-alliance-desc">${desc}</div>
+                            </div>
+                        `;
+                    })()}
+
+                    ${renderStickerWall()}
                     
-                    <div class="alliance-grid">
+                    <div class="alliance-grid" style="margin-top:32px;">
                         ${federation.map(member => {
                             const alliance = getAllianceType(local, member);
                             const sharedEvent = getSharedEvent(local, member);
@@ -163,6 +249,7 @@
                     const local = getLocalCivilizationSnapshot();
                     const alliance = getAllianceType(local, imported);
                     window.MeowTrack && window.MeowTrack('alliance_formed', { alliance_type: alliance.title, lang: getLang() });
+                    window.MeowTrack && window.MeowTrack('treaty_badge_earned', { treaty_type: alliance.title, lang: getLang() });
                 } else {
                     alert("Invalid civilization code.");
                 }
@@ -186,6 +273,11 @@
         if (window.MeowTrack) {
             window.MeowTrack('embassy_opened', { federation_size: federation.length, lang: getLang() });
             
+            const unlocked = window.MeowStore.getUnlockedStickers ? window.MeowStore.getUnlockedStickers() : {};
+            if (Object.keys(unlocked).length > 0) {
+                window.MeowTrack('embassy_sticker_wall_viewed', { sticker_count: Object.keys(unlocked).length, lang: getLang() });
+            }
+
             federation.forEach(member => {
                 const event = getSharedEvent(local, member);
                 if (event) window.MeowTrack('cross_household_event', { event_type: event.title, lang: getLang() });

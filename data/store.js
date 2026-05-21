@@ -158,6 +158,22 @@
         return true;
     }
 
+    function getUnlockedStickers() {
+        return getRawStore().unlockedStickers || {};
+    }
+
+    function unlockSticker(id) {
+        const store = getRawStore();
+        store.unlockedStickers = store.unlockedStickers || {};
+        if (!store.unlockedStickers[id]) {
+            store.unlockedStickers[id] = new Date().toISOString();
+            _cachedStore = store;
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
+            return true;
+        }
+        return false;
+    }
+
     window.MeowStore = {
         getFamily,
         saveFamilyProfile,
@@ -172,6 +188,8 @@
         getChronicles,
         saveChronicle,
         getFederation,
-        saveFederationMember
+        saveFederationMember,
+        getUnlockedStickers,
+        unlockSticker
     };
 })();

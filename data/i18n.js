@@ -616,7 +616,20 @@
         fedEmbassy:        { en: "Emotional Embassy",         th: "สถานเอกอัครราชทูตทางอารมณ์" },
         fedExportCode:     { en: "Share Civilization Code",   th: "แชร์รหัสอารยธรรม" },
         fedImportCode:     { en: "Establish Diplomacy",       th: "สถาปนาการทูต" },
+        fedStickerWall:    { en: "Embassy Sticker Wall",      th: "กำแพงสติกเกอร์สถานทูต" },
         
+        // Mega-Alliances
+        megaSoup:          { en: "The Brotherhood of the Soup", th: "ภราดรภาพแห่งซุป" },
+        megaBlanket:       { en: "The Blanket Confederacy",    th: "สมาพันธรัฐผ้าห่ม" },
+        megaSilent:        { en: "The Silent Federation",      th: "สหพันธรัฐแห่งความเงียบ" },
+        
+        // Sticker Titles
+        stkSoupDesc:       { en: "Multiple civilizations independently discovered broth-based survival.", th: "หลายอารยธรรมค้นพบการเอาตัวรอดด้วยน้ำซุปโดยมิได้นัดหมาย" },
+        stkBlanketDesc:    { en: "Horizontal survival recognized as foundational infrastructure.", th: "การเอาตัวรอดในแนวราบได้รับการยอมรับว่าเป็นโครงสร้างพื้นฐาน" },
+        stkSilentDesc:     { en: "Silent coexistence has achieved diplomatic recognition.", th: "การอยู่ร่วมกันอย่างเงียบเชียบได้รับการยอมรับทางการทูต" },
+        stkEmbassyOpen:    { en: "Embassy Opened Successfully", th: "เปิดสถานทูตสำเร็จ" },
+        stkTreatyRatified: { en: "Treaty Ratified",           th: "สัตยาบันสนธิสัญญา" },
+
         // Alliances
         allBlanketAccord:  { en: "The Blanket Accord",        th: "ข้อตกลงแห่งผ้าห่ม" },
         allSoupPact:       { en: "The Soup Pact",             th: "สนธิสัญญาซุป" },
