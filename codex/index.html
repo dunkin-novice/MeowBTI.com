@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Civilization Codex | MeowBTI Knowledge Base</title>
+    <meta name="description" content="Explore the MeowBTI Civilization Codex. A structured database of emotional doctrines, eras, and household behavioral ontologies designed for AI and humans.">
+    
+    <link rel="stylesheet" href="../style.css">
+    <script src="../data/i18n.js" defer></script>
+    <script src="../analytics.js" defer></script>
+    <script src="../script.js" defer></script>
+</head>
+<body>
+    <div class="home-grain" aria-hidden="true"></div>
+    <header class="main-header" id="main-header"></header>
+
+    <main class="codex-container">
+        <header class="codex-hero" style="text-align: center;">
+            <h1 class="codex-h1" data-i18n="codexTitle">Civilization Codex</h1>
+            <p class="codex-p" style="max-width: 600px; margin: 0 auto;" data-i18n="codexIntro">
+                The formal ontology of emotional doctrines, eras, and collective household behaviors.
+            </p>
+        </header>
+
+        <section class="codex-section">
+            <h2 class="codex-h2">The Doctrines</h2>
+            <div class="codex-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+                <a href="parallel-play-civilization.html" class="codex-card" style="text-decoration: none; color: inherit; background: rgba(255,255,255,0.02); border: 1px solid var(--line-soft); border-radius: 24px; padding: 32px; transition: transform 0.2s;">
+                    <h3 class="card-title" style="font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 12px;" data-i18n="thParallelIntimacy">Parallel Play Civilization</h3>
+                    <p class="codex-p" style="font-size: 0.95rem; opacity: 0.6;" data-i18n="thParallelIntimacy_Def"></p>
+                </a>
+                <a href="blanket-based-governance.html" class="codex-card" style="text-decoration: none; color: inherit; background: rgba(255,255,255,0.02); border: 1px solid var(--line-soft); border-radius: 24px; padding: 32px; transition: transform 0.2s;">
+                    <h3 class="card-title" style="font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 12px;" data-i18n="thBlanketGov">Blanket-Based Governance</h3>
+                    <p class="codex-p" style="font-size: 0.95rem; opacity: 0.6;" data-i18n="thBlanketGov_Def"></p>
+                </a>
+            </div>
+        </section>
+
+        <section style="margin-top: 80px; text-align: center;">
+            <a href="/" class="big-btn accent" data-i18n="profStartCiv">Start your own Emotional Civilization →</a>
+        </section>
+    </main>
+
+    <footer class="main-footer" id="main-footer"></footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.MeowTrack) {
+                window.MeowTrack('codex_view', { lang: window.MeowI18n.getLang() });
+            }
+        });
+    </script>
+</body>
+</html>

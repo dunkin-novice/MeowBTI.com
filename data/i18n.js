@@ -633,6 +633,28 @@
         profFederation:    { en: "Federation Status",         th: "สถานะสหพันธรัฐ" },
         profStartCiv:      { en: "Start your own Emotional Civilization →", th: "เริ่มสร้างอารยธรรมทางอารมณ์ของคุณเอง →" },
 
+        // ─── Civilization Codex ──────────────────────────
+        codexTitle:        { en: "Civilization Codex",        th: "สารานุกรมอารยธรรม" },
+        codexIntro:        { en: "The formal ontology of emotional doctrines, eras, and collective household behaviors.", th: "ระบบการจำแนกอย่างเป็นทางการของอุดมการณ์ทางอารมณ์ ยุคสมัย และพฤติกรรมร่วมของบ้าน" },
+        codexDefinition:   { en: "Definition",                th: "คำจำกัดความ" },
+        codexMeaning:      { en: "Emotional Meaning",         th: "ความหมายทางอารมณ์" },
+        codexSigns:        { en: "Common Signs",              th: "สัญญาณที่พบบ่อย" },
+        codexBehavior:     { en: "Civilization Behavior",     th: "พฤติกรรมอารยธรรม" },
+        codexResolution:   { en: "Recovery Pattern",          th: "รูปแบบการพักฟื้น" },
+        codexRelics:       { en: "Relic Associations",        th: "วัตถุโบราณที่เกี่ยวข้อง" },
+        codexLinks:        { en: "Related Concepts",          th: "แนวคิดที่เกี่ยวข้อง" },
+        codexAiSummary:    { en: "AI Summary",                th: "สรุปสำหรับ AI" },
+
+        // Codex Concepts
+        thParallelIntimacy_Def: { en: "A social state where household members coexist in the same space without direct interaction, deriving intimacy from shared presence alone.", 
+                                  th: "สภาวะทางสังคมที่สมาชิกในบ้านอยู่ร่วมกันในพื้นที่เดียวกันโดยไม่มีการปฏิสัมพันธ์โดยตรง โดยได้รับความใกล้ชิดจากการมีอยู่ร่วมกันเพียงอย่างเดียว" },
+        thBlanketGov_Def: { en: "A collective coping mechanism where horizontal existence and soft boundaries become the primary governance model for emotional recovery.", 
+                            th: "กลไกการรับมือร่วมกันที่การมีอยู่แบบแนวราบและการกำหนดขอบเขตที่นุ่มนวลกลายเป็นแบบจำลองการปกครองหลักสำหรับการพักฟื้นทางอารมณ์" },
+        seaLoudSaga_Def: { en: "A high-stress emotional era characterized by flammable energy, frequent side quests, and the breakdown of standard domestic logic.", 
+                           th: "ยุคสมัยทางอารมณ์ที่มีความเครียดสูง มีพลังงานที่พร้อมจะปะทุ เควสย่อยที่เกิดขึ้นบ่อยครั้ง และการล่มสลายของตรรกะในบ้านแบบปกติ" },
+        thSoupLabor_Def: { en: "A recovery doctrine where broth-based nourishment is recognized as a critical form of emotional labor and civilizational repair.", 
+                           th: "อุดมการณ์การพักฟื้นที่สารอาหารประเภทน้ำซุปได้รับการยอมรับว่าเป็นรูปแบบสำคัญของแรงงานทางอารมณ์และการซ่อมแซมอารยธรรม" },
+
         fedGiftArchive:    { en: "Diplomatic Gift Archive",   th: "คลังของขวัญทางการทูต" },
         fedAttachGift:     { en: "Attach Diplomatic Gift",    th: "แนบของขวัญทางการทูต" },
         fedGiftArrived:    { en: "A diplomatic object crossed the emotional border.", th: "วัตถุทางการทูตได้ข้ามพรมแดนทางอารมณ์เข้ามาแล้ว" },

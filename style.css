@@ -4489,3 +4489,95 @@ a { color: inherit; }
 .dark .card-title {
   text-shadow: 0 4px 20px rgba(0,0,0,0.5);
 }
+
+/* ─── Civilization Codex v1 ─────────────────────── */
+.codex-container {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 0 24px;
+  text-align: left;
+}
+.codex-hero {
+  margin-bottom: 60px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--line-soft);
+}
+.codex-h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  line-height: 1.1;
+  margin-bottom: 24px;
+  color: var(--ink);
+}
+
+.ai-summary-block {
+  background: var(--bg);
+  border: 1.5px solid var(--ink);
+  border-radius: 24px;
+  padding: 32px;
+  margin-bottom: 48px;
+  position: relative;
+}
+.ai-summary-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 900;
+  color: #9B59B6;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 12px;
+  display: block;
+}
+.ai-summary-text { font-size: 1.1rem; font-weight: 600; line-height: 1.5; color: var(--ink); }
+
+.codex-section { margin-bottom: 48px; }
+.codex-h2 {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.codex-h2::before { content: '✦'; color: #9B59B6; font-size: 1.2rem; }
+
+.codex-p { font-size: 1.1rem; line-height: 1.6; opacity: 0.8; margin-bottom: 16px; }
+
+.signs-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+.sign-item {
+  padding: 16px 20px;
+  background: #fff;
+  border: 1px solid var(--line-soft);
+  border-radius: 16px;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.codex-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 20px;
+}
+.codex-link-tag {
+  padding: 8px 16px;
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  border-radius: 40px;
+  text-decoration: none;
+  color: var(--ink);
+  font-size: 0.9rem;
+  font-weight: 800;
+  transition: transform 0.2s;
+}
+.codex-link-tag:hover { transform: translateY(-2px); background: var(--bg); }
+
+@media (max-width: 600px) {
+  .codex-container { margin-top: 40px; }
+  .ai-summary-block { padding: 24px; }
+}
