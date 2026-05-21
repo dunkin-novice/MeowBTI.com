@@ -232,12 +232,17 @@
                         ${Object.entries(GIGT_DEFINITIONS).map(([k, d]) => `<option value="${k}">${d.icon} ${d.name}</option>`).join('')}
                     </select>
                 </div>
-                <button class="big-btn accent" id="btn-fed-export" style="align-self:flex-end;">
-                    🔗 ${t('fedExportCode')}
-                </button>
-                <button class="big-btn ghost" id="btn-fed-import" style="align-self:flex-end;">
-                    📥 ${t('fedImportCode')}
-                </button>
+                <div style="display:flex; gap:12px; align-self:flex-end; flex-wrap:wrap;">
+                    <button class="big-btn accent" id="btn-fed-export">
+                        🔗 ${t('fedExportCode')}
+                    </button>
+                    <button class="big-btn ghost" id="btn-fed-identity">
+                        👤 ${t('fedShareIdentity')}
+                    </button>
+                    <button class="big-btn ghost" id="btn-fed-import">
+                        📥 ${t('fedImportCode')}
+                    </button>
+                </div>
             </div>
 
             ${renderGiftArchive()}
@@ -334,6 +339,52 @@
             }
             window.MeowTrack && window.MeowTrack('federation_created', { profile_count: profiles.length, lang: getLang() });
             if (giftKey) window.MeowTrack && window.MeowTrack('diplomatic_gift_attached', { gift_type: giftKey, lang: getLang() });
+        };
+
+        container.querySelector('#btn-fed-identity').onclick = () => {
+            const history = window.MeowDaily.getHistory() || [];
+            const season = window.MeowSeasons ? window.MeowSeasons.detectSeason(history) : { title: "Undiscovered Civilization" };
+            const aura = window.MeowMuseum ? window.MeowMuseum.getAura(history) : null;
+            const reputation = window.MeowMuseum ? window.MeowMuseum.getReputation(history, 'civ') : "Historically Significant";
+            const forged = window.MeowStore.getForgedRelics ? window.MeowStore.getForgedRelics() : [];
+            const topRelic = forged.length > 0 ? forged[0] : { name: "Ancient Memory", icon: "🗿" };
+            
+            const cabinet = window.MeowStore.getThoughtCabinet ? window.MeowStore.getThoughtCabinet() : {};
+            const internalized = Object.entries(cabinet).filter(([id, d]) => d.status === 'INTERNALIZED');
+            const doctrine = internalized.length > 0 ? t(internalized[0][0]) : "Undeclared Philosophy";
+
+            const payload = {
+                seasonTitle: season.title,
+                seasonKey: season.key,
+                reputation: reputation + (aura ? ` with ${aura.title}` : ''),
+                era: window.MeowSeasons ? window.MeowSeasons.detectArc(history) : "Early History",
+                doctrine: doctrine,
+                doctrineKey: internalized.length > 0 ? internalized[0][0] : 'none',
+                relicName: topRelic.customName || topRelic.name,
+                relicIcon: topRelic.icon,
+                philosophy: t('cultSocialDesc'), // Anthropological placeholder
+                infrastructure: history.filter(h => h.answers.energy === 'low').length > history.length * 0.5 ? "Blanket-Based" : "Highly Flammable",
+                federation: federation.length > 0 ? `Member of ${federation.length} Alliances` : "Independent Civilization"
+            };
+
+            const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(payload))));
+            const url = `${window.location.origin}/civilization/view.html?p=${encoded}`;
+
+            if (navigator.share) {
+                navigator.share({
+                    title: `${payload.seasonTitle} | MeowBTI`,
+                    text: `Explore our Emotional Civilization: ${payload.doctrine}.`,
+                    url: url
+                });
+            } else {
+                navigator.clipboard.writeText(url).then(() => alert("Identity profile link copied!"));
+            }
+
+            window.MeowTrack && window.MeowTrack('civilization_profile_export', {
+                season: payload.seasonKey,
+                doctrine: payload.doctrineKey,
+                lang: getLang()
+            });
         };
 
         container.querySelector('#btn-fed-import').onclick = () => {

@@ -620,6 +620,19 @@
         fedExportCode:     { en: "Share Civilization Code",   th: "แชร์รหัสอารยธรรม" },
         fedImportCode:     { en: "Establish Diplomacy",       th: "สถาปนาการทูต" },
         fedStickerWall:    { en: "Embassy Sticker Wall",      th: "กำแพงสติกเกอร์สถานทูต" },
+        fedPublicProfile:  { en: "Emotional Civilization Profile", th: "ประวัติอารยธรรมทางอารมณ์" },
+        fedShareIdentity:  { en: "Export Public Identity",    th: "ส่งออกตัวตนสาธารณะ" },
+        
+        // Profile Labels
+        profReputation:    { en: "Emotional Reputation",      th: "ชื่อเสียงทางอารมณ์" },
+        profEra:           { en: "Current Era",               th: "ยุคสมัยปัจจุบัน" },
+        profDoctrine:      { en: "Dominant Doctrine",         th: "อุดมการณ์หลัก" },
+        profRelic:         { en: "Signature Relic",           th: "วัตถุโบราณชิ้นเอก" },
+        profPhilosophy:    { en: "Relationship Philosophy",   th: "ปรัชญาความสัมพันธ์" },
+        profInfra:         { en: "Recovery Infrastructure",   th: "โครงสร้างพื้นฐานการพักฟื้น" },
+        profFederation:    { en: "Federation Status",         th: "สถานะสหพันธรัฐ" },
+        profStartCiv:      { en: "Start your own Emotional Civilization →", th: "เริ่มสร้างอารยธรรมทางอารมณ์ของคุณเอง →" },
+
         fedGiftArchive:    { en: "Diplomatic Gift Archive",   th: "คลังของขวัญทางการทูต" },
         fedAttachGift:     { en: "Attach Diplomatic Gift",    th: "แนบของขวัญทางการทูต" },
         fedGiftArrived:    { en: "A diplomatic object crossed the emotional border.", th: "วัตถุทางการทูตได้ข้ามพรมแดนทางอารมณ์เข้ามาแล้ว" },

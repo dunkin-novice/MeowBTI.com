@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotional Civilization Profile | MeowBTI</title>
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!-- Dynamic OG tags will be handled by JS -->
+    <meta property="og:title" content="MeowBTI Emotional Civilization">
+    <meta property="og:description" content="A public profile of an emotionally evolving household.">
+    <meta property="og:type" content="profile">
+    <meta property="og:image" content="https://meowbti.com/assets/personalities/og-generic.png">
+
+    <link rel="stylesheet" href="../style.css">
+    <script src="../data/i18n.js" defer></script>
+    <script src="../analytics.js" defer></script>
+    <script src="../script.js" defer></script>
+    <script src="view.js" defer></script>
+
+    <style>
+        body {
+            background: #0F0908;
+            margin: 0;
+            padding: 0;
+            color: rgba(255, 255, 255, 0.9);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+        }
+        .profile-hero {
+            padding: 100px 24px 60px;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(180deg, #1F1410 0%, #0F0908 100%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .profile-hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at center, rgba(155, 89, 182, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .civ-banner {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 10vw, 4.5rem);
+            line-height: 1;
+            margin-bottom: 16px;
+            color: #fff;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .civ-reputation {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: #FF5B3B;
+            margin-bottom: 40px;
+            display: block;
+        }
+
+        .profile-grid {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 24px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        .profile-module {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 32px;
+            padding: 32px;
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+        .module-label {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            opacity: 0.4;
+            letter-spacing: 0.15em;
+            margin-bottom: 16px;
+            display: block;
+        }
+        .module-val {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            line-height: 1.2;
+            color: #fff;
+        }
+        .module-desc {
+            margin-top: 12px;
+            font-size: 0.95rem;
+            opacity: 0.6;
+            line-height: 1.5;
+        }
+
+        .profile-cta-section {
+            padding: 100px 24px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.01);
+        }
+
+        @media (max-width: 600px) {
+            .profile-hero { padding-top: 80px; }
+            .profile-grid { gap: 24px; padding: 40px 24px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="home-grain" aria-hidden="true"></div>
+
+    <header class="main-header" style="position:absolute; top:0; left:0; right:0; background:transparent; border:0;"></header>
+
+    <main id="profile-mount">
+        <!-- Profile will be injected here -->
+    </main>
+
+    <section class="profile-cta-section">
+        <a href="/" class="big-btn accent" data-i18n="profStartCiv">Start your own Emotional Civilization →</a>
+    </section>
+
+    <footer class="main-footer" id="main-footer" style="background:transparent; border:0;"></footer>
+</body>
+</html>

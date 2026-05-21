@@ -136,6 +136,11 @@
         });
     }
 
+    window.MeowSeasons = {
+        detectSeason,
+        detectArc
+    };
+
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', renderSeasons);
     } else {

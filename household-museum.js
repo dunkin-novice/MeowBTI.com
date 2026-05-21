@@ -778,7 +778,9 @@
     }
 
     window.MeowMuseum = {
-        getApparition
+        getApparition,
+        getReputation,
+        getAura
     };
 
     if (document.readyState === 'loading') {
