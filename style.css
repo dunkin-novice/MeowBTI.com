@@ -4127,3 +4127,97 @@ a { color: inherit; }
   .arc-name { font-size: 1.5rem; }
   .possession-banner { font-size: 0.65rem; padding: 10px 20px; }
 }
+
+/* ─── Household Chronicles v1 ───────────────────── */
+.chronicle-container {
+  margin-top: 60px;
+  padding: 48px;
+  background: #fdfaf6;
+  border: 2px solid var(--ink);
+  border-radius: 48px;
+  text-align: center;
+  position: relative;
+  background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.02' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
+}
+.chronicle-header { margin-bottom: 48px; }
+.chronicle-h2 { font-family: var(--font-display); font-size: 2.8rem; color: var(--ink); margin-bottom: 12px; }
+
+.chronicle-action-row {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 48px;
+}
+
+/* Cinematic Recap Cards */
+.chronicle-card-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: #1F1410;
+  z-index: 10000;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+  overflow-y: auto;
+}
+.chronicle-card-overlay.active { display: flex; }
+
+.cinematic-card {
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 9/16;
+  background: #fff;
+  border-radius: 40px;
+  padding: 48px 32px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+  background-size: cover;
+  background-position: center;
+  color: var(--ink);
+}
+.cinematic-card.dark { background: #1F1410; color: #fff; border: 1px solid rgba(255,255,255,0.1); }
+
+.card-title { font-family: var(--font-display); font-size: 2.5rem; margin-bottom: 24px; line-height: 1.1; }
+.card-content { font-size: 1.1rem; line-height: 1.5; opacity: 0.9; }
+.card-footer { margin-top: auto; padding-top: 32px; border-top: 1px solid rgba(0,0,0,0.1); }
+.dark .card-footer { border-top-color: rgba(255,255,255,0.1); }
+
+.poster-metadata {
+  margin-top: 32px;
+  display: grid;
+  gap: 16px;
+  text-align: left;
+}
+.pm-item { display: flex; flex-direction: column; gap: 4px; }
+.pm-label { font-family: var(--font-mono); font-size: 0.65rem; font-weight: 900; text-transform: uppercase; opacity: 0.5; letter-spacing: 0.1em; }
+.pm-val { font-weight: 700; font-size: 0.95rem; }
+
+.chronicle-archive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
+  margin-top: 32px;
+}
+.archive-thumb {
+  aspect-ratio: 9/16;
+  background: var(--paper);
+  border: 1.5px solid var(--ink);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.archive-thumb:hover { transform: scale(1.05); }
+
+@media (max-width: 600px) {
+  .chronicle-container { padding: 32px 20px; }
+  .chronicle-h2 { font-size: 2.2rem; }
+  .cinematic-card { padding: 32px 24px; }
+}

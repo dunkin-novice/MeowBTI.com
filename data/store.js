@@ -127,6 +127,22 @@
         return true;
     }
 
+    function getChronicles() {
+        return getRawStore().chronicles || [];
+    }
+
+    function saveChronicle(chronicle) {
+        const store = getRawStore();
+        store.chronicles = store.chronicles || [];
+        store.chronicles.push({
+            ...chronicle,
+            createdAt: new Date().toISOString()
+        });
+        _cachedStore = store;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
+        return true;
+    }
+
     window.MeowStore = {
         getFamily,
         saveFamilyProfile,
@@ -137,6 +153,8 @@
         getThoughtCabinet,
         updateThought,
         getActiveArc,
-        updateActiveArc
+        updateActiveArc,
+        getChronicles,
+        saveChronicle
     };
 })();

@@ -581,6 +581,35 @@
         arcFalloutLoud:    { en: "The household survived the Loud Saga. Ears are still ringing emotionally.", th: "คนทั้งบ้านรอดพ้นมหากาพย์เสียงดังมาได้ แต่หูยังคงแว่วเสียงอารมณ์อยู่" },
         arcFalloutParallel: { en: "The silence lifts. The house feels strangely crowded with words.", th: "ความเงียบจางไป บ้านดูเหมือนจะแออัดไปด้วยคำพูดอย่างประหลาด" },
 
+        // ─── Household Chronicles ────────────────────────
+        chronicleTitle:    { en: "Household Chronicle",       th: "พงศาวดารประจำบ้าน" },
+        chronicleIntro:    { en: "A literary record of your household's emotional evolution and shared mythology.", th: "บันทึกเรื่องราวการวิวัฒนาการทางอารมณ์และตำนานร่วมกันของบ้านคุณ" },
+        chronicleExport:   { en: "Export Chronicle",          th: "ส่งออกพงศาวดาร" },
+        chronicleArchive:  { en: "Chronicle Archive",         th: "คลังพงศาวดาร" },
+        
+        // Report Types
+        repCivSummary:     { en: "Civilization Report",       th: "รายงานอารยธรรม" },
+        repRelicPoster:    { en: "Artifact Poster",           th: "โปสเตอร์วัตถุโบราณ" },
+        repSeasonRecap:    { en: "Seasonal Recap",            th: "สรุปฤดูกาล" },
+        repFinale:         { en: "Season Finale",             th: "บทสรุปส่งท้าย" },
+
+        // Civilization Attributes
+        civDoctrine:       { en: "Dominant Doctrine",         th: "ลัทธิหลัก" },
+        civStabilizers:    { en: "Emotional Stabilizers",     th: "ผู้ประคองอารมณ์" },
+        civInfrastructure: { en: "Emotional Infrastructure",   th: "โครงสร้างพื้นฐานทางใจ" },
+        civSurvivalKey:    { en: "Survived Primarily Through", th: "อยู่รอดมาได้ด้วย" },
+
+        // Poster Metadata
+        posStatus:         { en: "Artifact Status",           th: "สถานะวัตถุ" },
+        posKnownFor:       { en: "Known For",                 th: "ขึ้นชื่อในเรื่อง" },
+        posAura:           { en: "Radiated Aura",             th: "ออร่าที่แผ่ออกมา" },
+        posHistory:        { en: "Historical Significance",   th: "ความสำคัญทางประวัติศาสตร์" },
+
+        // Finale Lines
+        finSurvived:       { en: "The household survived.",   th: "บ้านหลังนี้รอดชีวิตมาได้" },
+        finNoRecovery:     { en: "Nobody fully recovered. Memories remain.", th: "ไม่มีใครฟื้นตัวได้เต็มร้อย แต่ความทรงจำยังคงอยู่" },
+        finCanon:          { en: "This era has become canon.", th: "ยุคสมัยนี้ได้กลายเป็นส่วนหนึ่งของประวัติศาสตร์" },
+
         dynChaosHigh:      { en: "Shared Chaos: HIGH",        th: "ระดับความวุ่นวาย: สูง" },
         dynChaosMed:       { en: "Shared Chaos: MODERATE",    th: "ระดับความวุ่นวาย: ปานกลาง" },
         dynChaosLow:       { en: "Shared Chaos: LOW",         th: "ระดับความวุ่นวาย: ต่ำ" },
