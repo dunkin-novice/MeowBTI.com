@@ -617,8 +617,32 @@
         fedExportCode:     { en: "Share Civilization Code",   th: "แชร์รหัสอารยธรรม" },
         fedImportCode:     { en: "Establish Diplomacy",       th: "สถาปนาการทูต" },
         fedStickerWall:    { en: "Embassy Sticker Wall",      th: "กำแพงสติกเกอร์สถานทูต" },
-        
-        // Mega-Alliances
+        fedGiftArchive:    { en: "Diplomatic Gift Archive",   th: "คลังของขวัญทางการทูต" },
+        fedAttachGift:     { en: "Attach Diplomatic Gift",    th: "แนบของขวัญทางการทูต" },
+        fedGiftArrived:    { en: "A diplomatic object crossed the emotional border.", th: "วัตถุทางการทูตได้ข้ามพรมแดนทางอารมณ์เข้ามาแล้ว" },
+
+        // Gift Types
+        giftTreatyBlanket: { en: "Treaty Blanket",            th: "ผ้าห่มสนธิสัญญา" },
+        giftDipCharger:    { en: "Diplomatic Charger",        th: "สายชาร์จทางการทูต" },
+        giftSoupInfra:     { en: "Shared Soup Infrastructure", th: "โครงสร้างพื้นฐานซุปร่วมกัน" },
+        giftBeacon:        { en: "Emergency Recovery Beacon", th: "สัญญาณไฟพักฟื้นฉุกเฉิน" },
+        giftEmbassyCouch:  { en: "Parallel Play Embassy Couch", th: "โซฟาสถานทูตเพื่อการเล่นขนาน" },
+        giftSupportSpoon:  { en: "Tiny Emotional Support Spoon", th: "ช้อนประคองใจจิ๋ว" },
+        giftIcedCoffee:    { en: "Ceremonial Iced Coffee",    th: "กาแฟดำพิธีการ" },
+        giftAccordSeal:    { en: "Blanket Accord Seal",       th: "ตราประทับข้อตกลงผ้าห่ม" },
+
+        // Lore Plaques
+        lpBrothSurvival:   { en: "Recovered from a civilization that survived through broth.", th: "กู้คืนมาจากอารยธรรมที่เอาตัวรอดด้วยน้ำซุป" },
+        lpLowEnergyAuth:   { en: "Carries low-energy diplomatic authority.", th: "เปี่ยมไปด้วยอำนาจทางการทูตแบบพลังงานต่ำ" },
+        lpCalmOptimism:    { en: "Known to calm aggressive optimism.", th: "ขึ้นชื่อเรื่องการสยบความมองโลกในแง่ดีที่รุนแรงเกินไป" },
+        lpParallelEx:      { en: "Believed to improve parallel existence.", th: "เชื่อกันว่าช่วยส่งเสริมการมีอยู่แบบขนาน" },
+
+        // Treaty Bonuses
+        bonusSoup:         { en: "The gift was culturally appropriate.", th: "ของขวัญชิ้นนี้เหมาะสมกับวัฒนธรรมอย่างยิ่ง" },
+        bonusBlanket:      { en: "The treaty has been materially reinforced.", th: "สนธิสัญญาได้รับการเสริมความแข็งแกร่งด้วยวัตถุ" },
+        bonusParallel:     { en: "Silence now has furniture.", th: "ความเงียบงันเริ่มมีเฟอร์นิเจอร์แล้ว" },
+
+        // Alliances
         megaSoup:          { en: "The Brotherhood of the Soup", th: "ภราดรภาพแห่งซุป" },
         megaBlanket:       { en: "The Blanket Confederacy",    th: "สมาพันธรัฐผ้าห่ม" },
         megaSilent:        { en: "The Silent Federation",      th: "สหพันธรัฐแห่งความเงียบ" },

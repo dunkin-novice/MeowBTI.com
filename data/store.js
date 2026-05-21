@@ -174,6 +174,23 @@
         return false;
     }
 
+    function getDiplomaticGifts() {
+        return getRawStore().diplomaticGifts || [];
+    }
+
+    function saveDiplomaticGift(gift) {
+        const store = getRawStore();
+        store.diplomaticGifts = store.diplomaticGifts || [];
+        // Add gift with arrival timestamp
+        store.diplomaticGifts.push({
+            ...gift,
+            receivedAt: new Date().toISOString()
+        });
+        _cachedStore = store;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
+        return true;
+    }
+
     window.MeowStore = {
         getFamily,
         saveFamilyProfile,
@@ -190,6 +207,8 @@
         getFederation,
         saveFederationMember,
         getUnlockedStickers,
-        unlockSticker
+        unlockSticker,
+        getDiplomaticGifts,
+        saveDiplomaticGift
     };
 })();

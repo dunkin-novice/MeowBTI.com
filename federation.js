@@ -7,7 +7,18 @@
 
     const { t, getLang } = window.MeowI18n;
 
-    function getLocalCivilizationSnapshot() {
+    const GIGT_DEFINITIONS = {
+        treaty_blanket: { name: t('giftTreatyBlanket'), icon: '🛌', plaque: t('lpLowEnergyAuth'), alliance: 'allBlanketAccord', bonus: t('bonusBlanket') },
+        dip_charger: { name: t('giftDipCharger'), icon: '🔌', plaque: t('lpLowEnergyAuth'), alliance: 'allBlanketAccord' },
+        soup_infra: { name: t('giftSoupInfra'), icon: '🍲', plaque: t('lpBrothSurvival'), alliance: 'allSoupPact', bonus: t('bonusSoup') },
+        beacon: { name: t('giftBeacon'), icon: '🚨', plaque: t('lpCalmOptimism') },
+        embassy_couch: { name: t('giftEmbassyCouch'), icon: '🛋️', plaque: t('lpParallelEx'), alliance: 'allParallelSync', bonus: t('bonusParallel') },
+        support_spoon: { name: t('giftSupportSpoon'), icon: '🥄', plaque: t('lpCalmOptimism') },
+        iced_coffee: { name: t('giftIcedCoffee'), icon: '☕', plaque: t('lpLowEnergyAuth') },
+        accord_seal: { name: t('giftAccordSeal'), icon: '📜', plaque: t('lpLowEnergyAuth'), alliance: 'allBlanketAccord' }
+    };
+
+    function getLocalCivilizationSnapshot(giftKey = null) {
         const history = window.MeowDaily.getHistory() || [];
         const profiles = window.MeowStore.getFamily();
         const cabinet = window.MeowStore.getThoughtCabinet ? window.MeowStore.getThoughtCabinet() : {};
@@ -23,12 +34,13 @@
             doctrine,
             activeArcKey: activeArc ? activeArc.key : null,
             recentClimate: history.length > 0 ? history[0].answers.stress : 'calm',
+            giftKey,
             timestamp: Date.now()
         };
     }
 
-    function generateShareCode() {
-        const snapshot = getLocalCivilizationSnapshot();
+    function generateShareCode(giftKey = null) {
+        const snapshot = getLocalCivilizationSnapshot(giftKey);
         const json = JSON.stringify(snapshot);
         return btoa(json);
     }
@@ -39,12 +51,82 @@
             const data = JSON.parse(json);
             if (data.id && data.profilesCount !== undefined) {
                 window.MeowStore.saveFederationMember(data);
+                
+                if (data.giftKey && GIGT_DEFINITIONS[data.giftKey]) {
+                    const gift = {
+                        key: data.giftKey,
+                        origin: data.name,
+                        alliance: getAllianceType(getLocalCivilizationSnapshot(), data).title
+                    };
+                    window.MeowStore.saveDiplomaticGift(gift);
+                    showGiftCeremony(data.giftKey, data.name);
+                    window.MeowTrack && window.MeowTrack('diplomatic_gift_received', { gift_type: data.giftKey, lang: getLang() });
+                }
+
                 return data;
             }
         } catch (e) {
             console.error("Failed to import civilization", e);
         }
         return null;
+    }
+
+    function showGiftCeremony(giftKey, originName) {
+        const def = GIGT_DEFINITIONS[giftKey];
+        let overlay = document.getElementById('gift-ceremony-overlay');
+        if (!overlay) {
+            overlay = document.createElement('div');
+            overlay.id = 'gift-ceremony-overlay';
+            overlay.className = 'gift-ceremony-overlay';
+            document.body.append(overlay);
+        }
+        overlay.classList.add('active');
+
+        overlay.innerHTML = `
+            <div class="ceremony-scroll animate-fade-in">
+                <div class="ceremony-stamp">${def.icon}</div>
+                <h2 class="card-title" style="font-size:1.5rem; color:var(--ink);">${t('fedGiftArrived')}</h2>
+                <div class="card-content" style="color:var(--ink);">
+                    <p style="font-weight:800; font-size:1.5rem; margin-bottom:12px;">${def.name}</p>
+                    <p class="gift-origin">From: ${originName}</p>
+                    <div class="gift-plaque" style="margin-top:24px;">
+                        ${def.plaque}
+                    </div>
+                </div>
+                <div class="card-footer" style="margin-top:24px;">
+                    <button class="big-btn accent" onclick="document.getElementById('gift-ceremony-overlay').classList.remove('active')">Accept Offering</button>
+                </div>
+            </div>
+        `;
+        window.MeowTrack && window.MeowTrack('gift_arrival_viewed', { gift_type: giftKey, lang: getLang() });
+    }
+
+    function renderGiftArchive() {
+        const gifts = window.MeowStore.getDiplomaticGifts ? window.MeowStore.getDiplomaticGifts() : [];
+        if (gifts.length === 0) return '';
+
+        return `
+            <div class="gift-archive-container animate-fade-in">
+                <span class="sticker-wall-title">${t('fedGiftArchive')}</span>
+                <div class="gift-grid">
+                    ${gifts.map(gift => {
+                        const def = GIGT_DEFINITIONS[gift.key];
+                        if (!def) return '';
+                        
+                        return `
+                            <div class="gift-card">
+                                <div class="gift-icon">${def.icon}</div>
+                                <span class="gift-origin">Origin: ${gift.origin}</span>
+                                <div class="gift-name" style="color:var(--ink);">${def.name}</div>
+                                <div class="gift-plaque" style="color:var(--ink);">${def.plaque}</div>
+                                ${def.bonus ? `<div class="dip-line" style="color:#9B59B6; font-size:0.8rem; margin-top:8px;">✨ ${def.bonus}</div>` : ''}
+                                <button class="micro-share-icon mini" data-type="gift" data-text="Diplomatic Gift Arrived: ${def.name}. From ${gift.origin}.">📤</button>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+            </div>
+        `;
     }
 
     function checkMilestones(federation, local) {
@@ -137,13 +219,22 @@
             </div>
 
             <div class="fed-action-grid">
-                <button class="big-btn ghost" id="btn-fed-export">
+                <div class="gift-selector">
+                    <label>${t('fedAttachGift')}</label>
+                    <select id="fed-gift-select">
+                        <option value="">None</option>
+                        ${Object.entries(GIGT_DEFINITIONS).map(([k, d]) => `<option value="${k}">${d.icon} ${d.name}</option>`).join('')}
+                    </select>
+                </div>
+                <button class="big-btn accent" id="btn-fed-export" style="align-self:flex-end;">
                     🔗 ${t('fedExportCode')}
                 </button>
-                <button class="big-btn ghost" id="btn-fed-import">
+                <button class="big-btn ghost" id="btn-fed-import" style="align-self:flex-end;">
                     📥 ${t('fedImportCode')}
                 </button>
             </div>
+
+            ${renderGiftArchive()}
 
             ${federation.length > 0 ? `
                 <div class="fed-embassy-section">
@@ -216,8 +307,13 @@
             window.MeowTrack('diplomacy_report_viewed', { alliance_count: federation.length, lang: getLang() });
         }
 
+        if (window.MeowStore.getDiplomaticGifts && window.MeowStore.getDiplomaticGifts().length > 0) {
+            window.MeowTrack && window.MeowTrack('gift_archive_opened', { gift_count: window.MeowStore.getDiplomaticGifts().length, lang: getLang() });
+        }
+
         container.querySelector('#btn-fed-export').onclick = () => {
-            const code = generateShareCode();
+            const giftKey = container.querySelector('#fed-gift-select').value;
+            const code = generateShareCode(giftKey);
             const url = new URL(window.location.href);
             url.searchParams.set('fed', code);
             
@@ -231,6 +327,7 @@
                 navigator.clipboard.writeText(url.toString()).then(() => alert("Federation link copied to clipboard!"));
             }
             window.MeowTrack && window.MeowTrack('federation_created', { profile_count: profiles.length, lang: getLang() });
+            if (giftKey) window.MeowTrack && window.MeowTrack('diplomatic_gift_attached', { gift_type: giftKey, lang: getLang() });
         };
 
         container.querySelector('#btn-fed-import').onclick = () => {
@@ -265,6 +362,9 @@
                         text: btn.getAttribute('data-text'),
                         route: '/'
                     });
+                    if (btn.getAttribute('data-type') === 'gift') {
+                        window.MeowTrack && window.MeowTrack('gift_share_attempt', { gift_text: btn.getAttribute('data-text'), lang: getLang() });
+                    }
                 }
             };
         });
