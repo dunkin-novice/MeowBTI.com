@@ -586,6 +586,9 @@
         chronicleIntro:    { en: "A literary record of your household's emotional evolution and shared mythology.", th: "บันทึกเรื่องราวการวิวัฒนาการทางอารมณ์และตำนานร่วมกันของบ้านคุณ" },
         chronicleExport:   { en: "Export Chronicle",          th: "ส่งออกพงศาวดาร" },
         chronicleArchive:  { en: "Chronicle Archive",         th: "คลังพงศาวดาร" },
+        chroniclePublicLink: { en: "Generate Public Link",     th: "สร้างลิงก์สาธารณะ" },
+        chronicleStartOwn: { en: "Start your own Emotional OS →", th: "เริ่มระบบปฏิบัติการทางอารมณ์ของคุณเอง →" },
+        chronicleSharedBy: { en: "A record from an emotionally haunted household.", th: "บันทึกจากบ้านที่มีพลังงานทางอารมณ์บางอย่างสถิตอยู่" },
         
         // Report Types
         repCivSummary:     { en: "Civilization Report",       th: "รายงานอารยธรรม" },

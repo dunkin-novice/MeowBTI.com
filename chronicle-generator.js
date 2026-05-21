@@ -77,7 +77,19 @@
             footer: t('finCanon')
         });
 
-        // 5. Finale
+        // 5. Federation Treaty
+        const federation = window.MeowStore.getFederation ? window.MeowStore.getFederation() : [];
+        if (federation.length > 0) {
+            const topAlliance = federation[0];
+            data.cards.push({
+                type: 'treaty',
+                title: t('stkTreatyRatified'),
+                desc: `A diplomatic bond has been established with ${sanitize(topAlliance.name)}. This alliance represents a shared commitment to emotional stability.`,
+                footer: "Federation Status: Ratified"
+            });
+        }
+
+        // 6. Finale
         data.cards.push({
             type: 'finale',
             title: t('repFinale'),
@@ -98,6 +110,11 @@
             document.body.append(overlay);
         }
         overlay.classList.add('active');
+
+        if (window.MeowTrack) {
+            if (card.type === 'relic') window.MeowTrack('relic_poster_view', { relic_type: card.title, lang: getLang() });
+            if (card.type === 'treaty') window.MeowTrack('treaty_poster_view', { treaty_type: card.title, lang: getLang() });
+        }
 
         overlay.innerHTML = `
             <div class="cinematic-card ${card.dark ? 'dark' : ''} animate-fade-in">
@@ -139,14 +156,18 @@
                     ${card.desc ? `<p>${card.desc}</p>` : ''}
                 </div>
                 <div class="card-footer">
-                    <button class="big-btn accent" id="btn-chronicle-share">📤 ${t('chronicleExport')}</button>
-                    <button class="big-btn ghost" id="btn-chronicle-next" style="margin-top:12px;">Next →</button>
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                        <button class="big-btn ghost" id="btn-chronicle-share" style="padding:10px; font-size:0.8rem;">📤 ${t('chronicleExport')}</button>
+                        <button class="big-btn accent" id="btn-chronicle-public" style="padding:10px; font-size:0.8rem;">🔗 ${t('chroniclePublicLink')}</button>
+                    </div>
+                    <button class="big-btn ghost" id="btn-chronicle-next" style="margin-top:12px; width:100%;">Next →</button>
                 </div>
             </div>
             <button class="big-btn ghost" id="btn-chronicle-close" style="position:absolute; top:20px; right:20px; color:#fff; border-color:rgba(255,255,255,0.2);">✕</button>
         `;
 
         overlay.querySelector('#btn-chronicle-close').onclick = () => overlay.classList.remove('active');
+        
         overlay.querySelector('#btn-chronicle-share').onclick = () => {
             if (window.MeowAnalytics) {
                 window.MeowAnalytics.microShare({
@@ -158,6 +179,28 @@
                 window.MeowTrack && window.MeowTrack('civilization_report_shared', { 
                     content_type: card.type, 
                     lang: getLang() 
+                });
+            }
+        };
+
+        overlay.querySelector('#btn-chronicle-public').onclick = () => {
+            const payload = btoa(unescape(encodeURIComponent(JSON.stringify(card))));
+            const url = `${window.location.origin}/chronicle/view.html?p=${payload}`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: `MeowBTI | ${card.title}`,
+                    text: card.desc || t('chronicleSharedBy'),
+                    url: url
+                });
+            } else {
+                navigator.clipboard.writeText(url).then(() => alert("Public link copied to clipboard!"));
+            }
+
+            if (window.MeowTrack) {
+                window.MeowTrack('chronicle_export', {
+                    type: card.type,
+                    lang: getLang()
                 });
             }
         };

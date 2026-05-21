@@ -4464,3 +4464,28 @@ a { color: inherit; }
   .gift-archive-container { padding: 24px; }
   .ceremony-scroll { padding: 32px 24px; }
 }
+
+/* ─── Public Chronicle View Extras ──────────────── */
+.cinematic-card {
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.1);
+  background-image: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.05) 0%, transparent 50%);
+}
+.cinematic-card.dark {
+  background: linear-gradient(180deg, #2D1B24 0%, #1F1410 100%);
+  border-color: rgba(255,255,255,0.05);
+}
+.cinematic-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.02'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.5;
+}
+.card-title {
+  text-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+.dark .card-title {
+  text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}

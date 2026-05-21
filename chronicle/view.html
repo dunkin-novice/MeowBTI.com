@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Household Chronicle | MeowBTI</title>
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!-- Dynamic OG tags will be handled by JS but we need fallbacks -->
+    <meta property="og:title" content="MeowBTI Household Chronicle">
+    <meta property="og:description" content="A cinematic record of an emotionally haunted household.">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="https://meowbti.com/assets/personalities/og-generic.png">
+
+    <link rel="stylesheet" href="../style.css">
+    <script src="../data/i18n.js" defer></script>
+    <script src="../analytics.js" defer></script>
+    <script src="../script.js" defer></script>
+    <script src="view.js" defer></script>
+
+    <style>
+        body {
+            background: #1F1410;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        .public-chronicle-wrapper {
+            width: 100%;
+            max-width: 500px;
+            padding: 24px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .public-card-container {
+            width: 100%;
+            aspect-ratio: 9/16;
+            position: relative;
+            z-index: 10;
+        }
+        .card-blur-bg {
+            position: absolute;
+            top: -50px; left: -50px; right: -50px; bottom: -50px;
+            background: radial-gradient(circle, #9B59B6 0%, transparent 70%);
+            filter: blur(80px);
+            opacity: 0.2;
+            z-index: 1;
+            pointer-events: none;
+        }
+        .public-cta-box {
+            margin-top: 40px;
+            text-align: center;
+            width: 100%;
+            opacity: 0;
+            animation: fadeIn 1s forwards 0.5s;
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        .public-logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: #fff;
+            margin-bottom: 24px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="home-grain" aria-hidden="true"></div>
+
+    <div class="public-chronicle-wrapper">
+        <a href="/" class="public-logo">MeowBTI</a>
+        
+        <div class="public-card-container" id="card-mount">
+            <div class="card-blur-bg"></div>
+            <!-- Card will be injected here -->
+        </div>
+
+        <div class="public-cta-box">
+            <a href="/" class="big-btn accent" data-i18n="chronicleStartOwn">Start your own Emotional OS →</a>
+        </div>
+    </div>
+
+    <footer class="main-footer" id="main-footer" style="background:transparent; border:0;"></footer>
+</body>
+</html>
