@@ -610,6 +610,32 @@
         finNoRecovery:     { en: "Nobody fully recovered. Memories remain.", th: "ไม่มีใครฟื้นตัวได้เต็มร้อย แต่ความทรงจำยังคงอยู่" },
         finCanon:          { en: "This era has become canon.", th: "ยุคสมัยนี้ได้กลายเป็นส่วนหนึ่งของประวัติศาสตร์" },
 
+        // ─── Household Federation ───────────────────────
+        fedTitle:          { en: "Household Federation",      th: "สหพันธรัฐประจำบ้าน" },
+        fedIntro:          { en: "Form alliances and establish emotional diplomacy with neighboring civilizations.", th: "สร้างพันธมิตรและสถาปนาการทูตทางอารมณ์กับอารยธรรมข้างเคียง" },
+        fedEmbassy:        { en: "Emotional Embassy",         th: "สถานเอกอัครราชทูตทางอารมณ์" },
+        fedExportCode:     { en: "Share Civilization Code",   th: "แชร์รหัสอารยธรรม" },
+        fedImportCode:     { en: "Establish Diplomacy",       th: "สถาปนาการทูต" },
+        
+        // Alliances
+        allBlanketAccord:  { en: "The Blanket Accord",        th: "ข้อตกลงแห่งผ้าห่ม" },
+        allSoupPact:       { en: "The Soup Pact",             th: "สนธิสัญญาซุป" },
+        allParallelSync:   { en: "Parallel Play Synchrony",   th: "การประสานเวลาการเล่นขนาน" },
+        
+        // Diplomacy
+        dipIdealConflict:  { en: "Ideological Conflict",      th: "ความขัดแย้งทางอุดมการณ์" },
+        dipSharedMyth:     { en: "Shared Mythology",          th: "ตำนานร่วมกัน" },
+        dipCulturalTension: { en: "Cultural Tension",          th: "ความตึงเครียดทางวัฒนธรรม" },
+        
+        // Relics
+        relTreatyBlanket:  { en: "The Treaty Blanket",        th: "ผ้าห่มสนธิสัญญา" },
+        relSharedSoup:     { en: "Shared Soup Infrastructure", th: "โครงสร้างพื้นฐานซุปร่วมกัน" },
+        relDiplomaticCharger: { en: "The Diplomatic Charger",    th: "สายชาร์จทางการทูต" },
+
+        // Events
+        evGreatSilence:    { en: "The Great Silence",         th: "ความเงียบงันครั้งยิ่งใหญ่" },
+        evWeekendCollapse: { en: "Weekend Collapse Treaty",   th: "สนธิสัญญาการล่มสลายช่วงสุดสัปดาห์" },
+
         dynChaosHigh:      { en: "Shared Chaos: HIGH",        th: "ระดับความวุ่นวาย: สูง" },
         dynChaosMed:       { en: "Shared Chaos: MODERATE",    th: "ระดับความวุ่นวาย: ปานกลาง" },
         dynChaosLow:       { en: "Shared Chaos: LOW",         th: "ระดับความวุ่นวาย: ต่ำ" },

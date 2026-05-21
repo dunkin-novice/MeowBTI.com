@@ -1,0 +1,271 @@
+/**
+ * MeowBTI Household Federation System v1
+ * Manages cross-household alliances, diplomacy, and shared mythology.
+ */
+(function() {
+    if (!window.MeowI18n || !window.MeowStore || !window.MeowDaily) return;
+
+    const { t, getLang } = window.MeowI18n;
+
+    function getLocalCivilizationSnapshot() {
+        const history = window.MeowDaily.getHistory() || [];
+        const profiles = window.MeowStore.getFamily();
+        const cabinet = window.MeowStore.getThoughtCabinet ? window.MeowStore.getThoughtCabinet() : {};
+        const activeArc = window.MeowStore.getActiveArc ? window.MeowStore.getActiveArc() : null;
+
+        const internalized = Object.entries(cabinet).filter(([id, d]) => d.status === 'INTERNALIZED');
+        const doctrine = internalized.length > 0 ? internalized[0][0] : null;
+
+        return {
+            id: 'house_' + Math.random().toString(36).substr(2, 9),
+            name: profiles.length > 0 ? profiles[0].name + "'s Household" : "Unknown Civilization",
+            profilesCount: profiles.length,
+            doctrine,
+            activeArcKey: activeArc ? activeArc.key : null,
+            recentClimate: history.length > 0 ? history[0].answers.stress : 'calm',
+            timestamp: Date.now()
+        };
+    }
+
+    function generateShareCode() {
+        const snapshot = getLocalCivilizationSnapshot();
+        const json = JSON.stringify(snapshot);
+        return btoa(json);
+    }
+
+    function importCivilization(code) {
+        try {
+            const json = atob(code);
+            const data = JSON.parse(json);
+            if (data.id && data.profilesCount !== undefined) {
+                window.MeowStore.saveFederationMember(data);
+                return data;
+            }
+        } catch (e) {
+            console.error("Failed to import civilization", e);
+        }
+        return null;
+    }
+
+    function renderFederationUI() {
+        const host = document.getElementById('family-content');
+        if (!host) return;
+
+        const profiles = window.MeowStore.getFamily();
+        if (profiles.length < 2) return;
+
+        let container = document.getElementById('household-federation-section');
+        if (!container) {
+            container = document.createElement('div');
+            container.id = 'household-federation-section';
+            container.className = 'federation-container animate-fade-in';
+            host.append(container);
+        }
+
+        const federation = window.MeowStore.getFederation();
+        const local = getLocalCivilizationSnapshot();
+
+        container.innerHTML = `
+            <div class="chronicle-header">
+                <h2 class="chronicle-h2">${t('fedTitle')}</h2>
+                <p class="wm-intro">${t('fedIntro')}</p>
+            </div>
+
+            <div class="fed-action-grid">
+                <button class="big-btn ghost" id="btn-fed-export">
+                    🔗 ${t('fedExportCode')}
+                </button>
+                <button class="big-btn ghost" id="btn-fed-import">
+                    📥 ${t('fedImportCode')}
+                </button>
+            </div>
+
+            ${federation.length > 0 ? `
+                <div class="fed-embassy-section">
+                    <div class="embassy-header">
+                        <h3 class="embassy-title">${t('fedEmbassy')}</h3>
+                    </div>
+                    
+                    <div class="alliance-grid">
+                        ${federation.map(member => {
+                            const alliance = getAllianceType(local, member);
+                            const sharedEvent = getSharedEvent(local, member);
+                            const fedRelic = getFederationRelic(local, member);
+
+                            return `
+                                <div class="alliance-card">
+                                    <div class="alliance-seal">${alliance.icon}</div>
+                                    <div class="alliance-name">${member.name}</div>
+                                    <div class="alliance-status">${alliance.title}</div>
+                                    
+                                    ${sharedEvent ? `
+                                        <div class="dip-line" style="color:#FFB000;">
+                                            🌟 ${t('dipSharedMyth')}: ${sharedEvent.title}
+                                        </div>
+                                    ` : ''}
+
+                                    ${fedRelic ? `
+                                        <div class="dip-line" style="color:#9B59B6;">
+                                            🏺 ${t('repRelicPoster')}: ${fedRelic.name}
+                                        </div>
+                                    ` : ''}
+
+                                    <div class="dip-line">${getDiplomacyText(local, member)}</div>
+                                    
+                                    <div class="diplomatic-report">
+                                        <div class="pm-label">${t('repCivSummary')}</div>
+                                        <div class="dip-line">${getCivilizationComparison(local, member)}</div>
+                                    </div>
+                                    
+                                    <button class="micro-share-icon mini" data-type="alliance" data-text="Alliance Formed: ${alliance.title} with ${member.name}. ${sharedEvent ? 'Event: ' + sharedEvent.title : ''}">📤</button>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                </div>
+            ` : ''}
+        `;
+
+        if (federation.length > 0 && window.MeowTrack) {
+            window.MeowTrack('diplomacy_report_viewed', { alliance_count: federation.length, lang: getLang() });
+        }
+
+        container.querySelector('#btn-fed-export').onclick = () => {
+            const code = generateShareCode();
+            const url = new URL(window.location.href);
+            url.searchParams.set('fed', code);
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'MeowBTI Civilization Code',
+                    text: 'Establish diplomacy with my household civilization!',
+                    url: url.toString()
+                });
+            } else {
+                navigator.clipboard.writeText(url.toString()).then(() => alert("Federation link copied to clipboard!"));
+            }
+            window.MeowTrack && window.MeowTrack('federation_created', { profile_count: profiles.length, lang: getLang() });
+        };
+
+        container.querySelector('#btn-fed-import').onclick = () => {
+            const code = prompt("Enter Civilization Code (Base64 string or full URL):");
+            if (code) {
+                let actualCode = code;
+                if (code.includes('fed=')) {
+                    actualCode = new URL(code).searchParams.get('fed');
+                }
+                const imported = importCivilization(actualCode);
+                if (imported) {
+                    alert("Diplomacy established with " + imported.name);
+                    renderFederationUI();
+                    window.MeowTrack && window.MeowTrack('civilization_imported', { lang: getLang() });
+                    
+                    const local = getLocalCivilizationSnapshot();
+                    const alliance = getAllianceType(local, imported);
+                    window.MeowTrack && window.MeowTrack('alliance_formed', { alliance_type: alliance.title, lang: getLang() });
+                } else {
+                    alert("Invalid civilization code.");
+                }
+            }
+        };
+
+        container.querySelectorAll('.micro-share-icon').forEach(btn => {
+            btn.onclick = () => {
+                if (window.MeowAnalytics) {
+                    window.MeowAnalytics.microShare({
+                        framework: 'household_federation',
+                        content_type: btn.getAttribute('data-type'),
+                        text: btn.getAttribute('data-text'),
+                        route: '/'
+                    });
+                }
+            };
+        });
+
+        // Analytics
+        if (window.MeowTrack) {
+            window.MeowTrack('embassy_opened', { federation_size: federation.length, lang: getLang() });
+            
+            federation.forEach(member => {
+                const event = getSharedEvent(local, member);
+                if (event) window.MeowTrack('cross_household_event', { event_type: event.title, lang: getLang() });
+                
+                const relic = getFederationRelic(local, member);
+                if (relic) window.MeowTrack('federation_relic_generated', { relic_type: relic.name, lang: getLang() });
+            });
+        }
+    }
+
+    function getSharedEvent(local, foreign) {
+        if (local.recentClimate === 'unstable' && foreign.recentClimate === 'unstable') {
+            return { title: t('evGreatSilence') };
+        }
+        if (local.recentClimate === 'heavy' && foreign.recentClimate === 'heavy') {
+            return { title: t('evWeekendCollapse') };
+        }
+        return null;
+    }
+
+    function getFederationRelic(local, foreign) {
+        if (local.recentClimate === 'heavy' && foreign.recentClimate === 'heavy') {
+            return { name: t('relTreatyBlanket') };
+        }
+        if (local.doctrine === 'thSoupLabor' && foreign.doctrine === 'thSoupLabor') {
+            return { name: t('relSharedSoup') };
+        }
+        return { name: t('relDiplomaticCharger') };
+    }
+
+    function getAllianceType(local, foreign) {
+        if (local.recentClimate === 'heavy' && foreign.recentClimate === 'heavy') {
+            return { title: t('allBlanketAccord'), icon: '🛌' };
+        }
+        if (local.doctrine === 'thSoupLabor' || foreign.doctrine === 'thSoupLabor') {
+            return { title: t('allSoupPact'), icon: '🍲' };
+        }
+        return { title: t('allParallelSync'), icon: '🤝' };
+    }
+
+    function getDiplomacyText(local, foreign) {
+        if (local.doctrine && foreign.doctrine && local.doctrine !== foreign.doctrine) {
+            return t('dipIdealConflict') + ": " + t(local.doctrine) + " vs " + t(foreign.doctrine);
+        }
+        if (local.activeArcKey && local.activeArcKey === foreign.activeArcKey) {
+            return t('dipSharedMyth') + ": Synchronized " + local.activeArcKey + " Possession.";
+        }
+        return "Diplomatic trade routes active. Vibes remain stable.";
+    }
+
+    function getCivilizationComparison(local, foreign) {
+        let lines = [];
+        if (local.doctrine === foreign.doctrine) lines.push("Shared Philosophical Doctrine: " + t(local.doctrine));
+        if (local.recentClimate === foreign.recentClimate) lines.push("Synchronized Emotional Weather: " + local.recentClimate);
+        else lines.push(t('dipCulturalTension') + ": " + local.recentClimate + " vs " + foreign.recentClimate);
+        
+        if (local.profilesCount > foreign.profilesCount) lines.push("Higher Population Density detected in local civilization.");
+        
+        return lines.join('<br>');
+    }
+
+    // Check for auto-import from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const fedCode = urlParams.get('fed');
+    if (fedCode) {
+        importCivilization(fedCode);
+        // Clean URL
+        const newUrl = new URL(window.location.href);
+        newUrl.searchParams.delete('fed');
+        window.history.replaceState({}, '', newUrl);
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', renderFederationUI);
+    } else {
+        renderFederationUI();
+    }
+
+    window.addEventListener('meow:daily:updated', renderFederationUI);
+    window.addEventListener('storage', (e) => {
+        if (e.key === 'meow-bti-family' || e.key === 'meowbti.dailyCheckins.v2') renderFederationUI();
+    });
+})();

@@ -143,6 +143,21 @@
         return true;
     }
 
+    function getFederation() {
+        return getRawStore().federation || [];
+    }
+
+    function saveFederationMember(member) {
+        const store = getRawStore();
+        store.federation = store.federation || [];
+        const idx = store.federation.findIndex(f => f.id === member.id);
+        if (idx >= 0) store.federation[idx] = member;
+        else store.federation.push(member);
+        _cachedStore = store;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
+        return true;
+    }
+
     window.MeowStore = {
         getFamily,
         saveFamilyProfile,
@@ -155,6 +170,8 @@
         getActiveArc,
         updateActiveArc,
         getChronicles,
-        saveChronicle
+        saveChronicle,
+        getFederation,
+        saveFederationMember
     };
 })();
