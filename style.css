@@ -5069,3 +5069,120 @@ a { color: inherit; }
 @media (max-width: 600px) {
   .gov-stats { flex-direction: column; gap: 12px; }
 }
+
+/* ─── Emotional Religion & Prophecy v1 ──────────── */
+.theology-container {
+  margin-top: 60px;
+  padding: 48px;
+  background: #111;
+  color: #d4af37;
+  border-radius: 48px;
+  border: 2px solid #8a6d3b;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(138, 109, 59, 0.1);
+}
+.theology-container::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.1) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.theology-h2 {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  margin-bottom: 32px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #d4af37;
+}
+
+.faith-banner {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  color: #fff;
+  text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+  margin-bottom: 16px;
+}
+.sect-label {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  opacity: 0.8;
+  display: block;
+  margin-bottom: 40px;
+}
+
+.scripture-block {
+  background: rgba(212, 175, 55, 0.05);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 20px;
+  padding: 32px;
+  margin: 40px auto;
+  max-width: 600px;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-style: italic;
+  line-height: 1.5;
+  color: #fff;
+  position: relative;
+}
+.scripture-block::before, .scripture-block::after {
+  content: '✦';
+  color: #d4af37;
+  position: absolute;
+  left: 50%; transform: translateX(-50%);
+}
+.scripture-block::before { top: -12px; }
+.scripture-block::after { bottom: -12px; }
+
+.prophecy-strip {
+  background: #2D1B24;
+  color: #FF5B3B;
+  padding: 16px 24px;
+  border-radius: 12px;
+  border-left: 4px solid #FF5B3B;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-align: left;
+  margin-top: 32px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.prophecy-strip.fulfilled {
+  background: #1B2D24;
+  color: #3DA17A;
+  border-left-color: #3DA17A;
+}
+
+.relic-item.canonized {
+  border: 2px solid #d4af37;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, transparent 100%);
+}
+.relic-item.canonized .relic-visual { border-color: #d4af37; }
+
+.heresy-badge {
+  background: #FF3B30;
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  display: inline-block;
+  margin-top: 12px;
+}
+
+@media (max-width: 600px) {
+  .theology-container { padding: 32px 20px; }
+  .scripture-block { font-size: 1.2rem; padding: 24px; }
+}

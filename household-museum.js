@@ -564,13 +564,16 @@
                 <div class="relic-shelf">
                     ${availableRelics.filter(ar => !forgedRelics.some(fr => fr.id === ar.id)).map(r => {
                         const isConfiscated = window.MeowGovernanceState && window.MeowGovernanceState.embargoesActive && (r.id === 'relBlanket' || r.id === 'relSoup');
+                        const isCanonized = window.MeowTheologyState && ((window.MeowTheologyState.activeFaith === t('faithBlanket') && r.id === 'relBlanket') || (window.MeowTheologyState.activeFaith === t('faithSoup') && r.id === 'relSoup'));
                         if (isConfiscated && window.MeowTrack) window.MeowTrack('relic_confiscated', { relic_type: r.id, lang: getLang() });
+                        if (isCanonized && window.MeowTrack) window.MeowTrack('relic_canonized', { relic_type: r.id, lang: getLang() });
                         return `
-                        <div class="relic-item ${isConfiscated ? 'confiscated' : ''}" id="${isConfiscated ? '' : 'relic-trigger-' + r.id}" style="${isConfiscated ? 'pointer-events:none;' : ''}">
+                        <div class="relic-item ${isConfiscated ? 'confiscated' : ''} ${isCanonized ? 'canonized' : ''}" id="${isConfiscated ? '' : 'relic-trigger-' + r.id}" style="${isConfiscated ? 'pointer-events:none;' : ''}">
                             <div class="relic-visual ${r.isEvolved ? 'evolved' : ''}">
                                 ${r.icon}
                                 ${r.isReturning && !isConfiscated ? `<span class="artifact-scar" title="Returning Artifact">♻️</span>` : ''}
                                 ${isConfiscated ? `<span class="confiscated-badge">${t('relConfiscated')}</span>` : ''}
+                                ${isCanonized ? `<span class="confiscated-badge" style="background:#d4af37; color:#fff; border-color:#fff; top:10px;">${t('canonizedRelic')}</span>` : ''}
                             </div>
                             <span class="relic-name">${r.name}</span>
                         </div>

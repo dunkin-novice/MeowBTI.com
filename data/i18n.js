@@ -761,6 +761,48 @@
         sagaGreatCharger:  { en: "The Great Charger Disappearance", th: "การหายสาบสูญของสายชาร์จครั้งยิ่งใหญ่" },
         sagaSoupCrisis:    { en: "The 4-Day Soup Dependency Crisis", th: "วิกฤตการณ์พึ่งพาซุป 4 วัน" },
         splitParallel:     { en: "Parallel Play Schism",      th: "ความแตกแยกของการเล่นขนาน" },
+
+        // ─── Emotional Religion & Prophecy ───────────────
+        relTitle:          { en: "Emotional Theology",        th: "เทววิทยาทางอารมณ์" },
+        relAlignment:      { en: "Dominant Faith",            th: "ศรัทธาหลัก" },
+        relSect:           { en: "Sect Alignment",            th: "นิกาย" },
+        relProphecy:       { en: "Active Prophecy",           th: "คำทำนายที่กำลังทำงาน" },
+        
+        // Religions
+        faithParallel:     { en: "The Church of Parallel Silence", th: "คริสตจักรแห่งความเงียบขนาน" },
+        faithBlanket:      { en: "The Sacred Blanket Communion", th: "ภาคีผ้าห่มศักดิ์สิทธิ์" },
+        faithSoup:         { en: "The Soup Restoration Order", th: "ลัทธิฟื้นฟูด้วยซุป" },
+        faithHorizontal:   { en: "The Horizontal Ascension",  th: "การบรรลุธรรมในแนวราบ" },
+        faithRecharge:     { en: "The Recharge Orthodoxy",    th: "นิกายออร์โธดอกซ์แห่งการชาร์จพลัง" },
+        
+        // Sects & Cults
+        sectQuietOrth:     { en: "Quiet Orthodoxy",           th: "นิกายความเงียบดั้งเดิม" },
+        sectRadicalRot:    { en: "Radical Rot Theory",        th: "ทฤษฎีการเน่าเปื่อยสุดโต่ง" },
+        sectChargerAsc:    { en: "Charger Ascensionists",     th: "ผู้แสวงหาการเลื่อนระดับด้วยสายชาร์จ" },
+        sectEmergencySoup: { en: "Emergency Soup Revivalists", th: "กลุ่มฟื้นฟูซุปฉุกเฉิน" },
+        cultRotProphets:   { en: "The Rot Prophets",          th: "ศาสดาแห่งการเน่าเปื่อย" },
+        
+        // Prophecies
+        proCharger:        { en: "The Charger shall disappear during the next great burnout.", th: "สายชาร์จจะหายสาบสูญในช่วงหมดไฟครั้งใหญ่คราวหน้า" },
+        proLoudSoup:       { en: "A Loud Civilization will collapse before the Seventh Soup Week.", th: "อารยธรรมเสียงดังจะล่มสลายก่อนสัปดาห์แห่งซุปครั้งที่เจ็ด" },
+        proBlanketSing:    { en: "The Blanket Singularity approaches.", th: "เอกภาวะแห่งผ้าห่มกำลังคืบคลานเข้ามา" },
+        proFulfilled:      { en: "[PROPHECY FULFILLED]",      th: "[คำทำนายเป็นจริง]" },
+        
+        // Scripture
+        scrHorizontal:     { en: "Blessed are those who remain horizontal.", th: "ความสุขจงมีแด่ผู้ที่ยังคงอยู่ในแนวราบ" },
+        scrSoupShared:     { en: "Soup shared during collapse shall not be forgotten.", th: "ซุปที่แบ่งปันกันในช่วงล่มสลายจะไม่ถูกลืมเลือน" },
+        scrSilenceInfra:   { en: "Silence is not absence. Silence is infrastructure.", th: "ความเงียบไม่ใช่ความว่างเปล่า ความเงียบคือโครงสร้างพื้นฐาน" },
+        
+        // Heresy & Schisms
+        schGreatSoup:      { en: "The Great Soup Schism",     th: "ความแตกแยกเรื่องซุปครั้งใหญ่" },
+        schBlanketPurity:  { en: "The Blanket Purity Divide", th: "การแบ่งแยกระดับความบริสุทธิ์ของผ้าห่ม" },
+        heresyDeclared:    { en: "Declared Heretical",        th: "ถูกประกาศว่าเป็นพวกนอกรีต" },
+        heresyReason:      { en: "Ideology deemed emotionally unsafe.", th: "อุดมการณ์ถูกมองว่าไม่ปลอดภัยต่อสภาพจิตใจ" },
+        
+        // Pilgrimages & Canonization
+        pilgRecharge:      { en: "The Great Recharge Pilgrimage", th: "การจาริกชาร์จพลังครั้งยิ่งใหญ่" },
+        canonizedRelic:    { en: "Canonized Relic",           th: "วัตถุโบราณที่ได้รับการยกย่องเป็นสิ่งศักดิ์สิทธิ์" },
+
         
         // ─── Federation Embargoes & Governance ───────────
         govTitle:          { en: "Emotional Governance",      th: "การปกครองทางอารมณ์" },
