@@ -571,12 +571,17 @@
                             <span class="relic-name">${r.name}</span>
                         </div>
                     `).join('')}
-                    ${standardRelics.map(r => `
-                        <div class="relic-item forged" style="opacity:0.6; filter:grayscale(0.5);">
-                            <div class="relic-visual">${r.icon}</div>
+                    ${standardRelics.map(r => {
+                        const isMissing = window.MeowEcosystemState && window.MeowEcosystemState.missingRelicId === r.id;
+                        return `
+                        <div class="relic-item forged" style="${isMissing ? 'opacity:0.3; filter:grayscale(1);' : 'opacity:0.6; filter:grayscale(0.5);'}">
+                            <div class="relic-visual">
+                                ${r.icon}
+                                ${isMissing ? `<span class="wandering-badge" style="position:absolute; top:-10px; right:-10px; font-size:0.6rem; background:#FF5B3B; color:#fff; padding:2px 6px; border-radius:4px; z-index:10; transform:rotate(10deg); animation:pulse-mystical 2s infinite;">${t('statusWandering')}</span>` : ''}
+                            </div>
                             <span class="relic-name">${r.customName || r.name}</span>
                         </div>
-                    `).join('')}
+                    `;}).join('')}
                 </div>
             </div>
 

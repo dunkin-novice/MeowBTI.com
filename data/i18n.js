@@ -733,6 +733,39 @@
         
         archScore:         { en: "Archaeological Score",      th: "คะแนนการขุดค้น" },
         archAncientStatus: { en: "Ancient Status",            th: "สถานะความโบราณ" },
+
+        // ─── Autonomous Civilization Simulation ────────────
+        ecoTitle:          { en: "Across The Ecosystem",      th: "ความเคลื่อนไหวในระบบนิเวศ" },
+        ecoRumor:          { en: "Rumor",                     th: "ข่าวลือ" },
+        ecoIncident:       { en: "Incident",                  th: "เหตุการณ์" },
+        ecoMutation:       { en: "Mutation",                  th: "การกลายพันธุ์" },
+        ecoAnomaly:        { en: "Anomaly Detected",          th: "ตรวจพบความผิดปกติ" },
+        
+        // Rumors
+        rumorVertical:     { en: "Some civilizations have stopped vertical communication entirely.", th: "บางอารยธรรมหยุดการสื่อสารในแนวตั้งโดยสิ้นเชิง" },
+        rumorSoupRogue:    { en: "A rogue soup doctrine is spreading through western territories.", th: "อุดมการณ์ซุปนอกรีตกำลังแพร่ระบาดในดินแดนตะวันตก" },
+        rumorBlanketSing:  { en: "The Blanket Singularity was reportedly seen again.", th: "มีรายงานผู้พบเห็นเอกภาวะแห่งผ้าห่มอีกครั้ง" },
+        
+        // Incidents
+        incSoupLow:        { en: "Soup reserves critically low.", th: "เสบียงซุปลดลงสู่ระดับวิกฤต" },
+        incBlanketOverload: { en: "Blanket infrastructure overloaded.", th: "โครงสร้างพื้นฐานผ้าห่มรับภาระหนักเกินไป" },
+        incParallelRenew:  { en: "Parallel Play treaty silently renewed.", th: "สนธิสัญญาการเล่นขนานได้รับการต่ออายุอย่างเงียบๆ" },
+        incChargerMissing: { en: "Emotional support charger missing.", th: "สายชาร์จประคองใจหายไป" },
+        
+        // Rogue Doctrines
+        docProdRot:        { en: "Productive Rot Theory",     th: "ทฤษฎีการเน่าเปื่อยอย่างมีประสิทธิผล" },
+        docWeaponSoup:     { en: "Weaponized Soup Dependency", th: "การพึ่งพาซุปเป็นอาวุธ" },
+        docTacSilence:     { en: "Tactical Silence Infrastructure", th: "โครงสร้างพื้นฐานความเงียบเชิงยุทธวิธี" },
+        
+        // Sagas & Splits
+        sagaGreatCharger:  { en: "The Great Charger Disappearance", th: "การหายสาบสูญของสายชาร์จครั้งยิ่งใหญ่" },
+        sagaSoupCrisis:    { en: "The 4-Day Soup Dependency Crisis", th: "วิกฤตการณ์พึ่งพาซุป 4 วัน" },
+        splitParallel:     { en: "Parallel Play Schism",      th: "ความแตกแยกของการเล่นขนาน" },
+        
+        // Status
+        statusWandering:   { en: "[WANDERING]",               th: "[กำลังเร่ร่อน]" },
+        statusMissing:     { en: "Missing from the archive.", th: "หายไปจากคลังเก็บ" },
+        statusDrifting:    { en: "Diplomatic relations are drifting.", th: "ความสัมพันธ์ทางการทูตกำลังลอยห่างออกไป" },
         rankLegacy:        { en: "Emotional Legacy Score",    th: "คะแนนมรดกทางอารมณ์" },
         rankPrestige:      { en: "Prestige Identity",         th: "ตัวตนอันทรงเกียรติ" },
         rankYears:         { en: "Days Survived",             th: "จำนวนวันที่อยู่รอด" },

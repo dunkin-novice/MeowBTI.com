@@ -4916,3 +4916,89 @@ a { color: inherit; }
   pointer-events: none;
   z-index: 5;
 }
+
+/* ─── Autonomous Civilization Simulation v1 ─────── */
+.ecosystem-feed-container {
+  margin-top: 48px;
+  background: #111;
+  border: 1px solid #333;
+  border-radius: 20px;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.ecosystem-feed-container::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: repeating-linear-gradient(0deg, rgba(0,255,0,0.02) 0px, rgba(0,255,0,0.02) 1px, transparent 1px, transparent 2px);
+  pointer-events: none;
+  z-index: 10;
+}
+.feed-header {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: #0f0;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.feed-header::before {
+  content: '●';
+  animation: blink 1s infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+.feed-scroll {
+  max-height: 200px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-right: 10px;
+}
+.feed-item {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  line-height: 1.4;
+  padding-left: 12px;
+  border-left: 2px solid #333;
+  position: relative;
+}
+.feed-item.rumor { color: #a8a09a; border-left-color: #a8a09a; }
+.feed-item.incident { color: #FFB000; border-left-color: #FFB000; }
+.feed-item.mutation { color: #9B59B6; border-left-color: #9B59B6; }
+.feed-item.missing { color: #FF5B3B; border-left-color: #FF5B3B; }
+
+.feed-item .micro-share-icon {
+  position: absolute;
+  top: 0; right: 0;
+  background: transparent;
+  border: 1px solid currentColor;
+  color: inherit;
+  opacity: 0.5;
+  transform: scale(0.8);
+}
+.feed-item .micro-share-icon:hover { opacity: 1; }
+
+.wandering-badge {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 900;
+  background: #FF5B3B;
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 4px;
+  position: absolute;
+  top: -10px; right: -10px;
+  transform: rotate(10deg);
+  animation: pulse-mystical 2s infinite;
+}
+
+@media (max-width: 600px) {
+  .ecosystem-feed-container { padding: 16px; border-radius: 16px; }
+  .feed-scroll { max-height: 150px; }
+}

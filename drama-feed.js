@@ -82,6 +82,12 @@
             }
         }
 
+        // 8. Ecosystem Anomalies
+        if (window.MeowEcosystemState && window.MeowEcosystemState.missingRelicId) {
+             updates.push({ text: `A wandering relic was detected in the vicinity.`, isHaunted: true });
+             if (window.MeowTrack) window.MeowTrack('anomaly_detected', { anomaly_type: 'wandering_relic', lang: window.MeowI18n.getLang() });
+        }
+
         return updates.sort(() => Math.random() - 0.5).slice(0, 6);
     }
 
