@@ -762,6 +762,34 @@
         sagaSoupCrisis:    { en: "The 4-Day Soup Dependency Crisis", th: "วิกฤตการณ์พึ่งพาซุป 4 วัน" },
         splitParallel:     { en: "Parallel Play Schism",      th: "ความแตกแยกของการเล่นขนาน" },
         
+        // ─── Federation Embargoes & Governance ───────────
+        govTitle:          { en: "Emotional Governance",      th: "การปกครองทางอารมณ์" },
+        govStability:      { en: "Stability Index",           th: "ดัชนีความมั่นคง" },
+        govAlignment:      { en: "Ideological Alignment",     th: "การจัดแนวอุดมการณ์" },
+        
+        // Status & Stability
+        statStable:        { en: "Stable",                    th: "มั่นคง" },
+        statStrained:      { en: "Strained",                  th: "ตึงเครียด" },
+        statFragile:       { en: "Fragile",                   th: "เปราะบาง" },
+        statCollapse:      { en: "Near Collapse",             th: "ใกล้ล่มสลาย" },
+        
+        // Embargoes & Treaties
+        embBlanketBan:     { en: "Blanket Governance Banned", th: "แบนการปกครองด้วยผ้าห่ม" },
+        embSoupSuspended:  { en: "Soup Exports Suspended",    th: "ระงับการส่งออกซุป" },
+        embLoudDenied:     { en: "Loud Civilizations Denied Entry", th: "ปฏิเสธการเข้าเมืองของอารยธรรมเสียงดัง" },
+        trpPactDissolved:  { en: "The Soup Pact has dissolved.", th: "สนธิสัญญาซุปได้ถูกยกเลิกแล้ว" },
+        
+        // Underground Cells
+        undBasementSoup:   { en: "Basement Soup Collective",  th: "กลุ่มซุปใต้ดิน" },
+        undSilentCharger:  { en: "The Silent Charger Network", th: "เครือข่ายสายชาร์จเงียบ" },
+        undHorizontalRes:  { en: "The Horizontal Resistance", th: "กลุ่มต่อต้านแนวราบ" },
+        undSmugglingRoute: { en: "Secret Soup Corridors active.", th: "เส้นทางลักลอบขนส่งซุปกำลังทำงาน" },
+        
+        // Confiscated Relics
+        relConfiscated:    { en: "[CONFISCATED]",             th: "[ถูกยึด]" },
+        relContraband:     { en: "Contraband Artifact",       th: "วัตถุโบราณต้องห้าม" },
+        relIllegalPermit:  { en: "Illegal Blanket Permit",    th: "ใบอนุญาตผ้าห่มเถื่อน" },
+
         // Status
         statusWandering:   { en: "[WANDERING]",               th: "[กำลังเร่ร่อน]" },
         statusMissing:     { en: "Missing from the archive.", th: "หายไปจากคลังเก็บ" },

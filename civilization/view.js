@@ -83,6 +83,7 @@
                 <div class="profile-module animate-fade-in" style="animation-delay: 0.6s">
                     <span class="module-label">${t('profFederation')}</span>
                     <div class="module-val">${sanitize(data.federation)}</div>
+                    ${data.embargoes ? `<div class="module-desc" style="color:#ff3b30; font-weight:700;">⚠ ${sanitize(data.embargoes)} Active Embargoes</div>` : ''}
                 </div>
 
                 ${data.archScore ? `
