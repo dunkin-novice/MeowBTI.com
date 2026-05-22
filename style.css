@@ -5186,3 +5186,102 @@ a { color: inherit; }
   .theology-container { padding: 32px 20px; }
   .scripture-block { font-size: 1.2rem; padding: 24px; }
 }
+
+/* ─── Civilization Decisions & Governance v1 ────── */
+.decision-container {
+  margin-top: 48px;
+  background: #1F1410;
+  border: 2px solid #D4AF37;
+  border-radius: 32px;
+  padding: 32px;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.15);
+}
+.decision-container::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: repeating-linear-gradient(45deg, rgba(212, 175, 55, 0.05) 0px, rgba(212, 175, 55, 0.05) 2px, transparent 2px, transparent 10px);
+  pointer-events: none;
+}
+
+.dec-header { margin-bottom: 24px; text-align: center; }
+.dec-type-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #D4AF37;
+  margin-bottom: 12px;
+  display: block;
+}
+.dec-title { font-family: var(--font-display); font-size: 1.8rem; margin-bottom: 16px; }
+
+.dec-options {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 32px;
+}
+.dec-option-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  color: #fff;
+  padding: 16px 24px;
+  border-radius: 16px;
+  text-align: left;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.dec-option-btn:hover { background: rgba(212, 175, 55, 0.1); border-color: #D4AF37; transform: translateX(4px); }
+.dec-consequence-hint { font-family: var(--font-mono); font-size: 0.7rem; opacity: 0.6; }
+
+.policy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+.policy-card {
+  background: var(--paper);
+  border: 1.5px solid var(--ink);
+  border-radius: 16px;
+  padding: 16px;
+  position: relative;
+  color: var(--ink);
+  box-shadow: 4px 4px 0 rgba(0,0,0,0.05);
+}
+.policy-card::after {
+  content: 'ENACTED';
+  position: absolute;
+  top: 12px; right: 12px;
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  font-weight: 900;
+  color: #3DA17A;
+  border: 1px solid #3DA17A;
+  padding: 2px 6px;
+  border-radius: 4px;
+  transform: rotate(10deg);
+}
+
+.trait-badge {
+  display: inline-block;
+  background: rgba(0,0,0,0.8);
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  border: 1px solid rgba(255,255,255,0.2);
+}

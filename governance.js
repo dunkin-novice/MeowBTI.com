@@ -28,6 +28,12 @@
         if (window.MeowEcosystemState && window.MeowEcosystemState.activeSaga) {
             score -= 20;
         }
+        
+        // Include consequences from decisions
+        const civDecisions = window.MeowStore.getCivDecisions ? window.MeowStore.getCivDecisions() : {};
+        if (civDecisions.stabilityModifier) {
+            score += civDecisions.stabilityModifier;
+        }
 
         score = Math.max(0, Math.min(100, score));
 
@@ -173,6 +179,7 @@
     }
 
     window.addEventListener('meow:daily:updated', renderGovernance);
+    window.addEventListener('meow:decision:resolved', renderGovernance);
     window.addEventListener('storage', (e) => {
         if (e.key === 'meow-bti-family' || e.key === 'meowbti.dailyCheckins.v2') renderGovernance();
     });

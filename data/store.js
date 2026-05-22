@@ -208,6 +208,19 @@
         return true;
     }
 
+    function getCivDecisions() {
+        return getRawStore().civDecisions || { policies: [], history: [], alignment: 'neutral', traits: [] };
+    }
+
+    function updateCivDecisions(updater) {
+        const store = getRawStore();
+        const current = store.civDecisions || { policies: [], history: [], alignment: 'neutral', traits: [] };
+        store.civDecisions = typeof updater === 'function' ? updater(current) : { ...current, ...updater };
+        _cachedStore = store;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
+        return store.civDecisions;
+    }
+
     window.MeowStore = {
         getFamily,
         saveFamilyProfile,
@@ -226,6 +239,8 @@
         getUnlockedStickers,
         unlockSticker,
         getDiplomaticGifts,
-        saveDiplomaticGift
+        saveDiplomaticGift,
+        getCivDecisions,
+        updateCivDecisions
     };
 })();

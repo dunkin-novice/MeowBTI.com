@@ -359,6 +359,8 @@
             const internalized = Object.entries(cabinet).filter(([id, d]) => d.status === 'INTERNALIZED');
             const doctrine = internalized.length > 0 ? t(internalized[0][0]) : "Undeclared Philosophy";
 
+            const civDecisions = window.MeowStore.getCivDecisions ? window.MeowStore.getCivDecisions() : { policies: [], alignment: 'neutral' };
+
             const payload = {
                 seasonTitle: season.title,
                 seasonKey: season.key,
@@ -373,7 +375,9 @@
                 federation: federation.length > 0 ? `Member of ${federation.length} Alliances` : "Independent Civilization",
                 embargoes: window.MeowGovernanceState && window.MeowGovernanceState.embargoesActive ? "Multiple" : null,
                 archScore: history.length > 30 ? (history.length * 1.5).toFixed(0) : "N/A",
-                archStatus: history.length > 50 ? "Ancient Discovery" : (history.length > 10 ? "Modern Ruins Found" : "Undiscovered History")
+                archStatus: history.length > 50 ? "Ancient Discovery" : (history.length > 10 ? "Modern Ruins Found" : "Undiscovered History"),
+                alignment: t(civDecisions.alignment) || 'Neutral',
+                policies: civDecisions.policies.map(p => t(p))
             };
 
             const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(payload))));

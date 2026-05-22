@@ -809,6 +809,46 @@
         govStability:      { en: "Stability Index",           th: "ดัชนีความมั่นคง" },
         govAlignment:      { en: "Ideological Alignment",     th: "การจัดแนวอุดมการณ์" },
         
+        // ─── Civilization Decisions & Policies ───────────
+        decTitle:          { en: "Ministry of Emotional Affairs", th: "กระทรวงกิจการทางอารมณ์" },
+        decActivePolicies: { en: "Active Policies",           th: "นโยบายที่ใช้งานอยู่" },
+        decTraits:         { en: "Civilization Traits",       th: "ลักษณะเฉพาะของอารยธรรม" },
+        decDecisionReq:    { en: "Executive Decision Required", th: "ต้องการการตัดสินใจจากผู้บริหาร" },
+        decCrisis:         { en: "Emotional Crisis",          th: "วิกฤตทางอารมณ์" },
+        decReferendum:     { en: "Civilization Referendum",   th: "ประชามติอารยธรรม" },
+        decArchive:        { en: "Governance Archive",        th: "คลังเก็บบันทึกการปกครอง" },
+        
+        // Policies
+        polHorizontal:     { en: "Horizontal Recovery Act",   th: "พระราชบัญญัติการพักฟื้นแนวราบ" },
+        polSoupSub:        { en: "Emergency Soup Subsidies",  th: "เงินอุดหนุนซุปฉุกเฉิน" },
+        polQuietHours:     { en: "Quiet Hours Enforcement",   th: "การบังคับใช้เวลาเงียบสงบ" },
+        polChargerRedist:  { en: "Charger Redistribution",    th: "การจัดสรรสายชาร์จใหม่" },
+        polParallelProtect:{ en: "Parallel Play Protection",  th: "การคุ้มครองการเล่นขนาน" },
+        
+        // Alignments
+        alignSoft:         { en: "Soft",                      th: "นุ่มนวล" },
+        alignStable:       { en: "Stable",                    th: "มั่นคง" },
+        alignChaotic:      { en: "Chaotic",                   th: "วุ่นวาย" },
+        alignDogmatic:     { en: "Dogmatic",                  th: "ยึดติดในหลักการ" },
+        alignRecovery:     { en: "Recovery-Oriented",         th: "เน้นการพักฟื้น" },
+        alignIsolationist: { en: "Isolationist",              th: "สันโดษ" },
+        alignRitualistic:  { en: "Ritualistic",               th: "เน้นพิธีกรรม" },
+        alignCompassionate:{ en: "Compassionate",             th: "เห็นอกเห็นใจ" },
+        alignSurvivalist:  { en: "Survivalist",               th: "เน้นเอาตัวรอด" },
+
+        // Traits
+        traitMerciful:     { en: "Historically Merciful",     th: "มีประวัติความเมตตา" },
+        traitMilitarized:  { en: "Emotionally Militarized",   th: "ติดอาวุธทางอารมณ์" },
+        traitInfraObsessed:{ en: "Infrastructure Obsessed",   th: "หมกมุ่นกับโครงสร้างพื้นฐาน" },
+        traitParallelized: { en: "Parallelized Society",      th: "สังคมแบบคู่ขนาน" },
+        traitFundament:    { en: "Recovery Fundamentalists",  th: "กลุ่มอนุรักษ์นิยมการพักฟื้น" },
+        traitSoupEcon:     { en: "Soup-Dependent Economy",    th: "เศรษฐกิจพึ่งพาซุป" },
+        
+        // Consequence Lore
+        consSoupRation:    { en: "Soup rationing creates lingering resentment.", th: "การปันส่วนซุปสร้างความไม่พอใจที่หลงเหลืออยู่" },
+        consCompassion:    { en: "Compassionate recovery policies create future alliances.", th: "นโยบายการพักฟื้นที่เห็นอกเห็นใจสร้างพันธมิตรในอนาคต" },
+        consUnderground:   { en: "A banned doctrine returns underground.", th: "อุดมการณ์ที่ถูกแบนกลับมาเคลื่อนไหวใต้ดิน" },
+        
         // Status & Stability
         statStable:        { en: "Stable",                    th: "มั่นคง" },
         statStrained:      { en: "Strained",                  th: "ตึงเครียด" },

@@ -86,6 +86,22 @@
                     ${data.embargoes ? `<div class="module-desc" style="color:#ff3b30; font-weight:700;">⚠ ${sanitize(data.embargoes)} Active Embargoes</div>` : ''}
                 </div>
 
+                ${data.alignment ? `
+                    <div class="profile-module animate-fade-in" style="animation-delay: 0.65s">
+                        <span class="module-label">${t('govAlignment')}</span>
+                        <div class="module-val" style="color:#D4AF37;">${sanitize(data.alignment)}</div>
+                    </div>
+                ` : ''}
+
+                ${data.policies && data.policies.length > 0 ? `
+                    <div class="profile-module animate-fade-in" style="animation-delay: 0.68s">
+                        <span class="module-label">${t('decActivePolicies')}</span>
+                        <div class="module-desc" style="opacity:1;">
+                            ${data.policies.map(p => `<span class="trait-badge" style="background:var(--paper); color:var(--ink); border-color:var(--ink);">${sanitize(p)}</span>`).join('')}
+                        </div>
+                    </div>
+                ` : ''}
+
                 ${data.archScore ? `
                     <div class="profile-module animate-fade-in" style="animation-delay: 0.7s">
                         <span class="module-label">${t('archScore')}</span>

@@ -89,7 +89,18 @@
             });
         }
 
-        // 6. Finale
+        // 6. Governance Archive
+        const civDecisions = window.MeowStore.getCivDecisions ? window.MeowStore.getCivDecisions() : null;
+        if (civDecisions && (civDecisions.policies.length > 0 || civDecisions.alignment !== 'neutral')) {
+            data.cards.push({
+                type: 'governance',
+                title: t('decArchive'),
+                desc: `The civilization has formalized its identity. It currently aligns as ${t(civDecisions.alignment) || 'Neutral'}, heavily influenced by policies like ${civDecisions.policies.length > 0 ? t(civDecisions.policies[0]) : 'Standard Operating Procedures'}.`,
+                footer: "Political Record: Preserved"
+            });
+        }
+
+        // 7. Finale
         data.cards.push({
             type: 'finale',
             title: t('repFinale'),
