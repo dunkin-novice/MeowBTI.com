@@ -234,6 +234,21 @@
         return store.osSettings;
     }
 
+    function getEchoCards() {
+        return getRawStore().echoCards || [];
+    }
+
+    function saveEchoCard(card) {
+        const store = getRawStore();
+        store.echoCards = store.echoCards || [];
+        if (store.echoCards.some(c => c.card_key === card.card_key)) return false;
+        store.echoCards.push({ ...card, created_at: new Date().toISOString() });
+        if (store.echoCards.length > 50) store.echoCards = store.echoCards.slice(-50);
+        _cachedStore = store;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
+        return true;
+    }
+
     window.MeowStore = {
         getFamily,
         saveFamilyProfile,
@@ -256,6 +271,8 @@
         getCivDecisions,
         updateCivDecisions,
         getOSSettings,
-        updateOSSettings
+        updateOSSettings,
+        getEchoCards,
+        saveEchoCard
     };
 })();

@@ -145,6 +145,16 @@
             const fragments = ["Lore piece reconstructed", "Fossil cleaned", "Timelines aligned"];
             const msg = fragments[Math.floor(Math.random() * fragments.length)];
             alert(`${t('archRecovered')}: ${msg}`);
+            
+            // Echo Card Hook for Relic Recovery
+            window.dispatchEvent(new CustomEvent('meow:echo:create', { detail: {
+                card_key: 'arch_recovery_' + Date.now(),
+                type: 'relic_return',
+                title: t('archRecovered'),
+                lore: t('echoLoreReturn'),
+                icon: '⛏️'
+            }}));
+
             window.MeowTrack && window.MeowTrack('excavation_started', { lang: getLang() });
         };
 

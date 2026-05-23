@@ -1517,7 +1517,23 @@
 
         // Absence/Decay
         decayDust:         { en: "Traces of relic dust accumulation detected.", th: "ตรวจพบการสะสมของฝุ่นบนวัตถุโบราณ" },
-        decayAbandoned:    { en: "The museum halls feel abandoned.", th: "หอศิลป์ในพิพิธภัณฑ์ให้ความรู้สึกเหมือนถูกทิ้งร้าง" }
+        decayAbandoned:    { en: "The museum halls feel abandoned.", th: "หอศิลป์ในพิพิธภัณฑ์ให้ความรู้สึกเหมือนถูกทิ้งร้าง" },
+
+        // ─── Emotional Relic Echo Cards ──────────────────
+        echoCardTitle:     { en: "Echo Postcards",            th: "ไปรษณียบัตรจากเสียงสะท้อน" },
+        echoCardSubtitle:  { en: "Small collectible memories from your civilization's journey.", th: "ความทรงจำสะสมชิ้นเล็กๆ จากการเดินทางของอารยธรรมคุณ" },
+        
+        // Postcard Lore Lines
+        echoLoreUnlock:    { en: "A postcard arrived from the day the archive opened.", th: "ไปรษณียบัตรมาถึงในวันที่คลังถูกเปิดออก" },
+        echoLoreRecovery:  { en: "The crisis ended. The soup remained.", th: "วิกฤตจบลงแล้ว เหลือเพียงซุปที่ยังคงอยู่" },
+        echoLoreReturn:    { en: "The relic returned carrying dust from elsewhere.", th: "วัตถุโบราณกลับมาพร้อมกับฝุ่นผงจากที่ห่างไกล" },
+        echoLoreWitness:   { en: "This civilization was witnessed.", th: "อารยธรรมนี้ได้รับการประจักษ์แล้ว" },
+        echoLoreAscension: { en: "The house survived enough to become legend.", th: "บ้านหลังนี้รอดชีวิตมาได้มากพอที่จะเป็นตำนาน" },
+        echoLoreAnniv:     { en: "Time passes, but the memories are preserved.", th: "กาลเวลาผ่านไป แต่ความทรงจำยังคงถูกเก็บรักษา" },
+
+        // Card Labels
+        echoTypePostcard:  { en: "Postcard",                  th: "ไปรษณียบัตร" },
+        echoTypeReceipt:   { en: "Gift Receipt",               th: "ใบเสร็จของขวัญ" }
     };
 
     const STORAGE_KEY = 'meow-lang';

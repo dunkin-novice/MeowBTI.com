@@ -208,6 +208,15 @@
                 navigator.clipboard.writeText(url).then(() => alert("Public link copied to clipboard!"));
             }
 
+            // Echo Card Hook for Public Export
+            window.dispatchEvent(new CustomEvent('meow:echo:create', { detail: {
+                card_key: 'public_share_' + card.type + '_' + Date.now(),
+                type: 'public_share',
+                title: card.title,
+                lore: t('echoLoreWitness'),
+                icon: '📤'
+            }}));
+
             if (window.MeowTrack) {
                 window.MeowTrack('chronicle_export', {
                     type: card.type,

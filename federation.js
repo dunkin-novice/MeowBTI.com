@@ -69,6 +69,16 @@
                         alliance: getAllianceType(getLocalCivilizationSnapshot(), data).title
                     };
                     window.MeowStore.saveDiplomaticGift(gift);
+                    
+                    // Echo Card Hook for Gift Receipt
+                    window.dispatchEvent(new CustomEvent('meow:echo:create', { detail: {
+                        card_key: 'gift_receipt_' + data.id + '_' + data.timestamp,
+                        type: 'gift_receipt',
+                        title: gift.origin,
+                        lore: t('echoLoreWitness'),
+                        icon: '🎁'
+                    }}));
+
                     showGiftCeremony(data.giftKey, data.name);
                     window.MeowTrack && window.MeowTrack('diplomatic_gift_received', { gift_type: data.giftKey, lang: getLang() });
                 }
@@ -396,6 +406,15 @@
             } else {
                 navigator.clipboard.writeText(url).then(() => alert("Identity profile link copied!"));
             }
+
+            // Echo Card Hook for Public Profile
+            window.dispatchEvent(new CustomEvent('meow:echo:create', { detail: {
+                card_key: 'public_profile_' + payload.seasonKey + '_' + Date.now(),
+                type: 'public_share',
+                title: payload.seasonTitle,
+                lore: t('echoLoreWitness'),
+                icon: '👤'
+            }}));
 
             window.MeowTrack && window.MeowTrack('civilization_profile_export', {
                 season: payload.seasonKey,

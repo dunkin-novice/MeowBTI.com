@@ -63,7 +63,7 @@
     }
 
     function renderTemporalSystems() {
-        const host = document.getElementById('family-content');
+        const host = window.MeowOS ? window.MeowOS.getLayer('daily') : document.getElementById('family-content');
         if (!host) return;
 
         const profiles = window.MeowStore.getFamily();
@@ -80,6 +80,30 @@
         }
 
         const reward = checkReturnReward();
+        const history = getHistory();
+
+        // Echo Card Hook for Return
+        if (reward && reward.days >= 3) {
+            window.dispatchEvent(new CustomEvent('meow:echo:create', { detail: {
+                card_key: 'return_anniv_' + Date.now(),
+                type: 'anniversary',
+                title: t('tempReturnTitle'),
+                lore: reward.text,
+                icon: '📬'
+            }}));
+        }
+
+        // Echo Card Hook for 30 Day Survival
+        if (history.length >= 30) {
+            window.dispatchEvent(new CustomEvent('meow:echo:create', { detail: {
+                card_key: 'anniv_30_days',
+                type: 'anniversary',
+                title: '30 Days of Survival',
+                lore: t('echoLoreAnniv'),
+                icon: '🕰️'
+            }}));
+        }
+
         const drift = getDailyDrift();
         const cycle = getWeeklyCycle();
 

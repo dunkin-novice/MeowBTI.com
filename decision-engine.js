@@ -84,6 +84,17 @@
         const eventType = decisionId.startsWith('ref_') ? 'referendum_completed' : 'crisis_response_selected';
         window.MeowTrack && window.MeowTrack(eventType, { decision_id: decisionId, choice: option.text, lang: getLang() });
 
+        // Echo Card Hook for Crisis Recovery
+        if (eventType === 'crisis_response_selected') {
+            window.dispatchEvent(new CustomEvent('meow:echo:create', { detail: {
+                card_key: 'recovery_' + decisionId,
+                type: 'recovery',
+                title: t('decCrisis'),
+                lore: t('echoLoreRecovery'),
+                icon: '🌈'
+            }}));
+        }
+
         renderDecisionEngine();
         
         // Trigger global update to refresh governance/museum

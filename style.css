@@ -5440,3 +5440,81 @@ body.time-night .home-grain { opacity: 0.1; }
 @media (max-width: 600px) {
   .return-reward-card { padding: 20px; }
 }
+
+/* ─── Emotional Relic Echo Cards v1 ────────────── */
+.echo-postcards-container {
+  margin-top: 48px;
+  padding: 32px;
+  background: #fdfaf6;
+  border: 1px solid var(--line-soft);
+  border-radius: 32px;
+  text-align: left;
+}
+.echo-postcards-header { margin-bottom: 24px; }
+.echo-postcards-h3 { font-family: var(--font-display); font-size: 1.5rem; color: var(--ink); margin: 0; }
+.echo-postcards-sub { font-size: 0.85rem; opacity: 0.6; margin-top: 4px; }
+
+.echo-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+.echo-postcard {
+  aspect-ratio: 4/3;
+  background: #fff;
+  border: 1px solid var(--ink);
+  border-radius: 12px;
+  padding: 12px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 4px 4px 0 rgba(0,0,0,0.02);
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+  overflow: hidden;
+}
+.echo-postcard:hover { transform: translateY(-4px) rotate(2deg); z-index: 5; }
+.echo-postcard::before {
+  content: '';
+  position: absolute;
+  top: 8px; right: 8px;
+  width: 24px; height: 24px;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z' fill='%239B59B6'/%3E%3C/svg%3E");
+  background-size: contain;
+  opacity: 0.2;
+}
+
+.ep-stamp {
+  position: absolute;
+  top: 8px; right: 8px;
+  font-size: 1.2rem;
+  z-index: 2;
+  filter: sepia(0.5);
+}
+.ep-type {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.4;
+}
+.ep-title { font-family: var(--font-display); font-size: 0.85rem; line-height: 1.2; margin-top: 4px; color: var(--ink); }
+.ep-date { font-size: 0.5rem; font-weight: 800; opacity: 0.3; margin-top: auto; }
+
+/* Micro-share for postcards */
+.echo-postcard .micro-share-icon {
+  position: absolute;
+  bottom: 8px; right: 8px;
+  transform: scale(0.7);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.echo-postcard:hover .micro-share-icon { opacity: 1; }
+
+@media (max-width: 600px) {
+  .echo-postcards-container { padding: 24px; }
+  .echo-cards-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+}

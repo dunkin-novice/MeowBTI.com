@@ -143,6 +143,44 @@
         
         window.MeowOSUnlocks = checkUnlocks(history.length, forged.length, decisions);
 
+        // Echo Card Hooks for Unlocks
+        if (window.MeowOSUnlocks.federation) {
+            window.dispatchEvent(new CustomEvent('meow:echo:create', { detail: {
+                card_key: 'unlock_federation',
+                type: 'unlock',
+                title: t('layerCiv'),
+                lore: t('echoLoreUnlock'),
+                icon: '🤝'
+            }}));
+        }
+        if (window.MeowOSUnlocks.archaeology) {
+            window.dispatchEvent(new CustomEvent('meow:echo:create', { detail: {
+                card_key: 'unlock_archaeology',
+                type: 'unlock',
+                title: t('layerMemory'),
+                lore: t('echoLoreUnlock'),
+                icon: '⛏️'
+            }}));
+        }
+        if (window.MeowOSUnlocks.theology) {
+            window.dispatchEvent(new CustomEvent('meow:echo:create', { detail: {
+                card_key: 'unlock_theology',
+                type: 'unlock',
+                title: t('relTitle'),
+                lore: t('echoLoreUnlock'),
+                icon: '✨'
+            }}));
+        }
+        if (settings.mode === 'lore') {
+            window.dispatchEvent(new CustomEvent('meow:echo:create', { detail: {
+                card_key: 'unlock_deep_lore',
+                type: 'unlock',
+                title: t('modeLore'),
+                lore: t('echoLoreUnlock'),
+                icon: '🕵️'
+            }}));
+        }
+
         if (window.MeowTrack && history.length > 0) {
             window.MeowTrack('dashboard_depth', { mode: settings.mode, history_days: history.length, lang: getLang() });
         }

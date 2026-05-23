@@ -143,6 +143,16 @@
                 <button class="big-btn accent" onclick="document.getElementById('ascension-overlay').classList.remove('active')">Accept Legacy</button>
             </div>
         `;
+
+        // Echo Card Hook for Ascension
+        window.dispatchEvent(new CustomEvent('meow:echo:create', { detail: {
+            card_key: 'ascension_' + rank.id,
+            type: 'ascension',
+            title: rank.title,
+            lore: t('echoLoreAscension'),
+            icon: '👑'
+        }}));
+
         window.MeowTrack && window.MeowTrack('ascension_event', { rank_id: rank.id, lang: getLang() });
     }
 
