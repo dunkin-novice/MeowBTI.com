@@ -249,6 +249,28 @@
         return true;
     }
 
+    function getLostFragments() {
+        return getRawStore().lostFragments || [];
+    }
+
+    function saveLostFragment(fragment) {
+        const store = getRawStore();
+        store.lostFragments = store.lostFragments || [];
+        const idx = store.lostFragments.findIndex(f => f.id === fragment.id);
+        if (idx >= 0) {
+            store.lostFragments[idx] = { ...store.lostFragments[idx], ...fragment };
+        } else {
+            store.lostFragments.push({
+                ...fragment,
+                discoveredAt: new Date().toISOString()
+            });
+        }
+        if (store.lostFragments.length > 50) store.lostFragments = store.lostFragments.slice(-50);
+        _cachedStore = store;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
+        return true;
+    }
+
     window.MeowStore = {
         getFamily,
         saveFamilyProfile,
@@ -273,6 +295,8 @@
         getOSSettings,
         updateOSSettings,
         getEchoCards,
-        saveEchoCard
+        saveEchoCard,
+        getLostFragments,
+        saveLostFragment
     };
 })();

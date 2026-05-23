@@ -713,7 +713,43 @@
         archExcavate:      { en: "Start Excavation",          th: "เริ่มการขุดค้น" },
         archRecovered:     { en: "Fragment Recovered",        th: "กู้คืนชิ้นส่วนสำเร็จ" },
         archCorrupted:     { en: "[DATA CORRUPTED]",          th: "[ข้อมูลเสียหาย]" },
-        
+
+        // Temporal Archaeology v3
+        excTitle:          { en: "Sifting Through The Dust",  th: "ร่อนผ่านฝุ่นผง" },
+        excBegin:          { en: "Begin Excavation",          th: "เริ่มการขุดค้น" },
+        excScanning:       { en: "Scanning emotional strata...", th: "กำลังสแกนชั้นความรู้สึก..." },
+        excFound:          { en: "Fragment Recovered",        th: "กู้คืนชิ้นส่วนสำเร็จ" },
+        excReconstruct:    { en: "Reconstruct Fragment",      th: "กู้คืนสภาพชิ้นส่วน" },
+        excReconstructing: { en: "Restoring corrupted memory...", th: "กำลังกู้คืนความทรงจำที่เสียหาย..." },
+        excArchiveTitle:   { en: "Lost Civilization Archive", th: "หอจดหมายเหตุอารยธรรมที่สาบสูญ" },
+        excForbiddenAlert: { en: "WARNING: Forbidden metadata detected.", th: "คำเตือน: ตรวจพบข้อมูลเมตาที่ต้องห้าม" },
+
+        rarityDusty:       { en: "Dusty", th: "เต็มไปด้วยฝุ่น" },
+        rarityForgotten:   { en: "Forgotten", th: "ที่ถูกลืม" },
+        rarityAncient:     { en: "Ancient", th: "โบราณ" },
+        rarityMythic:      { en: "Mythic", th: "ในตำนาน" },
+        rarityForbidden:   { en: "Forbidden", th: "ต้องห้าม" },
+
+        fragTypePostcard:  { en: "Ancient Postcard", th: "ไปรษณียบัตรโบราณ" },
+        fragTypeTreaty:    { en: "Corrupted Treaty", th: "สนธิสัญญาที่เสียหาย" },
+        fragTypeChronicle: { en: "Half-Burned Chronicle", th: "พงศาวดารที่ถูกเผาไปครึ่งหนึ่ง" },
+        fragTypeGift:      { en: "Unsent Diplomatic Gift", th: "ของขวัญทางการทูตที่ไม่ได้ถูกส่ง" },
+        fragTypeReceipt:   { en: "Unknown Relic Receipt", th: "ใบเสร็จวัตถุโบราณนิรนาม" },
+        fragTypeFragment:  { en: "Parallel Civilization Fragment", th: "ชิ้นส่วนอารยธรรมคู่ขนาน" },
+        fragTypeNotice:    { en: "Fossilized Recovery Notice", th: "ประกาศกู้คืนที่กลายเป็นฟอสซิล" },
+        fragTypeRecord:    { en: "Failed Ascension Record", th: "บันทึกการก้าวข้ามที่ล้มเหลว" },
+        fragTypePermit:    { en: "Expired Soup Permit", th: "ใบอนุญาตซุปที่หมดอายุ" },
+        fragTypeTransmission: { en: "Silent Era Transmission", th: "สัญญาณส่งต่อจากยุคแห่งความเงียบ" },
+
+        fragLore1: { en: "Recovery infrastructure was attempted here.", th: "มีการพยายามสร้างโครงสร้างพื้นฐานเพื่อการกู้คืนที่นี่" },
+        fragLore2: { en: "No further charger sightings were recorded.", th: "ไม่มีการบันทึกการพบเห็นเครื่องชาร์จเพิ่มเติม" },
+        fragLore3: { en: "This civilization disappeared during a Loud Era.", th: "อารยธรรมนี้หายไปในช่วงยุคเสียงดัง" },
+        fragLore4: { en: "The soup reserves were not enough.", th: "ปริมาณซุปสำรองมีไม่เพียงพอ" },
+        fragLore5: { en: "Parallel silence was observed until the end.", th: "มีการสังเกตพบความเงียบขนานจนกระทั่งถึงจุดสิ้นสุด" },
+        fragLore6: { en: "Someone tried to preserve this memory.", th: "ใครบางคนพยายามที่จะรักษาความทรงจำนี้ไว้" },
+        fragLore7: { en: "Blanket governance collapsed unexpectedly.", th: "การปกครองแบบผ้าห่มล่มสลายลงอย่างไม่คาดคิด" },
+        fragLore8: { en: "These artifacts were never reclaimed.", th: "วัตถุโบราณเหล่านี้ไม่เคยถูกนำกลับคืนไป" },
+        };
         // Ruins
         ruinSilentKitchen: { en: "The Silent Kitchen Era",    th: "ยุคสมัยห้องครัวที่เงียบงัน" },
         ruinAncientRecharge: { en: "Ancient Recharge Site",   th: "แหล่งชาร์จพลังโบราณ" },

@@ -120,6 +120,17 @@
                     `).join('')}
                 </div>
 
+                <!-- Temporal Archaeology v3: Sifting Through The Dust -->
+                <div class="excavation-module" style="margin-top:48px; padding:24px; border:1px dashed rgba(255,255,255,0.2); border-radius:12px; background:rgba(0,0,0,0.2);">
+                    <h4 class="module-label" style="color:inherit;">✦ ${t('excTitle')} ✦</h4>
+                    <p style="font-size:0.85rem; opacity:0.6; margin:12px 0 24px 0;">
+                        Emotional strata detected from unknown parallel civilizations. Sift through the dust to recover lost fragments.
+                    </p>
+                    <button class="big-btn accent" id="btn-arch-excavate-v3" style="width:100%;">
+                        ⛏️ ${t('excBegin')}
+                    </button>
+                </div>
+
                 ${fossils.length > 0 ? `
                     <div class="fossil-cabinet" style="margin-top:48px;">
                         <h4 class="module-label" style="color:inherit;">${t('fosAncientHusk')} CABINET</h4>
@@ -134,29 +145,21 @@
                         </div>
                     </div>
                 ` : ''}
-
-                <button class="excavation-btn" id="btn-arch-excavate">
-                    ⛏️ ${t('archExcavate')}
-                </button>
             </div>
         `;
 
-        container.querySelector('#btn-arch-excavate').onclick = () => {
-            const fragments = ["Lore piece reconstructed", "Fossil cleaned", "Timelines aligned"];
-            const msg = fragments[Math.floor(Math.random() * fragments.length)];
-            alert(`${t('archRecovered')}: ${msg}`);
-            
-            // Echo Card Hook for Relic Recovery
-            window.dispatchEvent(new CustomEvent('meow:echo:create', { detail: {
-                card_key: 'arch_recovery_' + Date.now(),
-                type: 'relic_return',
-                title: t('archRecovered'),
-                lore: t('echoLoreReturn'),
-                icon: '⛏️'
-            }}));
-
-            window.MeowTrack && window.MeowTrack('excavation_started', { lang: getLang() });
-        };
+        const btnExc = container.querySelector('#btn-arch-excavate-v3');
+        if (btnExc) {
+            btnExc.onclick = () => {
+                if (window.MeowArchaeology && window.MeowArchaeology.openExcavation) {
+                    window.MeowArchaeology.openExcavation();
+                } else {
+                    // Fallback to v1 alert if v3 script not loaded
+                    alert("Scanning strata... System not fully initialized.");
+                }
+            };
+        }
+    }
 
         // Analytics
         if (ruins.length > 0 && window.MeowTrack) {
