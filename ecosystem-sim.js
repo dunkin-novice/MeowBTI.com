@@ -86,6 +86,12 @@
             feed.push({ type: 'rumor', text: `Atmospheric Echo: ${rec.content.substring(0, 30)}... ${t('voidPrimaryEvidence')}` });
         }
 
+        // 7. Echo Chamber Resonances
+        const echoes = window.MeowStore.getSyntheticEchoes ? window.MeowStore.getSyntheticEchoes() : [];
+        if (echoes.length > 0 && seededRandom('echo_room') > 0.8) {
+            feed.push({ type: 'mutation', text: "Archivists report unstable resonance growth inside the Echo Chamber." });
+        }
+
         return feed;
     }
 

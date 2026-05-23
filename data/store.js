@@ -348,6 +348,42 @@
         return true;
     }
 
+    function getSyntheticEchoes() {
+        return getRawStore().syntheticEchoes || [];
+    }
+
+    function saveSyntheticEcho(echo) {
+        const store = getRawStore();
+        store.syntheticEchoes = store.syntheticEchoes || [];
+        if (store.syntheticEchoes.some(e => e.id === echo.id)) return false;
+        store.syntheticEchoes.push({
+            ...echo,
+            generatedAt: new Date().toISOString()
+        });
+        if (store.syntheticEchoes.length > 25) store.syntheticEchoes = store.syntheticEchoes.slice(-25);
+        _cachedStore = store;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
+        return true;
+    }
+
+    function getCompositeSignals() {
+        return getRawStore().compositeSignals || [];
+    }
+
+    function saveCompositeSignal(signal) {
+        const store = getRawStore();
+        store.compositeSignals = store.compositeSignals || [];
+        if (store.compositeSignals.some(s => s.id === signal.id)) return false;
+        store.compositeSignals.push({
+            ...signal,
+            formedAt: new Date().toISOString()
+        });
+        if (store.compositeSignals.length > 10) store.compositeSignals = store.compositeSignals.slice(-10);
+        _cachedStore = store;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
+        return true;
+    }
+
     window.MeowStore = {
         getFamily,
         saveFamilyProfile,
@@ -382,6 +418,10 @@
         getSavedStations,
         saveStation,
         getVoidRecordings,
-        saveVoidRecording
+        saveVoidRecording,
+        getSyntheticEchoes,
+        saveSyntheticEcho,
+        getCompositeSignals,
+        saveCompositeSignal
     };
 })();

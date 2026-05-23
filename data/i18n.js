@@ -831,6 +831,36 @@
         voidLoreUnstable:  { en: "Signal integrity remained unstable.", th: "ความสมบูรณ์ของสัญญาณยังคงไม่คงที่" },
         voidLoreFading:    { en: "This transmission was already fading.", th: "การส่งสัญญาณนี้กำลังเลือนหายไปแล้ว" },
         voidLoreTerritory: { en: "Recovered from unknown atmospheric territory.", th: "กู้คืนมาจากดินแดนบรรยากาศนิรนาม" },
+
+        // Echo Chamber v7
+        echoTitle:         { en: "The Echo Chamber",          th: "ห้องแห่งเสียงสะท้อน" },
+        echoSyntheticLore: { en: "Synthetic Echo",            th: "เสียงสะท้อนสังเคราะห์" },
+        echoConvergence:   { en: "Composite Signal",          th: "สัญญาณรวม" },
+        echoUnexplained:   { en: "UNEXPLAINED SYNTHESIS",     th: "การสังเคราะห์ที่ไม่อาจสาธยายได้" },
+        echoResonances:    { en: "Resonant Signals",          th: "สัญญาณที่ก้องกังวาน" },
+        echoRecursive:     { en: "Recursive Archives",        th: "จดหมายเหตุเวียนซ้ำ" },
+        echoChamberFeedback: { en: "CHAMBER FEEDBACK",        th: "สัญญาณสะท้อนกลับจากห้อง" },
+
+        echoRelResonance:  { en: "Resonance",                 th: "การก้องกังวาน" },
+        echoRelContradict: { en: "Contradiction",             th: "การขัดแย้ง" },
+        echoRelLoop:       { en: "Recursive Loop",            th: "วงจรเวียนซ้ำ" },
+        echoRelHarmony:    { en: "Corrupted Harmony",         th: "ความสอดประสานที่เสียหาย" },
+        echoRelPhantom:    { en: "Phantom Reference",         th: "การอ้างอิงเงา" },
+
+        echoMsgMem1:       { en: "The transmission appears to remember another civilization.", th: "การส่งสัญญาณนี้ดูเหมือนจะจดจำอารยธรรมอื่นได้" },
+        echoMsgMem2:       { en: "Multiple recordings reference the same collapse.", th: "การบันทึกหลายรายการอ้างถึงการล่มสลายครั้งเดียวกัน" },
+        echoMsgSync:       { en: "The atmospheric residue has synchronized.", th: "ร่องรอยบรรยากาศได้รับการประสานกันแล้ว" },
+        echoMsgOrigin:     { en: "This signal may not have originated locally.", th: "สัญญาณนี้อาจไม่ได้มีต้นกำเนิดจากที่นี่" },
+        echoMsgSurvival:   { en: "Recovered evidence suggests coordinated horizontal survival.", th: "หลักฐานที่กู้คืนมาได้บ่งชี้ถึงการเอาตัวรอดในแนวระนาบที่สอดประสานกัน" },
+
+        echoCompSoup:      { en: "The Soup Frequency Convergence", th: "การรวมตัวของความถี่ซุป" },
+        echoCompSilence:   { en: "The Parallel Silence Recursion", th: "การวนซ้ำของความเงียบขนาน" },
+        echoCompBlanket:   { en: "The Blanket Resonance Archive", th: "หอจดหมายเหตุการก้องกังวานของผ้าห่ม" },
+        echoCompRecharge:  { en: "The Fourth Recharge Signal",    th: "สัญญาณการชาร์จพลังครั้งที่สี่" },
+        echoCompEmergency: { en: "The Fossilized Emergency Broadcast", th: "การแพร่สัญญาณฉุกเฉินที่กลายเป็นฟอสซิล" },
+
+        echoInterference:  { en: "Signal Interference Detected", th: "ตรวจพบสัญญาณรบกวน" },
+        echoStability:     { en: "Harmonic Stability High",    th: "ความเสถียรของคลื่นสอดประสานสูง" },
         };
         // Ruins
         ruinSilentKitchen: { en: "The Silent Kitchen Era",    th: "ยุคสมัยห้องครัวที่เงียบงัน" },

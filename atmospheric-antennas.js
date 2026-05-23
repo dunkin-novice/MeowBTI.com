@@ -54,7 +54,13 @@
             isLive = true;
         } else if (absHash % 10 < 4) { // 20% chance for Void Recording Echo
             const recordings = window.MeowStore.getVoidRecordings ? window.MeowStore.getVoidRecordings() : [];
-            if (recordings.length > 0) {
+            const composites = window.MeowStore.getCompositeSignals ? window.MeowStore.getCompositeSignals() : [];
+            
+            if (composites.length > 0 && absHash % 100 < 10) { // Rare Composite Echo
+                const comp = composites[absHash % composites.length];
+                content = `ARCHIVE FEEDBACK: ${t(comp.nameKey)} detected at origin.`;
+                isLive = true;
+            } else if (recordings.length > 0) {
                 const rec = recordings[absHash % recordings.length];
                 content = `FEEDBACK: ${rec.content}`;
                 isLive = true;

@@ -86,6 +86,9 @@
             overlay.querySelector('#btn-finalize-rec').onclick = () => {
                 window.MeowStore.saveVoidRecording(recording);
                 overlay.remove();
+                if (window.MeowEchoChamber && window.MeowEchoChamber.generate) {
+                    window.MeowEchoChamber.generate();
+                }
                 if (window.renderMuseum) window.renderMuseum();
                 window.MeowTrack && window.MeowTrack('signal_recorded', { type: typeKey, freq: signal.freq });
             };
@@ -114,6 +117,9 @@
             <div class="void-archive-header">
                 <h3 class="void-archive-h3">${t('voidArchive')}</h3>
             </div>
+
+            <div id="echo-chamber-wing"></div>
+
             <div class="void-recordings-grid">
                 ${recordings.slice().reverse().map(r => {
                     const state = getRecordingState(r.capturedAt);
@@ -157,6 +163,11 @@
 
         if (window.MeowTrack) {
             window.MeowTrack('recording_archive_opened', { count: recordings.length });
+        }
+
+        // Render Echo Chamber
+        if (window.MeowEchoChamber && window.MeowEchoChamber.render) {
+            window.MeowEchoChamber.render();
         }
     }
 
