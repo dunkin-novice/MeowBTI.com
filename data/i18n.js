@@ -861,6 +861,38 @@
 
         echoInterference:  { en: "Signal Interference Detected", th: "ตรวจพบสัญญาณรบกวน" },
         echoStability:     { en: "Harmonic Stability High",    th: "ความเสถียรของคลื่นสอดประสานสูง" },
+
+        // Black Box v8
+        bbTitle:           { en: "The Emotional Black Box",   th: "กล่องดำทางอารมณ์" },
+        bbArchive:         { en: "Black Box Vault",           th: "ห้องนิรภัยกล่องดำ" },
+        bbSeal:            { en: "Seal CivilizationSnapshot", th: "ผนึกภาพถ่ายอารยธรรม" },
+        bbSealing:         { en: "Compressing emotional era...", th: "กำลังบีบอัดยุคสมัยทางอารมณ์..." },
+        bbBreach:          { en: "BREACH EVENT",              th: "เหตุการณ์การรั่วไหล" },
+        bbBleed:           { en: "ARCHIVE BLEED",             th: "การรั่วไหลจากจดหมายเหตุ" },
+        bbFragment:        { en: "World Fragment",            th: "เศษเสี้ยวโลก" },
+        bbReconstruct:     { en: "Reconstruct Archive",       th: "กู้คืนจดหมายเหตุ" },
+        bbComposite:       { en: "Composite Archive",         th: "จดหมายเหตุรวม" },
+        bbWeight:          { en: "Emotional Weight",          th: "น้ำหนักทางอารมณ์" },
+
+        bbStateSealed:     { en: "SEALED",                    th: "ถูกผนึก" },
+        bbStateDormant:    { en: "DORMANT",                   th: "หลับใหล" },
+        bbStateWeathered:  { en: "WEATHERED",                 th: "สึกกร่อน" },
+        bbStateDistorted:  { en: "DISTORTED",                 th: "บิดเบือน" },
+        bbStateCracking:   { en: "CRACKING OPEN",             th: "กำลังแตกร้าว" },
+        bbStateBreached:   { en: "BREACHED",                  th: "รั่วไหล" },
+        bbStateLost:       { en: "LOST TO THE DUST",          th: "สาบสูญไปกับฝุ่นผง" },
+
+        bbMsgBreach1:      { en: "A breached archive continues transmitting soup infrastructure warnings.", th: "จดหมายเหตุที่รั่วไหลยังคงส่งคำเตือนเกี่ยวกับโครงสร้างพื้นฐานซุป" },
+        bbMsgBreach2:      { en: "Civilization residue detected inside unauthorized frequencies.", th: "ตรวจพบร่องรอยอารยธรรมในความถี่ที่ไม่ได้รับอนุญาต" },
+        bbMsgBreach3:      { en: "The Black Box appears emotionally unstable.", th: "กล่องดำดูเหมือนจะไม่มีความเสถียรทางอารมณ์" },
+
+        bbCompParallel:    { en: "The Parallel Reconstruction Archive", th: "จดหมายเหตุการกู้คืนขนาน" },
+        bbCompSoup:        { en: "The Great Soup Coalition Remnant",    th: "เศษซากกลุ่มพันธมิตรซุปที่ยิ่งใหญ่" },
+        bbCompGov:         { en: "The Horizontal Governance Debris",    th: "ซากการปกครองแนวระนาบ" },
+        bbCompFed:         { en: "The Fossilized Federation Core",      th: "แกนกลางสหพันธ์ที่กลายเป็นฟอสซิล" },
+
+        bbLoreEvidence:    { en: "Final evidence that a civilization once existed.", th: "หลักฐานสุดท้ายว่าอารยธรรมเคยมีอยู่จริง" },
+        bbLoreHistory:     { en: "This house became history.",        th: "บ้านหลังนี้ได้กลายเป็นประวัติศาสตร์ไปแล้ว" },
         };
         // Ruins
         ruinSilentKitchen: { en: "The Silent Kitchen Era",    th: "ยุคสมัยห้องครัวที่เงียบงัน" },

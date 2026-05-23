@@ -60,6 +60,16 @@
                 const comp = composites[absHash % composites.length];
                 content = `ARCHIVE FEEDBACK: ${t(comp.nameKey)} detected at origin.`;
                 isLive = true;
+            } else if (absHash % 100 < 15) { // Black Box Resonance (15% chance)
+                const boxes = window.MeowStore.getBlackBoxes ? window.MeowStore.getBlackBoxes() : [];
+                if (boxes.length > 0) {
+                    const box = boxes[absHash % boxes.length];
+                    content = `ARCHIVE BLEED: ${t('bbTitle')} detected at ${box.freq || currentFreq.toFixed(1)} MHz.`;
+                    isLive = true;
+                } else {
+                    const pool = MESSAGES[band.type] || MESSAGES.civ;
+                    content = t(pool[absHash % pool.length]);
+                }
             } else if (recordings.length > 0) {
                 const rec = recordings[absHash % recordings.length];
                 content = `FEEDBACK: ${rec.content}`;

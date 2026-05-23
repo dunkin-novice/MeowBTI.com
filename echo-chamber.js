@@ -81,6 +81,18 @@
                 }
             }
         });
+
+        // 3. Black Box Folklore Bleed
+        const blackBoxes = window.MeowStore.getBlackBoxes();
+        if (blackBoxes.length > 0 && currentEchoes.length > 0 && Math.random() > 0.7) {
+            const box = blackBoxes[Math.floor(Math.random() * blackBoxes.length)];
+            const echo = currentEchoes[Math.floor(Math.random() * currentEchoes.length)];
+            if (!echo.referencedBox) {
+                echo.msgKey = 'echoMsgMem1'; // Override to reference "another civilization" (the black box)
+                echo.referencedBox = box.id;
+                window.MeowStore.saveSyntheticEcho(echo);
+            }
+        }
     }
 
     function renderEchoChamber() {

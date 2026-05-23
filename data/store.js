@@ -384,6 +384,46 @@
         return true;
     }
 
+    function getBlackBoxes() {
+        return getRawStore().blackBoxes || [];
+    }
+
+    function saveBlackBox(box) {
+        const store = getRawStore();
+        store.blackBoxes = store.blackBoxes || [];
+        const idx = store.blackBoxes.findIndex(b => b.id === box.id);
+        if (idx >= 0) {
+            store.blackBoxes[idx] = { ...store.blackBoxes[idx], ...box };
+        } else {
+            store.blackBoxes.push({
+                ...box,
+                sealedAt: new Date().toISOString()
+            });
+        }
+        if (store.blackBoxes.length > 15) store.blackBoxes = store.blackBoxes.slice(-15);
+        _cachedStore = store;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
+        return true;
+    }
+
+    function getCompositeArchives() {
+        return getRawStore().compositeArchives || [];
+    }
+
+    function saveCompositeArchive(archive) {
+        const store = getRawStore();
+        store.compositeArchives = store.compositeArchives || [];
+        if (store.compositeArchives.some(a => a.id === archive.id)) return false;
+        store.compositeArchives.push({
+            ...archive,
+            mergedAt: new Date().toISOString()
+        });
+        if (store.compositeArchives.length > 6) store.compositeArchives = store.compositeArchives.slice(-6);
+        _cachedStore = store;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
+        return true;
+    }
+
     window.MeowStore = {
         getFamily,
         saveFamilyProfile,
@@ -422,6 +462,10 @@
         getSyntheticEchoes,
         saveSyntheticEcho,
         getCompositeSignals,
-        saveCompositeSignal
+        saveCompositeSignal,
+        getBlackBoxes,
+        saveBlackBox,
+        getCompositeArchives,
+        saveCompositeArchive
     };
 })();

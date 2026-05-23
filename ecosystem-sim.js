@@ -92,6 +92,16 @@
             feed.push({ type: 'mutation', text: "Archivists report unstable resonance growth inside the Echo Chamber." });
         }
 
+        // 8. Black Box Breach Events
+        if (window.MeowArchiveBreach && seededRandom('breach') > 0.5) {
+            const b = window.MeowArchiveBreach;
+            const breachMsgs = ['bbMsgBreach1', 'bbMsgBreach2', 'bbMsgBreach3'];
+            feed.push({ 
+                type: 'incident', 
+                text: `BREACH DETECTED [#${b.id.toUpperCase()}]: ${t(breachMsgs[Math.floor(seededRandom('breach_msg') * breachMsgs.length)])}` 
+            });
+        }
+
         return feed;
     }
 

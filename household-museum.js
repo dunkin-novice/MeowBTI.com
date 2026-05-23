@@ -619,6 +619,8 @@
 
             <div id="void-recordings-archive-section"></div>
 
+            <div id="black-box-vault-section"></div>
+
             <div style="margin-top:24px; opacity:0.5; font-family:var(--font-mono); font-size:0.75rem;">
                 <a href="#household-archaeology-section" style="text-decoration:none; color:inherit;">✦ ${t('archWing')} ✦</a>
             </div>
@@ -627,6 +629,11 @@
         // Render Void Recordings if they exist
         if (window.MeowVoidRecorder && window.MeowVoidRecorder.render) {
             window.MeowVoidRecorder.render();
+        }
+
+        // Render Black Box Vault
+        if (window.MeowBlackBox && window.MeowBlackBox.render) {
+            window.MeowBlackBox.render();
         }
 
         // Bind synthesis UI logic

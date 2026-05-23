@@ -83,6 +83,19 @@
                 isCorrupted: true,
                 reconstructed: false
             };
+        } else if (absHash % 100 < 5) { // 5% chance for fractured black box shard
+            return {
+                id: `bb-shard-${absHash.toString(36)}`,
+                isBlackBoxShard: true,
+                typeKey: 'bbFragment',
+                customTitle: t('bbBreach'),
+                loreText: t('bbMsgBreach3'),
+                icon: '📼',
+                rarityKey: 'rarityForbidden',
+                rarityColor: '#ff5b3b',
+                isCorrupted: true,
+                reconstructed: false
+            };
         } else if (recordings.length > 0 && absHash % 100 < 25) {
             const rec = recordings[absHash % recordings.length];
             return {
@@ -175,9 +188,9 @@
         const host = document.getElementById('exc-result-host');
         const status = document.getElementById('exc-status-text');
         
-        status.textContent = t(frag.isForeign ? 'transForeign' : (frag.isComposite ? 'echoConvergence' : (frag.isEvidence ? 'voidPrimaryEvidence' : 'excFound')));
+        status.textContent = t(frag.isForeign ? 'transForeign' : (frag.isComposite || frag.isBlackBoxShard ? 'echoConvergence' : (frag.isEvidence ? 'voidPrimaryEvidence' : 'excFound')));
         
-        const loreText = frag.isForeign ? frag.loreText : (frag.isEvidence || frag.isComposite ? frag.loreText : t(frag.loreKey));
+        const loreText = frag.isForeign ? frag.loreText : (frag.isEvidence || frag.isComposite || frag.isBlackBoxShard ? frag.loreText : t(frag.loreKey));
         let displayLore = frag.isCorrupted 
             ? loreText.split(' ').map((word, i) => (i % 3 === 0 ? '████' : word)).join(' ')
             : loreText;
@@ -187,12 +200,12 @@
         }
 
         host.innerHTML = `
-            <div class="fragment-reveal-card animate-pop-in ${frag.isForeign ? 'foreign-signal' : ''} ${frag.isEvidence || frag.isComposite ? 'void-evidence' : ''}" style="--rarity-color: ${frag.rarityColor}">
+            <div class="fragment-reveal-card animate-pop-in ${frag.isForeign ? 'foreign-signal' : ''} ${frag.isEvidence || frag.isComposite || frag.isBlackBoxShard ? 'void-evidence' : ''}" style="--rarity-color: ${frag.rarityColor}">
                 <div class="frag-rarity">${t(frag.rarityKey)} ${frag.isForeign ? `(${t(frag.decayKey)})` : ''}</div>
                 <div class="frag-type">${frag.customTitle || t(frag.typeKey)}</div>
                 <div class="frag-lore">"${displayLore}"</div>
                 ${frag.isForeign ? `<div class="frag-origin">${t('transUnknownOrigin')}</div>` : ''}
-                ${frag.rarityKey === 'rarityForbidden' || frag.isEvidence || frag.isComposite ? `<div class="frag-alert">${frag.isComposite ? 'UNEXPLAINED SYNTHESIS' : (frag.isEvidence ? 'HISTORICAL SYNC DETECTED' : t('excForbiddenAlert'))}</div>` : ''}
+                ${frag.rarityKey === 'rarityForbidden' || frag.isEvidence || frag.isComposite || frag.isBlackBoxShard ? `<div class="frag-alert">${frag.isComposite || frag.isBlackBoxShard ? 'UNEXPLAINED SYNTHESIS' : (frag.isEvidence ? 'HISTORICAL SYNC DETECTED' : t('excForbiddenAlert'))}</div>` : ''}
                 <div class="frag-actions">
                     <button class="big-btn accent" id="btn-save-frag">${t('backToDashboard')}</button>
                     ${frag.isCorrupted ? `<button class="big-btn ghost" id="btn-recon-frag">${t('excReconstruct')}</button>` : ''}
@@ -201,11 +214,11 @@
         `;
 
         overlay.querySelector('#btn-save-frag').onclick = () => {
-            if (!frag.isEvidence && !frag.isComposite) window.MeowStore.saveLostFragment(frag);
+            if (!frag.isEvidence && !frag.isComposite && !frag.isBlackBoxShard) window.MeowStore.saveLostFragment(frag);
             overlay.remove();
             if (window.renderMuseum) window.renderMuseum();
             if (window.MeowArchaeology && window.MeowArchaeology.renderArchive) window.MeowArchaeology.renderArchive();
-            window.MeowTrack && window.MeowTrack(frag.isForeign ? 'foreign_fragment_discovered' : (frag.isComposite ? 'composite_signal_detected' : (frag.isEvidence ? 'atmospheric_evidence_recovered' : 'fragment_discovered')), { rarity: frag.rarityKey, id: frag.id });
+            window.MeowTrack && window.MeowTrack(frag.isForeign ? 'foreign_fragment_discovered' : (frag.isComposite || frag.isBlackBoxShard ? 'world_fragment_detected' : (frag.isEvidence ? 'atmospheric_evidence_recovered' : 'fragment_discovered')), { rarity: frag.rarityKey, id: frag.id });
         };
 
         if (frag.isCorrupted) {
