@@ -84,9 +84,17 @@
 
         // 3. Black Box Folklore Bleed
         const blackBoxes = window.MeowStore.getBlackBoxes();
-        if (blackBoxes.length > 0 && currentEchoes.length > 0 && Math.random() > 0.7) {
-            const box = blackBoxes[Math.floor(Math.random() * blackBoxes.length)];
-            const echo = currentEchoes[Math.floor(Math.random() * currentEchoes.length)];
+        const history = window.MeowDaily.getHistory() || [];
+        const family = window.MeowStore.getFamily();
+        const householdId = family.length > 0 ? family[0].id : 'temp';
+        const bleedSeed = `${householdId}-${history.length}`;
+        let hash = 0;
+        for (let k = 0; k < bleedSeed.length; k++) hash = ((hash << 5) - hash) + bleedSeed.charCodeAt(k);
+        const seededRandom = Math.abs(hash) / 2147483647;
+
+        if (blackBoxes.length > 0 && currentEchoes.length > 0 && seededRandom > 0.7) {
+            const box = blackBoxes[Math.floor(seededRandom * blackBoxes.length)];
+            const echo = currentEchoes[Math.floor(seededRandom * currentEchoes.length)];
             if (!echo.referencedBox) {
                 echo.msgKey = 'echoMsgMem1'; // Override to reference "another civilization" (the black box)
                 echo.referencedBox = box.id;

@@ -138,6 +138,7 @@
             ...chronicle,
             createdAt: new Date().toISOString()
         });
+        if (store.chronicles.length > 20) store.chronicles = store.chronicles.slice(-20);
         _cachedStore = store;
         localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
         return true;

@@ -6,6 +6,17 @@
     if (!window.MeowI18n || !window.MeowStore || !window.MeowDaily) return;
 
     const { t, getLang } = window.MeowI18n;
+    const sanitize = window.MeowSanitize || ((s) => s);
+
+    function getSeed(str = '') {
+        const d = new Date();
+        const family = window.MeowStore.getFamily();
+        const householdId = family.length > 0 ? family[0].id : 'temp';
+        const base = `${d.getFullYear()}${d.getMonth()}${d.getDate()}-${householdId}-${str}`;
+        let hash = 0;
+        for (let i = 0; i < base.length; i++) hash = ((hash << 5) - hash) + base.charCodeAt(i);
+        return Math.abs(hash) / 2147483647;
+    }
 
     const BB_STATES = [
         { key: 'bbStateSealed', level: 0, corruption: 0 },
@@ -45,7 +56,7 @@
         // Compress Snapshot (Symbolic Metadata)
         const snapshot = {
             id,
-            civName: mainCiv.name,
+            civName: sanitize(mainCiv.name),
             civType: mainCiv.type,
             rank: window.MeowOSUnlocks ? (Object.keys(window.MeowOSUnlocks).filter(k => window.MeowOSUnlocks[k]).length) : 0,
             doctrines: decisions.history.slice(-3).map(h => h.id),
@@ -223,7 +234,7 @@
     function checkForBreach() {
         const boxes = window.MeowStore.getBlackBoxes();
         const breached = boxes.find(b => getBlackBoxState(b.sealedAt).key === 'bbStateBreached');
-        if (breached && Math.random() > 0.8) {
+        if (breached && getSeed('breach') > 0.8) {
             window.MeowTrack && window.MeowTrack('archive_breached', { id: breached.id });
             // This is picked up by ecosystem-sim.js
             window.MeowArchiveBreach = breached;
