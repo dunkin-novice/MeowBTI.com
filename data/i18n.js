@@ -911,6 +911,47 @@
         pathTitle:         { en: "The Path to Awakening",     th: "เส้นทางสู่การตื่นรู้" },
         pathProgress:      { en: "Civilization Integrity",    th: "ความสมบูรณ์ของอารยธรรม" },
         pathDay:           { en: "Day {{day}} of history",    th: "วันที่ {{day}} ของประวัติศาสตร์" },
+
+        // Identity Lock-In v1
+        idGreeting:        { en: "Welcome home, {{class}} Civilization.", th: "ยินดีต้อนรับกลับบ้าน อารยธรรม{{class}}" },
+        idMottoLabel:      { en: "Civilization Motto",        th: "คำขวัญอารยธรรม" },
+        idProverbLabel:    { en: "Recurring Proverb",         th: "สุภาษิตประจำใจ" },
+        idOathLabel:       { en: "Civilization Oath",         th: "คำปฏิญาณอารยธรรม" },
+        idTraitsLabel:     { en: "Identity Traits",           th: "คุณลักษณะเฉพาะตัว" },
+
+        // Class Mottos
+        mottoRecovery:     { en: "The house survives through stillness.", th: "บ้านดำรงอยู่ได้ผ่านความนิ่งสงบ" },
+        mottoLoud:         { en: "Survival is not quiet.",            th: "การอยู่รอดไม่ใช่ความเงียบ" },
+        mottoParallel:     { en: "Together, separately.",             th: "อยู่ด้วยกัน อย่างแยกกัน" },
+        mottoChaos:        { en: "Order is a luxury of the energized.", th: "ระเบียบคือความหรูหราของผู้ที่มีพลังงาน" },
+        mottoBlanket:      { en: "Safety is soft and horizontal.",    th: "ความปลอดภัยคือความนุ่มนวลและแนวระราบ" },
+        mottoSoup:         { en: "Broth is the only infrastructure.", th: "น้ำซุปคือโครงสร้างพื้นฐานเดียวที่มี" },
+        mottoSurvivalist:  { en: "The era changed; we did not.",       th: "ยุคสมัยเปลี่ยนไป แต่เราไม่เปลี่ยน" },
+        mottoStability:    { en: "Sustainable peace, daily rituals.", th: "สันติภาพที่ยั่งยืน กิจวัตรประจำวัน" },
+
+        // Identity Traits
+        traitQuiet:        { en: "Historically Quiet",        th: "เงียบงันตามประวัติศาสตร์" },
+        traitSoup:         { en: "Soup-Reinforced",           th: "เสริมแกร่งด้วยซุป" },
+        traitRecovery:     { en: "Recovery-Oriented",         th: "มุ่งเน้นการกู้คืน" },
+        traitFlammable:    { en: "Emotionally Flammable",     th: "จุดติดทางอารมณ์ได้ง่าย" },
+        traitResistant:    { en: "Ritual Resistant",          th: "ต่อต้านกิจวัตร" },
+        traitAutonomy:     { en: "High Autonomy",             th: "ความเป็นอิสระสูง" },
+        traitDensity:      { en: "Bunker Density High",       th: "ความหนาแน่นในบังเกอร์สูง" },
+        traitPersistence:  { en: "Ramen-Fueled Persistence",   th: "ความเพียรที่ขับเคลื่อนด้วยราเมน" },
+
+        // Bonding Moments
+        bondLoyalty30:     { en: "Your civilization has survived 30 days.", th: "อารยธรรมของคุณรอดชีวิตมาได้ 30 วันแล้ว" },
+        bondStabilize:     { en: "The house is beginning to stabilize.", th: "บ้านเริ่มเข้าสู่ความมั่นคง" },
+        bondPermanent:     { en: "This archive is no longer temporary.", th: "จดหมายเหตุนี้ไม่ใช่สิ่งชั่วคราวอีกต่อไป" },
+        bondWelcome:       { en: "You are one of us now.",           th: "คุณคือส่วนหนึ่งของเราแล้ว" },
+
+        // Diplomacy / Chemistry
+        dipChemistry:      { en: "Civilization Chemistry",    th: "เคมีของอารยธรรม" },
+        dipCompatibility:  { en: "Cultural Compatibility",    th: "ความเข้ากันได้ทางวัฒนธรรม" },
+        dipOverlap:        { en: "Ideological Overlap",       th: "อุดมการณ์ที่ทับซ้อน" },
+        chemResonant:      { en: "Resonant",                  th: "สอดคล้องกัน" },
+        chemNeutral:       { en: "Neutral",                   th: "เป็นกลาง" },
+        chemUnstable:      { en: "Unstable",                  th: "ไม่คงที่" },
         };
         // Ruins
         ruinSilentKitchen: { en: "The Silent Kitchen Era",    th: "ยุคสมัยห้องครัวที่เงียบงัน" },

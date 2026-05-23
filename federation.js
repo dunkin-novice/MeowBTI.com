@@ -19,6 +19,18 @@
         accord_seal: { name: t('giftAccordSeal'), icon: '📜', plaque: t('lpLowEnergyAuth'), alliance: 'allBlanketAccord' }
     };
 
+    function determineChemistry(local, member) {
+        if (!local.doctrine || !member.doctrine) return { key: 'chemNeutral', val: 50 };
+        const seed = (local.id || 'loc') + (member.id || 'mem');
+        let hash = 0;
+        for (let i = 0; i < seed.length; i++) hash = ((hash << 5) - hash) + seed.charCodeAt(i);
+        const score = Math.abs(hash) % 101;
+        let status = 'chemNeutral';
+        if (score > 75) status = 'chemResonant';
+        else if (score < 25) status = 'chemUnstable';
+        return { key: status, val: score };
+    }
+
     function getLocalCivilizationSnapshot(giftKey = null) {
         const history = window.MeowDaily.getHistory() || [];
         const profiles = window.MeowStore.getFamily();
@@ -298,6 +310,7 @@
                             const alliance = getAllianceType(local, member);
                             const sharedEvent = getSharedEvent(local, member);
                             const fedRelic = getFederationRelic(local, member);
+                            const chem = determineChemistry(local, member);
 
                             return `
                                 <div class="alliance-card">
@@ -306,6 +319,17 @@
                                     <div class="alliance-status">${alliance.title}</div>
                                     <div class="pm-label">Prestige: ${member.prestige || 0} ${member.prestige > 100 ? '(Elder Civilization)' : ''}</div>
                                     
+                                    <div class="fed-diplomacy-meta" style="margin:16px 0; padding:12px; background:rgba(255,255,255,0.03); border-radius:8px;">
+                                        <div style="display:flex; justify-content:space-between; font-size:0.6rem; margin-bottom:8px;">
+                                            <span class="chem-label" style="opacity:0.5; text-transform:uppercase;">${t('dipChemistry')}</span>
+                                            <span class="chem-status ${chem.key}" style="font-weight:900;">${t(chem.key)}</span>
+                                        </div>
+                                        <div class="chem-bar-outer" style="height:4px; background:rgba(255,255,255,0.1); border-radius:2px; overflow:hidden;">
+                                            <div class="chem-bar-inner ${chem.key}" style="width: ${chem.val}%; height:100%; background:var(--ink); transition: width 1s;"></div>
+                                        </div>
+                                        <p style="font-size:0.65rem; opacity:0.5; margin-top:8px;">${t('dipCompatibility')}: ${chem.val}%</p>
+                                    </div>
+
                                     ${sharedEvent ? `
                                         <div class="dip-line" style="color:#FFB000;">
                                             🌟 ${t('dipSharedMyth')}: ${sharedEvent.title}
@@ -325,7 +349,7 @@
                                         <div class="dip-line">${getCivilizationComparison(local, member)}</div>
                                     </div>
                                     
-                                    <button class="micro-share-icon mini" data-type="alliance" data-text="Alliance Formed: ${alliance.title} with ${member.name}. ${sharedEvent ? 'Event: ' + sharedEvent.title : ''}">📤</button>
+                                    <button class="micro-share-icon mini" data-type="alliance" data-text="Alliance Formed: ${alliance.title} with ${member.name}. Chemistry: ${t(chem.key)}.">📤</button>
                                 </div>
                             `;
                         }).join('')}
@@ -375,13 +399,17 @@
 
             const civDecisions = window.MeowStore.getCivDecisions ? window.MeowStore.getCivDecisions() : { policies: [], alignment: 'neutral' };
 
+            const civClass = window.MeowCivilization ? window.MeowCivilization.detectClass(history, profiles) : { id: 'stability' };
+
             const payload = {
                 seasonTitle: season.title,
                 seasonKey: season.key,
+                civClass: civClass.id,
                 reputation: reputation + (aura ? ` with ${aura.title}` : ''),
                 era: window.MeowSeasons ? window.MeowSeasons.detectArc(history) : "Early History",
                 doctrine: doctrine,
                 doctrineKey: internalized.length > 0 ? internalized[0][0] : 'none',
+                motto: t('motto' + civClass.id.charAt(0).toUpperCase() + civClass.id.slice(1)),
                 relicName: topRelic.customName || topRelic.name,
                 relicIcon: topRelic.icon,
                 philosophy: t('cultSocialDesc'), // Anthropological placeholder

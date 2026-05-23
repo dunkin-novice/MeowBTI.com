@@ -48,10 +48,21 @@
 
         updateMeta(data);
 
+        const crests = {
+            recovery: '🕊️', loud: '📢', parallel: '🧘', chaos: '🌪️', blanket: '🛌', soup: '🍲', survivalist: '🛡️', stability: '⚖️'
+        };
+        const crest = crests[data.civClass] || '🗿';
+
         mount.innerHTML = `
             <section class="profile-hero">
+                <div class="civ-crest-v2" style="font-size:4rem; margin-bottom:24px; filter: drop-shadow(0 0 20px rgba(255,255,255,0.1));">${crest}</div>
                 <h1 class="civ-banner animate-fade-in">${sanitize(data.seasonTitle)}</h1>
                 <span class="civ-reputation animate-fade-in">${sanitize(data.reputation)}</span>
+
+                <div class="profile-oath-box animate-fade-in" style="max-width:500px; margin:40px auto 0; padding:24px; border:1px solid rgba(255,255,255,0.1); border-radius:16px; background:rgba(0,0,0,0.2);">
+                    <span class="module-label" style="margin-bottom:8px;">${t('idMottoLabel')}</span>
+                    <p class="civ-motto" style="font-family:var(--font-display); font-size:1.4rem; font-style:italic; margin:0;">“${data.motto || 'Survival is a ritual.'}”</p>
+                </div>
             </section>
 
             <div class="profile-grid">
@@ -74,7 +85,7 @@
                     <span class="module-label">${t('profPhilosophy')}</span>
                     <div class="module-val">${sanitize(data.philosophy)}</div>
                 </div>
-
+    ...
                 <div class="profile-module animate-fade-in" style="animation-delay: 0.5s">
                     <span class="module-label">${t('profInfra')}</span>
                     <div class="module-val">${sanitize(data.infrastructure)}</div>

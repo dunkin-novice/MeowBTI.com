@@ -12,15 +12,29 @@
     }
 
     const CLASSES = {
-        recovery: { id: 'recovery', title: t('clsRecovery'), icon: '🕊️', proverb: t('provRecovery') },
-        loud: { id: 'loud', title: t('clsLoud'), icon: '📢', proverb: t('provLoud') },
-        parallel: { id: 'parallel', title: t('clsParallel'), icon: '🧘', proverb: t('provParallel') },
-        chaos: { id: 'chaos', title: t('clsChaos'), icon: '🌪️', proverb: t('provChaos') },
-        blanket: { id: 'blanket', title: t('clsBlanket'), icon: '🛌', proverb: t('provBlanket') },
-        soup: { id: 'soup', title: t('clsSoup'), icon: '🍲', proverb: t('provSoup') },
-        survivalist: { id: 'survivalist', title: t('clsSurvivalist'), icon: '🛡️', proverb: t('provSurvivalist') },
-        stability: { id: 'stability', title: t('clsStability'), icon: '⚖️', proverb: t('provStability') }
+        recovery: { id: 'recovery', title: t('clsRecovery'), icon: '🕊️', motto: t('mottoRecovery'), proverb: t('provRecovery') },
+        loud: { id: 'loud', title: t('clsLoud'), icon: '📢', motto: t('mottoLoud'), proverb: t('provLoud') },
+        parallel: { id: 'parallel', title: t('clsParallel'), icon: '🧘', motto: t('mottoParallel'), proverb: t('provParallel') },
+        chaos: { id: 'chaos', title: t('clsChaos'), icon: '🌪️', motto: t('mottoChaos'), proverb: t('provChaos') },
+        blanket: { id: 'blanket', title: t('clsBlanket'), icon: '🛌', motto: t('mottoBlanket'), proverb: t('provBlanket') },
+        soup: { id: 'soup', title: t('clsSoup'), icon: '🍲', motto: t('mottoSoup'), proverb: t('provSoup') },
+        survivalist: { id: 'survivalist', title: t('clsSurvivalist'), icon: '🛡️', motto: t('mottoSurvivalist'), proverb: t('provSurvivalist') },
+        stability: { id: 'stability', title: t('clsStability'), icon: '⚖️', motto: t('mottoStability'), proverb: t('provStability') }
     };
+
+    function getTraits(id) {
+        const traitPool = {
+            recovery: ['traitRecovery', 'traitQuiet', 'traitAutonomy'],
+            loud: ['traitFlammable', 'traitResistant', 'traitAutonomy'],
+            parallel: ['traitQuiet', 'traitAutonomy', 'traitDensity'],
+            chaos: ['traitFlammable', 'traitResistant', 'traitPersistence'],
+            blanket: ['traitRecovery', 'traitQuiet', 'traitDensity'],
+            soup: ['traitPersistence', 'traitRecovery', 'traitQuiet'],
+            survivalist: ['traitDensity', 'traitPersistence', 'traitFlammable'],
+            stability: ['traitAutonomy', 'traitRecovery', 'traitQuiet']
+        };
+        return (traitPool[id] || []).map(k => t(k));
+    }
 
     function detectClass(history, profiles) {
         if (history.length < 5) return CLASSES.stability; // Default
@@ -156,6 +170,27 @@
         window.MeowTrack && window.MeowTrack('ascension_event', { rank_id: rank.id, lang: getLang() });
     }
 
+    function renderBondingMoment(history) {
+        if (history.length < 10) return '';
+        
+        const dayCount = history.length;
+        const seed = dayCount + new Date().getDate();
+        if (seed % 10 !== 0) return ''; // 10% chance to show a bonding moment
+
+        let msg = '';
+        if (dayCount >= 45) msg = t('bondPermanent');
+        else if (dayCount >= 30) msg = t('bondLoyalty30');
+        else if (dayCount >= 20) msg = t('bondStabilize');
+        else msg = t('bondWelcome');
+
+        return `
+            <div class="civ-bond-moment animate-fade-in">
+                <span class="bond-icon">💎</span>
+                <p class="bond-text">${msg}</p>
+            </div>
+        `;
+    }
+
     function renderCivAlignment() {
         const host = window.MeowOS ? window.MeowOS.getLayer('civ') : document.getElementById('family-content');
         if (!host) return;
@@ -177,13 +212,29 @@
             else host.append(container);
         }
 
-        const history = getHistory();
         const civClass = detectClass(history, profiles);
+        const traits = getTraits(civClass.id);
+        const bonding = renderBondingMoment(history);
 
         container.innerHTML = `
-            <span class="civ-crest">${civClass.icon}</span>
-            <h2 class="civ-class-name">${civClass.title}</h2>
-            <p class="civ-proverb">“${civClass.proverb}”</p>
+            ${bonding}
+            <div class="civ-identity-header">
+                <span class="civ-greeting">${t('idGreeting').replace('{{class}}', civClass.title)}</span>
+                <p class="civ-motto">“${civClass.motto}”</p>
+            </div>
+
+            <div class="civ-identity-card animate-pop-in">
+                <div class="civ-crest-v2">${civClass.icon}</div>
+                <h2 class="civ-class-name">${civClass.title}</h2>
+                <p class="civ-proverb">“${civClass.proverb}”</p>
+                
+                <div class="civ-identity-traits">
+                    <span class="module-label">${t('idTraitsLabel')}</span>
+                    <div class="trait-tag-cloud">
+                        ${traits.map(tr => `<span class="trait-tag">${tr}</span>`).join('')}
+                    </div>
+                </div>
+            </div>
 
             <div class="civ-traits-grid">
                 <div class="civ-trait-card">
@@ -204,7 +255,7 @@
                 <a href="/civilizations/${civClass.id}-civilization.html" class="big-btn ghost mini">
                     📖 View Faction Doctrine
                 </a>
-                <button class="micro-share-icon mini" data-type="civ_class" data-text="Our household has been recognized as ${civClass.title}. “${civClass.proverb}”">📤</button>
+                <button class="micro-share-icon mini" data-type="civ_identity" data-text="I am part of the ${civClass.title} Civilization. “${civClass.motto}”">📤</button>
             </div>
         `;
 
@@ -254,6 +305,12 @@
         };
         return data[id] || [];
     }
+
+    window.MeowCivilization = {
+        detectClass,
+        CLASSES,
+        render: renderCivAlignment
+    };
 
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', renderCivAlignment);
