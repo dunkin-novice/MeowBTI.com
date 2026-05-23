@@ -770,6 +770,37 @@
         transArchiveLocal: { en: "Local Broadcasts", th: "การส่งสัญญาณในพื้นที่" },
         transArchiveForeign: { en: "Foreign Recoveries", th: "การกู้คืนจากดินแดนอื่น" },
         transArchiveSignals: { en: "Transmission Archive", th: "หอจดหมายเหตุการส่งสัญญาณ" },
+
+        // Atmospheric Antennas v5
+        antTitle:          { en: "Atmospheric Antennas",      th: "เสาอากาศบรรยากาศ" },
+        antScanning:       { en: "Scanning frequencies...",    th: "กำลังสแกนความถี่..." },
+        antTuning:         { en: "Tuning signal...",          th: "กำลังปรับสัญญาณ..." },
+        antSaved:          { en: "Frequency Saved",           th: "บันทึกความถี่แล้ว" },
+        antDrifting:       { en: "Signal drifting...",        th: "สัญญาณกำลังคลาดเคลื่อน..." },
+        antLive:           { en: "LIVE SIGNAL DETECTED",      th: "ตรวจพบสัญญาณสด" },
+        antRogue:          { en: "ROGUE BROADCAST",           th: "การแพร่สัญญาณเถื่อน" },
+        antWeather:        { en: "Ecosystem Weather",         th: "สภาพอากาศระบบนิเวศ" },
+        antBandParallel:   { en: "Parallel FM",               th: "เอฟเอ็มขนาน" },
+        antBandRecovery:   { en: "Recovery Signals",          th: "สัญญาณการกู้คืน" },
+        antBandLoud:       { en: "Loud Era Radio",            th: "วิทยุยุคเสียงดัง" },
+        antBandDust:       { en: "Dust Frequencies",           th: "ความถี่ฝุ่นผง" },
+        antBandUnder:      { en: "Underground Broadcasts",    th: "การแพร่สัญญาณใต้ดิน" },
+        antBandUnknown:    { en: "Unknown Signal",            th: "สัญญาณนิรนาม" },
+
+        antSigStable:      { en: "Signal: Stable",            th: "สัญญาณ: เสถียร" },
+        antSigWeak:        { en: "Signal: Weak",              th: "สัญญาณ: อ่อน" },
+        antSigDistorted:   { en: "Signal: Distorted",         th: "สัญญาณ: บิดเบือน" },
+        antSigCorrupted:   { en: "Signal: Corrupted",         th: "สัญญาณ: เสียหาย" },
+        antSigLost:        { en: "Signal: Lost",              th: "สัญญาณ: หายไป" },
+
+        antMsgCiv1:        { en: "This civilization survived primarily through soup.", th: "อารยธรรมนี้อยู่รอดมาได้ด้วยซุปเป็นหลัก" },
+        antMsgCiv2:        { en: "Parallel silence remains active in Sector 9.", th: "ความเงียบขนานยังคงมีผลในเซกเตอร์ 9" },
+        antMsgCiv3:        { en: "No stable charger infrastructure detected.", th: "ไม่พบโครงสร้างพื้นฐานเครื่องชาร์จที่เสถียร" },
+        antMsgWeather1:    { en: "High atmospheric heaviness detected globally.", th: "ตรวจพบความหนักอึ้งในบรรยากาศสูงทั่วโลก" },
+        antMsgWeather2:    { en: "Recovery winds moving east.", th: "สายลมแห่งการกู้คืนกำลังเคลื่อนไปทางตะวันออก" },
+        antMsgRelic1:      { en: "The Ancient Charger was reportedly seen again.", th: "มีรายงานการพบเห็นเครื่องชาร์จโบราณอีกครั้ง" },
+        antMsgRogue1:      { en: "██ blanket governance ██ unstable ██", th: "██ การปกครองแบบผ้าห่ม ██ ไม่เสถียร ██" },
+        antMsgRogue2:      { en: "Signal origin cannot be verified.", th: "ไม่สามารถยืนยันแหล่งที่มาของสัญญาณได้" },
         };
         // Ruins
         ruinSilentKitchen: { en: "The Silent Kitchen Era",    th: "ยุคสมัยห้องครัวที่เงียบงัน" },

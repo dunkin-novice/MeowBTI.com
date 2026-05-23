@@ -308,6 +308,24 @@
         return true;
     }
 
+    function getSavedStations() {
+        return getRawStore().savedStations || [];
+    }
+
+    function saveStation(station) {
+        const store = getRawStore();
+        store.savedStations = store.savedStations || [];
+        if (store.savedStations.some(s => s.freq === station.freq)) return false;
+        store.savedStations.push({
+            ...station,
+            savedAt: new Date().toISOString()
+        });
+        if (store.savedStations.length > 20) store.savedStations = store.savedStations.slice(-20);
+        _cachedStore = store;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
+        return true;
+    }
+
     window.MeowStore = {
         getFamily,
         saveFamilyProfile,
@@ -338,6 +356,8 @@
         getBroadcasts,
         saveBroadcast,
         getImportedTransmissions,
-        saveImportedTransmission
+        saveImportedTransmission,
+        getSavedStations,
+        saveStation
     };
 })();

@@ -5918,6 +5918,114 @@ body.time-night .home-grain { opacity: 0.1; }
   overflow-y: auto;
 }
 
+/* Atmospheric Antennas v5 */
+.antenna-container {
+  margin-top: 48px;
+  padding: 24px;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  background: rgba(0,0,0,0.3);
+}
+.antenna-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+.ant-h3 { font-family: var(--font-display); font-size: 1.2rem; margin: 0; }
+.ant-status-bar { font-size: 0.7rem; opacity: 0.5; display: flex; align-items: center; gap: 8px; }
+.ant-status-pulse { width: 6px; height: 6px; background: #00ff41; border-radius: 50%; animation: pulse-mystical 2s infinite; }
+
+.radio-interface {
+  padding: 20px;
+  background: #111;
+  border-radius: 12px;
+  border: 1px solid #222;
+}
+
+.radio-dial {
+  height: 40px;
+  position: relative;
+  margin-bottom: 24px;
+  background: #050505;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.dial-track { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+.dial-mark { position: absolute; top: 0; width: 1px; height: 100%; background: rgba(255,255,255,0.2); }
+.dial-mark.active { background: #00ff41; box-shadow: 0 0 10px #00ff41; width: 2px; }
+.dial-needle {
+  position: absolute;
+  top: 0; width: 2px; height: 100%;
+  background: #ff5b3b;
+  box-shadow: 0 0 8px #ff5b3b;
+  z-index: 5;
+  transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.signal-display { text-align: left; }
+.signal-meta { display: flex; justify-content: space-between; margin-bottom: 16px; font-family: var(--font-mono); font-size: 0.75rem; color: #888; }
+.sig-freq { color: #d4af37; }
+
+.signal-body {
+  padding: 20px;
+  background: #0d0d0d;
+  border: 1px solid #1a1a1a;
+  border-radius: 8px;
+  min-height: 120px;
+  position: relative;
+}
+.sig-badge {
+  position: absolute;
+  top: 10px; right: 10px;
+  font-size: 0.55rem;
+  font-weight: 900;
+  padding: 2px 6px;
+  border-radius: 2px;
+}
+.sig-badge.live { background: #00ff41; color: #000; animation: blink 1s infinite; }
+.sig-badge.rogue { background: #ff5b3b; color: #fff; }
+
+.sig-content {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #00ff41; /* Phosphor Green */
+  text-shadow: 0 0 5px rgba(0, 255, 65, 0.5);
+  margin-bottom: 16px;
+}
+.sig-stability { font-size: 0.65rem; opacity: 0.4; text-transform: uppercase; }
+
+.saved-stations-strip {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+.saved-chip {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  background: rgba(255,255,255,0.05);
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.saved-chip:hover { background: rgba(255,255,255,0.1); }
+
+/* Deep Lore Enhancements for Radio */
+.radio-interface.mode-lore .sig-content {
+  font-family: serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  letter-spacing: 0.5px;
+}
+.radio-interface.mode-lore .signal-body {
+  border-color: #00ff41;
+  box-shadow: inset 0 0 20px rgba(0, 255, 65, 0.1);
+}
+
 .ep-label-tag {
   font-family: var(--font-mono);
   font-size: 0.5rem;
