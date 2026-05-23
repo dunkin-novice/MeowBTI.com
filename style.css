@@ -6026,6 +6026,140 @@ body.time-night .home-grain { opacity: 0.1; }
   box-shadow: inset 0 0 20px rgba(0, 255, 65, 0.1);
 }
 
+/* Void Recorder v6 */
+.recording-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: #000;
+  z-index: 10001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #00ff41;
+  font-family: var(--font-mono);
+  display: none;
+}
+.recording-overlay.active { display: flex; }
+
+.recording-scanline {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.4) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.05), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.05));
+  background-size: 100% 4px, 4px 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.recording-content {
+  position: relative;
+  z-index: 20;
+  width: 90%;
+  max-width: 480px;
+  text-align: center;
+}
+
+.rec-visual {
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 32px;
+}
+.rec-waveform {
+  width: 100%;
+  height: 60px;
+  background: repeating-linear-gradient(90deg, #00ff41 0, #00ff41 1px, transparent 1px, transparent 4px);
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  animation: waveform-pulse 1.5s infinite ease-in-out;
+  opacity: 0.3;
+}
+.rec-icon { font-size: 4rem; position: absolute; z-index: 5; }
+
+@keyframes waveform-pulse {
+  0%, 100% { transform: scaleY(0.6); opacity: 0.2; }
+  50% { transform: scaleY(1.2); opacity: 0.4; }
+}
+
+.rec-status { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 24px; animation: blink 1s infinite; }
+.rec-metadata { font-size: 0.75rem; opacity: 0.6; display: flex; justify-content: center; gap: 16px; margin-bottom: 40px; }
+
+.recording-artifact-preview {
+  background: #111;
+  padding: 32px;
+  border-radius: 16px;
+  border: 1px solid #00ff41;
+  text-align: left;
+  box-shadow: 0 0 30px rgba(0, 255, 65, 0.2);
+}
+.rec-type-label { font-size: 0.6rem; font-weight: 900; color: #ffb000; margin-bottom: 12px; text-transform: uppercase; }
+.rec-content-box { font-size: 1.1rem; font-style: italic; line-height: 1.6; color: #fff; margin-bottom: 24px; }
+.rec-footer-line { font-size: 0.7rem; opacity: 0.5; color: #00ff41; }
+
+.void-archive-container {
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px dashed rgba(255,255,255,0.1);
+}
+.void-archive-h3 { font-family: var(--font-display); font-size: 1.2rem; margin-bottom: 24px; opacity: 0.8; }
+.void-recordings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.void-recording-card {
+  background: #0d0d0d;
+  color: #d4ffda;
+  padding: 24px;
+  border-radius: 8px;
+  position: relative;
+  border: 1px solid #1a1a1a;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  transition: transform 0.2s;
+  overflow: hidden;
+}
+.void-recording-card:hover { transform: translateY(-4px); border-color: #00ff41; }
+
+.rec-stamp {
+  position: absolute;
+  top: 12px; right: 12px;
+  font-size: 0.45rem;
+  font-weight: 900;
+  border: 1px solid currentColor;
+  padding: 2px 4px;
+  border-radius: 2px;
+  opacity: 0.3;
+  transform: rotate(5deg);
+}
+
+.rec-state-tag { font-size: 0.55rem; font-weight: 900; color: #ffb000; margin-bottom: 4px; text-transform: uppercase; }
+.rec-type-tag { font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; margin-bottom: 8px; color: #00ff41; }
+.rec-freq-tag { font-size: 0.65rem; opacity: 0.4; margin-bottom: 16px; font-family: var(--font-mono); }
+.void-recording-card .rec-content-box { background: rgba(0,255,65,0.03); border-radius: 4px; padding: 12px; margin-bottom: 16px; font-size: 0.95rem; }
+.rec-lore-tag { font-size: 0.7rem; opacity: 0.4; font-style: italic; }
+
+.void-recording-card.fossilized { background: #1a1510; border-color: #8a6d3b; filter: sepia(0.4); }
+.void-recording-card.fossilized .rec-type-tag { color: #8a6d3b; }
+
+.stabilization-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.9);
+  z-index: 10002;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #00ff41;
+  font-family: var(--font-mono);
+  display: none;
+}
+.stabilization-overlay.active { display: flex; }
+.stab-content { width: 300px; text-align: center; }
+.stab-progress-text { font-size: 0.8rem; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px; }
+.stab-bar-container { width: 100%; height: 2px; background: rgba(0,255,65,0.1); border-radius: 1px; }
+.stab-bar { height: 100%; background: #00ff41; width: 0%; box-shadow: 0 0 10px #00ff41; }
+
 .ep-label-tag {
   font-family: var(--font-mono);
   font-size: 0.5rem;

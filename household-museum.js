@@ -617,10 +617,17 @@
                 "${myth}"
             </div>
 
+            <div id="void-recordings-archive-section"></div>
+
             <div style="margin-top:24px; opacity:0.5; font-family:var(--font-mono); font-size:0.75rem;">
                 <a href="#household-archaeology-section" style="text-decoration:none; color:inherit;">✦ ${t('archWing')} ✦</a>
             </div>
         `;
+
+        // Render Void Recordings if they exist
+        if (window.MeowVoidRecorder && window.MeowVoidRecorder.render) {
+            window.MeowVoidRecorder.render();
+        }
 
         // Bind synthesis UI logic
         bindSynthesis(forgedRelics, container, profiles, history);

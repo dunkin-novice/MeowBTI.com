@@ -326,6 +326,28 @@
         return true;
     }
 
+    function getVoidRecordings() {
+        return getRawStore().voidRecordings || [];
+    }
+
+    function saveVoidRecording(recording) {
+        const store = getRawStore();
+        store.voidRecordings = store.voidRecordings || [];
+        const idx = store.voidRecordings.findIndex(r => r.id === recording.id);
+        if (idx >= 0) {
+            store.voidRecordings[idx] = { ...store.voidRecordings[idx], ...recording };
+        } else {
+            store.voidRecordings.push({
+                ...recording,
+                capturedAt: new Date().toISOString()
+            });
+        }
+        if (store.voidRecordings.length > 40) store.voidRecordings = store.voidRecordings.slice(-40);
+        _cachedStore = store;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
+        return true;
+    }
+
     window.MeowStore = {
         getFamily,
         saveFamilyProfile,
@@ -358,6 +380,8 @@
         getImportedTransmissions,
         saveImportedTransmission,
         getSavedStations,
-        saveStation
+        saveStation,
+        getVoidRecordings,
+        saveVoidRecording
     };
 })();

@@ -52,6 +52,16 @@
             const tx = imported[absHash % imported.length];
             content = `"${tx.title}: ${tx.lore}"`;
             isLive = true;
+        } else if (absHash % 10 < 4) { // 20% chance for Void Recording Echo
+            const recordings = window.MeowStore.getVoidRecordings ? window.MeowStore.getVoidRecordings() : [];
+            if (recordings.length > 0) {
+                const rec = recordings[absHash % recordings.length];
+                content = `FEEDBACK: ${rec.content}`;
+                isLive = true;
+            } else {
+                const pool = MESSAGES[band.type] || MESSAGES.civ;
+                content = t(pool[absHash % pool.length]);
+            }
         } else {
             const pool = MESSAGES[band.type] || MESSAGES.civ;
             content = t(pool[absHash % pool.length]);
@@ -132,6 +142,7 @@
 
                     <div class="signal-footer">
                         <button class="big-btn ghost mini" id="btn-save-station">${t('antSaved')}</button>
+                        <button class="big-btn accent mini" id="btn-record-signal">${t('voidRecord')}</button>
                     </div>
                 </div>
             </div>
@@ -149,6 +160,12 @@
             if (window.MeowStore.saveStation(signal)) {
                 renderAntenna();
                 window.MeowTrack && window.MeowTrack('atmospheric_station_saved', { freq: signal.freq });
+            }
+        };
+
+        container.querySelector('#btn-record-signal').onclick = () => {
+            if (window.MeowVoidRecorder && window.MeowVoidRecorder.record) {
+                window.MeowVoidRecorder.record(signal);
             }
         };
 

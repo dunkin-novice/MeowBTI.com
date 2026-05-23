@@ -801,6 +801,36 @@
         antMsgRelic1:      { en: "The Ancient Charger was reportedly seen again.", th: "มีรายงานการพบเห็นเครื่องชาร์จโบราณอีกครั้ง" },
         antMsgRogue1:      { en: "██ blanket governance ██ unstable ██", th: "██ การปกครองแบบผ้าห่ม ██ ไม่เสถียร ██" },
         antMsgRogue2:      { en: "Signal origin cannot be verified.", th: "ไม่สามารถยืนยันแหล่งที่มาของสัญญาณได้" },
+
+        // Void Recorder v6
+        voidTitle:         { en: "The Void Recorder",         th: "เครื่องบันทึกความว่างเปล่า" },
+        voidRecord:        { en: "Record Signal",             th: "บันทึกสัญญาณ" },
+        voidRecording:     { en: "Capturing atmospheric residue...", th: "กำลังจับร่องรอยบรรยากาศ..." },
+        voidSuccess:       { en: "Signal Captured",           th: "จับสัญญาณสำเร็จ" },
+        voidArchive:       { en: "Void Recordings Archive",   th: "หอจดหมายเหตุการบันทึกความว่างเปล่า" },
+        voidRestabilize:   { en: "Re-stabilize Signal",       th: "ปรับเสถียรสัญญาณใหม่" },
+        voidStabilizing:   { en: "Strengthening archival clarity...", th: "กำลังเพิ่มความชัดเจนของจดหมายเหตุ..." },
+        voidPrimaryEvidence: { en: "PRIMARY EVIDENCE",        th: "หลักฐานสำคัญ" },
+
+        voidTypeSnapshot:  { en: "Atmospheric Snapshot",      th: "ภาพถ่ายบรรยากาศ" },
+        voidTypeBroadcast: { en: "Lost Civilization Broadcast", th: "การแพร่สัญญาณอารยธรรมที่สาบสูญ" },
+        voidTypeRogue:     { en: "Rogue Doctrine Capture",     th: "การดักจับหลักคำสอนเถื่อน" },
+        voidTypeResidue:   { en: "Parallel Transmission Residue", th: "ร่องรอยการส่งสัญญาณขนาน" },
+        voidTypeArchaeology: { en: "Archaeological Signal",    th: "สัญญาณทางโบราณคดี" },
+        voidTypeWeather:   { en: "Emergency Weather Advisory", th: "ประกาศเตือนอากาศฉุกเฉิน" },
+        voidTypeRelic:     { en: "Relic Sighting Log",         th: "บันทึกการพบเห็นวัตถุโบราณ" },
+        voidTypeEcho:      { en: "Unknown Frequency Echo",     th: "เสียงสะท้อนความถี่นิรนาม" },
+
+        voidStateFresh:    { en: "Fresh Capture",             th: "เพิ่งถูกจับ" },
+        voidStateArchived: { en: "Archived",                  th: "ถูกเก็บถาวร" },
+        voidStateWeathered: { en: "Weathered",                 th: "สึกกร่อน" },
+        voidStateDistorted: { en: "Distorted",                 th: "บิดเบือน" },
+        voidStateFossilized: { en: "Fossilized",                th: "กลายเป็นฟอสซิล" },
+
+        voidLoreSync:      { en: "Captured during a period of synchronized heaviness.", th: "ถูกจับได้ในช่วงเวลาของความหนักอึ้งที่สอดคล้องกัน" },
+        voidLoreUnstable:  { en: "Signal integrity remained unstable.", th: "ความสมบูรณ์ของสัญญาณยังคงไม่คงที่" },
+        voidLoreFading:    { en: "This transmission was already fading.", th: "การส่งสัญญาณนี้กำลังเลือนหายไปแล้ว" },
+        voidLoreTerritory: { en: "Recovered from unknown atmospheric territory.", th: "กู้คืนมาจากดินแดนบรรยากาศนิรนาม" },
         };
         // Ruins
         ruinSilentKitchen: { en: "The Silent Kitchen Era",    th: "ยุคสมัยห้องครัวที่เงียบงัน" },

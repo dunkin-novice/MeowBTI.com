@@ -79,6 +79,13 @@
             feed.push({ type: 'incident', text: t('statusDrifting') });
         }
 
+        // 6. Void Recording Echoes
+        const recordings = window.MeowStore.getVoidRecordings ? window.MeowStore.getVoidRecordings() : [];
+        if (recordings.length > 0 && seededRandom('void_echo') > 0.7) {
+            const rec = recordings[Math.floor(seededRandom('rec_select') * recordings.length)];
+            feed.push({ type: 'rumor', text: `Atmospheric Echo: ${rec.content.substring(0, 30)}... ${t('voidPrimaryEvidence')}` });
+        }
+
         return feed;
     }
 

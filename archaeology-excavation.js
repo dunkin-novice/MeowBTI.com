@@ -65,6 +65,24 @@
             };
         }
 
+        // Mix in Void Recordings (15% chance for recovered evidence)
+        const recordings = window.MeowStore.getVoidRecordings ? window.MeowStore.getVoidRecordings() : [];
+        if (recordings.length > 0 && absHash % 100 < 15) {
+            const rec = recordings[absHash % recordings.length];
+            return {
+                id: rec.id,
+                isEvidence: true,
+                typeKey: rec.typeKey,
+                customTitle: `Evidence: ${t(rec.typeKey)}`,
+                loreText: rec.content,
+                icon: '📼',
+                rarityKey: 'rarityMythic',
+                rarityColor: '#ffb000',
+                isCorrupted: rec.stabilityKey === 'antSigCorrupted',
+                reconstructed: rec.reconstructed
+            };
+        }
+
         // Rarity selection
         const totalWeight = RARITIES.reduce((acc, r) => acc + r.weight, 0);
         let random = (absHash % 1000) / 1000 * totalWeight;
@@ -141,9 +159,9 @@
         const host = document.getElementById('exc-result-host');
         const status = document.getElementById('exc-status-text');
         
-        status.textContent = t(frag.isForeign ? 'transForeign' : 'excFound');
+        status.textContent = t(frag.isForeign ? 'transForeign' : (frag.isEvidence ? 'voidPrimaryEvidence' : 'excFound'));
         
-        const loreText = frag.isForeign ? frag.loreText : t(frag.loreKey);
+        const loreText = frag.isForeign ? frag.loreText : (frag.isEvidence ? frag.loreText : t(frag.loreKey));
         let displayLore = frag.isCorrupted 
             ? loreText.split(' ').map((word, i) => (i % 3 === 0 ? '████' : word)).join(' ')
             : loreText;
@@ -153,12 +171,12 @@
         }
 
         host.innerHTML = `
-            <div class="fragment-reveal-card animate-pop-in ${frag.isForeign ? 'foreign-signal' : ''}" style="--rarity-color: ${frag.rarityColor}">
+            <div class="fragment-reveal-card animate-pop-in ${frag.isForeign ? 'foreign-signal' : ''} ${frag.isEvidence ? 'void-evidence' : ''}" style="--rarity-color: ${frag.rarityColor}">
                 <div class="frag-rarity">${t(frag.rarityKey)} ${frag.isForeign ? `(${t(frag.decayKey)})` : ''}</div>
                 <div class="frag-type">${frag.customTitle || t(frag.typeKey)}</div>
                 <div class="frag-lore">"${displayLore}"</div>
                 ${frag.isForeign ? `<div class="frag-origin">${t('transUnknownOrigin')}</div>` : ''}
-                ${frag.rarityKey === 'rarityForbidden' ? `<div class="frag-alert">${t('excForbiddenAlert')}</div>` : ''}
+                ${frag.rarityKey === 'rarityForbidden' || frag.isEvidence ? `<div class="frag-alert">${frag.isEvidence ? 'HISTORICAL SYNC DETECTED' : t('excForbiddenAlert')}</div>` : ''}
                 <div class="frag-actions">
                     <button class="big-btn accent" id="btn-save-frag">${t('backToDashboard')}</button>
                     ${frag.isCorrupted ? `<button class="big-btn ghost" id="btn-recon-frag">${t('excReconstruct')}</button>` : ''}
@@ -167,11 +185,11 @@
         `;
 
         overlay.querySelector('#btn-save-frag').onclick = () => {
-            window.MeowStore.saveLostFragment(frag);
+            if (!frag.isEvidence) window.MeowStore.saveLostFragment(frag);
             overlay.remove();
             if (window.renderMuseum) window.renderMuseum();
             if (window.MeowArchaeology && window.MeowArchaeology.renderArchive) window.MeowArchaeology.renderArchive();
-            window.MeowTrack && window.MeowTrack(frag.isForeign ? 'foreign_fragment_discovered' : 'fragment_discovered', { rarity: frag.rarityKey, id: frag.id });
+            window.MeowTrack && window.MeowTrack(frag.isForeign ? 'foreign_fragment_discovered' : (frag.isEvidence ? 'atmospheric_evidence_recovered' : 'fragment_discovered'), { rarity: frag.rarityKey, id: frag.id });
         };
 
         if (frag.isCorrupted) {
@@ -197,10 +215,10 @@
                 clearInterval(interval);
                 frag.reconstructed = true;
                 frag.isCorrupted = false;
-                loreBox.innerHTML = `"${frag.isForeign ? frag.loreText : t(frag.loreKey)}"`;
-                status.textContent = t(frag.isForeign ? 'transForeign' : 'excFound');
+                loreBox.innerHTML = `"${frag.isForeign || frag.isEvidence ? frag.loreText : t(frag.loreKey)}"`;
+                status.textContent = t(frag.isForeign ? 'transForeign' : (frag.isEvidence ? 'voidPrimaryEvidence' : 'excFound'));
                 reconBtn.remove();
-                window.MeowTrack && window.MeowTrack('fragment_reconstructed', { id: frag.id, is_foreign: !!frag.isForeign });
+                window.MeowTrack && window.MeowTrack('fragment_reconstructed', { id: frag.id, is_foreign: !!frag.isForeign, is_evidence: !!frag.isEvidence });
             }
         }, 100);
     }
