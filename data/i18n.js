@@ -893,6 +893,24 @@
 
         bbLoreEvidence:    { en: "Final evidence that a civilization once existed.", th: "หลักฐานสุดท้ายว่าอารยธรรมเคยมีอยู่จริง" },
         bbLoreHistory:     { en: "This house became history.",        th: "บ้านหลังนี้ได้กลายเป็นประวัติศาสตร์ไปแล้ว" },
+
+        // Civilization Journey v1
+        journeyStage1:     { en: "Day 1: The First Breath",   th: "วันที่ 1: ลมหายใจแรก" },
+        journeyStage2:     { en: "Day 3: Material Proof",     th: "วันที่ 3: ข้อพิสูจน์ทางวัตถุ" },
+        journeyStage3:     { en: "Day 5: Intimate Echoes",    th: "วันที่ 5: เสียงสะท้อนที่ใกล้ชิด" },
+        journeyStage4:     { en: "Day 7: The Awakening",      th: "วันที่ 7: การตื่นรู้" },
+        journeyStage5:     { en: "Day 14: Deep Strata",       th: "วันที่ 14: ชั้นดินที่ลึกซึ้ง" },
+        journeyStage6:     { en: "Day 30: Final Evidence",    th: "วันที่ 30: หลักฐานสุดท้าย" },
+
+        unlockHintRelic:   { en: "Continue your daily rituals to forge material proof of survival.", th: "ทำกิจวัตรประจำวันของคุณต่อไปเพื่อสร้างข้อพิสูจน์ทางวัตถุของการอยู่รอด" },
+        unlockHintMuseum:  { en: "Maintain consistency to hear the echoes of your household relics.", th: "รักษาความสม่ำเสมอเพื่อฟังเสียงสะท้อนของวัตถุโบราณในบ้านคุณ" },
+        unlockHintCiv:     { en: "A week of existence is required for full civilizational awakening.", th: "ต้องการการคงอยู่หนึ่งสัปดาห์เพื่อการตื่นรู้ของอารยธรรมอย่างเต็มรูปแบบ" },
+        unlockHintArch:    { en: "Deeper emotional strata reveal themselves after 14 days.", th: "ชั้นอารมณ์ที่ลึกกว่าจะเผยตัวออกมาหลังจาก 14 วัน" },
+        unlockHintBlackBox: { en: "A full month of history is needed to compress this era into final evidence.", th: "ต้องการประวัติศาสตร์เต็มเดือนเพื่อบีบอัดยุคสมัยนี้เป็นหลักฐานสุดท้าย" },
+
+        pathTitle:         { en: "The Path to Awakening",     th: "เส้นทางสู่การตื่นรู้" },
+        pathProgress:      { en: "Civilization Integrity",    th: "ความสมบูรณ์ของอารยธรรม" },
+        pathDay:           { en: "Day {{day}} of history",    th: "วันที่ {{day}} ของประวัติศาสตร์" },
         };
         // Ruins
         ruinSilentKitchen: { en: "The Silent Kitchen Era",    th: "ยุคสมัยห้องครัวที่เงียบงัน" },

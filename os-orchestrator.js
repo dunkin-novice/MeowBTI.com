@@ -107,13 +107,15 @@
     }
 
     function checkUnlocks(historyLength, forgedCount, civDecisions) {
-        // Return visibility states
+        // Updated First Week Journey Pacing
         return {
+            theology: historyLength >= 3,
+            museum: historyLength >= 5,
             federation: historyLength >= 7,
-            governance: civDecisions.history && civDecisions.history.length > 0 || historyLength >= 10,
-            theology: forgedCount >= 1 || historyLength >= 14,
-            archaeology: historyLength >= 20,
-            possession: historyLength >= 15
+            governance: historyLength >= 7 || (civDecisions.history && civDecisions.history.length > 0),
+            possession: historyLength >= 10,
+            archaeology: historyLength >= 14,
+            blackbox: historyLength >= 30
         };
     }
 
@@ -153,11 +155,20 @@
                 icon: '🤝'
             }}));
         }
+        if (window.MeowOSUnlocks.museum) {
+            window.dispatchEvent(new CustomEvent('meow:echo:create', { detail: {
+                card_key: 'unlock_museum',
+                type: 'unlock',
+                title: t('layerMemory'),
+                lore: t('echoLoreUnlock'),
+                icon: '🏛️'
+            }}));
+        }
         if (window.MeowOSUnlocks.archaeology) {
             window.dispatchEvent(new CustomEvent('meow:echo:create', { detail: {
                 card_key: 'unlock_archaeology',
                 type: 'unlock',
-                title: t('layerMemory'),
+                title: t('archTitle'),
                 lore: t('echoLoreUnlock'),
                 icon: '⛏️'
             }}));
