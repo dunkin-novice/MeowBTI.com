@@ -5518,3 +5518,99 @@ body.time-night .home-grain { opacity: 0.1; }
   .echo-postcards-container { padding: 24px; }
   .echo-cards-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
 }
+
+/* ─── Echo Cards v2 — Flip Side Memories ────────── */
+.echo-postcard {
+  perspective: 1000px;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+.ep-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+.echo-postcard.flipped .ep-inner { transform: rotateY(180deg); }
+
+.ep-front, .ep-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  border: 1px solid var(--ink);
+  box-shadow: 4px 4px 0 rgba(0,0,0,0.02);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 12px;
+  box-sizing: border-box;
+}
+
+.ep-front { background: #fff; z-index: 2; }
+.ep-back {
+  background: #f4efea;
+  color: var(--ink);
+  transform: rotateY(180deg);
+  background-image: 
+    linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px);
+  background-size: 15px 15px;
+  text-align: left;
+}
+
+.ep-back::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle at 70% 30%, rgba(138, 109, 59, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.ep-fragment-text {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  line-height: 1.4;
+  color: rgba(0,0,0,0.7);
+  font-style: italic;
+  margin-top: 10px;
+}
+.ep-archive-num {
+  position: absolute;
+  bottom: 8px; left: 12px;
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  opacity: 0.3;
+}
+
+/* Temporal Aging */
+.echo-postcard.ancient .ep-front,
+.echo-postcard.ancient .ep-back {
+  background-color: #fdf5e6;
+  border-color: #8a6d3b;
+  filter: sepia(0.2);
+}
+.echo-postcard.ancient .ep-inner { border-radius: 12px; }
+.echo-postcard.ancient::after {
+  content: 'RECOVERED';
+  position: absolute;
+  top: 4px; left: 4px;
+  font-size: 0.5rem;
+  font-weight: 900;
+  color: #8a6d3b;
+  opacity: 0.4;
+  z-index: 10;
+}
+
+.ep-label-tag {
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  font-weight: 900;
+  opacity: 0.4;
+  margin-top: 8px;
+}

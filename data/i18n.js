@@ -1533,7 +1533,19 @@
 
         // Card Labels
         echoTypePostcard:  { en: "Postcard",                  th: "ไปรษณียบัตร" },
-        echoTypeReceipt:   { en: "Gift Receipt",               th: "ใบเสร็จของขวัญ" }
+        echoTypeReceipt:   { en: "Gift Receipt",               th: "ใบเสร็จของขวัญ" },
+        
+        // Memory Fragments
+        memAtmospheric:    { en: "Day {0}: The house felt unusually horizontal, yet functional.", th: "วันที่ {0}: บ้านให้ความรู้สึกราบเรียบผิดปกติ แต่ยังคงขับเคลื่อนไปได้" },
+        memRecovery:       { en: "Day {0}: Nobody recovered correctly, but the soup infrastructure held.", th: "วันที่ {0}: ไม่มีใครฟื้นตัวได้อย่างถูกต้อง แต่โครงสร้างพื้นฐานซุปยังคงพยุงไว้" },
+        memCivAnnotation:  { en: "The first foreign civilization arrived during a Loud Week.", th: "อารยธรรมต่างดาวกลุ่มแรกมาถึงในช่วงสัปดาห์ที่เสียงดัง" },
+        memRitualMemory:   { en: "Silence was observed. Morale remained acceptable.", th: "ความเงียบงันถูกสังเกตพบ ขวัญและกำลังใจยังอยู่ในระดับที่รับได้" },
+        memRelicNote:      { en: "The relic returned carrying evidence of parallel play activity.", th: "วัตถุโบราณกลับมาพร้อมหลักฐานของกิจกรรมการเล่นขนาน" },
+        memFedArchive:     { en: "A diplomatic bond was tested by shared overstimulation.", th: "สายสัมพันธ์ทางการทูตถูกทดสอบด้วยการกระตุ้นที่มากเกินไปร่วมกัน" },
+        memGovResidue:     { en: "Decision made: Stability was prioritized over transparency.", th: "ตัดสินใจแล้ว: ลำดับความสำคัญอยู่ที่ความมั่นคงเหนือความโปร่งใส" },
+        memArchFootnote:   { en: "Fragment recovered from beneath the Great Blackout layer.", th: "ชิ้นส่วนถูกกู้คืนมาจากภายใต้ชั้นของการดับวูบทางอารมณ์ครั้งใหญ่" },
+        
+        memRecoveredTitle: { en: "Recovered Archive Fragment", th: "เศษเสี้ยวบันทึกที่กู้คืนมาได้" }
     };
 
     const STORAGE_KEY = 'meow-lang';
