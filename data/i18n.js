@@ -749,6 +749,27 @@
         fragLore6: { en: "Someone tried to preserve this memory.", th: "ใครบางคนพยายามที่จะรักษาความทรงจำนี้ไว้" },
         fragLore7: { en: "Blanket governance collapsed unexpectedly.", th: "การปกครองแบบผ้าห่มล่มสลายลงอย่างไม่คาดคิด" },
         fragLore8: { en: "These artifacts were never reclaimed.", th: "วัตถุโบราณเหล่านี้ไม่เคยถูกนำกลับคืนไป" },
+
+        // Parallel Transmissions v4
+        transTitle:        { en: "Broadcast Into The Dust",   th: "แพร่สัญญาณสู่ฝุ่นผง" },
+        transAction:       { en: "Broadcast Signal",          th: "ส่งสัญญาณ" },
+        transCeremony:     { en: "Transmission Ceremony",     th: "พิธีการส่งสัญญาณ" },
+        transStabilizing:  { en: "Stabilizing frequency...",  th: "กำลังคงที่ความถี่..." },
+        transEncoding:     { en: "Encoding emotional data...", th: "กำลังเข้ารหัสข้อมูลทางอารมณ์..." },
+        transComplete:     { en: "Broadcast Success",         th: "ส่งสัญญาณสำเร็จ" },
+        transDesc:         { en: "Release this memory into the ecosystem for others to find.", th: "ปล่อยความทรงจำนี้เข้าสู่ระบบนิเวศเพื่อให้ผู้อื่นค้นพบ" },
+        transPayload:      { en: "Your unique transmission signal:", th: "สัญญาณการส่งเฉพาะของคุณ:" },
+        transImport:       { en: "Import Transmission",       th: "นำเข้าสัญญาณ" },
+        transForeign:      { en: "Foreign Transmission Recovered", th: "กู้คืนสัญญาณจากดินแดนอื่นสำเร็จ" },
+        transUnknownOrigin: { en: "Origin: Unknown Civilization", th: "ที่มา: อารยธรรมนิรนาม" },
+        transEchoFound:    { en: "Recovered Broadcast — Civilization Unknown", th: "กู้คืนการแพร่สัญญาณ — อารยธรรมนิรนาม" },
+        transDecayStable:  { en: "Stable", th: "เสถียร" },
+        transDecayDusted:  { en: "Dusted", th: "ถูกปกคลุมด้วยฝุ่น" },
+        transDecayCorrupted: { en: "Corrupted", th: "เสียหาย" },
+        transDecayLost:    { en: "Nearly Lost", th: "เกือบจะสาบสูญ" },
+        transArchiveLocal: { en: "Local Broadcasts", th: "การส่งสัญญาณในพื้นที่" },
+        transArchiveForeign: { en: "Foreign Recoveries", th: "การกู้คืนจากดินแดนอื่น" },
+        transArchiveSignals: { en: "Transmission Archive", th: "หอจดหมายเหตุการส่งสัญญาณ" },
         };
         // Ruins
         ruinSilentKitchen: { en: "The Silent Kitchen Era",    th: "ยุคสมัยห้องครัวที่เงียบงัน" },

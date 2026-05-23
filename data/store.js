@@ -271,6 +271,43 @@
         return true;
     }
 
+    function getBroadcasts() {
+        return getRawStore().broadcasts || [];
+    }
+
+    function saveBroadcast(broadcast) {
+        const store = getRawStore();
+        store.broadcasts = store.broadcasts || [];
+        store.broadcasts.push({
+            ...broadcast,
+            broadcastAt: new Date().toISOString()
+        });
+        if (store.broadcasts.length > 20) store.broadcasts = store.broadcasts.slice(-20);
+        _cachedStore = store;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
+        return true;
+    }
+
+    function getImportedTransmissions() {
+        return getRawStore().importedTransmissions || [];
+    }
+
+    function saveImportedTransmission(transmission) {
+        const store = getRawStore();
+        store.importedTransmissions = store.importedTransmissions || [];
+        // Prevent duplicates
+        if (store.importedTransmissions.some(t => t.id === transmission.id)) return false;
+        
+        store.importedTransmissions.push({
+            ...transmission,
+            importedAt: new Date().toISOString()
+        });
+        if (store.importedTransmissions.length > 30) store.importedTransmissions = store.importedTransmissions.slice(-30);
+        _cachedStore = store;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
+        return true;
+    }
+
     window.MeowStore = {
         getFamily,
         saveFamilyProfile,
@@ -297,6 +334,10 @@
         getEchoCards,
         saveEchoCard,
         getLostFragments,
-        saveLostFragment
+        saveLostFragment,
+        getBroadcasts,
+        saveBroadcast,
+        getImportedTransmissions,
+        saveImportedTransmission
     };
 })();

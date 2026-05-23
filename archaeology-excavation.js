@@ -1,6 +1,7 @@
 /**
  * MeowBTI Temporal Archaeology v3 — “Sifting Through The Dust”
  * Implementation of the excavation minigame and lost fragment discovery.
+ * v4 Update: Parallel Transmissions integration.
  */
 (function() {
     if (!window.MeowI18n || !window.MeowStore || !window.MeowDaily) return;
@@ -26,6 +27,15 @@
         { key: 'rarityForbidden', weight: 0.2, color: '#ff5b3b' }
     ];
 
+    function getSignalDegradation(importedAt) {
+        if (!importedAt) return { key: 'transDecayStable', level: 0 };
+        const ageDays = (Date.now() - new Date(importedAt).getTime()) / 86400000;
+        if (ageDays > 30) return { key: 'transDecayLost', level: 3 };
+        if (ageDays > 14) return { key: 'transDecayCorrupted', level: 2 };
+        if (ageDays > 7) return { key: 'transDecayDusted', level: 1 };
+        return { key: 'transDecayStable', level: 0 };
+    }
+
     function getDeterministicFragment(seed) {
         let hash = 0;
         for (let i = 0; i < seed.length; i++) {
@@ -34,6 +44,27 @@
         }
         const absHash = Math.abs(hash);
         
+        // Mix in Imported Transmissions if available (30% chance for foreign signal)
+        const imported = window.MeowStore.getImportedTransmissions ? window.MeowStore.getImportedTransmissions() : [];
+        if (imported.length > 0 && absHash % 10 < 3) {
+            const tx = imported[absHash % imported.length];
+            const decay = getSignalDegradation(tx.importedAt);
+            
+            return {
+                id: tx.id,
+                isForeign: true,
+                typeKey: tx.type || 'fragTypeTransmission',
+                customTitle: tx.title,
+                loreText: tx.lore,
+                icon: tx.icon,
+                rarityKey: decay.level >= 2 ? 'rarityForbidden' : 'rarityAncient',
+                rarityColor: decay.level >= 2 ? '#ff5b3b' : '#d4af37',
+                isCorrupted: decay.level >= 2,
+                decayKey: decay.key,
+                reconstructed: false
+            };
+        }
+
         // Rarity selection
         const totalWeight = RARITIES.reduce((acc, r) => acc + r.weight, 0);
         let random = (absHash % 1000) / 1000 * totalWeight;
@@ -103,25 +134,30 @@
         
         // Deterministic Seed
         const now = new Date();
-        const weekSeed = `${now.getFullYear()}-W${Math.ceil(now.getDate() / 7)}`;
+        const weekSeed = `${now.getFullYear()}-W${now.getMonth()}-${Math.ceil(now.getDate() / 7)}`;
         const seed = `${householdId}-${weekSeed}-${history.length}-${forged.length}`;
         
         const frag = getDeterministicFragment(seed);
         const host = document.getElementById('exc-result-host');
         const status = document.getElementById('exc-status-text');
         
-        status.textContent = t('excFound');
+        status.textContent = t(frag.isForeign ? 'transForeign' : 'excFound');
         
-        const loreText = t(frag.loreKey);
-        const displayLore = frag.isCorrupted 
+        const loreText = frag.isForeign ? frag.loreText : t(frag.loreKey);
+        let displayLore = frag.isCorrupted 
             ? loreText.split(' ').map((word, i) => (i % 3 === 0 ? '████' : word)).join(' ')
             : loreText;
 
+        if (frag.isForeign && frag.isCorrupted) {
+            displayLore = displayLore.replace(/[aeiou]/gi, char => Math.random() > 0.5 ? '▰' : char);
+        }
+
         host.innerHTML = `
-            <div class="fragment-reveal-card animate-pop-in" style="--rarity-color: ${frag.rarityColor}">
-                <div class="frag-rarity">${t(frag.rarityKey)}</div>
-                <div class="frag-type">${t(frag.typeKey)}</div>
+            <div class="fragment-reveal-card animate-pop-in ${frag.isForeign ? 'foreign-signal' : ''}" style="--rarity-color: ${frag.rarityColor}">
+                <div class="frag-rarity">${t(frag.rarityKey)} ${frag.isForeign ? `(${t(frag.decayKey)})` : ''}</div>
+                <div class="frag-type">${frag.customTitle || t(frag.typeKey)}</div>
                 <div class="frag-lore">"${displayLore}"</div>
+                ${frag.isForeign ? `<div class="frag-origin">${t('transUnknownOrigin')}</div>` : ''}
                 ${frag.rarityKey === 'rarityForbidden' ? `<div class="frag-alert">${t('excForbiddenAlert')}</div>` : ''}
                 <div class="frag-actions">
                     <button class="big-btn accent" id="btn-save-frag">${t('backToDashboard')}</button>
@@ -133,9 +169,9 @@
         overlay.querySelector('#btn-save-frag').onclick = () => {
             window.MeowStore.saveLostFragment(frag);
             overlay.remove();
-            // Refresh museum if visible
             if (window.renderMuseum) window.renderMuseum();
-            window.MeowTrack && window.MeowTrack('fragment_discovered', { rarity: frag.rarityKey, type: frag.typeKey });
+            if (window.MeowArchaeology && window.MeowArchaeology.renderArchive) window.MeowArchaeology.renderArchive();
+            window.MeowTrack && window.MeowTrack(frag.isForeign ? 'foreign_fragment_discovered' : 'fragment_discovered', { rarity: frag.rarityKey, id: frag.id });
         };
 
         if (frag.isCorrupted) {
@@ -161,10 +197,10 @@
                 clearInterval(interval);
                 frag.reconstructed = true;
                 frag.isCorrupted = false;
-                loreBox.innerHTML = `"${t(frag.loreKey)}"`;
-                status.textContent = t('excFound');
+                loreBox.innerHTML = `"${frag.isForeign ? frag.loreText : t(frag.loreKey)}"`;
+                status.textContent = t(frag.isForeign ? 'transForeign' : 'excFound');
                 reconBtn.remove();
-                window.MeowTrack && window.MeowTrack('fragment_reconstructed', { id: frag.id });
+                window.MeowTrack && window.MeowTrack('fragment_reconstructed', { id: frag.id, is_foreign: !!frag.isForeign });
             }
         }, 100);
     }
@@ -187,24 +223,26 @@
         }
 
         container.innerHTML = `
-            <div class="lost-archive-header">
+            <div class="lost-archive-header" style="display:flex; justify-content:space-between; align-items:center;">
                 <h3 class="lost-archive-h3">${t('excArchiveTitle')}</h3>
+                <button class="big-btn ghost mini" onclick="window.MeowTransmissions.importSignal()">${t('transImport')}</button>
             </div>
             <div class="lost-fragments-grid">
                 ${fragments.slice().reverse().map(f => {
-                    const loreText = t(f.loreKey);
+                    const loreFull = f.isForeign ? f.loreText : t(f.loreKey);
+                    const decay = f.isForeign ? getSignalDegradation(f.discoveredAt) : null;
                     const displayLore = (f.isCorrupted && !f.reconstructed)
-                        ? loreText.split(' ').map((word, i) => (i % 3 === 0 ? '████' : word)).join(' ')
-                        : loreText;
+                        ? loreFull.split(' ').map((word, i) => (i % 3 === 0 ? '████' : word)).join(' ')
+                        : loreFull;
                         
                     return `
-                        <div class="lost-fragment-card ${f.rarityKey.split('rarity')[1].toLowerCase()}" style="--rarity-color: ${f.rarityColor}">
-                            <div class="frag-stamp">RECOVERED</div>
-                            <div class="frag-rarity-tag">${t(f.rarityKey)}</div>
-                            <div class="frag-type-tag">${t(f.typeKey)}</div>
+                        <div class="lost-fragment-card ${f.isForeign ? 'foreign-signal' : ''} ${f.rarityKey.split('rarity')[1].toLowerCase()}" style="--rarity-color: ${f.rarityColor}">
+                            <div class="frag-stamp">${f.isForeign ? 'FOREIGN ECHO' : 'RECOVERED'}</div>
+                            <div class="frag-rarity-tag">${t(f.rarityKey)} ${f.isForeign ? `(${t(decay.key)})` : ''}</div>
+                            <div class="frag-type-tag">${f.customTitle || t(f.typeKey)}</div>
                             <div class="frag-lore-box">"${displayLore}"</div>
                             <div class="frag-id">#${f.id.toUpperCase()}</div>
-                            <button class="micro-share-icon mini" data-text="Recovered from another civilization: ${t(f.typeKey)}. ${displayLore}">📤</button>
+                            <button class="micro-share-icon mini" data-text="Recovered: ${f.customTitle || t(f.typeKey)}. ${displayLore}">📤</button>
                         </div>
                     `;
                 }).join('')}

@@ -117,6 +117,7 @@
                                 <div class="ep-share-cluster">
                                     <button class="micro-share-icon mini" data-side="front" title="Share Front" data-text="${t('echoTypePostcard')}: ${c.title}. ${c.lore}">📤</button>
                                     <button class="micro-share-icon mini both" data-side="both" title="Share Both Sides" data-text="${c.title} // ${backText}">📖</button>
+                                    <button class="micro-share-icon mini trans" data-type="postcard" data-title="${c.title}" data-lore="${backText}" data-icon="${c.icon || '✉️'}" title="${t('transTitle')}">📡</button>
                                 </div>
                             </div>
                             <!-- BACK -->
@@ -126,6 +127,7 @@
                                 <div class="ep-archive-num">#${id.slice(-6).toUpperCase()}</div>
                                 <div class="ep-share-cluster">
                                     <button class="micro-share-icon mini" data-side="back" title="Share Back" data-text="${t('memRecoveredTitle')}: ${backText}">📤</button>
+                                    <button class="micro-share-icon mini trans" data-type="postcard_memory" data-title="${c.title}" data-lore="${backText}" data-icon="📜" title="${t('transTitle')}">📡</button>
                                 </div>
                             </div>
                         </div>
@@ -155,6 +157,19 @@
         container.querySelectorAll('.micro-share-icon').forEach(btn => {
             btn.onclick = (e) => {
                 e.stopPropagation();
+                
+                if (btn.classList.contains('trans')) {
+                    if (window.MeowTransmissions) {
+                        window.MeowTransmissions.broadcast({
+                            type: btn.getAttribute('data-type'),
+                            title: btn.getAttribute('data-title'),
+                            lore: btn.getAttribute('data-lore'),
+                            icon: btn.getAttribute('data-icon')
+                        });
+                    }
+                    return;
+                }
+
                 const side = btn.getAttribute('data-side');
                 const shareText = btn.getAttribute('data-text');
                 if (window.MeowAnalytics) {
