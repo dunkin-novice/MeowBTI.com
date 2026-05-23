@@ -5588,23 +5588,72 @@ body.time-night .home-grain { opacity: 0.1; }
   opacity: 0.3;
 }
 
-/* Temporal Aging */
+/* Temporal Aging v2 */
 .echo-postcard.ancient .ep-front,
 .echo-postcard.ancient .ep-back {
   background-color: #fdf5e6;
   border-color: #8a6d3b;
   filter: sepia(0.2);
 }
-.echo-postcard.ancient .ep-inner { border-radius: 12px; }
-.echo-postcard.ancient::after {
+.echo-postcard.antique .ep-front,
+.echo-postcard.antique .ep-back {
+  background-color: #f5f5dc;
+  border-color: #8b4513;
+  filter: sepia(0.4) contrast(0.9);
+}
+.echo-postcard.archival .ep-front,
+.echo-postcard.archival .ep-back {
+  background-color: #efdfbb;
+  border-color: #5d4037;
+  filter: sepia(0.6) contrast(0.8) brightness(0.95);
+}
+
+.echo-postcard.ancient::after,
+.echo-postcard.antique::after,
+.echo-postcard.archival::after {
   content: 'RECOVERED';
   position: absolute;
-  top: 4px; left: 4px;
-  font-size: 0.5rem;
+  top: 8px; left: 8px;
+  font-size: 0.45rem;
   font-weight: 900;
   color: #8a6d3b;
   opacity: 0.4;
   z-index: 10;
+  border: 1px solid currentColor;
+  padding: 1px 4px;
+  border-radius: 2px;
+  transform: rotate(-12deg);
+  pointer-events: none;
+}
+.echo-postcard.antique::after { content: 'ARCHIVE'; color: #8b4513; }
+.echo-postcard.archival::after { content: 'PRIMARY SOURCE'; color: #5d4037; opacity: 0.6; }
+
+.ep-share-cluster {
+  position: absolute;
+  bottom: 8px; right: 8px;
+  display: flex;
+  gap: 4px;
+  opacity: 0;
+  transition: opacity 0.2s;
+  z-index: 10;
+}
+.echo-postcard:hover .ep-share-cluster { opacity: 1; }
+
+.micro-share-icon.both {
+  filter: grayscale(1) contrast(1.2);
+  opacity: 0.6;
+}
+.micro-share-icon.both:hover { opacity: 1; filter: none; }
+
+/* Deep Lore Enhancements */
+.mode-lore .echo-postcard.archival {
+  transform: rotate(-1deg);
+}
+.mode-lore .echo-postcard.archival:hover {
+  transform: translateY(-6px) rotate(1deg) scale(1.02);
+}
+.mode-lore .ep-back {
+  font-family: serif; /* More archival feel in lore mode */
 }
 
 .ep-label-tag {
@@ -5613,4 +5662,5 @@ body.time-night .home-grain { opacity: 0.1; }
   font-weight: 900;
   opacity: 0.4;
   margin-top: 8px;
+  color: var(--ink);
 }

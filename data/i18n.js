@@ -1545,7 +1545,28 @@
         memGovResidue:     { en: "Decision made: Stability was prioritized over transparency.", th: "ตัดสินใจแล้ว: ลำดับความสำคัญอยู่ที่ความมั่นคงเหนือความโปร่งใส" },
         memArchFootnote:   { en: "Fragment recovered from beneath the Great Blackout layer.", th: "ชิ้นส่วนถูกกู้คืนมาจากภายใต้ชั้นของการดับวูบทางอารมณ์ครั้งใหญ่" },
         
-        memRecoveredTitle: { en: "Recovered Archive Fragment", th: "เศษเสี้ยวบันทึกที่กู้คืนมาได้" }
+        memRecoveredTitle: { en: "Recovered Archive Fragment", th: "เศษเสี้ยวบันทึกที่กู้คืนมาได้" },
+
+        // Flip Side Memories v2
+        memFlipUnlock1:    { en: "The archive opened. A draft of old air escaped.", th: "คลังอาคารเปิดออก มวลอากาศเก่าแก่ไหลเวียนออกมา" },
+        memFlipUnlock2:    { en: "A note from the day the archive first opened.", th: "บันทึกจากวันที่คลังเก็บข้อมูลเปิดออกเป็นครั้งแรก" },
+        memFlipRecovery1:  { en: "The civilization did not fully recover, but the soup infrastructure held.", th: "อารยธรรมยังไม่ฟื้นตัวเต็มที่ แต่โครงสร้างพื้นฐานซุปยังคงพยุงไว้" },
+        memFlipRecovery2:  { en: "Traces of resilience found in the silence of the aftermath.", th: "ร่องรอยของความยืดหยุ่นที่พบในความเงียบงันหลังเหตุการณ์พ้นผ่าน" },
+        memFlipRelic1:     { en: "The relic returned carrying dust from elsewhere.", th: "วัตถุโบราณกลับมาพร้อมกับฝุ่นผงจากดินแดนอื่น" },
+        memFlipRelic2:     { en: "Evidence of parallel play detected on the object's surface.", th: "ตรวจพบร่องรอยของการเล่นขนานบนพื้นผิววัตถุ" },
+        memFlipAscension1: { en: "The house survived enough to become legend.", th: "บ้านหลังนี้รอดชีวิตมาได้นานพอจนกลายเป็นตำนาน" },
+        memFlipAscension2: { en: "An era of stability was codified into the official canon.", th: "ยุคสมัยแห่งความมั่นคงได้ถูกจารึกไว้ในประวัติศาสตร์อย่างเป็นทางการ" },
+        memFlipAnniversary1: { en: "Time passes, but the memories are preserved.", th: "เวลาล่วงเลยไป แต่ความทรงจำยังถูกเก็บรักษาไว้" },
+        memFlipAnniversary2: { en: "A record of sustained existence in a loud world.", th: "บันทึกการคงอยู่ท่ามกลางโลกที่ส่งเสียงดัง" },
+        memFlipPublic1:    { en: "The civilization was witnessed by others today.", th: "อารยธรรมนี้ได้รับการประจักษ์โดยผู้อื่นในวันนี้" },
+        memFlipPublic2:    { en: "A diplomatic transmission was archived for future study.", th: "สัญญาณส่งต่อทางการทูตถูกบันทึกไว้เพื่อการศึกษาในอนาคต" },
+        memFlipGift1:      { en: "A gift arrived, carrying the weight of a foreign peace.", th: "ของขวัญมาถึง พร้อมกับน้ำหนักแห่งสันติภาพจากดินแดนอื่น" },
+        memFlipGift2:      { en: "The embassy received a new token of coordinated survival.", th: "สถานทูตได้รับสัญลักษณ์ใหม่ของการเอาชีวิตรอดร่วมกัน" },
+
+        labelRecentlyRemembered: { en: "Recently Remembered", th: "เพิ่งถูกจดจำ" },
+        labelOldestMemory: { en: "Oldest Surviving Memory", th: "ความทรงจำเก่าแก่ที่สุด" },
+        labelMostReferencedRelic: { en: "Most Referenced Relic", th: "วัตถุโบราณที่ถูกอ้างถึงบ่อยที่สุด" },
+        shareBothSides:    { en: "Both Sides", th: "ทั้งสองด้าน" },
     };
 
     const STORAGE_KEY = 'meow-lang';

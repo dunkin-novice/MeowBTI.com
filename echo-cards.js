@@ -11,21 +11,33 @@
         const history = window.MeowDaily.getHistory ? window.MeowDaily.getHistory() : [];
         const dayNum = history.length || '??';
         
+        // Use card_key and created_at for seed
+        const seedStr = (card.card_key || '') + (card.created_at || '');
+        let seed = 0;
+        for (let i = 0; i < seedStr.length; i++) seed += seedStr.charCodeAt(i);
+
         // Deterministic pool based on type
         const pool = {
-            'unlock': [t('memArchFootnote'), t('memCivAnnotation')],
-            'recovery': [t('memRecovery', dayNum), t('memRitualMemory')],
-            'relic_return': [t('memRelicNote'), t('memAtmospheric', dayNum)],
-            'ascension': [t('memCivAnnotation'), t('memGovResidue')],
-            'anniversary': [t('memAtmospheric', dayNum), t('memRitualMemory')],
-            'public_share': [t('memFedArchive'), t('memCivAnnotation')],
-            'gift_receipt': [t('memFedArchive'), t('memRelicNote')]
+            'unlock': [t('memFlipUnlock1'), t('memFlipUnlock2'), t('memArchFootnote'), t('memCivAnnotation')],
+            'recovery': [t('memFlipRecovery1'), t('memFlipRecovery2'), t('memRecovery', dayNum), t('memRitualMemory')],
+            'relic_return': [t('memFlipRelic1'), t('memFlipRelic2'), t('memRelicNote'), t('memAtmospheric', dayNum)],
+            'ascension': [t('memFlipAscension1'), t('memFlipAscension2'), t('memCivAnnotation'), t('memGovResidue')],
+            'anniversary': [t('memFlipAnniversary1'), t('memFlipAnniversary2'), t('memAtmospheric', dayNum), t('memRitualMemory')],
+            'public_share': [t('memFlipPublic1'), t('memFlipPublic2'), t('memFedArchive'), t('memCivAnnotation')],
+            'gift_receipt': [t('memFlipGift1'), t('memFlipGift2'), t('memFedArchive'), t('memRelicNote')]
         };
 
         const choices = pool[card.type] || [t('memAtmospheric', dayNum)];
-        // Seeded selection
-        const seed = card.card_key.length + new Date(card.created_at).getTime();
-        return choices[seed % choices.length];
+        const fragment = choices[seed % choices.length];
+
+        // Track generation if it's the first time we see this card in this session
+        if (!window._recoveredMemoriesTracked) window._recoveredMemoriesTracked = new Set();
+        if (!window._recoveredMemoriesTracked.has(card.card_key)) {
+            window.MeowTrack && window.MeowTrack('recovered_memory_generated', { card_type: card.type, fragment_length: fragment.length });
+            window._recoveredMemoriesTracked.add(card.card_key);
+        }
+
+        return fragment;
     }
 
     function renderEchoPostcards() {
@@ -34,6 +46,23 @@
 
         const cards = window.MeowStore.getEchoCards();
         if (cards.length === 0) return;
+
+        // Calculate Special Labels
+        const oldestCard = cards[0];
+        const newestCard = cards[cards.length - 1];
+        
+        // Extract implicit keys if not present
+        const processedCards = cards.map(c => ({
+            ...c,
+            relic_key: c.relic_key || (c.card_key.startsWith('relic_recover_') ? c.card_key.replace('relic_recover_', '') : null),
+            rank_key: c.rank_key || (c.card_key.startsWith('ascension_') ? c.card_key.replace('ascension_', '') : null)
+        }));
+
+        const relicCounts = {};
+        processedCards.forEach(c => {
+            if (c.relic_key) relicCounts[c.relic_key] = (relicCounts[c.relic_key] || 0) + 1;
+        });
+        const mostReferencedRelicKey = Object.keys(relicCounts).sort((a,b) => relicCounts[b] - relicCounts[a])[0];
 
         let container = document.getElementById('echo-postcards-section');
         if (!container) {
@@ -45,19 +74,36 @@
             else host.append(container);
         }
 
+        const reversedCards = processedCards.slice().reverse();
+
         container.innerHTML = `
             <div class="echo-postcards-header">
                 <h3 class="echo-postcards-h3">${t('echoCardTitle')}</h3>
                 <p class="echo-postcards-sub">${t('echoCardSubtitle')}</p>
             </div>
             <div class="echo-cards-grid">
-                ${cards.slice().reverse().map((c, i) => {
+                ${reversedCards.map((c, i) => {
                     const backText = getFlipSideMemory(c);
-                    const isAncient = (Date.now() - new Date(c.created_at).getTime()) > 7 * 86400000;
+                    const ageDays = (Date.now() - new Date(c.created_at).getTime()) / 86400000;
+                    const isAncient = ageDays > 7;
+                    const isAntique = ageDays > 14;
+                    const isArchival = ageDays > 30;
                     const id = `ep-${c.card_key.replace(/[^a-z0-9]/gi, '-')}`;
                     
+                    let label = '';
+                    if (cards.length >= 3) {
+                        // Priority: Newest > Oldest > Most Referenced
+                        if (c.card_key === newestCard.card_key) label = t('labelRecentlyRemembered');
+                        else if (c.card_key === oldestCard.card_key) label = t('labelOldestMemory');
+                        else if (c.relic_key && c.relic_key === mostReferencedRelicKey) label = t('labelMostReferencedRelic');
+                    } else if (i === 0) {
+                        label = t('labelRecentlyRemembered');
+                    }
+                    
+                    const agingClass = isArchival ? 'archival' : (isAntique ? 'antique' : (isAncient ? 'ancient' : ''));
+                    
                     return `
-                    <div class="echo-postcard ${isAncient ? 'ancient' : ''}" id="${id}">
+                    <div class="echo-postcard ${agingClass}" id="${id}" data-type="${c.type}" data-age="${Math.floor(ageDays)}">
                         <div class="ep-inner">
                             <!-- FRONT -->
                             <div class="ep-front">
@@ -65,17 +111,22 @@
                                 <div style="flex:1; text-align:left;">
                                     <span class="ep-type">${t('echoTypePostcard')}</span>
                                     <div class="ep-title">${c.title}</div>
-                                    <div class="ep-label-tag">${i === 0 ? 'Recently Remembered' : ''}</div>
+                                    ${label ? `<div class="ep-label-tag">${label}</div>` : ''}
                                 </div>
                                 <div class="ep-date">${new Date(c.created_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}</div>
-                                <button class="micro-share-icon mini" data-side="front" data-text="I earned an Echo Postcard: ${c.title}. ${c.lore}">📤</button>
+                                <div class="ep-share-cluster">
+                                    <button class="micro-share-icon mini" data-side="front" title="Share Front" data-text="${t('echoTypePostcard')}: ${c.title}. ${c.lore}">📤</button>
+                                    <button class="micro-share-icon mini both" data-side="both" title="Share Both Sides" data-text="${c.title} // ${backText}">📖</button>
+                                </div>
                             </div>
                             <!-- BACK -->
                             <div class="ep-back">
                                 <span class="ep-type">${t('memRecoveredTitle')}</span>
                                 <div class="ep-fragment-text">"${backText}"</div>
                                 <div class="ep-archive-num">#${id.slice(-6).toUpperCase()}</div>
-                                <button class="micro-share-icon mini" data-side="back" data-text="Recovered Archive Fragment: ${backText}">📤</button>
+                                <div class="ep-share-cluster">
+                                    <button class="micro-share-icon mini" data-side="back" title="Share Back" data-text="${t('memRecoveredTitle')}: ${backText}">📤</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -85,9 +136,18 @@
 
         container.querySelectorAll('.echo-postcard').forEach(card => {
             card.onclick = () => {
+                const wasFlipped = card.classList.contains('flipped');
                 card.classList.toggle('flipped');
-                if (card.classList.contains('flipped') && window.MeowTrack) {
-                    window.MeowTrack('echo_card_flipped', { card_id: card.id, lang: getLang() });
+                const isFlipped = card.classList.contains('flipped');
+                
+                if (isFlipped && !wasFlipped) {
+                    if (window.MeowTrack) {
+                        window.MeowTrack('echo_card_flipped', { card_id: card.id, card_type: card.dataset.type, lang: getLang() });
+                        window.MeowTrack('memory_fragment_viewed', { card_id: card.id, age: card.dataset.age });
+                    }
+                    if (card.classList.contains('ancient') || card.classList.contains('antique') || card.classList.contains('archival')) {
+                        window.MeowTrack && window.MeowTrack('archival_card_viewed', { card_id: card.id, aging: card.classList.contains('archival') ? 'archival' : (card.classList.contains('antique') ? 'antique' : 'ancient') });
+                    }
                 }
             };
         });
@@ -96,17 +156,19 @@
             btn.onclick = (e) => {
                 e.stopPropagation();
                 const side = btn.getAttribute('data-side');
+                const shareText = btn.getAttribute('data-text');
                 if (window.MeowAnalytics) {
                     window.MeowAnalytics.microShare({
                         framework: 'relic_echoes',
                         content_type: `postcard_${side}`,
-                        text: btn.getAttribute('data-text'),
+                        text: shareText,
                         route: '/'
                     });
                 }
                 if (window.MeowTrack) {
-                    window.MeowTrack(side === 'back' ? 'memory_fragment_shared' : 'echo_card_shared', { 
-                        text: btn.getAttribute('data-text'), 
+                    const eventName = side === 'back' ? 'memory_fragment_shared' : (side === 'both' ? 'echo_card_combined_shared' : 'echo_card_shared');
+                    window.MeowTrack(eventName, { 
+                        text: shareText, 
                         lang: getLang() 
                     });
                 }
@@ -120,10 +182,10 @@
 
     // Event listener for creating cards
     window.addEventListener('meow:echo:create', (e) => {
-        const { card_key, type, title, lore, icon } = e.detail;
+        const { card_key, type, title, lore, icon, source_event, relic_key, rank_key } = e.detail;
         if (!card_key || !title) return;
 
-        if (window.MeowStore.saveEchoCard({ card_key, type, title, lore, icon })) {
+        if (window.MeowStore.saveEchoCard({ card_key, type, title, lore, icon, source_event, relic_key, rank_key })) {
             renderEchoPostcards();
             window.MeowTrack && window.MeowTrack('echo_card_created', { card_type: type, source_event: card_key, lang: getLang() });
         }
