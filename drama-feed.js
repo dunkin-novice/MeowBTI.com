@@ -92,8 +92,15 @@
     }
 
     function renderFeed(profiles, containerId) {
-        const container = document.getElementById(containerId);
-        if (!container) return;
+        let container = document.getElementById(containerId);
+        if (!container) {
+            container = document.createElement('div');
+            container.id = containerId;
+            container.className = 'drama-feed-container animate-fade-in';
+            const host = window.MeowOS ? window.MeowOS.getLayer('daily') : document.getElementById('family-content');
+            if (host) host.append(container);
+            else return;
+        }
 
         if (profiles.length < 2) {
             container.style.display = 'none';

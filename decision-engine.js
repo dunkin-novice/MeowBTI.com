@@ -91,7 +91,7 @@
     }
 
     function renderDecisionEngine() {
-        const host = document.getElementById('family-content');
+        const host = window.MeowOS ? window.MeowOS.getLayer('civ') : document.getElementById('family-content');
         if (!host) return;
 
         let container = document.getElementById('household-decision-section');

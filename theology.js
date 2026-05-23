@@ -56,8 +56,12 @@
     }
 
     function renderTheology() {
-        const host = document.getElementById('family-content');
+        const host = window.MeowOS ? window.MeowOS.getLayer('civ') : document.getElementById('family-content');
         if (!host) return;
+        if (window.MeowOS && !window.MeowOS.isUnlocked('theology')) {
+            window.MeowOS.renderLock(host, 'theology', 'unlockHintTheo');
+            return;
+        }
 
         const profiles = window.MeowStore.getFamily();
         if (profiles.length < 2) return;

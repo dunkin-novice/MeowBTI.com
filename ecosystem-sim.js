@@ -83,8 +83,12 @@
     }
 
     function renderEcosystemFeed() {
-        const host = document.getElementById('family-content');
+        const host = window.MeowOS ? window.MeowOS.getLayer('lore') : document.getElementById('family-content');
         if (!host) return;
+        if (window.MeowOS && !window.MeowOS.isUnlocked('possession')) {
+            window.MeowOS.renderLock(host, 'possession', 'unlockHintArch');
+            return;
+        }
 
         const profiles = window.MeowStore.getFamily();
         if (profiles.length < 2) return;

@@ -204,8 +204,12 @@
     }
 
     function renderFederationUI() {
-        const host = document.getElementById('family-content');
+        const host = window.MeowOS ? window.MeowOS.getLayer('civ') : document.getElementById('family-content');
         if (!host) return;
+        if (window.MeowOS && !window.MeowOS.isUnlocked('federation')) {
+            window.MeowOS.renderLock(host, 'federation', 'unlockHintFed');
+            return;
+        }
 
         const profiles = window.MeowStore.getFamily();
         if (profiles.length < 2) return;

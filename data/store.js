@@ -221,6 +221,19 @@
         return store.civDecisions;
     }
 
+    function getOSSettings() {
+        return getRawStore().osSettings || { mode: 'calm' };
+    }
+
+    function updateOSSettings(updater) {
+        const store = getRawStore();
+        const current = store.osSettings || { mode: 'calm' };
+        store.osSettings = typeof updater === 'function' ? updater(current) : { ...current, ...updater };
+        _cachedStore = store;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
+        return store.osSettings;
+    }
+
     window.MeowStore = {
         getFamily,
         saveFamilyProfile,
@@ -241,6 +254,8 @@
         getDiplomaticGifts,
         saveDiplomaticGift,
         getCivDecisions,
-        updateCivDecisions
+        updateCivDecisions,
+        getOSSettings,
+        updateOSSettings
     };
 })();

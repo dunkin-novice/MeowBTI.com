@@ -1473,6 +1473,20 @@
         bossy:      { en: "Bossy",      th: "คุมเกม" },
         casual:     { en: "Casual",     th: "ฟรีสไตล์" },
         regal:      { en: "Regal",      th: "เจ้าระเบียบ" },
+
+        // ─── OS Refactor & Information Architecture ──────
+        layerDaily:        { en: "Daily Life",                th: "ชีวิตประจำวัน" },
+        layerCiv:          { en: "Civilization",              th: "อารยธรรม" },
+        layerMemory:       { en: "Memory Archive",            th: "คลังความทรงจำ" },
+        layerLore:         { en: "Deep Lore",                 th: "ตำนานเบื้องลึก" },
+
+        modeCalm:          { en: "Calm Mode",                 th: "โหมดสงบ" },
+        modeLore:          { en: "Deep Lore Mode",            th: "โหมดเจาะลึกตำนาน" },
+        
+        unlockHintFed:     { en: "Federation unlocks after 7 days of emotional history.", th: "สหพันธรัฐจะปลดล็อกหลังจากมีประวัติทางอารมณ์ครบ 7 วัน" },
+        unlockHintArch:    { en: "A hidden archive uncovers after 20 days of survival.", th: "คลังลับจะถูกเปิดเผยหลังจากเอาตัวรอดครบ 20 วัน" },
+        unlockHintTheo:    { en: "Theology systems awaken after canonizing your first relic.", th: "ระบบเทววิทยาจะตื่นขึ้นหลังจากแต่งตั้งวัตถุโบราณชิ้นแรกเป็นสิ่งศักดิ์สิทธิ์" },
+        unlockHintGov:     { en: "Governance activates after resolving an emotional crisis.", th: "การปกครองจะเปิดใช้งานหลังจากคลี่คลายวิกฤตทางอารมณ์" }
     };
 
     const STORAGE_KEY = 'meow-lang';

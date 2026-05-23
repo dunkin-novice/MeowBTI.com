@@ -295,7 +295,8 @@
             </div>
         `;
 
-        grid.after(dynamics);
+        const host = window.MeowOS ? window.MeowOS.getLayer('daily') : document.getElementById('family-content');
+        if (host) host.append(dynamics);
 
         document.getElementById('btn-family-poster').onclick = () => {
             if (window.MeowFamilyShare) {

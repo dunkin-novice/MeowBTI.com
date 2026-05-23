@@ -218,7 +218,7 @@
     }
 
     function renderChronicleUI() {
-        const host = document.getElementById('family-content');
+        const host = window.MeowOS ? window.MeowOS.getLayer('memory') : document.getElementById('family-content');
         if (!host) return;
 
         const profiles = window.MeowStore.getFamily();

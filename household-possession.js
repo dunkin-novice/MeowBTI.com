@@ -102,8 +102,12 @@
     }
 
     function renderPossession() {
-        const host = document.getElementById('family-content');
+        const host = window.MeowOS ? window.MeowOS.getLayer('lore') : document.getElementById('family-content');
         if (!host) return;
+        if (window.MeowOS && !window.MeowOS.isUnlocked('possession')) {
+            window.MeowOS.renderLock(host, 'possession', 'unlockHintArch');
+            return;
+        }
 
         const active = processArcEngine();
         

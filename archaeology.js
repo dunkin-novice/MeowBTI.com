@@ -64,8 +64,12 @@
     }
 
     function renderArchaeology() {
-        const host = document.getElementById('family-content');
+        const host = window.MeowOS ? window.MeowOS.getLayer('lore') : document.getElementById('family-content');
         if (!host) return;
+        if (window.MeowOS && !window.MeowOS.isUnlocked('archaeology')) {
+            window.MeowOS.renderLock(host, 'archaeology', 'unlockHintArch');
+            return;
+        }
 
         const profiles = window.MeowStore.getFamily();
         if (profiles.length < 2) return;
