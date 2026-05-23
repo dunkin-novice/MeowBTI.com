@@ -580,11 +580,17 @@
                     `;}).join('')}
                     ${standardRelics.map(r => {
                         const isMissing = window.MeowEcosystemState && window.MeowEcosystemState.missingRelicId === r.id;
+                        
+                        // Weathering logic: forged more than 14 days ago
+                        const forgedDate = r.forgedAt ? new Date(r.forgedAt) : null;
+                        const isWeathered = forgedDate && (Date.now() - forgedDate.getTime() > 14 * 86400000);
+                        
                         return `
-                        <div class="relic-item forged" style="${isMissing ? 'opacity:0.3; filter:grayscale(1);' : 'opacity:0.6; filter:grayscale(0.5);'}">
+                        <div class="relic-item forged ${isWeathered ? 'relic-weathered' : ''}" style="${isMissing ? 'opacity:0.3; filter:grayscale(1);' : 'opacity:0.6; filter:grayscale(0.5);'}">
                             <div class="relic-visual">
                                 ${r.icon}
                                 ${isMissing ? `<span class="wandering-badge" style="position:absolute; top:-10px; right:-10px; font-size:0.6rem; background:#FF5B3B; color:#fff; padding:2px 6px; border-radius:4px; z-index:10; transform:rotate(10deg); animation:pulse-mystical 2s infinite;">${t('statusWandering')}</span>` : ''}
+                                ${isWeathered ? `<span class="wandering-badge" style="background:#8a6d3b; top:auto; bottom:-5px; right:auto; left:-5px;">${t('stateWeathered')}</span>` : ''}
                             </div>
                             <span class="relic-name">${r.customName || r.name}</span>
                         </div>

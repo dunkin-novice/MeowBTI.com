@@ -1486,7 +1486,38 @@
         unlockHintFed:     { en: "Federation unlocks after 7 days of emotional history.", th: "สหพันธรัฐจะปลดล็อกหลังจากมีประวัติทางอารมณ์ครบ 7 วัน" },
         unlockHintArch:    { en: "A hidden archive uncovers after 20 days of survival.", th: "คลังลับจะถูกเปิดเผยหลังจากเอาตัวรอดครบ 20 วัน" },
         unlockHintTheo:    { en: "Theology systems awaken after canonizing your first relic.", th: "ระบบเทววิทยาจะตื่นขึ้นหลังจากแต่งตั้งวัตถุโบราณชิ้นแรกเป็นสิ่งศักดิ์สิทธิ์" },
-        unlockHintGov:     { en: "Governance activates after resolving an emotional crisis.", th: "การปกครองจะเปิดใช้งานหลังจากคลี่คลายวิกฤตทางอารมณ์" }
+        unlockHintGov:     { en: "Governance activates after resolving an emotional crisis.", th: "การปกครองจะเปิดใช้งานหลังจากคลี่คลายวิกฤตทางอารมณ์" },
+
+        // ─── Temporal Retention Systems ───────────────────
+        tempDailyDrift:    { en: "Atmospheric Drift",         th: "บรรยากาศที่แปรเปลี่ยน" },
+        tempWeeklyCycle:   { en: "Weekly Civilization Cycle", th: "รอบสัปดาห์อารยธรรม" },
+        tempReturnTitle:   { en: "Welcome Back",              th: "ยินดีต้อนรับกลับมา" },
+        
+        // Return Messages
+        ret1Day:           { en: "The civilization remembers you.", th: "อารยธรรมยังจดจำคุณได้" },
+        ret3Days:          { en: "The relics noticed your absence.", th: "วัตถุโบราณสังเกตได้ถึงการหายไปของคุณ" },
+        ret7Days:          { en: "The museum has grown dusty since your last visit.", th: "พิพิธภัณฑ์เริ่มมีฝุ่นเกาะนับตั้งแต่ครั้งล่าสุดที่คุณมา" },
+        ret30Days:         { en: "The house has gone quiet. Ancient echoes await.", th: "บ้านทั้งหลังเงียบสงัดลง เสียงสะท้อนโบราณกำลังรอคุณอยู่" },
+
+        // Relic States
+        stateSleeping:     { en: "Sleeping",                  th: "กำลังหลับ" },
+        stateReawakening:  { en: "Reawakening",               th: "กำลังตื่นขึ้น" },
+        stateMourning:     { en: "Mourning",                  th: "กำลังไว้อาลัย" },
+        stateWeathered:    { en: "Weathered by Time",         th: "กร่อนตามกาลเวลา" },
+
+        // Daily Drift
+        driftQuieter:      { en: "The house feels quieter today.", th: "วันนี้บ้านดูเงียบกว่าปกติ" },
+        driftUnstable:     { en: "Recovery infrastructure appears unstable.", th: "โครงสร้างพื้นฐานการพักฟื้นดูไม่ค่อยมั่นคง" },
+        driftCalmRelics:   { en: "The relics are unusually calm.", th: "วัตถุโบราณวันนี้ดูสงบอย่างประหลาด" },
+
+        // Weekly Cycles
+        cycleRecovery:     { en: "Nesting Weekend",           th: "สุดสัปดาห์แห่งการจำศีล" },
+        cycleLoud:         { en: "Loud Week",                 th: "สัปดาห์เสียงดัง" },
+        cycleSilence:      { en: "Period of Great Silence",   th: "ช่วงเวลาแห่งความเงียบงัน" },
+
+        // Absence/Decay
+        decayDust:         { en: "Traces of relic dust accumulation detected.", th: "ตรวจพบการสะสมของฝุ่นบนวัตถุโบราณ" },
+        decayAbandoned:    { en: "The museum halls feel abandoned.", th: "หอศิลป์ในพิพิธภัณฑ์ให้ความรู้สึกเหมือนถูกทิ้งร้าง" }
     };
 
     const STORAGE_KEY = 'meow-lang';
