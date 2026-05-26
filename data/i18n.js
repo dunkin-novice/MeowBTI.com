@@ -479,7 +479,7 @@
         fusDiplomacyCouch: { en: "The Couch of Emotional Diplomacy", th: "โซฟาแห่งการทูตทางอารมณ์" },
 
         // Legendary Fusion Objects
-        fusThrone:         { en: "The Nervous System Throne", th: "บัลลังก์แห่งระบบประสาท" },
+        fusThrone:         { en: "The Nervous System Throne", th: "บัลลำก์แห่งระบบประสาท" },
         fusSoupEngine:     { en: "The Ancient Soup Engine",   th: "เครื่องยนต์ซุปโบราณ" },
         fusBlanketSingularity: { en: "The Blanket Singularity", th: "เอกภาวะแห่งผ้าห่ม" },
 
@@ -489,7 +489,7 @@
         fusDescResidue:    { en: "Contains traces of survival ramen and emotional buffering.", th: "ประกอบด้วยร่องรอยของราเม็งแห่งการอยู่รอดและการแบกรับอารมณ์" },
 
         // ─── Relic Echoes & Living Museum ────────────────
-        echoTitle:         { en: "Museum Echoes",             th: "เสียงสะท้อนจากพิพิธภัณฑ์" },
+        echoTitle:         { en: "Memory Echoes",             th: "เสียงสะท้อนความทรงจำ" },
         echoIntro:         { en: "Ambient observations from your collection of emotional artifacts.", th: "การสังเกตการณ์รอบข้างจากคลังสะสมวัตถุทางอารมณ์ของคุณ" },
         
         // Relic Echoes
@@ -691,7 +691,7 @@
         evtParallelMonth:  { en: "Parallel Play Month",       th: "เดือนแห่งการเล่นขนาน" },
         evtParallelProv:   { en: "Collective silence has become legally binding.", th: "ความเงียบงันร่วมกันมีผลผูกพันตามกฎหมาย" },
         evtLoudSurge:      { en: "Loud Civilization Surge",    th: "คลื่นความถี่อารยธรรมเสียงดัง" },
-        evtLoudProv:       { en: "Flammable energy detected across all borders.", th: "ตรวจพบพลังงานที่พร้อมจะปะทุในทุกพรมแดน" },
+        evtLoudProv:       { en: "Flamมable energy detected across all borders.", th: "ตรวจพบพลังงานที่พร้อมจะปะทุในทุกพรมแดน" },
         evtGreatRecharge:  { en: "The Great Recharge",        th: "การชาร์จพลังครั้งยิ่งใหญ่" },
         evtRechargeProv:   { en: "Nervous systems are rebooting in unison.", th: "ระบบประสาทกำลังรีบูตพร้อมๆ กัน" },
         evtBatteryCrisis:  { en: "Social Battery Crisis",      th: "วิกฤตโซเชียลแบตเตอรี่" },
@@ -705,306 +705,6 @@
         evtInfraUnstable:  { en: "Emotional infrastructure remains unstable.", th: "โครงสร้างพื้นฐานทางอารมณ์ยังคงไม่คงที่" },
         evtSynchronized:   { en: "Civilizations have entered synchronized buffering.", th: "อารยธรรมต่างๆ เข้าสู่ช่วงโหลดข้อมูลพร้อมๆ กัน" },
         evtTradeRoute:     { en: "An emotional trade route has formed.", th: "เส้นทางการค้าทางอารมณ์ได้ก่อตัวขึ้นแล้ว" },
-
-        // ─── Emotional Archaeology & Ruins ───────────────
-        archTitle:         { en: "Emotional Archaeology",     th: "โบราณคดีทางอารมณ์" },
-        archIntro:         { en: "Uncover the forgotten history and emotional ruins of your household.", th: "ขุดค้นประวัติศาสตร์ที่ถูกลืมและซากปรักหักพังทางอารมณ์ของบ้านคุณ" },
-        archWing:          { en: "Archaeology Wing",          th: "โซนโบราณคดี" },
-        archExcavate:      { en: "Start Excavation",          th: "เริ่มการขุดค้น" },
-        archRecovered:     { en: "Fragment Recovered",        th: "กู้คืนชิ้นส่วนสำเร็จ" },
-        archCorrupted:     { en: "[DATA CORRUPTED]",          th: "[ข้อมูลเสียหาย]" },
-
-        // Temporal Archaeology v3
-        excTitle:          { en: "Sifting Through The Dust",  th: "ร่อนผ่านฝุ่นผง" },
-        excBegin:          { en: "Begin Excavation",          th: "เริ่มการขุดค้น" },
-        excScanning:       { en: "Scanning emotional strata...", th: "กำลังสแกนชั้นความรู้สึก..." },
-        excFound:          { en: "Fragment Recovered",        th: "กู้คืนชิ้นส่วนสำเร็จ" },
-        excReconstruct:    { en: "Reconstruct Fragment",      th: "กู้คืนสภาพชิ้นส่วน" },
-        excReconstructing: { en: "Restoring corrupted memory...", th: "กำลังกู้คืนความทรงจำที่เสียหาย..." },
-        excArchiveTitle:   { en: "Lost Civilization Archive", th: "หอจดหมายเหตุอารยธรรมที่สาบสูญ" },
-        excForbiddenAlert: { en: "WARNING: Forbidden metadata detected.", th: "คำเตือน: ตรวจพบข้อมูลเมตาที่ต้องห้าม" },
-
-        rarityDusty:       { en: "Dusty", th: "เต็มไปด้วยฝุ่น" },
-        rarityForgotten:   { en: "Forgotten", th: "ที่ถูกลืม" },
-        rarityAncient:     { en: "Ancient", th: "โบราณ" },
-        rarityMythic:      { en: "Mythic", th: "ในตำนาน" },
-        rarityForbidden:   { en: "Forbidden", th: "ต้องห้าม" },
-
-        fragTypePostcard:  { en: "Ancient Postcard", th: "ไปรษณียบัตรโบราณ" },
-        fragTypeTreaty:    { en: "Corrupted Treaty", th: "สนธิสัญญาที่เสียหาย" },
-        fragTypeChronicle: { en: "Half-Burned Chronicle", th: "พงศาวดารที่ถูกเผาไปครึ่งหนึ่ง" },
-        fragTypeGift:      { en: "Unsent Diplomatic Gift", th: "ของขวัญทางการทูตที่ไม่ได้ถูกส่ง" },
-        fragTypeReceipt:   { en: "Unknown Relic Receipt", th: "ใบเสร็จวัตถุโบราณนิรนาม" },
-        fragTypeFragment:  { en: "Parallel Civilization Fragment", th: "ชิ้นส่วนอารยธรรมคู่ขนาน" },
-        fragTypeNotice:    { en: "Fossilized Recovery Notice", th: "ประกาศกู้คืนที่กลายเป็นฟอสซิล" },
-        fragTypeRecord:    { en: "Failed Ascension Record", th: "บันทึกการก้าวข้ามที่ล้มเหลว" },
-        fragTypePermit:    { en: "Expired Soup Permit", th: "ใบอนุญาตซุปที่หมดอายุ" },
-        fragTypeTransmission: { en: "Silent Era Transmission", th: "สัญญาณส่งต่อจากยุคแห่งความเงียบ" },
-
-        fragLore1: { en: "Recovery infrastructure was attempted here.", th: "มีการพยายามสร้างโครงสร้างพื้นฐานเพื่อการกู้คืนที่นี่" },
-        fragLore2: { en: "No further charger sightings were recorded.", th: "ไม่มีการบันทึกการพบเห็นเครื่องชาร์จเพิ่มเติม" },
-        fragLore3: { en: "This civilization disappeared during a Loud Era.", th: "อารยธรรมนี้หายไปในช่วงยุคเสียงดัง" },
-        fragLore4: { en: "The soup reserves were not enough.", th: "ปริมาณซุปสำรองมีไม่เพียงพอ" },
-        fragLore5: { en: "Parallel silence was observed until the end.", th: "มีการสังเกตพบความเงียบขนานจนกระทั่งถึงจุดสิ้นสุด" },
-        fragLore6: { en: "Someone tried to preserve this memory.", th: "ใครบางคนพยายามที่จะรักษาความทรงจำนี้ไว้" },
-        fragLore7: { en: "Blanket governance collapsed unexpectedly.", th: "การปกครองแบบผ้าห่มล่มสลายลงอย่างไม่คาดคิด" },
-        fragLore8: { en: "These artifacts were never reclaimed.", th: "วัตถุโบราณเหล่านี้ไม่เคยถูกนำกลับคืนไป" },
-
-        // Parallel Transmissions v4
-        transTitle:        { en: "Broadcast Into The Dust",   th: "แพร่สัญญาณสู่ฝุ่นผง" },
-        transAction:       { en: "Broadcast Signal",          th: "ส่งสัญญาณ" },
-        transCeremony:     { en: "Transmission Ceremony",     th: "พิธีการส่งสัญญาณ" },
-        transStabilizing:  { en: "Stabilizing frequency...",  th: "กำลังคงที่ความถี่..." },
-        transEncoding:     { en: "Encoding emotional data...", th: "กำลังเข้ารหัสข้อมูลทางอารมณ์..." },
-        transComplete:     { en: "Broadcast Success",         th: "ส่งสัญญาณสำเร็จ" },
-        transDesc:         { en: "Release this memory into the ecosystem for others to find.", th: "ปล่อยความทรงจำนี้เข้าสู่ระบบนิเวศเพื่อให้ผู้อื่นค้นพบ" },
-        transPayload:      { en: "Your unique transmission signal:", th: "สัญญาณการส่งเฉพาะของคุณ:" },
-        transImport:       { en: "Import Transmission",       th: "นำเข้าสัญญาณ" },
-        transForeign:      { en: "Foreign Transmission Recovered", th: "กู้คืนสัญญาณจากดินแดนอื่นสำเร็จ" },
-        transUnknownOrigin: { en: "Origin: Unknown Civilization", th: "ที่มา: อารยธรรมนิรนาม" },
-        transEchoFound:    { en: "Recovered Broadcast — Civilization Unknown", th: "กู้คืนการแพร่สัญญาณ — อารยธรรมนิรนาม" },
-        transDecayStable:  { en: "Stable", th: "เสถียร" },
-        transDecayDusted:  { en: "Dusted", th: "ถูกปกคลุมด้วยฝุ่น" },
-        transDecayCorrupted: { en: "Corrupted", th: "เสียหาย" },
-        transDecayLost:    { en: "Nearly Lost", th: "เกือบจะสาบสูญ" },
-        transArchiveLocal: { en: "Local Broadcasts", th: "การส่งสัญญาณในพื้นที่" },
-        transArchiveForeign: { en: "Foreign Recoveries", th: "การกู้คืนจากดินแดนอื่น" },
-        transArchiveSignals: { en: "Transmission Archive", th: "หอจดหมายเหตุการส่งสัญญาณ" },
-
-        // Atmospheric Antennas v5
-        antTitle:          { en: "Atmospheric Antennas",      th: "เสาอากาศบรรยากาศ" },
-        antScanning:       { en: "Scanning frequencies...",    th: "กำลังสแกนความถี่..." },
-        antTuning:         { en: "Tuning signal...",          th: "กำลังปรับสัญญาณ..." },
-        antSaved:          { en: "Frequency Saved",           th: "บันทึกความถี่แล้ว" },
-        antDrifting:       { en: "Signal drifting...",        th: "สัญญาณกำลังคลาดเคลื่อน..." },
-        antLive:           { en: "LIVE SIGNAL DETECTED",      th: "ตรวจพบสัญญาณสด" },
-        antRogue:          { en: "ROGUE BROADCAST",           th: "การแพร่สัญญาณเถื่อน" },
-        antWeather:        { en: "Ecosystem Weather",         th: "สภาพอากาศระบบนิเวศ" },
-        antBandParallel:   { en: "Parallel FM",               th: "เอฟเอ็มขนาน" },
-        antBandRecovery:   { en: "Recovery Signals",          th: "สัญญาณการกู้คืน" },
-        antBandLoud:       { en: "Loud Era Radio",            th: "วิทยุยุคเสียงดัง" },
-        antBandDust:       { en: "Dust Frequencies",           th: "ความถี่ฝุ่นผง" },
-        antBandUnder:      { en: "Underground Broadcasts",    th: "การแพร่สัญญาณใต้ดิน" },
-        antBandUnknown:    { en: "Unknown Signal",            th: "สัญญาณนิรนาม" },
-
-        antSigStable:      { en: "Signal: Stable",            th: "สัญญาณ: เสถียร" },
-        antSigWeak:        { en: "Signal: Weak",              th: "สัญญาณ: อ่อน" },
-        antSigDistorted:   { en: "Signal: Distorted",         th: "สัญญาณ: บิดเบือน" },
-        antSigCorrupted:   { en: "Signal: Corrupted",         th: "สัญญาณ: เสียหาย" },
-        antSigLost:        { en: "Signal: Lost",              th: "สัญญาณ: หายไป" },
-
-        antMsgCiv1:        { en: "This civilization survived primarily through soup.", th: "อารยธรรมนี้อยู่รอดมาได้ด้วยซุปเป็นหลัก" },
-        antMsgCiv2:        { en: "Parallel silence remains active in Sector 9.", th: "ความเงียบขนานยังคงมีผลในเซกเตอร์ 9" },
-        antMsgCiv3:        { en: "No stable charger infrastructure detected.", th: "ไม่พบโครงสร้างพื้นฐานเครื่องชาร์จที่เสถียร" },
-        antMsgWeather1:    { en: "High atmospheric heaviness detected globally.", th: "ตรวจพบความหนักอึ้งในบรรยากาศสูงทั่วโลก" },
-        antMsgWeather2:    { en: "Recovery winds moving east.", th: "สายลมแห่งการกู้คืนกำลังเคลื่อนไปทางตะวันออก" },
-        antMsgRelic1:      { en: "The Ancient Charger was reportedly seen again.", th: "มีรายงานการพบเห็นเครื่องชาร์จโบราณอีกครั้ง" },
-        antMsgRogue1:      { en: "██ blanket governance ██ unstable ██", th: "██ การปกครองแบบผ้าห่ม ██ ไม่เสถียร ██" },
-        antMsgRogue2:      { en: "Signal origin cannot be verified.", th: "ไม่สามารถยืนยันแหล่งที่มาของสัญญาณได้" },
-
-        // Void Recorder v6
-        voidTitle:         { en: "The Void Recorder",         th: "เครื่องบันทึกความว่างเปล่า" },
-        voidRecord:        { en: "Record Signal",             th: "บันทึกสัญญาณ" },
-        voidRecording:     { en: "Capturing atmospheric residue...", th: "กำลังจับร่องรอยบรรยากาศ..." },
-        voidSuccess:       { en: "Signal Captured",           th: "จับสัญญาณสำเร็จ" },
-        voidArchive:       { en: "Void Recordings Archive",   th: "หอจดหมายเหตุการบันทึกความว่างเปล่า" },
-        voidRestabilize:   { en: "Re-stabilize Signal",       th: "ปรับเสถียรสัญญาณใหม่" },
-        voidStabilizing:   { en: "Strengthening archival clarity...", th: "กำลังเพิ่มความชัดเจนของจดหมายเหตุ..." },
-        voidPrimaryEvidence: { en: "PRIMARY EVIDENCE",        th: "หลักฐานสำคัญ" },
-
-        voidTypeSnapshot:  { en: "Atmospheric Snapshot",      th: "ภาพถ่ายบรรยากาศ" },
-        voidTypeBroadcast: { en: "Lost Civilization Broadcast", th: "การแพร่สัญญาณอารยธรรมที่สาบสูญ" },
-        voidTypeRogue:     { en: "Rogue Doctrine Capture",     th: "การดักจับหลักคำสอนเถื่อน" },
-        voidTypeResidue:   { en: "Parallel Transmission Residue", th: "ร่องรอยการส่งสัญญาณขนาน" },
-        voidTypeArchaeology: { en: "Archaeological Signal",    th: "สัญญาณทางโบราณคดี" },
-        voidTypeWeather:   { en: "Emergency Weather Advisory", th: "ประกาศเตือนอากาศฉุกเฉิน" },
-        voidTypeRelic:     { en: "Relic Sighting Log",         th: "บันทึกการพบเห็นวัตถุโบราณ" },
-        voidTypeEcho:      { en: "Unknown Frequency Echo",     th: "เสียงสะท้อนความถี่นิรนาม" },
-
-        voidStateFresh:    { en: "Fresh Capture",             th: "เพิ่งถูกจับ" },
-        voidStateArchived: { en: "Archived",                  th: "ถูกเก็บถาวร" },
-        voidStateWeathered: { en: "Weathered",                 th: "สึกกร่อน" },
-        voidStateDistorted: { en: "Distorted",                 th: "บิดเบือน" },
-        voidStateFossilized: { en: "Fossilized",                th: "กลายเป็นฟอสซิล" },
-
-        voidLoreSync:      { en: "Captured during a period of synchronized heaviness.", th: "ถูกจับได้ในช่วงเวลาของความหนักอึ้งที่สอดคล้องกัน" },
-        voidLoreUnstable:  { en: "Signal integrity remained unstable.", th: "ความสมบูรณ์ของสัญญาณยังคงไม่คงที่" },
-        voidLoreFading:    { en: "This transmission was already fading.", th: "การส่งสัญญาณนี้กำลังเลือนหายไปแล้ว" },
-        voidLoreTerritory: { en: "Recovered from unknown atmospheric territory.", th: "กู้คืนมาจากดินแดนบรรยากาศนิรนาม" },
-
-        // Echo Chamber v7
-        echoTitle:         { en: "The Echo Chamber",          th: "ห้องแห่งเสียงสะท้อน" },
-        echoSyntheticLore: { en: "Synthetic Echo",            th: "เสียงสะท้อนสังเคราะห์" },
-        echoConvergence:   { en: "Composite Signal",          th: "สัญญาณรวม" },
-        echoUnexplained:   { en: "UNEXPLAINED SYNTHESIS",     th: "การสังเคราะห์ที่ไม่อาจสาธยายได้" },
-        echoResonances:    { en: "Resonant Signals",          th: "สัญญาณที่ก้องกังวาน" },
-        echoRecursive:     { en: "Recursive Archives",        th: "จดหมายเหตุเวียนซ้ำ" },
-        echoChamberFeedback: { en: "CHAMBER FEEDBACK",        th: "สัญญาณสะท้อนกลับจากห้อง" },
-
-        echoRelResonance:  { en: "Resonance",                 th: "การก้องกังวาน" },
-        echoRelContradict: { en: "Contradiction",             th: "การขัดแย้ง" },
-        echoRelLoop:       { en: "Recursive Loop",            th: "วงจรเวียนซ้ำ" },
-        echoRelHarmony:    { en: "Corrupted Harmony",         th: "ความสอดประสานที่เสียหาย" },
-        echoRelPhantom:    { en: "Phantom Reference",         th: "การอ้างอิงเงา" },
-
-        echoMsgMem1:       { en: "The transmission appears to remember another civilization.", th: "การส่งสัญญาณนี้ดูเหมือนจะจดจำอารยธรรมอื่นได้" },
-        echoMsgMem2:       { en: "Multiple recordings reference the same collapse.", th: "การบันทึกหลายรายการอ้างถึงการล่มสลายครั้งเดียวกัน" },
-        echoMsgSync:       { en: "The atmospheric residue has synchronized.", th: "ร่องรอยบรรยากาศได้รับการประสานกันแล้ว" },
-        echoMsgOrigin:     { en: "This signal may not have originated locally.", th: "สัญญาณนี้อาจไม่ได้มีต้นกำเนิดจากที่นี่" },
-        echoMsgSurvival:   { en: "Recovered evidence suggests coordinated horizontal survival.", th: "หลักฐานที่กู้คืนมาได้บ่งชี้ถึงการเอาตัวรอดในแนวระนาบที่สอดประสานกัน" },
-
-        echoCompSoup:      { en: "The Soup Frequency Convergence", th: "การรวมตัวของความถี่ซุป" },
-        echoCompSilence:   { en: "The Parallel Silence Recursion", th: "การวนซ้ำของความเงียบขนาน" },
-        echoCompBlanket:   { en: "The Blanket Resonance Archive", th: "หอจดหมายเหตุการก้องกังวานของผ้าห่ม" },
-        echoCompRecharge:  { en: "The Fourth Recharge Signal",    th: "สัญญาณการชาร์จพลังครั้งที่สี่" },
-        echoCompEmergency: { en: "The Fossilized Emergency Broadcast", th: "การแพร่สัญญาณฉุกเฉินที่กลายเป็นฟอสซิล" },
-
-        echoInterference:  { en: "Signal Interference Detected", th: "ตรวจพบสัญญาณรบกวน" },
-        echoStability:     { en: "Harmonic Stability High",    th: "ความเสถียรของคลื่นสอดประสานสูง" },
-
-        // Black Box v8
-        bbTitle:           { en: "The Emotional Black Box",   th: "กล่องดำทางอารมณ์" },
-        bbArchive:         { en: "Black Box Vault",           th: "ห้องนิรภัยกล่องดำ" },
-        bbSeal:            { en: "Seal CivilizationSnapshot", th: "ผนึกภาพถ่ายอารยธรรม" },
-        bbSealing:         { en: "Compressing emotional era...", th: "กำลังบีบอัดยุคสมัยทางอารมณ์..." },
-        bbBreach:          { en: "BREACH EVENT",              th: "เหตุการณ์การรั่วไหล" },
-        bbBleed:           { en: "ARCHIVE BLEED",             th: "การรั่วไหลจากจดหมายเหตุ" },
-        bbFragment:        { en: "World Fragment",            th: "เศษเสี้ยวโลก" },
-        bbReconstruct:     { en: "Reconstruct Archive",       th: "กู้คืนจดหมายเหตุ" },
-        bbComposite:       { en: "Composite Archive",         th: "จดหมายเหตุรวม" },
-        bbWeight:          { en: "Emotional Weight",          th: "น้ำหนักทางอารมณ์" },
-
-        bbStateSealed:     { en: "SEALED",                    th: "ถูกผนึก" },
-        bbStateDormant:    { en: "DORMANT",                   th: "หลับใหล" },
-        bbStateWeathered:  { en: "WEATHERED",                 th: "สึกกร่อน" },
-        bbStateDistorted:  { en: "DISTORTED",                 th: "บิดเบือน" },
-        bbStateCracking:   { en: "CRACKING OPEN",             th: "กำลังแตกร้าว" },
-        bbStateBreached:   { en: "BREACHED",                  th: "รั่วไหล" },
-        bbStateLost:       { en: "LOST TO THE DUST",          th: "สาบสูญไปกับฝุ่นผง" },
-
-        bbMsgBreach1:      { en: "A breached archive continues transmitting soup infrastructure warnings.", th: "จดหมายเหตุที่รั่วไหลยังคงส่งคำเตือนเกี่ยวกับโครงสร้างพื้นฐานซุป" },
-        bbMsgBreach2:      { en: "Civilization residue detected inside unauthorized frequencies.", th: "ตรวจพบร่องรอยอารยธรรมในความถี่ที่ไม่ได้รับอนุญาต" },
-        bbMsgBreach3:      { en: "The Black Box appears emotionally unstable.", th: "กล่องดำดูเหมือนจะไม่มีความเสถียรทางอารมณ์" },
-
-        bbCompParallel:    { en: "The Parallel Reconstruction Archive", th: "จดหมายเหตุการกู้คืนขนาน" },
-        bbCompSoup:        { en: "The Great Soup Coalition Remnant",    th: "เศษซากกลุ่มพันธมิตรซุปที่ยิ่งใหญ่" },
-        bbCompGov:         { en: "The Horizontal Governance Debris",    th: "ซากการปกครองแนวระนาบ" },
-        bbCompFed:         { en: "The Fossilized Federation Core",      th: "แกนกลางสหพันธ์ที่กลายเป็นฟอสซิล" },
-
-        bbLoreEvidence:    { en: "Final evidence that a civilization once existed.", th: "หลักฐานสุดท้ายว่าอารยธรรมเคยมีอยู่จริง" },
-        bbLoreHistory:     { en: "This house became history.",        th: "บ้านหลังนี้ได้กลายเป็นประวัติศาสตร์ไปแล้ว" },
-
-        // Civilization Journey v1
-        journeyStage1:     { en: "Day 1: The First Breath",   th: "วันที่ 1: ลมหายใจแรก" },
-        journeyStage2:     { en: "Day 3: Material Proof",     th: "วันที่ 3: ข้อพิสูจน์ทางวัตถุ" },
-        journeyStage3:     { en: "Day 5: Intimate Echoes",    th: "วันที่ 5: เสียงสะท้อนที่ใกล้ชิด" },
-        journeyStage4:     { en: "Day 7: The Awakening",      th: "วันที่ 7: การตื่นรู้" },
-        journeyStage5:     { en: "Day 14: Deep Strata",       th: "วันที่ 14: ชั้นดินที่ลึกซึ้ง" },
-        journeyStage6:     { en: "Day 30: Final Evidence",    th: "วันที่ 30: หลักฐานสุดท้าย" },
-
-        unlockHintRelic:   { en: "Continue your daily rituals to forge material proof of survival.", th: "ทำกิจวัตรประจำวันของคุณต่อไปเพื่อสร้างข้อพิสูจน์ทางวัตถุของการอยู่รอด" },
-        unlockHintMuseum:  { en: "Maintain consistency to hear the echoes of your household relics.", th: "รักษาความสม่ำเสมอเพื่อฟังเสียงสะท้อนของวัตถุโบราณในบ้านคุณ" },
-        unlockHintCiv:     { en: "A week of existence is required for full civilizational awakening.", th: "ต้องการการคงอยู่หนึ่งสัปดาห์เพื่อการตื่นรู้ของอารยธรรมอย่างเต็มรูปแบบ" },
-        unlockHintArch:    { en: "Deeper emotional strata reveal themselves after 14 days.", th: "ชั้นอารมณ์ที่ลึกกว่าจะเผยตัวออกมาหลังจาก 14 วัน" },
-        unlockHintBlackBox: { en: "A full month of history is needed to compress this era into final evidence.", th: "ต้องการประวัติศาสตร์เต็มเดือนเพื่อบีบอัดยุคสมัยนี้เป็นหลักฐานสุดท้าย" },
-
-        pathTitle:         { en: "The Path to Awakening",     th: "เส้นทางสู่การตื่นรู้" },
-        pathProgress:      { en: "Civilization Integrity",    th: "ความสมบูรณ์ของอารยธรรม" },
-        pathDay:           { en: "Day {{day}} of history",    th: "วันที่ {{day}} ของประวัติศาสตร์" },
-
-        // Identity Lock-In v1
-        idGreeting:        { en: "Welcome home, {{class}} Civilization.", th: "ยินดีต้อนรับกลับบ้าน อารยธรรม{{class}}" },
-        idMottoLabel:      { en: "Civilization Motto",        th: "คำขวัญอารยธรรม" },
-        idProverbLabel:    { en: "Recurring Proverb",         th: "สุภาษิตประจำใจ" },
-        idOathLabel:       { en: "Civilization Oath",         th: "คำปฏิญาณอารยธรรม" },
-        idTraitsLabel:     { en: "Identity Traits",           th: "คุณลักษณะเฉพาะตัว" },
-
-        // Class Mottos
-        mottoRecovery:     { en: "The house survives through stillness.", th: "บ้านดำรงอยู่ได้ผ่านความนิ่งสงบ" },
-        mottoLoud:         { en: "Survival is not quiet.",            th: "การอยู่รอดไม่ใช่ความเงียบ" },
-        mottoParallel:     { en: "Together, separately.",             th: "อยู่ด้วยกัน อย่างแยกกัน" },
-        mottoChaos:        { en: "Order is a luxury of the energized.", th: "ระเบียบคือความหรูหราของผู้ที่มีพลังงาน" },
-        mottoBlanket:      { en: "Safety is soft and horizontal.",    th: "ความปลอดภัยคือความนุ่มนวลและแนวระราบ" },
-        mottoSoup:         { en: "Broth is the only infrastructure.", th: "น้ำซุปคือโครงสร้างพื้นฐานเดียวที่มี" },
-        mottoSurvivalist:  { en: "The era changed; we did not.",       th: "ยุคสมัยเปลี่ยนไป แต่เราไม่เปลี่ยน" },
-        mottoStability:    { en: "Sustainable peace, daily rituals.", th: "สันติภาพที่ยั่งยืน กิจวัตรประจำวัน" },
-
-        // Identity Traits
-        traitQuiet:        { en: "Historically Quiet",        th: "เงียบงันตามประวัติศาสตร์" },
-        traitSoup:         { en: "Soup-Reinforced",           th: "เสริมแกร่งด้วยซุป" },
-        traitRecovery:     { en: "Recovery-Oriented",         th: "มุ่งเน้นการกู้คืน" },
-        traitFlammable:    { en: "Emotionally Flammable",     th: "จุดติดทางอารมณ์ได้ง่าย" },
-        traitResistant:    { en: "Ritual Resistant",          th: "ต่อต้านกิจวัตร" },
-        traitAutonomy:     { en: "High Autonomy",             th: "ความเป็นอิสระสูง" },
-        traitDensity:      { en: "Bunker Density High",       th: "ความหนาแน่นในบังเกอร์สูง" },
-        traitPersistence:  { en: "Ramen-Fueled Persistence",   th: "ความเพียรที่ขับเคลื่อนด้วยราเมน" },
-
-        // Bonding Moments
-        bondLoyalty30:     { en: "Your civilization has survived 30 days.", th: "อารยธรรมของคุณรอดชีวิตมาได้ 30 วันแล้ว" },
-        bondStabilize:     { en: "The house is beginning to stabilize.", th: "บ้านเริ่มเข้าสู่ความมั่นคง" },
-        bondPermanent:     { en: "This archive is no longer temporary.", th: "จดหมายเหตุนี้ไม่ใช่สิ่งชั่วคราวอีกต่อไป" },
-        bondWelcome:       { en: "You are one of us now.",           th: "คุณคือส่วนหนึ่งของเราแล้ว" },
-
-        // Diplomacy / Chemistry
-        dipChemistry:      { en: "Civilization Chemistry",    th: "เคมีของอารยธรรม" },
-        dipCompatibility:  { en: "Cultural Compatibility",    th: "ความเข้ากันได้ทางวัฒนธรรม" },
-        dipOverlap:        { en: "Ideological Overlap",       th: "อุดมการณ์ที่ทับซ้อน" },
-        chemResonant:      { en: "Resonant",                  th: "สอดคล้องกัน" },
-        chemNeutral:       { en: "Neutral",                   th: "เป็นกลาง" },
-        chemUnstable:      { en: "Unstable",                  th: "ไม่คงที่" },
-
-        // Relationship Layer v2
-        roleCaretaker:     { en: "Caretaker",                 th: "ผู้ดูแล" },
-        roleBunker:        { en: "Bunker Resident",           th: "ผู้อยู่อาศัยในบังเกอร์" },
-        roleBooster:       { en: "Signal Booster",            th: "ผู้ขยายสัญญาณ" },
-        roleStabilizer:    { en: "Quiet Stabilizer",          th: "ผู้สร้างความมั่นคงอย่างเงียบๆ" },
-        roleGenerator:     { en: "Chaos Generator",           th: "ผู้สร้างความโกลาหล" },
-        roleKeeper:        { en: "Ritual Keeper",             th: "ผู้รักษากิจวัตร" },
-        roleProvider:      { en: "Soup Provider",             th: "ผู้จัดหาซุป" },
-        roleGuardian:      { en: "Blanket Guardian",          th: "ผู้ปกป้องผ้าห่ม" },
-
-        dynTitle:          { en: "Household Dynamics",        th: "พลวัตในบ้าน" },
-        dynChemistry:      { en: "Active Chemistry",          th: "เคมีที่ทำงานอยู่" },
-        dynObservation:    { en: "Emotional Observation",     th: "การสังเกตทางอารมณ์" },
-        dynRitual:         { en: "Shared Ritual",             th: "กิจวัตรที่ทำร่วมกัน" },
-        dynDrift:          { en: "Dynamic Drift",             th: "การแปรผันของพลวัต" },
-        dynDriftBuffering: { en: "Buffering",                 th: "กำลังบัฟเฟอร์" },
-        dynDriftRecovering: { en: "Recovering",                th: "กำลังพักฟื้น" },
-        dynDriftNested:    { en: "Nested",                    th: "สร้างรังอยู่" },
-
-        pairParallel:      { en: "Parallel Players",          th: "นักเล่นคู่ขนาน" },
-        pairCaretaker:     { en: "Caretaker + Bunker Resident", th: "ผู้ดูแล + ผู้อยู่อาศัยในบังเกอร์" },
-        pairStabilizer:    { en: "Loud Survivor + Quiet Stabilizer", th: "ผู้รอดชีวิตที่เสียงดัง + ผู้สร้างความมั่นคงที่เงียบงัน" },
-        pairSoup:          { en: "Soup Provider + Recovery Civilian", th: "ผู้จัดหาซุป + พลเรือนผู้กำลังพักฟื้น" },
-        pairShield:        { en: "Emotional Shield + Chaos Generator", th: "เกราะป้องกันทางอารมณ์ + ผู้สร้างความโกลาหล" },
-        pairNesters:       { en: "Mutual Nesters",            th: "ผู้สร้างรังร่วมกัน" },
-
-        obsParallel:       { en: "Comfort through quiet proximity.", th: "ความสบายใจผ่านการอยู่ใกล้กันอย่างเงียบเชียบ" },
-        obsNourish:        { en: "Recovery requires nourishment first.", th: "การพักฟื้นต้องการสารอาหารก่อนเป็นอันดับแรก" },
-        obsResonance:      { en: "Synchronized emotional buffering detected.", th: "ตรวจพบการกันชนทางอารมณ์ที่สอดประสานกัน" },
-
-        sugSilent:         { en: "Try a silent recharge window.", th: "ลองใช้ช่วงเวลาชาร์จพลังแบบเงียบๆ" },
-        sugSoup:           { en: "Share soup before evening reset.", th: "แบ่งปันซุปก่อนรีเซ็ตช่วงเย็น" },
-        sugBuffering:      { en: "Horizontal buffering recommended.", th: "แนะนำให้ทำการบัฟเฟอร์ในแนวราบ" },
-        };        // Ruins
-        ruinSilentKitchen: { en: "The Silent Kitchen Era",    th: "ยุคสมัยห้องครัวที่เงียบงัน" },
-        ruinAncientRecharge: { en: "Ancient Recharge Site",   th: "แหล่งชาร์จพลังโบราณ" },
-        ruinForgottenSoup: { en: "Forgotten Soup Infrastructure", th: "โครงสร้างพื้นฐานซุปที่ถูกลืม" },
-        ruinParallelRuins: { en: "Ruins of Parallel Governance", th: "ซากปรักหักพังของการปกครองแบบขนาน" },
-        
-        // Fossilized Status
-        fosDormant:        { en: "Dormant",                   th: "หลับใหล" },
-        fosCracked:        { en: "Cracked",                   th: "แตกร้าว" },
-        fosFragmented:     { en: "Fragmented",                th: "แตกสลาย" },
-        fosAncientHusk:    { en: "Ancient Husk",              th: "ซากโบราณ" },
-        
-        // Timeline & Echoes
-        lostTimeline:      { en: "Lost Timeline Detected",    th: "ตรวจพบไทม์ไลน์ที่สูญหาย" },
-        buriedEcho:        { en: "Buried Echo",               th: "เสียงสะท้อนที่ถูกฝังไว้" },
-        ancientDoctrine:   { en: "Extinct Doctrine",          th: "อุดมการณ์ที่สูญสิ้น" },
-        
-        archScore:         { en: "Archaeological Score",      th: "คะแนนการขุดค้น" },
-        archAncientStatus: { en: "Ancient Status",            th: "สถานะความโบราณ" },
 
         // ─── Autonomous Civilization Simulation ────────────
         ecoTitle:          { en: "Across The Ecosystem",      th: "ความเคลื่อนไหวในระบบนิเวศ" },
@@ -1481,7 +1181,7 @@
                                  th: "สงครามแย่งชิงที่อาบแดดที่ดีที่สุดเกิดขึ้นตลอดเวลา" },
         compDescOneBrainCell:  { en: "Logic has left the building. Chaos reigns.",
                                  th: "ตรรกะไม่อยู่ในบ้านนี้อีกต่อไป ความวุ่นวายครองเมือง" },
-        compDescTwinFlames:    { en: "Literally the same person in different bodies.",
+        compDescTwinFlames:    { en: "คือคนเดียวกันเป๊ะ แค่อยู่ในคนละร่าง.",
                                  th: "คือคนเดียวกันเป๊ะ แค่อยู่ในคนละร่าง" },
         compDescTotalOpposites: { en: "They have nothing in common, yet here they are.",
                                  th: "ไม่มีอะไรเหมือนกันเลย แต่ก็ดันมาอยู่ด้วยกันได้" },
@@ -1752,13 +1452,21 @@
         layerMemory:       { en: "Memory Archive",            th: "คลังความทรงจำ" },
         layerLore:         { en: "Deep Lore",                 th: "ตำนานเบื้องลึก" },
 
+        bucketMemories:    { en: "Memories",                  th: "ความทรงจำ" },
+        bucketDiscoveries: { en: "Discoveries",               th: "การค้นพบ" },
+        bucketSignals:     { en: "Signals",                   th: "สัญญาณ" },
+        bucketArchives:    { en: "Archives",                  th: "หอจดหมายเหตุ" },
+
         modeCalm:          { en: "Calm Mode",                 th: "โหมดสงบ" },
         modeLore:          { en: "Deep Lore Mode",            th: "โหมดเจาะลึกตำนาน" },
         
         unlockHintFed:     { en: "Federation unlocks after 7 days of emotional history.", th: "สหพันธรัฐจะปลดล็อกหลังจากมีประวัติทางอารมณ์ครบ 7 วัน" },
-        unlockHintArch:    { en: "A hidden archive uncovers after 20 days of survival.", th: "คลังลับจะถูกเปิดเผยหลังจากเอาตัวรอดครบ 20 วัน" },
-        unlockHintTheo:    { en: "Theology systems awaken after canonizing your first relic.", th: "ระบบเทววิทยาจะตื่นขึ้นหลังจากแต่งตั้งวัตถุโบราณชิ้นแรกเป็นสิ่งศักดิ์สิทธิ์" },
-        unlockHintGov:     { en: "Governance activates after resolving an emotional crisis.", th: "การปกครองจะเปิดใช้งานหลังจากคลี่คลายวิกฤตทางอารมณ์" },
+        unlockHintArch:    { en: "Ancient fragments reveal themselves after 14 days of survival.", th: "เศษเสี้ยวโบราณจะถูกเปิดเผยหลังจากเอาตัวรอดครบ 14 วัน" },
+        unlockHintTheo:    { en: "Spiritual layers awaken after your first ritual landmark.", th: "ชั้นของจิตวิญญาณจะตื่นขึ้นหลังจากผ่านหมุดหมายแรกของพิธีกรรม" },
+        unlockHintGov:     { en: "Governance activates after the first household crisis.", th: "การปกครองจะเปิดใช้งานหลังจากเกิดวิกฤตการณ์ในบ้านครั้งแรก" },
+        unlockHintMuseum:  { en: "Your personal museum opens after 5 days of history.", th: "พิพิธภัณฑ์ส่วนตัวของคุณจะเปิดหลังจากมีประวัติครบ 5 วัน" },
+        unlockHintBlackBox: { en: "Archives open after long-term survival.", th: "หอจดหมายเหตุจะเปิดขึ้นหลังจากเอาตัวรอดมาได้อย่างยาวนาน" },
+        unlockHintRelic:   { en: "Memories unlock in 3 days.", th: "ความทรงจำจะปลดล็อกใน 3 วัน" },
 
         // ─── Temporal Retention Systems ───────────────────
         tempDailyDrift:    { en: "Atmospheric Drift",         th: "บรรยากาศที่แปรเปลี่ยน" },
@@ -1791,12 +1499,12 @@
         decayDust:         { en: "Traces of relic dust accumulation detected.", th: "ตรวจพบการสะสมของฝุ่นบนวัตถุโบราณ" },
         decayAbandoned:    { en: "The museum halls feel abandoned.", th: "หอศิลป์ในพิพิธภัณฑ์ให้ความรู้สึกเหมือนถูกทิ้งร้าง" },
 
-        // ─── Emotional Relic Echo Cards ──────────────────
-        echoCardTitle:     { en: "Echo Postcards",            th: "ไปรษณียบัตรจากเสียงสะท้อน" },
-        echoCardSubtitle:  { en: "Small collectible memories from your civilization's journey.", th: "ความทรงจำสะสมชิ้นเล็กๆ จากการเดินทางของอารยธรรมคุณ" },
+        // ─── Memory Postcards ──────────────────
+        echoCardTitle:     { en: "Memory Postcards",          th: "ไปรษณียบัตรความทรงจำ" },
+        echoCardSubtitle:  { en: "Small collectible fragments from your journey.", th: "เศษเสี้ยวความทรงจำสะสมจากการเดินทางของคุณ" },
         
         // Postcard Lore Lines
-        echoLoreUnlock:    { en: "A postcard arrived from the day the archive opened.", th: "ไปรษณียบัตรมาถึงในวันที่คลังถูกเปิดออก" },
+        echoLoreUnlock:    { en: "Historical evidence has been codified.", th: "หลักฐานทางประวัติศาสตร์ได้รับการจารึกไว้แล้ว" },
         echoLoreRecovery:  { en: "The crisis ended. The soup remained.", th: "วิกฤตจบลงแล้ว เหลือเพียงซุปที่ยังคงอยู่" },
         echoLoreReturn:    { en: "The relic returned carrying dust from elsewhere.", th: "วัตถุโบราณกลับมาพร้อมกับฝุ่นผงจากที่ห่างไกล" },
         echoLoreWitness:   { en: "This civilization was witnessed.", th: "อารยธรรมนี้ได้รับการประจักษ์แล้ว" },
@@ -1804,7 +1512,7 @@
         echoLoreAnniv:     { en: "Time passes, but the memories are preserved.", th: "กาลเวลาผ่านไป แต่ความทรงจำยังคงถูกเก็บรักษา" },
 
         // Card Labels
-        echoTypePostcard:  { en: "Postcard",                  th: "ไปรษณียบัตร" },
+        echoTypePostcard:  { en: "Memory Fragment",           th: "ชิ้นส่วนความทรงจำ" },
         echoTypeReceipt:   { en: "Gift Receipt",               th: "ใบเสร็จของขวัญ" },
         
         // Memory Fragments
@@ -1817,7 +1525,7 @@
         memGovResidue:     { en: "Decision made: Stability was prioritized over transparency.", th: "ตัดสินใจแล้ว: ลำดับความสำคัญอยู่ที่ความมั่นคงเหนือความโปร่งใส" },
         memArchFootnote:   { en: "Fragment recovered from beneath the Great Blackout layer.", th: "ชิ้นส่วนถูกกู้คืนมาจากภายใต้ชั้นของการดับวูบทางอารมณ์ครั้งใหญ่" },
         
-        memRecoveredTitle: { en: "Recovered Archive Fragment", th: "เศษเสี้ยวบันทึกที่กู้คืนมาได้" },
+        memRecoveredTitle: { en: "Recovered Memory",          th: "ความทรงจำที่กู้คืนมาได้" },
 
         // Flip Side Memories v2
         memFlipUnlock1:    { en: "The archive opened. A draft of old air escaped.", th: "คลังอาคารเปิดออก มวลอากาศเก่าแก่ไหลเวียนออกมา" },
@@ -1834,6 +1542,292 @@
         memFlipPublic2:    { en: "A diplomatic transmission was archived for future study.", th: "สัญญาณส่งต่อทางการทูตถูกบันทึกไว้เพื่อการศึกษาในอนาคต" },
         memFlipGift1:      { en: "A gift arrived, carrying the weight of a foreign peace.", th: "ของขวัญมาถึง พร้อมกับน้ำหนักแห่งสันติภาพจากดินแดนอื่น" },
         memFlipGift2:      { en: "The embassy received a new token of coordinated survival.", th: "สถานทูตได้รับสัญลักษณ์ใหม่ของการเอาชีวิตรอดร่วมกัน" },
+
+        labelRecentlyRemembered: { en: "Recently Remembered", th: "เพิ่งถูกจดจำ" },
+        labelOldestMemory: { en: "Oldest Surviving Memory", th: "ความทรงจำเก่าแก่ที่สุด" },
+        labelMostReferencedRelic: { en: "Most Referenced Relic", th: "วัตถุโบราณที่ถูกอ้างถึงบ่อยที่สุด" },
+        shareBothSides:    { en: "Both Sides", th: "ทั้งสองด้าน" },
+
+        // ─── Ancient Archaeology ───────────────
+        archTitle:         { en: "Ancient Archaeology",       th: "โบราณคดีที่สาบสูญ" },
+        archIntro:         { en: "Uncover the forgotten history and emotional ruins of your household.", th: "ขุดค้นประวัติศาสตร์ที่ถูกลืมและซากปรักหักพังทางอารมณ์ของบ้านคุณ" },
+        archWing:          { en: "Archaeology Wing",          th: "โซนโบราณคดี" },
+        archExcavate:      { en: "Start Excavation",          th: "เริ่มการขุดค้น" },
+        archRecovered:     { en: "Fragment Recovered",        th: "กู้คืนชิ้นส่วนสำเร็จ" },
+        archCorrupted:     { en: "[DATA CORRUPTED]",          th: "[ข้อมูลเสียหาย]" },
+
+        // Temporal Archaeology v3
+        excTitle:          { en: "Ancient Fragments",          th: "เศษเสี้ยวโบราณ" },
+        excBegin:          { en: "Begin Excavation",          th: "เริ่มการขุดค้น" },
+        excScanning:       { en: "Scanning emotional strata...", th: "กำลังสแกนชั้นความรู้สึก..." },
+        excFound:          { en: "Fragment Recovered",        th: "กู้คืนชิ้นส่วนสำเร็จ" },
+        excReconstruct:    { en: "Reconstruct Fragment",      th: "กู้คืนสภาพชิ้นส่วน" },
+        excReconstructing: { en: "Restoring corrupted memory...", th: "กำลังกู้คืนความทรงจำที่เสียหาย..." },
+        excArchiveTitle:   { en: "Lost Civilization Archive", th: "หอจดหมายเหตุอารยธรรมที่สาบสูญ" },
+        excForbiddenAlert: { en: "WARNING: Forbidden metadata detected.", th: "คำเตือน: ตรวจพบข้อมูลเมตาที่ต้องห้าม" },
+
+        rarityDusty:       { en: "Dusty", th: "เต็มไปด้วยฝุ่น" },
+        rarityForgotten:   { en: "Forgotten", th: "ที่ถูกลืม" },
+        rarityAncient:     { en: "Ancient", th: "โบราณ" },
+        rarityMythic:      { en: "Mythic", th: "ในตำนาน" },
+        rarityForbidden:   { en: "Forbidden", th: "ต้องห้าม" },
+
+        fragTypePostcard:  { en: "Ancient Postcard", th: "ไปรษณียบัตรโบราณ" },
+        fragTypeTreaty:    { en: "Corrupted Treaty", th: "สนธิสัญญาที่เสียหาย" },
+        fragTypeChronicle: { en: "Half-Burned Chronicle", th: "พงศาวดารที่ถูกเผาไปครึ่งหนึ่ง" },
+        fragTypeGift:      { en: "Unsent Diplomatic Gift", th: "ของขวัญทางการทูตที่ไม่ได้ถูกส่ง" },
+        fragTypeReceipt:   { en: "Unknown Relic Receipt", th: "ใบเสร็จวัตถุโบราณนิรนาม" },
+        fragTypeFragment:  { en: "Parallel Civilization Fragment", th: "ชิ้นส่วนอารยธรรมคู่ขนาน" },
+        fragTypeNotice:    { en: "Fossilized Recovery Notice", th: "ประกาศกู้คืนที่กลายเป็นฟอสซิล" },
+        fragTypeRecord:    { en: "Failed Ascension Record", th: "บันทึกการก้าวข้ามที่ล้มเหลว" },
+        fragTypePermit:    { en: "Expired Soup Permit", th: "ใบอนุญาตซุปที่หมดอายุ" },
+        fragTypeTransmission: { en: "Silent Era Transmission", th: "สัญญาณส่งต่อจากยุคแห่งความเงียบ" },
+
+        fragLore1: { en: "Recovery infrastructure was attempted here.", th: "มีการพยายามสร้างโครงสร้างพื้นฐานเพื่อการกู้คืนที่นี่" },
+        fragLore2: { en: "No further charger sightings were recorded.", th: "ไม่มีการบันทึกการพบเห็นเครื่องชาร์จเพิ่มเติม" },
+        fragLore3: { en: "This civilization disappeared during a Loud Era.", th: "อารยธรรมนี้หายไปในช่วงยุคเสียงดัง" },
+        fragLore4: { en: "The soup reserves were not enough.", th: "ปริมาณซุปสำรองมีไม่เพียงพอ" },
+        fragLore5: { en: "Parallel silence was observed until the end.", th: "มีการสังเกตพบความเงียบขนานจนกระทั่งถึงจุดสิ้นสุด" },
+        fragLore6: { en: "Someone tried to preserve this memory.", th: "ใครบางคนพยายามที่จะรักษาความทรงจำนี้ไว้" },
+        fragLore7: { en: "Blanket governance collapsed unexpectedly.", th: "การปกครองแบบผ้าห่มล่มสลายลงอย่างไม่คาดคิด" },
+        fragLore8: { en: "These artifacts were never reclaimed.", th: "วัตถุโบราณเหล่านี้ไม่เคยถูกนำกลับคืนไป" },
+
+        // ─── Signal Broadcast ───────────────
+        transTitle:        { en: "Signal Broadcast",          th: "การแพร่สัญญาณ" },
+        transAction:       { en: "Broadcast Signal",          th: "ส่งสัญญาณ" },
+        transCeremony:     { en: "Transmission Ceremony",     th: "พิธีการส่งสัญญาณ" },
+        transStabilizing:  { en: "Stabilizing frequency...",  th: "กำลังคงที่ความถี่..." },
+        transEncoding:     { en: "Encoding emotional data...", th: "กำลังเข้ารหัสข้อมูลทางอารมณ์..." },
+        transComplete:     { en: "Broadcast Success",         th: "ส่งสัญญาณสำเร็จ" },
+        transDesc:         { en: "Release this memory into the ecosystem for others to find.", th: "ปล่อยความทรงจำนี้เข้าสู่ระบบนิเวศเพื่อให้ผู้อื่นค้นพบ" },
+        transPayload:      { en: "Your unique transmission signal:", th: "สัญญาณการส่งเฉพาะของคุณ:" },
+        transImport:       { en: "Capture Foreign Signal",    th: "ดักจับสัญญาณต่างถิ่น" },
+        transForeign:      { en: "Foreign Signal Captured",   th: "ดักจับสัญญาณต่างถิ่นสำเร็จ" },
+        transUnknownOrigin: { en: "Origin: Unknown Civilization", th: "ที่มา: อารยธรรมนิรนาม" },
+        transEchoFound:    { en: "Recovered Broadcast — Civilization Unknown", th: "กู้คืนการแพร่สัญญาณ — อารยธรรมนิรนาม" },
+        transDecayStable:  { en: "Stable", th: "เสถียร" },
+        transDecayDusted:  { en: "Dusted", th: "ถูกปกคลุมด้วยฝุ่น" },
+        transDecayCorrupted: { en: "Corrupted", th: "เสียหาย" },
+        transDecayLost:    { en: "Nearly Lost", th: "เกือบจะสาบสูญ" },
+        transArchiveLocal: { en: "Local Broadcasts", th: "การส่งสัญญาณในพื้นที่" },
+        transArchiveForeign: { en: "Foreign Recoveries", th: "การกู้คืนจากดินแดนอื่น" },
+        transArchiveSignals: { en: "Signal Archive",          th: "คลังเก็บสัญญาณ" },
+
+        // ─── Atmospheric Radio ───────────────
+        antTitle:          { en: "Atmospheric Radio",        th: "วิทยุบรรยากาศ" },
+        antScanning:       { en: "Scanning frequencies...",    th: "กำลังสแกนความถี่..." },
+        antTuning:         { en: "Tuning signal...",          th: "กำลังปรับสัญญาณ..." },
+        antSaved:          { en: "Frequency Saved",           th: "บันทึกความถี่แล้ว" },
+        antDrifting:       { en: "Signal drifting...",        th: "สัญญาณกำลังคลาดเคลื่อน..." },
+        antLive:           { en: "LIVE SIGNAL DETECTED",      th: "ตรวจพบสัญญาณสด" },
+        antRogue:          { en: "ROGUE BROADCAST",           th: "การแพร่สัญญาณเถื่อน" },
+        antWeather:        { en: "Ecosystem Weather",         th: "สภาพอากาศระบบนิเวศ" },
+        antBandParallel:   { en: "Parallel FM",               th: "เอฟเอ็มขนาน" },
+        antBandRecovery:   { en: "Recovery Signals",          th: "สัญญาณการกู้คืน" },
+        antBandLoud:       { en: "Loud Era Radio",            th: "วิทยุยุคเสียงดัง" },
+        antBandDust:       { en: "Dust Frequencies",           th: "ความถี่ฝุ่นผง" },
+        antBandUnder:      { en: "Underground Broadcasts",    th: "การแพร่สัญญาณใต้ดิน" },
+        antBandUnknown:    { en: "Unknown Signal",            th: "สัญญาณนิรนาม" },
+
+        antSigStable:      { en: "Signal: Stable",            th: "สัญญาณ: เสถียร" },
+        antSigWeak:        { en: "Signal: Weak",              th: "สัญญาณ: อ่อน" },
+        antSigDistorted:   { en: "Signal: Distorted",         th: "สัญญาณ: บิดเบือน" },
+        antSigCorrupted:   { en: "Signal: Corrupted",         th: "สัญญาณ: เสียหาย" },
+        antSigLost:        { en: "Signal: Lost",              th: "สัญญาณ: หายไป" },
+
+        antMsgCiv1:        { en: "This civilization survived primarily through soup.", th: "อารยธรรมนี้อยู่รอดมาได้ด้วยซุปเป็นหลัก" },
+        antMsgCiv2:        { en: "Parallel silence remains active in Sector 9.", th: "ความเงียบขนานยังคงมีผลในเซกเตอร์ 9" },
+        antMsgCiv3:        { en: "No stable charger infrastructure detected.", th: "ไม่พบโครงสร้างพื้นฐานเครื่องชาร์จที่เสถียร" },
+        antMsgWeather1:    { en: "High atmospheric heaviness detected globally.", th: "ตรวจพบความหนักอึ้งในบรรยากาศสูงทั่วโลก" },
+        antMsgWeather2:    { en: "Recovery winds moving east.", th: "สายลมแห่งการกู้คืนกำลังเคลื่อนไปทางตะวันออก" },
+        antMsgRelic1:      { en: "The Ancient Charger was reportedly seen again.", th: "มีรายงานการพบเห็นเครื่องชาร์จโบราณอีกครั้ง" },
+        antMsgRogue1:      { en: "██ blanket governance ██ unstable ██", th: "██ การปกครองแบบผ้าห่ม ██ ไม่เสถียร ██" },
+        antMsgRogue2:      { en: "Signal origin cannot be verified.", th: "ไม่สามารถยืนยันแหล่งที่มาของสัญญาณได้" },
+
+        // ─── Signal Recorder ───────────────
+        voidTitle:         { en: "Signal Recorder",           th: "เครื่องบันทึกสัญญาณ" },
+        voidRecord:        { en: "Record Signal",             th: "บันทึกสัญญาณ" },
+        voidRecording:     { en: "Capturing signal residue...", th: "กำลังบันทึกร่องรอยสัญญาณ..." },
+        voidSuccess:       { en: "Signal Captured",           th: "บันทึกสัญญาณสำเร็จ" },
+        voidArchive:       { en: "Captured Signals",          th: "สัญญาณที่บันทึกไว้" },
+        voidRestabilize:   { en: "Re-stabilize Signal",       th: "ปรับเสถียรสัญญาณใหม่" },
+        voidStabilizing:   { en: "Strengthening archival clarity...", th: "กำลังเพิ่มความชัดเจนของจดหมายเหตุ..." },
+        voidPrimaryEvidence: { en: "PRIMARY EVIDENCE",        th: "หลักฐานสำคัญ" },
+
+        voidTypeSnapshot:  { en: "Atmospheric Snapshot",      th: "ภาพถ่ายบรรยากาศ" },
+        voidTypeBroadcast: { en: "Lost Civilization Broadcast", th: "การแพร่สัญญาณอารยธรรมที่สาบสูญ" },
+        voidTypeRogue:     { en: "Rogue Doctrine Capture",     th: "การดักจับหลักคำสอนเถื่อน" },
+        voidTypeResidue:   { en: "Parallel Transmission Residue", th: "ร่องรอยการส่งสัญญาณขนาน" },
+        voidTypeArchaeology: { en: "Archaeological Signal",    th: "สัญญาณทางโบราณคดี" },
+        voidTypeWeather:   { en: "Emergency Weather Advisory", th: "ประกาศเตือนอากาศฉุกเฉิน" },
+        voidTypeRelic:     { en: "Relic Sighting Log",         th: "บันทึกการพบเห็นวัตถุโบราณ" },
+        voidTypeEcho:      { en: "Unknown Frequency Echo",     th: "เสียงสะท้อนความถี่นิรนาม" },
+
+        voidStateFresh:    { en: "Fresh Capture",             th: "เพิ่งถูกจับ" },
+        voidStateArchived: { en: "Archived",                  th: "ถูกเก็บถาวร" },
+        voidStateWeathered: { en: "Weathered",                 th: "สึกกร่อน" },
+        voidStateDistorted: { en: "Distorted",                 th: "บิดเบือน" },
+        voidStateFossilized: { en: "Fossilized",                th: "กลายเป็นฟอสซิล" },
+
+        voidLoreSync:      { en: "Captured during a period of synchronized heaviness.", th: "ถูกจับได้ในช่วงเวลาของความหนักอึ้งที่สอดคล้องกัน" },
+        voidLoreUnstable:  { en: "Signal integrity remained unstable.", th: "ความสมบูรณ์ของสัญญาณยังคงไม่คงที่" },
+        voidLoreFading:    { en: "This transmission was already fading.", th: "การส่งสัญญาณนี้กำลังเลือนหายไปแล้ว" },
+        voidLoreTerritory: { en: "Recovered from unknown atmospheric territory.", th: "กู้คืนมาจากดินแดนบรรยากาศนิรนาม" },
+
+        // ─── Memory Chamber ───────────────
+        echoTitle:         { en: "Memory Chamber",            th: "ห้องแห่งความทรงจำ" },
+        echoSyntheticLore: { en: "Shared Memory",             th: "ความทรงจำร่วมกัน" },
+        echoConvergence:   { en: "Convergence",               th: "การรวมตัว" },
+        echoUnexplained:   { en: "UNEXPLAINED SYNTHESIS",     th: "การสังเคราะห์ที่ไม่อาจสาธยายได้" },
+        echoResonances:    { en: "Resonant Signals",          th: "สัญญาณที่ก้องกังวาน" },
+        echoRecursive:     { en: "Recursive Archives",        th: "จดหมายเหตุเวียนซ้ำ" },
+        echoChamberFeedback: { en: "CHAMBER FEEDBACK",        th: "สัญญาณสะท้อนกลับจากห้อง" },
+
+        echoRelResonance:  { en: "Resonance",                 th: "การก้องกังวาน" },
+        echoRelContradict: { en: "Contradiction",             th: "การขัดแย้ง" },
+        echoRelLoop:       { en: "Recursive Loop",            th: "วงจรเวียนซ้ำ" },
+        echoRelHarmony:    { en: "Corrupted Harmony",         th: "ความสอดประสานที่เสียหาย" },
+        echoRelPhantom:    { en: "Phantom Reference",         th: "การอ้างอิงเงา" },
+
+        echoMsgMem1:       { en: "The transmission appears to remember another civilization.", th: "การส่งสัญญาณนี้ดูเหมือนจะจดจำอารยธรรมอื่นได้" },
+        echoMsgMem2:       { en: "Multiple recordings reference the same collapse.", th: "การบันทึกหลายรายการอ้างถึงการล่มสลายครั้งเดียวกัน" },
+        echoMsgSync:       { en: "The atmospheric residue has synchronized.", th: "ร่องรอยบรรยากาศได้รับการประสานกันแล้ว" },
+        echoMsgOrigin:     { en: "This signal may not have originated locally.", th: "สัญญาณนี้อาจไม่ได้มีต้นกำเนิดจากที่นี่" },
+        echoMsgSurvival:   { en: "Recovered evidence suggests coordinated horizontal survival.", th: "หลักฐานที่กู้คืนมาได้บ่งชี้ถึงการเอาตัวรอดในแนวระนาบที่สอดประสานกัน" },
+
+        echoCompSoup:      { en: "The Soup Frequency Convergence", th: "การรวมตัวของความถี่ซุป" },
+        echoCompSilence:   { en: "The Parallel Silence Recursion", th: "การวนซ้ำของความเงียบขนาน" },
+        echoCompBlanket:   { en: "The Blanket Resonance Archive", th: "หอจดหมายเหตุการก้องกังวานของผ้าห่ม" },
+        echoCompRecharge:  { en: "The Fourth Recharge Signal",    th: "สัญญาณการชาร์จพลังครั้งที่สี่" },
+        echoCompEmergency: { en: "The Fossilized Emergency Broadcast", th: "การแพร่สัญญาณฉุกเฉินที่กลายเป็นฟอสซิล" },
+
+        echoInterference:  { en: "Signal Interference Detected", th: "ตรวจพบสัญญาณรบกวน" },
+        echoStability:     { en: "Harmonic Stability High",    th: "ความเสถียรของคลื่นสอดประสานสูง" },
+
+        // ─── Civilization Archive ───────────────
+        bbTitle:           { en: "Civilization Archive",      th: "หอจดหมายเหตุอารยธรรม" },
+        bbArchive:         { en: "Archive Vault",             th: "ห้องนิรภัยจดหมายเหตุ" },
+        bbSeal:            { en: "Seal Final Archive",        th: "ผนึกจดหมายเหตุสุดท้าย" },
+        bbSealing:         { en: "Compressing emotional era...", th: "กำลังบีบอัดยุคสมัยทางอารมณ์..." },
+        bbBreach:          { en: "BREACH EVENT",              th: "เหตุการณ์การรั่วไหล" },
+        bbBleed:           { en: "ARCHIVE BLEED",             th: "การรั่วไหลจากจดหมายเหตุ" },
+        bbFragment:        { en: "World Fragment",            th: "เศษเสี้ยวโลก" },
+        bbReconstruct:     { en: "Reconstruct Archive",       th: "กู้คืนจดหมายเหตุ" },
+        bbComposite:       { en: "Shared Archive",            th: "จดหมายเหตุร่วม" },
+        bbWeight:          { en: "Emotional Weight",          th: "น้ำหนักทางอารมณ์" },
+
+        bbStateSealed:     { en: "SEALED",                    th: "ถูกผนึก" },
+        bbStateDormant:    { en: "DORMANT",                   th: "หลับใหล" },
+        bbStateWeathered:  { en: "WEATHERED",                 th: "สึกกร่อน" },
+        bbStateDistorted:  { en: "DISTORTED",                 th: "บิดเบือน" },
+        bbStateCracking:   { en: "CRACKING OPEN",             th: "กำลังแตกร้าว" },
+        bbStateBreached:   { en: "BREACHED",                  th: "รั่วไหล" },
+        bbStateLost:       { en: "LOST TO THE DUST",          th: "สาบสูญไปกับฝุ่นผง" },
+
+        bbMsgBreach1:      { en: "A breached archive continues transmitting soup infrastructure warnings.", th: "จดหมายเหตุที่รั่วไหลยังคงส่งคำเตือนเกี่ยวกับโครงสร้างพื้นฐานซุป" },
+        bbMsgBreach2:      { en: "Civilization residue detected inside unauthorized frequencies.", th: "ตรวจพบร่องรอยอารยธรรมในความถี่ที่ไม่ได้รับอนุญาต" },
+        bbMsgBreach3:      { en: "The Black Box appears emotionally unstable.", th: "กล่องดำดูเหมือนจะไม่มีความเสถียรทางอารมณ์" },
+
+        bbCompParallel:    { en: "The Parallel Reconstruction Archive", th: "จดหมายเหตุการกู้คืนขนาน" },
+        bbCompSoup:        { en: "The Great Soup Coalition Remnant",    th: "เศษซากกลุ่มพันธมิตรซุปที่ยิ่งใหญ่" },
+        bbCompGov:         { en: "The Horizontal Governance Debris",    th: "ซากการปกครองแนวระนาบ" },
+        bbCompFed:         { en: "The Fossilized Federation Core",      th: "แกนกลางสหพันธ์ที่กลายเป็นฟอสซิล" },
+
+        bbLoreEvidence:    { en: "Final evidence that a civilization once existed.", th: "หลักฐานสุดท้ายว่าอารยธรรมเคยมีอยู่จริง" },
+        bbLoreHistory:     { en: "This house became history.",        th: "บ้านหลังนี้ได้กลายเป็นประวัติศาสตร์ไปแล้ว" },
+
+        // Civilization Journey v1
+        journeyStage1:     { en: "Day 1: The First Breath",   th: "วันที่ 1: ลมหายใจแรก" },
+        journeyStage2:     { en: "Day 3: Material Proof",     th: "วันที่ 3: ข้อพิสูจน์ทางวัตถุ" },
+        journeyStage3:     { en: "Day 5: Intimate Echoes",    th: "วันที่ 5: เสียงสะท้อนที่ใกล้ชิด" },
+        journeyStage4:     { en: "Day 7: The Awakening",      th: "วันที่ 7: การตื่นรู้" },
+        journeyStage5:     { en: "Day 14: Deep Strata",       th: "วันที่ 14: ชั้นดินที่ลึกซึ้ง" },
+        journeyStage6:     { en: "Day 30: Final Evidence",    th: "วันที่ 30: หลักฐานสุดท้าย" },
+
+        unlockHintRelic:   { en: "Memories unlock in 3 days.", th: "ความทรงจำจะปลดล็อกใน 3 วัน" },
+        unlockHintMuseum:  { en: "Your personal museum opens after 5 days of history.", th: "พิพิธภัณฑ์ส่วนตัวของคุณจะเปิดหลังจากมีประวัติครบ 5 วัน" },
+        unlockHintCiv:     { en: "A week of existence is required for full civilizational awakening.", th: "ต้องการการคงอยู่หนึ่งสัปดาห์เพื่อการตื่นรู้ของอารยธรรมอย่างเต็มรูปแบบ" },
+        unlockHintArch:    { en: "Ancient fragments reveal themselves after 14 days of survival.", th: "เศษเสี้ยวโบราณจะถูกเปิดเผยหลังจากเอาตัวรอดครบ 14 วัน" },
+        unlockHintBlackBox: { en: "Archives open after long-term survival.", th: "หอจดหมายเหตุจะเปิดขึ้นหลังจากเอาตัวรอดมาได้อย่างยาวนาน" },
+
+        pathTitle:         { en: "The Path to Awakening",     th: "เส้นทางสู่การตื่นรู้" },
+        pathProgress:      { en: "Civilization Integrity",    th: "ความสมบูรณ์ของอารยธรรม" },
+        pathDay:           { en: "Day {{day}} of history",    th: "วันที่ {{day}} ของประวัติศาสตร์" },
+
+        // Identity Lock-In v1
+        idGreeting:        { en: "Welcome home, {{class}} Civilization.", th: "ยินดีต้อนรับกลับบ้าน อารยธรรม{{class}}" },
+        idMottoLabel:      { en: "Civilization Motto",        th: "คำขวัญอารยธรรม" },
+        idProverbLabel:    { en: "Recurring Proverb",         th: "สุภาษิตประจำใจ" },
+        idOathLabel:       { en: "Civilization Oath",         th: "คำปฏิญาณอารยธรรม" },
+        idTraitsLabel:     { en: "Identity Traits",           th: "คุณลักษณะเฉพาะตัว" },
+
+        // Class Mottos
+        mottoRecovery:     { en: "The house survives through stillness.", th: "บ้านดำรงอยู่ได้ผ่านความนิ่งสงบ" },
+        mottoLoud:         { en: "Survival is not quiet.",            th: "การอยู่รอดไม่ใช่ความเงียบ" },
+        mottoParallel:     { en: "Together, separately.",             th: "อยู่ด้วยกัน อย่างแยกกัน" },
+        mottoChaos:        { en: "Order is a luxury of the energized.", th: "ระเบียบคือความหรูหราของผู้ที่มีพลังงาน" },
+        mottoBlanket:      { en: "Safety is soft and horizontal.",    th: "ความปลอดภัยคือความนุ่มนวลและแนวระราบ" },
+        mottoSoup:         { en: "Broth is the only infrastructure.", th: "น้ำซุปคือโครงสร้างพื้นฐานเดียวที่มี" },
+        mottoSurvivalist:  { en: "The era changed; we did not.",       th: "ยุคสมัยเปลี่ยนไป แต่เราไม่เปลี่ยน" },
+        mottoStability:    { en: "Sustainable peace, daily rituals.", th: "สันติภาพที่ยั่งยืน กิจวัตรประจำวัน" },
+
+        // Identity Traits
+        traitQuiet:        { en: "Historically Quiet",        th: "เงียบงันตามประวัติศาสตร์" },
+        traitSoup:         { en: "Soup-Reinforced",           th: "เสริมแกร่งด้วยซุป" },
+        traitRecovery:     { en: "Recovery-Oriented",         th: "มุ่งเน้นการกู้คืน" },
+        traitFlamมable:    { en: "Emotionally Flamมable",     th: "จุดติดทางอารมณ์ได้ง่าย" },
+        traitResistant:    { en: "Ritual Resistant",          th: "ต่อต้านกิจวัตร" },
+        traitAutonomy:     { en: "High Autonomy",             th: "ความเป็นอิสระสูง" },
+        traitDensity:      { en: "Bunker Density High",       th: "ความหนาแน่นในบังเกอร์สูง" },
+        traitPersistence:  { en: "Ramen-Fueled Persistence",   th: "ความเพียรที่ขับเคลื่อนด้วยราเมน" },
+
+        // Bonding Moments
+        bondLoyalty30:     { en: "Your civilization has survived 30 days.", th: "อารยธรรมของคุณรอดชีวิตมาได้ 30 วันแล้ว" },
+        bondStabilize:     { en: "The house is beginning to stabilize.", th: "บ้านเริ่มเข้าสู่ความมั่นคง" },
+        bondPermanent:     { en: "This archive is no longer temporary.", th: "จดหมายเหตุนี้ไม่ใช่สิ่งชั่วคราวอีกต่อไป" },
+        bondWelcome:       { en: "You are one of us now.",           th: "คุณคือส่วนหนึ่งของเราแล้ว" },
+
+        // Diplomacy / Chemistry
+        dipChemistry:      { en: "Civilization Chemistry",    th: "เคมีของอารยธรรม" },
+        dipCompatibility:  { en: "Cultural Compatibility",    th: "ความเข้ากันได้ทางวัฒนธรรม" },
+        dipOverlap:        { en: "Ideological Overlap",       th: "อุดมการณ์ที่ทับซ้อน" },
+        chemResonant:      { en: "Resonant",                  th: "สอดคล้องกัน" },
+        chemNeutral:       { en: "Neutral",                   th: "เป็นกลาง" },
+        chemUnstable:      { en: "Unstable",                  th: "ไม่คงที่" },
+
+        // Relationship Layer v2
+        roleCaretaker:     { en: "Caretaker",                 th: "ผู้ดูแล" },
+        roleBunker:        { en: "Bunker Resident",           th: "ผู้อยู่อาศัยในบังเกอร์" },
+        roleBooster:       { en: "Signal Booster",            th: "ผู้ขยายสัญญาณ" },
+        roleStabilizer:    { en: "Quiet Stabilizer",          th: "ผู้สร้างความมั่นคงอย่างเงียบๆ" },
+        roleGenerator:     { en: "Chaos Generator",           th: "ผู้สร้างความโกลาหล" },
+        roleKeeper:        { en: "Ritual Keeper",             th: "ผู้รักษากิจวัตร" },
+        roleProvider:      { en: "Soup Provider",             th: "ผู้จัดหาซุป" },
+        roleGuardian:      { en: "Blanket Guardian",          th: "ผู้ปกป้องผ้าห่ม" },
+
+        dynTitle:          { en: "Household Dynamics",        th: "พลวัตในบ้าน" },
+        dynChemistry:      { en: "Active Chemistry",          th: "เคมีที่ทำงานอยู่" },
+        dynObservation:    { en: "Emotional Observation",     th: "การสังเกตทางอารมณ์" },
+        dynRitual:         { en: "Shared Ritual",             th: "กิจวัตรที่ทำร่วมกัน" },
+        dynDrift:          { en: "Dynamic Drift",             th: "การแปรผันของพลวัต" },
+        dynDriftBuffering: { en: "Buffering",                 th: "กำลังบัฟเฟอร์" },
+        dynDriftRecovering: { en: "Recovering",                th: "กำลังพักฟื้น" },
+        dynDriftNested:    { en: "Nested",                    th: "สร้างรังอยู่" },
+
+        pairParallel:      { en: "Parallel Players",          th: "นักเล่นคู่ขนาน" },
+        pairCaretaker:     { en: "Caretaker + Bunker Resident", th: "ผู้ดูแล + ผู้อยู่อาศัยในบังเกอร์" },
+        pairStabilizer:    { en: "Loud Survivor + Quiet Stabilizer", th: "ผู้รอดชีวิตที่เสียงดัง + ผู้สร้างความมั่นคงที่เงียบงัน" },
+        pairSoup:          { en: "Soup Provider + Recovery Civilian", th: "ผู้จัดหาซุป + พลเรือนผู้กำลังพักฟื้น" },
+        pairShield:        { en: "Emotional Shield + Chaos Generator", th: "เกราะป้องกันทางอารมณ์ + ผู้สร้างความโกลาหล" },
+        pairNesters:       { en: "Mutual Nesters",            th: "ผู้สร้างรังร่วมกัน" },
+
+        obsParallel:       { en: "Comfort through quiet proximity.", th: "ความสบายใจผ่านการอยู่ใกล้กันอย่างเงียบเชียบ" },
+        obsNourish:        { en: "Recovery requires nourishment first.", th: "การพักฟื้นต้องการสารอาหารก่อนเป็นอันดับแรก" },
+        obsResonance:      { en: "Synchronized emotional buffering detected.", th: "ตรวจพบการกันชนทางอารมณ์ที่สอดประสานกัน" },
+
+        sugSilent:         { en: "Try a silent recharge window.", th: "ลองใช้ช่วงเวลาชาร์จพลังแบบเงียบๆ" },
+        sugSoup:           { en: "Share soup before evening reset.", th: "แบ่งปันซุปก่อนรีเซ็ตช่วงเย็น" },
+        sugBuffering:      { en: "Horizontal buffering recommended.", th: "แนะนำให้ทำการบัฟเฟอร์ในแนวราบ" },
 
         labelRecentlyRemembered: { en: "Recently Remembered", th: "เพิ่งถูกจดจำ" },
         labelOldestMemory: { en: "Oldest Surviving Memory", th: "ความทรงจำเก่าแก่ที่สุด" },

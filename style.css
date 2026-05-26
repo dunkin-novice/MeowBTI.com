@@ -6497,6 +6497,33 @@ body.time-night .home-grain { opacity: 0.1; }
 .chem-bar-inner.chemResonant { background: #2ecc71 !important; }
 .chem-bar-inner.chemUnstable { background: #e74c3c !important; }
 
+/* Lore Compression Pass v1 — Museum Headers */
+.museum-bucket {
+  margin-top: 64px;
+  padding-top: 48px;
+  border-top: 1px solid rgba(0,0,0,0.05);
+}
+.bucket-header {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: #d4af37; /* Golden Archive */
+  text-align: center;
+  margin-bottom: 48px;
+  opacity: 0.8;
+}
+
+.museum-category-section { margin-bottom: 48px; }
+.museum-category-title { font-family: var(--font-mono); font-size: 0.65rem; font-weight: 900; opacity: 0.4; text-transform: uppercase; margin-bottom: 24px; }
+
+@media (max-width: 390px) {
+  .museum-bucket { margin-top: 48px; padding-top: 32px; }
+  .bucket-header { font-size: 0.7rem; margin-bottom: 32px; }
+}
+
+
 /* Relationship Layer v2 — Household Dynamics */
 .dynamics-v2-container { margin-bottom: 48px; }
 .dyn-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }

@@ -208,6 +208,7 @@
 
         if (window.MeowTrack && history.length > 0) {
             window.MeowTrack('dashboard_depth', { mode: settings.mode, history_days: history.length, lang: getLang() });
+            window.MeowTrack('label_cleanup_seen', { version: 1 });
         }
     }
 

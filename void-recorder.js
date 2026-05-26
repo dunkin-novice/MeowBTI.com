@@ -97,21 +97,22 @@
     }
 
     function renderRecordingsArchive() {
-        const host = window.MeowOS ? window.MeowOS.getLayer('archive') : document.getElementById('family-content');
-        if (!host) return;
-
-        const recordings = window.MeowStore.getVoidRecordings ? window.MeowStore.getVoidRecordings() : [];
-        if (recordings.length === 0) return;
-
         let container = document.getElementById('void-recordings-archive-section');
         if (!container) {
+            const host = window.MeowOS ? window.MeowOS.getLayer('archive') : document.getElementById('family-content');
+            if (!host) return;
             container = document.createElement('div');
             container.id = 'void-recordings-archive-section';
             container.className = 'void-archive-container animate-fade-in';
-            const lostArchive = document.getElementById('lost-civilization-archive-section');
-            if (lostArchive) lostArchive.after(container);
-            else host.append(container);
+            host.append(container);
         }
+
+        const recordings = window.MeowStore.getVoidRecordings ? window.MeowStore.getVoidRecordings() : [];
+        if (recordings.length === 0) {
+            container.style.display = 'none';
+            return;
+        }
+        container.style.display = 'block';
 
         container.innerHTML = `
             <div class="void-archive-header">
@@ -199,6 +200,7 @@
                 overlay.remove();
                 renderRecordingsArchive();
                 window.MeowTrack && window.MeowTrack('recording_restabilized', { id: r.id });
+                window.MeowTrack && window.MeowTrack('archive_clarity_improved', { type: 'signal' });
             }
         }, 100);
     }

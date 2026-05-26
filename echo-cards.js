@@ -41,11 +41,22 @@
     }
 
     function renderEchoPostcards() {
-        const host = window.MeowOS ? window.MeowOS.getLayer('archive') : document.getElementById('family-content');
-        if (!host) return;
+        let container = document.getElementById('echo-postcards-section');
+        if (!container) {
+            const host = window.MeowOS ? window.MeowOS.getLayer('archive') : document.getElementById('family-content');
+            if (!host) return;
+            container = document.createElement('div');
+            container.id = 'echo-postcards-section';
+            container.className = 'echo-postcards-container animate-fade-in';
+            host.append(container);
+        }
 
         const cards = window.MeowStore.getEchoCards();
-        if (cards.length === 0) return;
+        if (cards.length === 0) {
+            container.style.display = 'none';
+            return;
+        }
+        container.style.display = 'block';
 
         // Calculate Special Labels
         const oldestCard = cards[0];
@@ -63,16 +74,6 @@
             if (c.relic_key) relicCounts[c.relic_key] = (relicCounts[c.relic_key] || 0) + 1;
         });
         const mostReferencedRelicKey = Object.keys(relicCounts).sort((a,b) => relicCounts[b] - relicCounts[a])[0];
-
-        let container = document.getElementById('echo-postcards-section');
-        if (!container) {
-            container = document.createElement('div');
-            container.id = 'echo-postcards-section';
-            container.className = 'echo-postcards-container animate-fade-in';
-            const echoes = document.getElementById('museum-echoes-section');
-            if (echoes) echoes.after(container);
-            else host.append(container);
-        }
 
         const reversedCards = processedCards.slice().reverse();
 

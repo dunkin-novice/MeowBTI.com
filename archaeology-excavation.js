@@ -253,21 +253,22 @@
     }
 
     function renderLostArchive() {
-        const host = window.MeowOS ? window.MeowOS.getLayer('archive') : document.getElementById('family-content');
-        if (!host) return;
-
-        const fragments = window.MeowStore.getLostFragments ? window.MeowStore.getLostFragments() : [];
-        if (fragments.length === 0) return;
-
         let container = document.getElementById('lost-civilization-archive-section');
         if (!container) {
+            const host = window.MeowOS ? window.MeowOS.getLayer('archive') : document.getElementById('family-content');
+            if (!host) return;
             container = document.createElement('div');
             container.id = 'lost-civilization-archive-section';
             container.className = 'lost-archive-container animate-fade-in';
-            const echoSection = document.getElementById('echo-postcards-section');
-            if (echoSection) echoSection.after(container);
-            else host.append(container);
+            host.append(container);
         }
+
+        const fragments = window.MeowStore.getLostFragments ? window.MeowStore.getLostFragments() : [];
+        if (fragments.length === 0) {
+            container.style.display = 'none';
+            return;
+        }
+        container.style.display = 'block';
 
         container.innerHTML = `
             <div class="lost-archive-header" style="display:flex; justify-content:space-between; align-items:center;">

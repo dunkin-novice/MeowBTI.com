@@ -104,22 +104,25 @@
     }
 
     function renderEchoChamber() {
-        const host = document.getElementById('void-recordings-archive-section');
-        if (!host) return;
+        let container = document.getElementById('echo-chamber-wing');
+        if (!container) {
+            const host = document.getElementById('family-content');
+            if (!host) return;
+            container = document.createElement('div');
+            container.id = 'echo-chamber-wing';
+            container.className = 'echo-chamber-container animate-fade-in';
+            host.append(container);
+        }
 
         const echoes = window.MeowStore.getSyntheticEchoes();
         const composites = window.MeowStore.getCompositeSignals();
         const recordings = window.MeowStore.getVoidRecordings();
 
-        if (echoes.length === 0 && composites.length === 0) return;
-
-        let container = document.getElementById('echo-chamber-wing');
-        if (!container) {
-            container = document.createElement('div');
-            container.id = 'echo-chamber-wing';
-            container.className = 'echo-chamber-container animate-fade-in';
-            host.prepend(container);
+        if (echoes.length === 0 && composites.length === 0) {
+            container.style.display = 'none';
+            return;
         }
+        container.style.display = 'block';
 
         container.innerHTML = `
             <div class="echo-chamber-header">

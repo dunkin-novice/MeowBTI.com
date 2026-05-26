@@ -506,144 +506,121 @@
                 <p class="wm-intro">${t('museumIntro')}</p>
             </div>
 
-            ${fusionRelics.length > 0 ? `
-                <div class="museum-category-section">
-                    <h3 class="museum-category-title">🌌 Fusion Artifacts</h3>
-                    <div class="museum-grid">
-                        ${fusionRelics.map(r => {
-                            const rep = getReputation(history, r.id);
-                            return `
+            <!-- BUCKET: MEMORIES -->
+            <div class="museum-bucket" id="bucket-memories">
+                <h3 class="bucket-header">✦ ${t('bucketMemories')} ✦</h3>
+                ${renderEchoes(history, forgedRelics)}
+                <div id="echo-postcards-section"></div>
+                <div id="void-recordings-archive-section"></div>
+            </div>
+
+            <!-- BUCKET: DISCOVERIES -->
+            <div class="museum-bucket" id="bucket-discoveries">
+                <h3 class="bucket-header">✦ ${t('bucketDiscoveries')} ✦</h3>
+                
+                ${fusionRelics.length > 0 ? `
+                    <div class="museum-category-section">
+                        <h4 class="museum-category-title">🌌 Fusion Artifacts</h4>
+                        <div class="museum-grid">
+                            ${fusionRelics.map(r => `
                                 <div class="artifact-card fusion ${r.isLegendary ? 'legendary' : ''}">
                                     ${aura ? `<div class="aura-overlay aura-${aura.key} aura-mix" title="${aura.title}"></div>` : ''}
                                     <span class="artifact-sticker">${r.icon}</span>
                                     <span class="artifact-meta">${r.isLegendary ? 'Legendary Fusion' : 'Fusion Artifact'}</span>
                                     <div class="artifact-name">${r.name}</div>
                                     <div class="artifact-binding">${t('fusDescMyth')}</div>
-                                    <button class="micro-share-icon mini" data-type="fusion_relic" data-text="Fusion Artifact Forged: ${r.name}. Status: ${rep}.">📤</button>
+                                    <button class="micro-share-icon mini" data-type="fusion_relic" data-text="Fusion Artifact: ${r.name}.">📤</button>
                                 </div>
-                            `;
-                        }).join('')}
+                            `).join('')}
+                        </div>
                     </div>
-                </div>
-            ` : ''}
+                ` : ''}
 
-            ${legendaryRelics.length > 0 ? `
+                ${legendaryRelics.length > 0 ? `
+                    <div class="museum-category-section">
+                        <h4 class="museum-category-title">📜 Legendary Heirlooms</h4>
+                        <div class="museum-grid">
+                            ${legendaryRelics.map(r => `
+                                <div class="artifact-card legendary">
+                                    ${aura ? `<div class="aura-overlay aura-${aura.key}" title="${aura.title}"></div>` : ''}
+                                    <span class="artifact-sticker">${r.icon}</span>
+                                    <span class="artifact-meta">Legendary ${getReputation(history, r.id)}</span>
+                                    <div class="artifact-name">${r.customName || r.name}</div>
+                                    <div class="artifact-binding">Bound to: ${r.dedicatedTo}</div>
+                                    <button class="micro-share-icon mini" data-type="forged_relic" data-text="Heirloom: ${r.customName || r.name}.">📤</button>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                ` : ''}
+
                 <div class="museum-category-section">
-                    <h3 class="museum-category-title">📜 Legendary Heirlooms</h3>
-                    <div class="museum-grid">
-                        ${legendaryRelics.map(r => `
-                            <div class="artifact-card legendary">
-                                ${aura ? `<div class="aura-overlay aura-${aura.key}" title="${aura.title}"></div>` : ''}
-                                <span class="artifact-sticker">${r.icon}</span>
-                                <span class="artifact-meta">Legendary ${getReputation(history, r.id)}</span>
-                                <div class="artifact-name">${r.customName || r.name}</div>
-                                <div class="artifact-binding">Bound to: ${r.dedicatedTo}</div>
-                                <button class="micro-share-icon mini" data-type="forged_relic" data-text="Heirloom Unlocked: ${r.customName || r.name}. Status: ${getReputation(history, r.id)}.">📤</button>
+                    <h4 class="museum-category-title">🏺 Artifact Shelf</h4>
+                    <div class="relic-shelf">
+                        ${availableRelics.filter(ar => !forgedRelics.some(fr => fr.id === ar.id)).map(r => `
+                            <div class="relic-item" id="relic-trigger-${r.id}">
+                                <div class="relic-visual ${r.isEvolved ? 'evolved' : ''}">
+                                    ${r.icon}
+                                    ${r.isReturning ? `<span class="artifact-scar" title="Returning Artifact">♻️</span>` : ''}
+                                </div>
+                                <span class="relic-name">${r.name}</span>
+                            </div>
+                        `).join('')}
+                        ${standardRelics.map(r => `
+                            <div class="relic-item forged">
+                                <div class="relic-visual">${r.icon}</div>
+                                <span class="relic-name">${r.customName || r.name}</span>
                             </div>
                         `).join('')}
                     </div>
                 </div>
-            ` : ''}
 
-            ${keepsakes.length > 0 ? `
-                <div class="museum-category-section">
-                    <h3 class="museum-category-title">💞 Relationship Keepsakes</h3>
-                    <div class="museum-grid">
-                        ${keepsakes.map(k => `
-                            <div class="artifact-card" style="border-style: ${k.isSacred ? 'solid' : 'dashed'}; border-color: ${k.isSacred ? '#FFB000' : 'var(--ink)'}">
-                                <span class="artifact-sticker">${k.icon}</span>
-                                <span class="artifact-meta">${k.isSacred ? 'Sacred Object' : 'Social Keepsake'}</span>
-                                <div class="artifact-name">${k.name}</div>
-                                <button class="micro-share-icon mini" data-type="keepsake" data-text="Relationship Keepsake: ${k.name} ${k.icon}.">📤</button>
+                <div id="lost-civilization-archive-section"></div>
+                
+                <div class="trophy-cabinet">
+                    ${trophies.map(tr => `
+                        <div class="trophy-card">
+                            <div class="trophy-icon">${tr.icon}</div>
+                            <div class="trophy-info">
+                                <h4 class="trophy-title">${tr.title}</h4>
+                                <p class="trophy-desc">${tr.desc}</p>
                             </div>
-                        `).join('')}
-                    </div>
-                </div>
-            ` : ''}
-
-            ${renderSynthesis(forgedRelics, profiles, history)}
-
-            <div class="museum-category-section">
-                <h3 class="museum-category-title">🏺 Available to Forge</h3>
-                <div class="relic-shelf">
-                    ${availableRelics.filter(ar => !forgedRelics.some(fr => fr.id === ar.id)).map(r => {
-                        const isConfiscated = window.MeowGovernanceState && window.MeowGovernanceState.embargoesActive && (r.id === 'relBlanket' || r.id === 'relSoup');
-                        const isCanonized = window.MeowTheologyState && ((window.MeowTheologyState.activeFaith === t('faithBlanket') && r.id === 'relBlanket') || (window.MeowTheologyState.activeFaith === t('faithSoup') && r.id === 'relSoup'));
-                        if (isConfiscated && window.MeowTrack) window.MeowTrack('relic_confiscated', { relic_type: r.id, lang: getLang() });
-                        if (isCanonized && window.MeowTrack) window.MeowTrack('relic_canonized', { relic_type: r.id, lang: getLang() });
-                        return `
-                        <div class="relic-item ${isConfiscated ? 'confiscated' : ''} ${isCanonized ? 'canonized' : ''}" id="${isConfiscated ? '' : 'relic-trigger-' + r.id}" style="${isConfiscated ? 'pointer-events:none;' : ''}">
-                            <div class="relic-visual ${r.isEvolved ? 'evolved' : ''}">
-                                ${r.icon}
-                                ${r.isReturning && !isConfiscated ? `<span class="artifact-scar" title="Returning Artifact">♻️</span>` : ''}
-                                ${isConfiscated ? `<span class="confiscated-badge">${t('relConfiscated')}</span>` : ''}
-                                ${isCanonized ? `<span class="confiscated-badge" style="background:#d4af37; color:#fff; border-color:#fff; top:10px;">${t('canonizedRelic')}</span>` : ''}
-                            </div>
-                            <span class="relic-name">${r.name}</span>
                         </div>
-                    `;}).join('')}
-                    ${standardRelics.map(r => {
-                        const isMissing = window.MeowEcosystemState && window.MeowEcosystemState.missingRelicId === r.id;
-                        
-                        // Weathering logic: forged more than 14 days ago
-                        const forgedDate = r.forgedAt ? new Date(r.forgedAt) : null;
-                        const isWeathered = forgedDate && (Date.now() - forgedDate.getTime() > 14 * 86400000);
-                        
-                        return `
-                        <div class="relic-item forged ${isWeathered ? 'relic-weathered' : ''}" style="${isMissing ? 'opacity:0.3; filter:grayscale(1);' : 'opacity:0.6; filter:grayscale(0.5);'}">
-                            <div class="relic-visual">
-                                ${r.icon}
-                                ${isMissing ? `<span class="wandering-badge" style="position:absolute; top:-10px; right:-10px; font-size:0.6rem; background:#FF5B3B; color:#fff; padding:2px 6px; border-radius:4px; z-index:10; transform:rotate(10deg); animation:pulse-mystical 2s infinite;">${t('statusWandering')}</span>` : ''}
-                                ${isWeathered ? `<span class="wandering-badge" style="background:#8a6d3b; top:auto; bottom:-5px; right:auto; left:-5px;">${t('stateWeathered')}</span>` : ''}
-                            </div>
-                            <span class="relic-name">${r.customName || r.name}</span>
-                        </div>
-                    `;}).join('')}
+                    `).join('')}
                 </div>
             </div>
 
-            <div class="trophy-cabinet">
-                ${trophies.map(tr => `
-                    <div class="trophy-card">
-                        <button class="micro-share-icon mini" data-type="trophy" data-text="Trophy Earned: ${tr.title}. ${tr.desc}">📤</button>
-                        <div class="trophy-icon">${tr.icon}</div>
-                        <div class="trophy-info">
-                            <h4 class="trophy-title">${tr.title}</h4>
-                            <p class="trophy-desc">${tr.desc}</p>
-                        </div>
-                    </div>
-                `).join('')}
+            <!-- BUCKET: SIGNALS -->
+            <div class="museum-bucket" id="bucket-signals">
+                <h3 class="bucket-header">✦ ${t('bucketSignals')} ✦</h3>
+                <div class="signals-archive-intro" style="font-size:0.8rem; opacity:0.6; text-align:center; margin-bottom:32px;">
+                    Saved emotional frequencies and localized broadcasts.
+                </div>
+                <div id="atmospheric-antenna-saved-section"></div>
             </div>
 
-            ${renderEchoes(history, forgedRelics)}
-
-            <div class="myth-scrawl">
-                "${myth}"
+            <!-- BUCKET: ARCHIVES -->
+            <div class="museum-bucket" id="bucket-archives">
+                <h3 class="bucket-header">✦ ${t('bucketArchives')} ✦</h3>
+                <div class="myth-scrawl">"${myth}"</div>
+                <div id="black-box-vault-section"></div>
+                <div id="echo-chamber-wing"></div>
             </div>
 
-            <div id="void-recordings-archive-section"></div>
-
-            <div id="black-box-vault-section"></div>
-
-            <div style="margin-top:24px; opacity:0.5; font-family:var(--font-mono); font-size:0.75rem;">
-                <a href="#household-archaeology-section" style="text-decoration:none; color:inherit;">✦ ${t('archWing')} ✦</a>
+            <div style="margin-top:48px; opacity:0.3; font-family:var(--font-mono); font-size:0.65rem; text-align:center;">
+                <a href="#os-layer-archive" style="text-decoration:none; color:inherit;">✦ ${t('archiveStability')} ✦</a>
             </div>
         `;
 
-        // Render Void Recordings if they exist
-        if (window.MeowVoidRecorder && window.MeowVoidRecorder.render) {
-            window.MeowVoidRecorder.render();
-        }
+        // Sub-module rendering
+        if (window.MeowVoidRecorder && window.MeowVoidRecorder.render) window.MeowVoidRecorder.render();
+        if (window.MeowBlackBox && window.MeowBlackBox.render) window.MeowBlackBox.render();
+        if (window.MeowEchoChamber && window.MeowEchoChamber.render) window.MeowEchoChamber.render();
+        if (window.MeowArchaeology && window.MeowArchaeology.renderArchive) window.MeowArchaeology.renderArchive();
+        if (typeof renderEchoPostcards === 'function') renderEchoPostcards();
 
-        // Render Black Box Vault
-        if (window.MeowBlackBox && window.MeowBlackBox.render) {
-            window.MeowBlackBox.render();
-        }
-
-        // Bind synthesis UI logic
         bindSynthesis(forgedRelics, container, profiles, history);
-
-        // Bind clicks and share listeners as before...
+        
         availableRelics.forEach(r => {
             const btn = container.querySelector(`#relic-trigger-${r.id}`);
             if (btn) btn.onclick = () => openForgingUI(r);
@@ -656,40 +633,14 @@
                     window.MeowAnalytics.microShare({
                         framework: 'household_museum',
                         content_type: btn.getAttribute('data-type'),
-                        text: btn.getAttribute('data-text'),
-                        route: '/'
+                        text: btn.getAttribute('data-text')
                     });
                 }
             };
         });
 
-        // Analytics
         if (window.MeowTrack) {
-            window.MeowTrack('museum_expand_view', {
-                relic_count: forgedRelics.length,
-                trophy_count: trophies.length,
-                keepsake_count: keepsakes.length,
-                aura_type: aura ? aura.key : 'none',
-                lang: getLang()
-            });
-
-            legendaryRelics.forEach(r => window.MeowTrack('legendary_relic_detected', { relic_type: r.id, lang: getLang() }));
-            if (aura) window.MeowTrack('artifact_aura_detected', { aura_type: aura.key, lang: getLang() });
-            
-            const echoes = getEchoes(history, forgedRelics);
-            if (echoes.length > 0) window.MeowTrack('artifact_echo_detected', { echo_count: echoes.length, lang: getLang() });
-            const convs = getConversations(forgedRelics);
-            if (convs.length > 0) window.MeowTrack('shelf_conversation', { conv_type: convs[0].text, lang: getLang() });
-            
-            const motifs = getMotifs(history);
-            if (motifs.length > 0) window.MeowTrack('myth_resonance', { motif_type: motifs[0], lang: getLang() });
-            
-            window.MeowTrack('living_museum_view', {
-                has_echoes: echoes.length > 0,
-                has_conversations: convs.length > 0,
-                has_motifs: motifs.length > 0,
-                lang: getLang()
-            });
+            window.MeowTrack('lore_bucket_view', { bucket_count: 4 });
         }
     }
 

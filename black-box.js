@@ -77,18 +77,28 @@
     }
 
     function renderBlackBoxVault() {
-        const host = window.MeowOS ? window.MeowOS.getLayer('archive') : document.getElementById('family-content');
-        if (!host) return;
+        let container = document.getElementById('black-box-vault-section');
+        if (!container) {
+            const host = window.MeowOS ? window.MeowOS.getLayer('archive') : document.getElementById('family-content');
+            if (!host) return;
+            container = document.createElement('div');
+            container.id = 'black-box-vault-section';
+            container.className = 'bb-vault-container animate-fade-in';
+            host.append(container);
+        }
 
         const boxes = window.MeowStore.getBlackBoxes();
         const composites = window.MeowStore.getCompositeArchives();
 
         if (boxes.length === 0 && composites.length === 0) {
+            container.style.display = 'none';
             // Optional: Render a "Seal Archive" button if conditions met
             const history = window.MeowDaily.getHistory() || [];
             if (history.length >= 30) {
                 let sealZone = document.getElementById('bb-seal-zone');
                 if (!sealZone) {
+                    const host = window.MeowOS ? window.MeowOS.getLayer('archive') : document.getElementById('family-content');
+                    if (!host) return;
                     sealZone = document.createElement('div');
                     sealZone.id = 'bb-seal-zone';
                     sealZone.className = 'bb-seal-zone animate-fade-in';
@@ -105,16 +115,7 @@
             }
             return;
         }
-
-        let container = document.getElementById('black-box-vault-section');
-        if (!container) {
-            container = document.createElement('div');
-            container.id = 'black-box-vault-section';
-            container.className = 'bb-vault-container animate-fade-in';
-            const antenna = document.getElementById('atmospheric-antenna-section');
-            if (antenna) antenna.after(container);
-            else host.append(container);
-        }
+        container.style.display = 'block';
 
         const settings = window.MeowStore.getOSSettings ? window.MeowStore.getOSSettings() : { mode: 'calm' };
 
@@ -226,6 +227,7 @@
                     overlay.remove();
                     renderBlackBoxVault();
                     window.MeowTrack && window.MeowTrack('archive_reconstructed', { id: b.id, recon: b.reconstructed });
+                    window.MeowTrack && window.MeowTrack('archive_clarity_improved', { type: 'black_box' });
                 }, 1000);
             }
         }, 50);

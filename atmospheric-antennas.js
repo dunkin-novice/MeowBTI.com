@@ -60,19 +60,19 @@
                 const comp = composites[absHash % composites.length];
                 content = `ARCHIVE FEEDBACK: ${t(comp.nameKey)} detected at origin.`;
                 isLive = true;
-            } else if (absHash % 100 < 15) { // Black Box Resonance (15% chance)
-                const boxes = window.MeowStore.getBlackBoxes ? window.MeowStore.getBlackBoxes() : [];
-                if (boxes.length > 0) {
-                    const box = boxes[absHash % boxes.length];
-                    content = `ARCHIVE BLEED: ${t('bbTitle')} detected at ${box.freq || currentFreq.toFixed(1)} MHz.`;
-                    isLive = true;
-                } else {
-                    const pool = MESSAGES[band.type] || MESSAGES.civ;
-                    content = t(pool[absHash % pool.length]);
-                }
             } else if (recordings.length > 0) {
                 const rec = recordings[absHash % recordings.length];
                 content = `FEEDBACK: ${rec.content}`;
+                isLive = true;
+            } else {
+                const pool = MESSAGES[band.type] || MESSAGES.civ;
+                content = t(pool[absHash % pool.length]);
+            }
+        } else if (absHash % 100 < 15) { // Black Box Resonance (15% chance)
+            const boxes = window.MeowStore.getBlackBoxes ? window.MeowStore.getBlackBoxes() : [];
+            if (boxes.length > 0) {
+                const box = boxes[absHash % boxes.length];
+                content = `ARCHIVE BLEED: ${t('bbTitle')} detected at ${box.freq || freq.toFixed(1)} MHz.`;
                 isLive = true;
             } else {
                 const pool = MESSAGES[band.type] || MESSAGES.civ;
@@ -100,6 +100,31 @@
         };
     }
 
+    function renderSavedStations() {
+        let container = document.getElementById('atmospheric-antenna-saved-section');
+        if (!container) return; // Only render if host exists (in Museum)
+
+        const saved = window.MeowStore.getSavedStations();
+        if (saved.length === 0) {
+            container.style.display = 'none';
+            return;
+        }
+        container.style.display = 'block';
+
+        container.innerHTML = `
+            <div class="saved-stations-grid">
+                ${saved.slice().reverse().map(s => `
+                    <div class="saved-signal-card">
+                        <div class="sig-freq">${s.freq.toFixed(1)} MHz</div>
+                        <div class="sig-band">${t(s.bandKey)}</div>
+                        <div class="sig-content">"${s.content}"</div>
+                        <div class="sig-stability ${s.stabilityKey.toLowerCase()}">${t(s.stabilityKey)}</div>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+    }
+
     function renderAntenna() {
         const host = window.MeowOS ? window.MeowOS.getLayer('lore') : document.getElementById('family-content');
         if (!host) return;
@@ -109,9 +134,7 @@
             container = document.createElement('div');
             container.id = 'atmospheric-antenna-section';
             container.className = 'antenna-container animate-fade-in';
-            const arch = document.getElementById('household-archaeology-section');
-            if (arch) arch.after(container);
-            else host.append(container);
+            host.append(container);
         }
 
         const settings = window.MeowStore.getOSSettings ? window.MeowStore.getOSSettings() : { mode: 'calm' };
@@ -162,19 +185,12 @@
                     </div>
                 </div>
             </div>
-
-            <div class="saved-stations-strip">
-                ${window.MeowStore.getSavedStations().map(s => `
-                    <div class="saved-chip" title="${s.content}">
-                        ${s.freq.toFixed(1)}
-                    </div>
-                `).join('')}
-            </div>
         `;
 
         container.querySelector('#btn-save-station').onclick = () => {
             if (window.MeowStore.saveStation(signal)) {
                 renderAntenna();
+                renderSavedStations();
                 window.MeowTrack && window.MeowTrack('atmospheric_station_saved', { freq: signal.freq });
             }
         };
@@ -188,19 +204,29 @@
         if (window.MeowTrack) {
             window.MeowTrack('antenna_opened', { freq: currentFreq, is_live: signal.isLive });
         }
+        
+        renderSavedStations();
     }
 
     window.MeowAntennas = {
         render: renderAntenna,
+        renderSaved: renderSavedStations,
         getSignal: getDeterministicSignal
     };
 
-    window.addEventListener('meow:daily:updated', renderAntenna);
+    window.addEventListener('meow:daily:updated', () => {
+        renderAntenna();
+    });
     window.addEventListener('storage', (e) => {
-        if (e.key === 'meow-bti-family') renderAntenna();
+        if (e.key === 'meow-bti-family') {
+            renderAntenna();
+        }
     });
 
-    if (document.readyState !== 'loading') renderAntenna();
-    else document.addEventListener('DOMContentLoaded', renderAntenna);
+    if (document.readyState !== 'loading') {
+        renderAntenna();
+    } else {
+        document.addEventListener('DOMContentLoaded', renderAntenna);
+    }
 
 })();
