@@ -6385,6 +6385,100 @@ body.time-night .home-grain { opacity: 0.1; }
 .bb-seal-card h3 { font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 12px; }
 .bb-seal-card p { opacity: 0.6; margin-bottom: 32px; }
 
+/* Ghost OS v9 — Archival Terminal */
+.ghost-os-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: #0d0d0d;
+  z-index: 13000;
+  display: none;
+  align-items: center; justify-content: center;
+  color: #00ff41;
+  font-family: var(--font-mono);
+  overflow: hidden;
+}
+.ghost-os-overlay.active { display: flex; }
+
+.ghost-scanline {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.2) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+  background-size: 100% 3px, 3px 100%;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.ghost-container {
+  width: 90%; max-width: 800px;
+  height: 80vh;
+  background: #111;
+  border: 1px solid #333;
+  border-radius: 12px;
+  display: flex; flex-direction: column;
+  box-shadow: 0 50px 100px rgba(0,0,0,0.8);
+  position: relative;
+  z-index: 50;
+}
+
+.ghost-header {
+  padding: 12px 20px;
+  background: #1a1a1a;
+  border-bottom: 1px solid #333;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 0.7rem; letter-spacing: 1px;
+}
+.ghost-status { color: #ffb000; font-weight: 900; }
+.ghost-close-btn { background: none; border: 0; color: #666; font-size: 1.2rem; cursor: pointer; }
+.ghost-close-btn:hover { color: #fff; }
+
+.ghost-body { flex: 1; display: flex; overflow: hidden; }
+.ghost-sidebar { width: 180px; border-right: 1px solid #222; padding: 20px; background: #0a0a0a; }
+.file-list { display: flex; flex-direction: column; gap: 8px; }
+.file-item {
+  font-size: 0.8rem;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.file-item:hover { background: rgba(0,255,65,0.1); color: #fff; }
+.file-icon { margin-right: 8px; opacity: 0.6; }
+
+.ghost-main { flex: 1; padding: 40px; background: #050505; overflow-y: auto; position: relative; }
+.terminal-output { font-size: 0.9rem; line-height: 1.6; }
+.boot-line { margin-bottom: 8px; opacity: 0.6; }
+.cmd-line { color: #ffb000; margin-bottom: 16px; font-weight: 900; }
+.file-content { color: #fff; white-space: pre-wrap; font-family: var(--font-mono); font-size: 0.9rem; }
+
+.ghost-footer { padding: 12px 20px; border-top: 1px solid #222; display: flex; justify-content: space-between; font-size: 0.6rem; opacity: 0.4; }
+
+/* Deep Lore Enhancements */
+.ghost-os-overlay.mode-lore { background: #050505; color: #ffb000; }
+.ghost-os-overlay.mode-lore .ghost-container { border-color: #ffb000; box-shadow: 0 0 40px rgba(255,176,0,0.1); }
+.ghost-os-overlay.mode-lore .cmd-line { color: #00ff41; }
+.ghost-os-overlay.mode-lore .file-item:hover { background: rgba(255,176,0,0.1); color: #fff; }
+
+/* Black Box Card Enhancements v9 */
+.bb-ghost-info { font-size: 0.6rem; opacity: 0.4; text-transform: uppercase; margin-bottom: 12px; }
+.ghost-val { color: #ffb000; margin-left: 4px; }
+.bb-last-access { font-size: 0.55rem; opacity: 0.3; margin-top: 12px; }
+.bb-boot-status { position: absolute; bottom: 12px; left: 12px; font-size: 0.5rem; font-weight: 900; color: #00ff41; letter-spacing: 1px; }
+
+@media (max-width: 600px) {
+  .ghost-body { flex-direction: column; }
+  .ghost-sidebar { width: 100%; border-right: 0; border-bottom: 1px solid #222; }
+  .file-list { flex-direction: row; overflow-x: auto; padding-bottom: 12px; }
+  .file-item { white-space: nowrap; font-size: 0.7rem; }
+  .ghost-main { padding: 24px 16px; }
+  .terminal-output { font-size: 0.8rem; }
+}
+
+@media (max-width: 390px) {
+  .ghost-container { height: 90vh; width: 95%; }
+  .ghost-header { padding: 10px; }
+}
+
+
 .os-layer-identity .civ-identity-card { margin-top: 0; margin-bottom: 24px; border-color: rgba(0,0,0,0.1); }
 .os-layer-identity .civ-identity-header { margin-top: 12px; }
 

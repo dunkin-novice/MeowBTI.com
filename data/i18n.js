@@ -1736,6 +1736,28 @@
         bbLoreEvidence:    { en: "Final evidence that a civilization once existed.", th: "หลักฐานสุดท้ายว่าอารยธรรมเคยมีอยู่จริง" },
         bbLoreHistory:     { en: "This house became history.",        th: "บ้านหลังนี้ได้กลายเป็นประวัติศาสตร์ไปแล้ว" },
 
+        // Ghost OS v9
+        bbBoot:            { en: "BOOT ARCHIVE",              th: "บูตจดหมายเหตุ" },
+        bbBooting:         { en: "Booting Ghost OS...",        th: "กำลังบูตระบบปฏิบัติการเงา..." },
+        bbGhostPresence:   { en: "Ghost Presence",            th: "ร่องรอยวิญญาณ" },
+        bbLastAccessed:    { en: "Last Accessed",             th: "เข้าถึงครั้งล่าสุด" },
+        bbFileIdentity:    { en: "/identity",                 th: "/ข้อมูลตัวตน" },
+        bbFileHistory:     { en: "/history",                  th: "/ประวัติศาสตร์" },
+        bbFileSignals:     { en: "/signals",                  th: "/สัญญาณ" },
+        bbFileMemory:      { en: "/memory",                   th: "/ความทรงจำ" },
+        bbFileFinalNote:   { en: "/final-note",               th: "/บันทึกสุดท้าย" },
+
+        ghostDormant:      { en: "Dormant",                   th: "หลับใหล" },
+        ghostStable:       { en: "Stable",                    th: "เสถียร" },
+        ghostFlickering:   { en: "Flickering",                th: "สั่นไหว" },
+        ghostPresent:      { en: "Present",                   th: "ยังคงอยู่" },
+        ghostGone:         { en: "Nearly Gone",               th: "เกือบจะเลือนหาย" },
+
+        noteSilence:       { en: "Recovery required silence here.", th: "การพักฟื้นที่นี่ต้องการความเงียบ" },
+        noteSoup:          { en: "The soup infrastructure held longer than expected.", th: "โครงสร้างพื้นฐานซุปคงทนกว่าที่คาดคิด" },
+        noteSoftness:      { en: "This civilization learned softness slowly.", th: "อารยธรรมนี้เรียนรู้ความนุ่มนวลอย่างช้าๆ" },
+        noteEvidence:      { en: "We were here. We survived.",      th: "เราเคยอยู่ที่นี่ เราเคยรอดพ้น" },
+
         // Civilization Journey v1
         journeyStage1:     { en: "Day 1: The First Breath",   th: "วันที่ 1: ลมหายใจแรก" },
         journeyStage2:     { en: "Day 3: Material Proof",     th: "วันที่ 3: ข้อพิสูจน์ทางวัตถุ" },

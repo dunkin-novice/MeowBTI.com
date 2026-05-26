@@ -29,6 +29,7 @@
     ];
 
     const BB_COMP_NAMES = ['bbCompParallel', 'bbCompSoup', 'bbCompGov', 'bbCompFed'];
+    const GHOST_STATUS_MAP = ['ghostPresent', 'ghostFlickering', 'ghostStable', 'ghostDormant', 'ghostGone'];
 
     function getBlackBoxState(sealedAt) {
         if (!sealedAt) return BB_STATES[0];
@@ -128,6 +129,7 @@
                 ${boxes.slice().reverse().map(b => {
                     const state = getBlackBoxState(b.sealedAt);
                     const corruption = Math.min(1, state.corruption + (1 - b.reconstructed / 100));
+                    const ghostStatus = GHOST_STATUS_MAP[(b.id.length + new Date().getDate()) % GHOST_STATUS_MAP.length];
                     
                     return `
                         <div class="bb-card ${state.key.split('bbState')[1].toLowerCase()} ${settings.mode === 'lore' ? 'mode-lore' : ''}" style="--bb-corruption: ${corruption}">
@@ -139,16 +141,23 @@
                             <div class="bb-content">
                                 <div class="bb-civ-name">${corruption > 0.5 ? '████████' : b.civName}</div>
                                 <div class="bb-civ-type">${t('civ' + b.civType)} Snapshot</div>
+                                <div class="bb-ghost-info">
+                                    <span class="ghost-label">${t('bbGhostPresence')}:</span>
+                                    <span class="ghost-val">${t(ghostStatus)}</span>
+                                </div>
                                 <div class="bb-weight">${t('bbWeight')}: ${b.historyDepth * 10} units</div>
                                 <div class="bb-recon-bar">
                                     <div class="bb-recon-fill" style="width: ${b.reconstructed}%"></div>
                                 </div>
                                 <div class="bb-recon-text">${b.reconstructed}% ${t('bbReconstruct')}</div>
+                                ${b.lastBooted ? `<div class="bb-last-access">${t('bbLastAccessed')}: ${new Date(b.lastBooted).toLocaleDateString()}</div>` : ''}
                             </div>
                             <div class="bb-actions">
+                                <button class="big-btn ghost mini boot-bb-btn" data-id="${b.id}">⚡ ${t('bbBoot')}</button>
                                 <button class="micro-share-icon mini" data-text="Archive Snapshot: ${b.civName} Black Box.">📤</button>
-                                ${b.reconstructed < 100 ? `<button class="big-btn ghost mini recon-bb-btn" data-id="${b.id}">${t('bbReconstruct')}</button>` : ''}
+                                ${b.reconstructed < 100 ? `<button class="big-btn ghost mini recon-bb-btn" data-id="${b.id}">🔧 ${t('bbReconstruct')}</button>` : ''}
                             </div>
+                            ${corruption < 0.2 ? `<div class="bb-boot-status">BOOT AVAILABLE</div>` : ''}
                         </div>
                     `;
                 }).join('')}
@@ -166,6 +175,13 @@
 
         container.querySelectorAll('.recon-bb-btn').forEach(btn => {
             btn.onclick = () => reconstructBlackBox(btn.dataset.id);
+        });
+
+        container.querySelectorAll('.boot-bb-btn').forEach(btn => {
+            btn.onclick = () => {
+                const b = boxes.find(box => box.id === btn.dataset.id);
+                if (b && window.MeowGhostOS) window.MeowGhostOS.boot(b);
+            };
         });
 
         container.querySelectorAll('.micro-share-icon').forEach(btn => {
