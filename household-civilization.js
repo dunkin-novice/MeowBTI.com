@@ -192,7 +192,7 @@
     }
 
     function renderCivAlignment() {
-        const host = window.MeowOS ? window.MeowOS.getLayer('civ') : document.getElementById('family-content');
+        const host = window.MeowOS ? window.MeowOS.getLayer('identity') : document.getElementById('family-content');
         if (!host) return;
 
         const profiles = window.MeowStore.getFamily();
@@ -276,6 +276,7 @@
             history_depth: history.length,
             lang: getLang()
         });
+        window.MeowTrack && window.MeowTrack('identity_section_view', { class_id: civClass.id });
     }
 
     function getStrengths(id) {

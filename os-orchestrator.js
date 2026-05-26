@@ -16,14 +16,16 @@
             wrapper = document.createElement('div');
             wrapper.id = 'os-wrapper';
             
-            // Move existing content into layers if possible
             const grid = document.getElementById('family-grid');
             const header = host.querySelector('.family-header');
             const footer = host.querySelector('.family-footer');
+            const dailyLoop = document.getElementById('daily-loop');
+            const weatherHome = document.querySelector('.emotional-weather-home-section');
+            const identityEngine = document.querySelector('.identity-engine-section');
 
             host.append(wrapper);
 
-            const layers = ['daily', 'civ', 'memory', 'lore'];
+            const layers = ['hero', 'snapshot', 'identity', 'archive', 'lore'];
             const builtLayers = {};
 
             layers.forEach(l => {
@@ -34,12 +36,24 @@
                 builtLayers[l] = el;
             });
 
-            // DAILY layer setup
-            if (header) builtLayers.daily.append(header);
-            if (grid) builtLayers.daily.append(grid);
-            if (footer) builtLayers.daily.append(footer);
+            // Add Headers first
+            addHeader(builtLayers.snapshot, 'snapshot', t('dailyTitle'), false);
+            addHeader(builtLayers.identity, 'identity', t('layerCiv'), false);
+            addHeader(builtLayers.archive, 'archive', t('layerMemory'), true);
+            addHeader(builtLayers.lore, 'lore', t('layerLore'), true);
 
-            // Add Mode Toggle at top of wrapper
+            // Move legacy elements into containers
+            const snapContent = builtLayers.snapshot.querySelector('.os-section-content');
+            if (header) (snapContent || builtLayers.snapshot).append(header);
+            if (dailyLoop) (snapContent || builtLayers.snapshot).append(dailyLoop);
+            if (weatherHome) (snapContent || builtLayers.snapshot).append(weatherHome);
+            if (grid) (snapContent || builtLayers.snapshot).append(grid);
+            if (footer) (snapContent || builtLayers.snapshot).append(footer);
+
+            const idContent = builtLayers.identity.querySelector('.os-section-content');
+            if (identityEngine) (idContent || builtLayers.identity).append(identityEngine);
+
+            // Add Mode Toggle at top
             const toggle = document.createElement('div');
             toggle.className = 'os-mode-toggle';
             toggle.innerHTML = `
@@ -48,16 +62,11 @@
             `;
             wrapper.prepend(toggle);
 
-            // Add Collapsible Headers to others
-            addHeader(builtLayers.civ, 'civ', t('layerCiv'), true);
-            addHeader(builtLayers.memory, 'memory', t('layerMemory'), true);
-            addHeader(builtLayers.lore, 'lore', t('layerLore'), true);
-
             return builtLayers;
         }
 
         const builtLayers = {};
-        ['daily', 'civ', 'memory', 'lore'].forEach(l => {
+        ['hero', 'snapshot', 'identity', 'archive', 'lore'].forEach(l => {
             builtLayers[l] = document.getElementById(`os-layer-${l}`);
         });
         return builtLayers;
@@ -82,6 +91,8 @@
             header.querySelector('.os-chevron').textContent = isNowCollapsed ? '▲' : '▼';
             if (window.MeowTrack) {
                 window.MeowTrack(isNowCollapsed ? 'module_expand' : 'module_collapse', { layer: key, lang: getLang() });
+                if (isNowCollapsed && key === 'archive') window.MeowTrack('archive_opened');
+                if (isNowCollapsed && key === 'lore') window.MeowTrack('deep_lore_opened');
             }
         };
 
@@ -91,16 +102,19 @@
 
     function applyMode(mode) {
         const wrapper = document.getElementById('os-wrapper');
+        const loreLayer = document.getElementById('os-layer-lore');
         if (!wrapper) return;
 
         if (mode === 'calm') {
             wrapper.classList.remove('mode-lore');
             wrapper.classList.add('mode-calm');
+            if (loreLayer) loreLayer.style.display = 'none';
             document.getElementById('btn-mode-calm')?.classList.add('active');
             document.getElementById('btn-mode-lore')?.classList.remove('active');
         } else {
             wrapper.classList.remove('mode-calm');
             wrapper.classList.add('mode-lore');
+            if (loreLayer) loreLayer.style.display = 'block';
             document.getElementById('btn-mode-calm')?.classList.remove('active');
             document.getElementById('btn-mode-lore')?.classList.add('active');
         }
@@ -229,6 +243,20 @@
     window.addEventListener('meow:daily:updated', renderOrchestrator);
     window.addEventListener('storage', (e) => {
         if (e.key === 'meow-bti-family' || e.key === 'meowbti.dailyCheckins.v2') renderOrchestrator();
+    });
+
+    // Scroll Depth Tracking
+    let maxScroll = 0;
+    window.addEventListener('scroll', () => {
+        const h = document.documentElement, 
+              b = document.body,
+              st = 'scrollTop',
+              sh = 'scrollHeight';
+        const percent = (h[st]||b[st]) / ((h[sh]||b[sh]) - h.clientHeight) * 100;
+        if (percent > maxScroll + 25) {
+            maxScroll = Math.floor(percent / 25) * 25;
+            window.MeowTrack && window.MeowTrack('dashboard_scroll_depth', { depth: maxScroll });
+        }
     });
 
 })();

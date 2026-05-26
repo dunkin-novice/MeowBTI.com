@@ -97,7 +97,7 @@
             container = document.createElement('div');
             container.id = containerId;
             container.className = 'drama-feed-container animate-fade-in';
-            const host = window.MeowOS ? window.MeowOS.getLayer('daily') : document.getElementById('family-content');
+            const host = window.MeowOS ? window.MeowOS.getLayer('snapshot') : document.getElementById('family-content');
             if (host) host.append(container);
             else return;
         }

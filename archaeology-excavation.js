@@ -253,7 +253,7 @@
     }
 
     function renderLostArchive() {
-        const host = window.MeowOS ? window.MeowOS.getLayer('memory') : document.getElementById('family-content');
+        const host = window.MeowOS ? window.MeowOS.getLayer('archive') : document.getElementById('family-content');
         if (!host) return;
 
         const fragments = window.MeowStore.getLostFragments ? window.MeowStore.getLostFragments() : [];

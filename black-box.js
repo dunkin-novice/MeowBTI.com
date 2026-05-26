@@ -77,7 +77,7 @@
     }
 
     function renderBlackBoxVault() {
-        const host = window.MeowOS ? window.MeowOS.getLayer('lore') : document.getElementById('family-content');
+        const host = window.MeowOS ? window.MeowOS.getLayer('archive') : document.getElementById('family-content');
         if (!host) return;
 
         const boxes = window.MeowStore.getBlackBoxes();

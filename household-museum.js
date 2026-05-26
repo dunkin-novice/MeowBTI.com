@@ -463,7 +463,7 @@
     }
 
     function renderMuseum() {
-        const host = window.MeowOS ? window.MeowOS.getLayer('memory') : document.getElementById('family-content');
+        const host = window.MeowOS ? window.MeowOS.getLayer('archive') : document.getElementById('family-content');
         if (!host) return;
         if (window.MeowOS && !window.MeowOS.isUnlocked('museum')) {
             window.MeowOS.renderLock(host, 'museum', 'unlockHintMuseum');

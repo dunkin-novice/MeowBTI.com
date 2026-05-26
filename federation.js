@@ -226,7 +226,7 @@
     }
 
     function renderFederationUI() {
-        const host = window.MeowOS ? window.MeowOS.getLayer('civ') : document.getElementById('family-content');
+        const host = window.MeowOS ? window.MeowOS.getLayer('identity') : document.getElementById('family-content');
         if (!host) return;
         if (window.MeowOS && !window.MeowOS.isUnlocked('federation')) {
             window.MeowOS.renderLock(host, 'federation', 'unlockHintFed');

@@ -52,7 +52,7 @@
     }
 
     function renderRituals() {
-        const host = window.MeowOS ? window.MeowOS.getLayer('daily') : document.getElementById('family-content');
+        const host = window.MeowOS ? window.MeowOS.getLayer('snapshot') : document.getElementById('family-content');
         if (!host) return;
 
         const profiles = window.MeowStore.getFamily();
@@ -174,6 +174,11 @@
             });
         }
     }
+
+    window.MeowRituals = {
+        getRitualRecommendation,
+        render: renderRituals
+    };
 
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', renderRituals);
