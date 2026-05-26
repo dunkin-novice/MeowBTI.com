@@ -105,6 +105,7 @@
         `;
         document.body.append(overlay);
         window.MeowTrack && window.MeowTrack('awakening_ceremony_viewed', { title });
+        window.MeowTrack && window.MeowTrack('module_lock_hint_viewed', { milestone: title });
     }
 
     window.MeowJourney = {

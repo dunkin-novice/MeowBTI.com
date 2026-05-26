@@ -952,8 +952,41 @@
         chemResonant:      { en: "Resonant",                  th: "สอดคล้องกัน" },
         chemNeutral:       { en: "Neutral",                   th: "เป็นกลาง" },
         chemUnstable:      { en: "Unstable",                  th: "ไม่คงที่" },
-        };
-        // Ruins
+
+        // Relationship Layer v2
+        roleCaretaker:     { en: "Caretaker",                 th: "ผู้ดูแล" },
+        roleBunker:        { en: "Bunker Resident",           th: "ผู้อยู่อาศัยในบังเกอร์" },
+        roleBooster:       { en: "Signal Booster",            th: "ผู้ขยายสัญญาณ" },
+        roleStabilizer:    { en: "Quiet Stabilizer",          th: "ผู้สร้างความมั่นคงอย่างเงียบๆ" },
+        roleGenerator:     { en: "Chaos Generator",           th: "ผู้สร้างความโกลาหล" },
+        roleKeeper:        { en: "Ritual Keeper",             th: "ผู้รักษากิจวัตร" },
+        roleProvider:      { en: "Soup Provider",             th: "ผู้จัดหาซุป" },
+        roleGuardian:      { en: "Blanket Guardian",          th: "ผู้ปกป้องผ้าห่ม" },
+
+        dynTitle:          { en: "Household Dynamics",        th: "พลวัตในบ้าน" },
+        dynChemistry:      { en: "Active Chemistry",          th: "เคมีที่ทำงานอยู่" },
+        dynObservation:    { en: "Emotional Observation",     th: "การสังเกตทางอารมณ์" },
+        dynRitual:         { en: "Shared Ritual",             th: "กิจวัตรที่ทำร่วมกัน" },
+        dynDrift:          { en: "Dynamic Drift",             th: "การแปรผันของพลวัต" },
+        dynDriftBuffering: { en: "Buffering",                 th: "กำลังบัฟเฟอร์" },
+        dynDriftRecovering: { en: "Recovering",                th: "กำลังพักฟื้น" },
+        dynDriftNested:    { en: "Nested",                    th: "สร้างรังอยู่" },
+
+        pairParallel:      { en: "Parallel Players",          th: "นักเล่นคู่ขนาน" },
+        pairCaretaker:     { en: "Caretaker + Bunker Resident", th: "ผู้ดูแล + ผู้อยู่อาศัยในบังเกอร์" },
+        pairStabilizer:    { en: "Loud Survivor + Quiet Stabilizer", th: "ผู้รอดชีวิตที่เสียงดัง + ผู้สร้างความมั่นคงที่เงียบงัน" },
+        pairSoup:          { en: "Soup Provider + Recovery Civilian", th: "ผู้จัดหาซุป + พลเรือนผู้กำลังพักฟื้น" },
+        pairShield:        { en: "Emotional Shield + Chaos Generator", th: "เกราะป้องกันทางอารมณ์ + ผู้สร้างความโกลาหล" },
+        pairNesters:       { en: "Mutual Nesters",            th: "ผู้สร้างรังร่วมกัน" },
+
+        obsParallel:       { en: "Comfort through quiet proximity.", th: "ความสบายใจผ่านการอยู่ใกล้กันอย่างเงียบเชียบ" },
+        obsNourish:        { en: "Recovery requires nourishment first.", th: "การพักฟื้นต้องการสารอาหารก่อนเป็นอันดับแรก" },
+        obsResonance:      { en: "Synchronized emotional buffering detected.", th: "ตรวจพบการกันชนทางอารมณ์ที่สอดประสานกัน" },
+
+        sugSilent:         { en: "Try a silent recharge window.", th: "ลองใช้ช่วงเวลาชาร์จพลังแบบเงียบๆ" },
+        sugSoup:           { en: "Share soup before evening reset.", th: "แบ่งปันซุปก่อนรีเซ็ตช่วงเย็น" },
+        sugBuffering:      { en: "Horizontal buffering recommended.", th: "แนะนำให้ทำการบัฟเฟอร์ในแนวราบ" },
+        };        // Ruins
         ruinSilentKitchen: { en: "The Silent Kitchen Era",    th: "ยุคสมัยห้องครัวที่เงียบงัน" },
         ruinAncientRecharge: { en: "Ancient Recharge Site",   th: "แหล่งชาร์จพลังโบราณ" },
         ruinForgottenSoup: { en: "Forgotten Soup Infrastructure", th: "โครงสร้างพื้นฐานซุปที่ถูกลืม" },

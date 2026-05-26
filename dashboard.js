@@ -152,8 +152,9 @@
             grid.appendChild(card);
         });
 
-        if (profiles.length >= 2 && window.MeowCompatibility) {
-            renderDynamics(profiles);
+        if (profiles.length >= 2) {
+            if (window.MeowDynamics) window.MeowDynamics.render(profiles);
+            if (window.MeowCompatibility) renderDynamics(profiles); // Legacy detail view
         }
 
         // Render Drama Feed if 2+ members

@@ -348,6 +348,13 @@
                                         <div class="pm-label">${t('repCivSummary')}</div>
                                         <div class="dip-line">${getCivilizationComparison(local, member)}</div>
                                     </div>
+
+                                    ${member.relCulture ? `
+                                        <div class="diplomatic-report" style="margin-top:12px; border-top:1px dashed rgba(0,0,0,0.05); padding-top:12px;">
+                                            <div class="pm-label">Relationship Culture</div>
+                                            <div class="dip-line" style="font-style:italic; opacity:0.7;">${member.relCulture} • ${member.roleTendency || 'Mixed Roles'}</div>
+                                        </div>
+                                    ` : ''}
                                     
                                     <button class="micro-share-icon mini" data-type="alliance" data-text="Alliance Formed: ${alliance.title} with ${member.name}. Chemistry: ${t(chem.key)}.">📤</button>
                                 </div>
@@ -400,11 +407,14 @@
             const civDecisions = window.MeowStore.getCivDecisions ? window.MeowStore.getCivDecisions() : { policies: [], alignment: 'neutral' };
 
             const civClass = window.MeowCivilization ? window.MeowCivilization.detectClass(history, profiles) : { id: 'stability' };
+            const mainRole = (window.MeowDynamics && profiles.length > 0) ? window.MeowDynamics.getRole(profiles[0], history) : { key: 'roleKeeper' };
 
             const payload = {
                 seasonTitle: season.title,
                 seasonKey: season.key,
                 civClass: civClass.id,
+                relCulture: profiles.length >= 2 ? "Dynamic Pairings Active" : "Solo Survival",
+                roleTendency: t(mainRole.key),
                 reputation: reputation + (aura ? ` with ${aura.title}` : ''),
                 era: window.MeowSeasons ? window.MeowSeasons.detectArc(history) : "Early History",
                 doctrine: doctrine,
