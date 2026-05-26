@@ -1747,14 +1747,14 @@
         bbFileMemory:      { en: "/memory",                   th: "/ความทรงจำ" },
         bbFileFinalNote:   { en: "/final-note",               th: "/บันทึกสุดท้าย" },
         bbFileConnections: { en: "/connections",              th: "/การเชื่อมต่อ" },
-        bbResonanceDetected: { en: "LINKED ARCHIVE DETECTED", th: "ตรวจพบจดหมายเหตุที่เชื่อมโยง" },
+        bbLinkedArchive:   { en: "LINKED ARCHIVE DETECTED", th: "ตรวจพบจดหมายเหตุที่เชื่อมโยง" },
         bbStandaloneRecord: { en: "STANDALONE RECORD",        th: "บันทึกอิสระ" },
 
         resMirrorMemory:   { en: "Mirror Memory",             th: "ความทรงจำกระจกเงา" },
         resSharedSignal:   { en: "Shared Signal",             th: "สัญญาณที่ใช้ร่วมกัน" },
-        resLostTwin:       { en: "Lost Twin",                 th: "คู่แฝดที่สาบสูญ" },
-        resParallelSurvivor: { en: "Parallel Survivor",       th: "ผู้รอดชีวิตคู่ขนาน" },
-        resQuietWitness:   { en: "Quiet Witness",             th: "พยานที่เงียบงัน" },
+        resMirrorRecord:   { en: "Mirror Record",             th: "บันทึกกระจกเงา" },
+        resArchiveLink:    { en: "Archive Link",              th: "ลิงก์จดหมายเหตุ" },
+        resArchiveReflection: { en: "Archive Reflection",     th: "ภาพสะท้อนจดหมายเหตุ" },
         resAncientReflection: { en: "Ancient Reflection",     th: "ภาพสะท้อนโบราณ" },
 
         resMsgLoud:        { en: "Archive {0} references another civilization that survived the same Loud Era.", th: "จดหมายเหตุ {0} อ้างถึงอารยธรรมอื่นที่รอดชีวิตจากยุคเสียงดังครั้งเดียวกัน" },

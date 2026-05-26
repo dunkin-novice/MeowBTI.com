@@ -6667,8 +6667,8 @@ body.time-night .home-grain { opacity: 0.1; }
   .dyn-chemistry-card { padding: 24px 16px; }
 }
 
-/* Cross-Archive Resonance v10 */
-.bb-resonance-status { 
+/* Cross-Archive Links v10 (Lore Compression v2) */
+.bb-link-status { 
   font-size: 0.55rem; 
   font-weight: 900; 
   opacity: 0.3; 
@@ -6677,13 +6677,13 @@ body.time-night .home-grain { opacity: 0.1; }
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
-.bb-resonance-status.active { 
+.bb-link-status.active { 
   color: #00ff41; 
   opacity: 1; 
   text-shadow: 0 0 5px rgba(0, 255, 65, 0.4); 
   animation: pulse-mystical 3s infinite; 
 }
-.mode-lore .bb-resonance-status.active { color: #ffb000; text-shadow: 0 0 10px rgba(255, 176, 0, 0.4); }
+.mode-lore .bb-link-status.active { color: #ffb000; text-shadow: 0 0 10px rgba(255, 176, 0, 0.4); }
 
 
 

@@ -130,9 +130,9 @@
                     const state = getBlackBoxState(b.sealedAt);
                     const corruption = Math.min(1, state.corruption + (1 - b.reconstructed / 100));
                     const ghostStatus = GHOST_STATUS_MAP[(b.id.length + new Date().getDate()) % GHOST_STATUS_MAP.length];
-                    const hasResonance = boxes.length > 1;
+                    const hasLinks = boxes.length > 1;
 
-                    if (hasResonance && window.MeowTrack) {
+                    if (hasLinks && window.MeowTrack) {
                         window.MeowTrack('linked_archive_seen', { archive_id: b.id });
                     }
                     
@@ -150,8 +150,8 @@
                                     <span class="ghost-label">${t('bbGhostPresence')}:</span>
                                     <span class="ghost-val">${t(ghostStatus)}</span>
                                 </div>
-                                <div class="bb-resonance-status ${hasResonance ? 'active' : ''}">
-                                    ${hasResonance ? `✦ ${t('bbResonanceDetected')}` : `✧ ${t('bbStandaloneRecord')}`}
+                                <div class="bb-link-status ${hasLinks ? 'active' : ''}">
+                                    ${hasLinks ? `✦ ${t('bbLinkedArchive')}` : `✧ ${t('bbStandaloneRecord')}`}
                                 </div>
                                 <div class="bb-weight">${t('bbWeight')}: ${b.historyDepth * 10} units</div>
                                 <div class="bb-recon-bar">

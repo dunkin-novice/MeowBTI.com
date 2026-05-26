@@ -68,9 +68,8 @@
                 const pool = MESSAGES[band.type] || MESSAGES.civ;
                 content = t(pool[absHash % pool.length]);
             }
-        } else if (absHash % 100 < 15) { // Black Box Resonance (15% chance)
-            const boxes = window.MeowStore.getBlackBoxes ? window.MeowStore.getBlackBoxes() : [];
-            if (boxes.length > 0) {
+        } else if (absHash % 100 < 15) { // Archive Reflection (15% chance)
+            const boxes = window.MeowStore.getBlackBoxes ? window.MeowStore.getBlackBoxes() : [];            if (boxes.length > 0) {
                 const box = boxes[absHash % boxes.length];
                 content = `ARCHIVE BLEED: ${t('bbTitle')} detected at ${box.freq || freq.toFixed(1)} MHz.`;
                 isLive = true;

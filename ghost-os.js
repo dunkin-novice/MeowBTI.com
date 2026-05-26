@@ -11,12 +11,12 @@
     const GHOST_STATES = ['ghostDormant', 'ghostStable', 'ghostFlickering', 'ghostPresent', 'ghostGone'];
     const FINAL_NOTES = ['noteSilence', 'noteSoup', 'noteSoftness', 'noteEvidence'];
 
-    function getResonances(archive) {
+    function getConnections(archive) {
         const allBoxes = window.MeowStore.getBlackBoxes() || [];
         const otherBoxes = allBoxes.filter(b => b.id !== archive.id);
         if (otherBoxes.length === 0) return null;
 
-        const resTypes = ['resMirrorMemory', 'resSharedSignal', 'resLostTwin', 'resParallelSurvivor', 'resQuietWitness', 'resAncientReflection'];
+        const resTypes = ['resMirrorMemory', 'resSharedSignal', 'resMirrorRecord', 'resArchiveLink', 'resArchiveReflection', 'resAncientReflection'];
         const resMsgs = ['resMsgLoud', 'resMsgDoctrine', 'resMsgSync', 'resMsgOrigin'];
 
         // Find 1-3 resonant archives deterministically
@@ -45,7 +45,7 @@
 
     function getDeterministicFiles(archive) {
         const seed = archive.id.length + archive.historyDepth;
-        const resonances = getResonances(archive);
+        const connections = getConnections(archive);
         
         const files = {
             '/identity': {
@@ -94,10 +94,10 @@
             }
         };
 
-        if (resonances) {
+        if (connections) {
             files['/connections'] = {
                 icon: '🔗',
-                content: resonances.map(r => `
+                content: connections.map(r => `
                     TARGET: #${r.targetId}
                     TYPE: ${r.type}
                     NOTE: ${r.note}
