@@ -1746,6 +1746,22 @@
         bbFileSignals:     { en: "/signals",                  th: "/สัญญาณ" },
         bbFileMemory:      { en: "/memory",                   th: "/ความทรงจำ" },
         bbFileFinalNote:   { en: "/final-note",               th: "/บันทึกสุดท้าย" },
+        bbFileConnections: { en: "/connections",              th: "/การเชื่อมต่อ" },
+        bbResonanceDetected: { en: "LINKED ARCHIVE DETECTED", th: "ตรวจพบจดหมายเหตุที่เชื่อมโยง" },
+        bbStandaloneRecord: { en: "STANDALONE RECORD",        th: "บันทึกอิสระ" },
+
+        resMirrorMemory:   { en: "Mirror Memory",             th: "ความทรงจำกระจกเงา" },
+        resSharedSignal:   { en: "Shared Signal",             th: "สัญญาณที่ใช้ร่วมกัน" },
+        resLostTwin:       { en: "Lost Twin",                 th: "คู่แฝดที่สาบสูญ" },
+        resParallelSurvivor: { en: "Parallel Survivor",       th: "ผู้รอดชีวิตคู่ขนาน" },
+        resQuietWitness:   { en: "Quiet Witness",             th: "พยานที่เงียบงัน" },
+        resAncientReflection: { en: "Ancient Reflection",     th: "ภาพสะท้อนโบราณ" },
+
+        resMsgLoud:        { en: "Archive {0} references another civilization that survived the same Loud Era.", th: "จดหมายเหตุ {0} อ้างถึงอารยธรรมอื่นที่รอดชีวิตจากยุคเสียงดังครั้งเดียวกัน" },
+        resMsgDoctrine:    { en: "Signal overlap detected: Recovery doctrine appears shared.", th: "ตรวจพบสัญญาณทับซ้อน: ดูเหมือนจะใช้อุดมการณ์การพักฟื้นร่วมกัน" },
+        resMsgSync:        { en: "Synchronized emotional buffering detected across layers.", th: "ตรวจพบการกันชนทางอารมณ์ที่สอดประสานกันข้ามชั้น" },
+        resMsgOrigin:      { en: "Cross-reference suggests a shared atmospheric origin.", th: "การอ้างอิงไขว้บ่งชี้ถึงต้นกำเนิดบรรยากาศที่ใช้ร่วมกัน" },
+
 
         ghostDormant:      { en: "Dormant",                   th: "หลับใหล" },
         ghostStable:       { en: "Stable",                    th: "เสถียร" },

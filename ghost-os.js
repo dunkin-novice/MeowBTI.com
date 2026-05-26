@@ -11,10 +11,43 @@
     const GHOST_STATES = ['ghostDormant', 'ghostStable', 'ghostFlickering', 'ghostPresent', 'ghostGone'];
     const FINAL_NOTES = ['noteSilence', 'noteSoup', 'noteSoftness', 'noteEvidence'];
 
+    function getResonances(archive) {
+        const allBoxes = window.MeowStore.getBlackBoxes() || [];
+        const otherBoxes = allBoxes.filter(b => b.id !== archive.id);
+        if (otherBoxes.length === 0) return null;
+
+        const resTypes = ['resMirrorMemory', 'resSharedSignal', 'resLostTwin', 'resParallelSurvivor', 'resQuietWitness', 'resAncientReflection'];
+        const resMsgs = ['resMsgLoud', 'resMsgDoctrine', 'resMsgSync', 'resMsgOrigin'];
+
+        // Find 1-3 resonant archives deterministically
+        const seed = archive.id.length + archive.historyDepth;
+        const count = (seed % 3) + 1;
+        const selected = otherBoxes.slice(0, count);
+
+        if (window.MeowTrack) {
+            window.MeowTrack('archive_resonance_detected', { archive_id: archive.id, connection_count: selected.length });
+            window.MeowTrack('archive_network_viewed', { total_archives: allBoxes.length });
+        }
+
+        return selected.map((other, i) => {
+            const pairSeed = archive.id + other.id + new Date().getDate();
+            let hash = 0;
+            for (let k = 0; k < pairSeed.length; k++) hash = ((hash << 5) - hash) + pairSeed.charCodeAt(k);
+            const absHash = Math.abs(hash);
+
+            return {
+                targetId: other.id.toUpperCase(),
+                type: t(resTypes[absHash % resTypes.length]),
+                note: t(resMsgs[absHash % resMsgs.length]).replace('{0}', other.id.toUpperCase().slice(-4))
+            };
+        });
+    }
+
     function getDeterministicFiles(archive) {
         const seed = archive.id.length + archive.historyDepth;
+        const resonances = getResonances(archive);
         
-        return {
+        const files = {
             '/identity': {
                 icon: '🆔',
                 content: `
@@ -60,6 +93,20 @@
                 content: t(FINAL_NOTES[seed % FINAL_NOTES.length])
             }
         };
+
+        if (resonances) {
+            files['/connections'] = {
+                icon: '🔗',
+                content: resonances.map(r => `
+                    TARGET: #${r.targetId}
+                    TYPE: ${r.type}
+                    NOTE: ${r.note}
+                    --------------------------
+                `).join('')
+            };
+        }
+
+        return files;
     }
 
     function openGhostOS(archive) {
@@ -116,7 +163,10 @@
             btn.innerHTML = `<span class="file-icon">${files[path].icon}</span> ${path}`;
             btn.onclick = () => {
                 terminal.innerHTML = `<p class="cmd-line">> cat ${path}</p><pre class="file-content">${files[path].content.trim()}</pre>`;
-                window.MeowTrack && window.MeowTrack('archive_file_opened', { archive_id: archive.id, file_path: path });
+                if (window.MeowTrack) {
+                    window.MeowTrack('archive_file_opened', { archive_id: archive.id, file_path: path });
+                    if (path === '/connections') window.MeowTrack('connection_file_opened', { archive_id: archive.id });
+                }
             };
             fileList.append(btn);
         });

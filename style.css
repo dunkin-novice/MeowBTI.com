@@ -6667,5 +6667,24 @@ body.time-night .home-grain { opacity: 0.1; }
   .dyn-chemistry-card { padding: 24px 16px; }
 }
 
+/* Cross-Archive Resonance v10 */
+.bb-resonance-status { 
+  font-size: 0.55rem; 
+  font-weight: 900; 
+  opacity: 0.3; 
+  margin-bottom: 12px; 
+  transition: all 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.bb-resonance-status.active { 
+  color: #00ff41; 
+  opacity: 1; 
+  text-shadow: 0 0 5px rgba(0, 255, 65, 0.4); 
+  animation: pulse-mystical 3s infinite; 
+}
+.mode-lore .bb-resonance-status.active { color: #ffb000; text-shadow: 0 0 10px rgba(255, 176, 0, 0.4); }
+
+
 
 
