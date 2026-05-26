@@ -6618,11 +6618,13 @@ body.time-night .home-grain { opacity: 0.1; }
 }
 
 
-/* Relationship Layer v2 — Household Dynamics */
+/* Relationship Layer v3 — “WHY CIVILIZATIONS CONNECT” */
 .dynamics-v2-container { margin-bottom: 48px; }
-.dyn-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.dyn-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; }
 .dyn-title { font-family: var(--font-mono); font-size: 0.7rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.15em; opacity: 0.5; margin: 0; }
-.dyn-drift-tag { font-family: var(--font-mono); font-size: 0.6rem; font-weight: 900; background: rgba(0,0,0,0.05); padding: 2px 8px; border-radius: 4px; opacity: 0.4; }
+.dyn-meta-tags { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.dyn-drift-tag, .dyn-cat-tag { font-family: var(--font-mono); font-size: 0.55rem; font-weight: 900; background: rgba(0,0,0,0.05); padding: 2px 8px; border-radius: 4px; opacity: 0.4; text-transform: uppercase; }
+.dyn-cat-tag { background: var(--ink); color: var(--paper); opacity: 0.7; }
 
 .dyn-chemistry-card {
   background: var(--paper);
@@ -6644,7 +6646,9 @@ body.time-night .home-grain { opacity: 0.1; }
 
 .dyn-info { margin-bottom: 32px; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 24px; }
 .dyn-pair-title { font-family: var(--font-display); font-size: 1.4rem; color: var(--ink); margin-bottom: 8px; }
-.dyn-obs { font-size: 0.95rem; font-style: italic; opacity: 0.6; line-height: 1.5; margin: 0 auto; max-width: 320px; }
+.dyn-chem-label { font-family: var(--font-mono); font-size: 0.65rem; font-weight: 900; color: #d4af37; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; }
+.dyn-reason { font-size: 0.9rem; font-weight: 700; color: var(--ink); margin-bottom: 8px; line-height: 1.4; }
+.dyn-obs { font-size: 0.85rem; font-style: italic; opacity: 0.6; line-height: 1.5; margin: 0 auto; max-width: 320px; }
 
 .dyn-ritual-suggestion {
   background: rgba(0,0,0,0.02);
@@ -6665,6 +6669,8 @@ body.time-night .home-grain { opacity: 0.1; }
   .dyn-name { font-size: 0.95rem; }
   .dyn-pair-title { font-size: 1.2rem; }
   .dyn-chemistry-card { padding: 24px 16px; }
+  .dyn-reason { font-size: 0.8rem; }
+  .dyn-obs { font-size: 0.75rem; }
 }
 
 /* Cross-Archive Links v10 (Lore Compression v2) */

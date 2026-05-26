@@ -28,7 +28,22 @@
         let status = 'chemNeutral';
         if (score > 75) status = 'chemResonant';
         else if (score < 25) status = 'chemUnstable';
-        return { key: status, val: score };
+        
+        const detail = getChemistryDetail(Math.abs(hash));
+        return { key: status, val: score, reason: detail.reason, category: detail.category };
+    }
+
+    function getChemistryDetail(seed) {
+        const cats = ['catSharedRecovery', 'catParallelDrift', 'catRitualAlignment', 'catCrisisEcho', 'catQuietStability', 'catSameEraSurvival'];
+        const reasons = ['reasonLoudWeek', 'reasonSoupRituals', 'reasonParallelRec', 'reasonStabilized', 'reasonSoftReset', 'reasonBufferSilence'];
+        
+        const catIndex = seed % cats.length;
+        const reasonIndex = (seed + 1) % reasons.length; // Slightly offset from dynamics for variety
+        
+        return {
+            category: t(cats[catIndex]),
+            reason: t(reasons[reasonIndex])
+        };
     }
 
     function getLocalCivilizationSnapshot(giftKey = null) {
@@ -311,6 +326,10 @@
                             const sharedEvent = getSharedEvent(local, member);
                             const fedRelic = getFederationRelic(local, member);
                             const chem = determineChemistry(local, member);
+                            
+                            if (window.MeowTrack) {
+                                window.MeowTrack('federation_reason_viewed', { member_id: member.id, category: chem.category });
+                            }
 
                             return `
                                 <div class="alliance-card">
@@ -324,10 +343,14 @@
                                             <span class="chem-label" style="opacity:0.5; text-transform:uppercase;">${t('dipChemistry')}</span>
                                             <span class="chem-status ${chem.key}" style="font-weight:900;">${t(chem.key)}</span>
                                         </div>
-                                        <div class="chem-bar-outer" style="height:4px; background:rgba(255,255,255,0.1); border-radius:2px; overflow:hidden;">
+                                        <div class="chem-bar-outer" style="height:4px; background:rgba(255,255,255,0.1); border-radius:2px; overflow:hidden; margin-bottom:12px;">
                                             <div class="chem-bar-inner ${chem.key}" style="width: ${chem.val}%; height:100%; background:var(--ink); transition: width 1s;"></div>
                                         </div>
-                                        <p style="font-size:0.65rem; opacity:0.5; margin-top:8px;">${t('dipCompatibility')}: ${chem.val}%</p>
+                                        
+                                        <div class="fed-why-linked" style="font-size:0.7rem; border-top:1px solid rgba(255,255,255,0.05); padding-top:8px;">
+                                            <div style="opacity:0.6; margin-bottom:4px; font-weight:bold; color:var(--accent);">${t('dynWhyLinked')} • ${chem.category}</div>
+                                            <div style="line-height:1.4;">“${chem.reason}”</div>
+                                        </div>
                                     </div>
 
                                     ${sharedEvent ? `

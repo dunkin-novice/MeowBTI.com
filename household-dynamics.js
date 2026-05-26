@@ -70,13 +70,30 @@
             sugKey = 'sugSilent';
         }
 
+        const chemistryData = getChemistryDetail(absHash);
+
         return {
             a, b,
             roleA, roleB,
             driftKey: getDrift(absHash),
             pairTitle: t(pairKey),
             observation: t(obsKey),
-            suggestion: t(sugKey)
+            suggestion: t(sugKey),
+            chemistryReason: chemistryData.reason,
+            chemistryCategory: chemistryData.category
+        };
+    }
+
+    function getChemistryDetail(seed) {
+        const cats = ['catSharedRecovery', 'catParallelDrift', 'catRitualAlignment', 'catCrisisEcho', 'catQuietStability', 'catSameEraSurvival'];
+        const reasons = ['reasonLoudWeek', 'reasonSoupRituals', 'reasonParallelRec', 'reasonStabilized', 'reasonSoftReset', 'reasonBufferSilence'];
+        
+        const catIndex = seed % cats.length;
+        const reasonIndex = (seed + 2) % reasons.length;
+        
+        return {
+            category: t(cats[catIndex]),
+            reason: t(reasons[reasonIndex])
         };
     }
 
@@ -125,7 +142,9 @@
 
                 <div class="dyn-info">
                     <div class="dyn-pair-title">${pair.pairTitle}</div>
-                    <p class="dyn-obs">“${pair.observation}”</p>
+                    <div class="dyn-chem-label">${pair.chemistryCategory}</div>
+                    <p class="dyn-reason">“${pair.chemistryReason}”</p>
+                    <p class="dyn-obs">${pair.observation}</p>
                 </div>
 
                 <div class="dyn-ritual-suggestion">
@@ -137,7 +156,7 @@
                 </div>
 
                 <div class="dyn-actions">
-                    <button class="micro-share-icon mini" data-text="Household Dynamic: ${pair.a.name} (${t(pair.roleA.key)}) + ${pair.b.name} (${t(pair.roleB.key)}). ${pair.pairTitle}.">📤</button>
+                    <button class="micro-share-icon mini" data-text="Household Dynamic: ${pair.a.name} + ${pair.b.name}. ${pair.pairTitle}. Why: ${pair.chemistryReason}">📤</button>
                 </div>
             </div>
         `;
@@ -146,7 +165,7 @@
             if (window.MeowAnalytics) {
                 window.MeowAnalytics.microShare({
                     framework: 'household_dynamics',
-                    content_type: 'chemistry_snapshot',
+                    content_type: 'chemistry_reason_seen',
                     text: container.querySelector('.micro-share-icon').getAttribute('data-text')
                 });
                 window.MeowTrack && window.MeowTrack('relationship_snapshot_shared', { pair_type: pair.pairTitle });
@@ -154,7 +173,7 @@
         };
 
         if (window.MeowTrack) {
-            window.MeowTrack('relationship_card_view', { pair_type: pair.pairTitle });
+            window.MeowTrack('chemistry_reason_seen', { pair_type: pair.pairTitle, category: pair.chemistryCategory });
             window.MeowTrack('role_detected', { role: pair.roleA.key });
             window.MeowTrack('shared_ritual_viewed', { ritual: pair.suggestion });
         }

@@ -38,9 +38,23 @@
             return {
                 targetId: other.id.toUpperCase(),
                 type: t(resTypes[absHash % resTypes.length]),
-                note: t(resMsgs[absHash % resMsgs.length]).replace('{0}', other.id.toUpperCase().slice(-4))
+                note: t(resMsgs[absHash % resMsgs.length]).replace('{0}', other.id.toUpperCase().slice(-4)),
+                why: getChemistryDetail(absHash)
             };
         });
+    }
+
+    function getChemistryDetail(seed) {
+        const cats = ['catSharedRecovery', 'catParallelDrift', 'catRitualAlignment', 'catCrisisEcho', 'catQuietStability', 'catSameEraSurvival'];
+        const reasons = ['reasonLoudWeek', 'reasonSoupRituals', 'reasonParallelRec', 'reasonStabilized', 'reasonSoftReset', 'reasonBufferSilence'];
+        
+        const catIndex = seed % cats.length;
+        const reasonIndex = (seed + 3) % reasons.length; // Different offset for archives
+        
+        return {
+            category: t(cats[catIndex]),
+            reason: t(reasons[reasonIndex])
+        };
     }
 
     function getDeterministicFiles(archive) {
@@ -97,10 +111,19 @@
         if (connections) {
             files['/connections'] = {
                 icon: '🔗',
+                onOpen: () => {
+                    if (window.MeowTrack) {
+                        window.MeowTrack('archive_link_reason_opened', { archive_id: archive.id });
+                    }
+                },
                 content: connections.map(r => `
                     TARGET: #${r.targetId}
                     TYPE: ${r.type}
                     NOTE: ${r.note}
+                    
+                    WHY LINKED:
+                    ${r.why.category.toUpperCase()}
+                    “${r.why.reason}”
                     --------------------------
                 `).join('')
             };
@@ -163,6 +186,10 @@
             btn.innerHTML = `<span class="file-icon">${files[path].icon}</span> ${path}`;
             btn.onclick = () => {
                 terminal.innerHTML = `<p class="cmd-line">> cat ${path}</p><pre class="file-content">${files[path].content.trim()}</pre>`;
+                
+                // Trigger file-specific hooks
+                if (files[path].onOpen) files[path].onOpen();
+
                 if (window.MeowTrack) {
                     window.MeowTrack('archive_file_opened', { archive_id: archive.id, file_path: path });
                     if (path === '/connections') window.MeowTrack('connection_file_opened', { archive_id: archive.id });

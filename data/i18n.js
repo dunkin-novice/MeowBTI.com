@@ -1844,6 +1844,24 @@
         roleGuardian:      { en: "Blanket Guardian",          th: "ผู้ปกป้องผ้าห่ม" },
 
         dynTitle:          { en: "Household Dynamics",        th: "พลวัตในบ้าน" },
+        dynWhyLinked:      { en: "Why Connected",             th: "ทำไมถึงเชื่อมโยงกัน" },
+        
+        // Chemistry categories
+        catSharedRecovery: { en: "Shared Recovery",           th: "การฟื้นฟูร่วมกัน" },
+        catParallelDrift:  { en: "Parallel Drift",            th: "การเลื่อนไหลขนาน" },
+        catRitualAlignment:{ en: "Ritual Alignment",          th: "พิธีกรรมที่สอดประสาน" },
+        catCrisisEcho:     { en: "Crisis Echo",               th: "เสียงสะท้อนจากวิกฤต" },
+        catQuietStability: { en: "Quiet Stability",           th: "ความมั่นคงที่เงียบสงบ" },
+        catSameEraSurvival:{ en: "Same Era Survival",         th: "การอยู่รอดในยุคเดียวกัน" },
+
+        // Chemistry reasons
+        reasonLoudWeek:    { en: "Both civilizations survived a Loud Week.", th: "ทั้งสองอารยธรรมรอดพ้นจากสัปดาห์ที่วุ่นวายมาด้วยกัน" },
+        reasonSoupRituals: { en: "Soup rituals increased during the same period.", th: "พิธีกรรมซุปเพิ่มขึ้นในช่วงเวลาเดียวกัน" },
+        reasonParallelRec: { en: "Parallel recovery patterns were recorded.", th: "บันทึกพบรูปแบบการฟื้นฟูที่ขนานกัน" },
+        reasonStabilized:  { en: "Both households stabilized after chaos.", th: "ทั้งสองครัวเรือนกลับมามั่นคงหลังความวุ่นวาย" },
+        reasonSoftReset:   { en: "Both civilizations rely on soft reset rituals.", th: "ทั้งสองอารยธรรมพึ่งพาพิธีกรรมการรีเซ็ตแบบนุ่มนวล" },
+        reasonSameCrisis:  { en: "Both archives formed after the same crisis week.", th: "คลังข้อมูลทั้งสองถูกสร้างขึ้นหลังสัปดาห์วิกฤตเดียวกัน" },
+        reasonBufferSilence:{ en: "Both profiles repeatedly buffered in silence.", th: "ทั้งสองโปรไฟล์มีการบัฟเฟอร์ในความเงียบซ้ำๆ" },
         dynChemistry:      { en: "Active Chemistry",          th: "เคมีที่ทำงานอยู่" },
         dynObservation:    { en: "Emotional Observation",     th: "การสังเกตทางอารมณ์" },
         dynRitual:         { en: "Shared Ritual",             th: "กิจวัตรที่ทำร่วมกัน" },
