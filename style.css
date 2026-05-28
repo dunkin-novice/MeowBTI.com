@@ -6673,6 +6673,542 @@ body.time-night .home-grain { opacity: 0.1; }
   .dyn-obs { font-size: 0.75rem; }
 }
 
+/* Diplomatic Expansion v14 — “LEGACY PILLARS” */
+.legacy-pillars-shelf { margin-top: 32px; margin-bottom: 24px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 24px; }
+.pillar-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin-top: 16px; }
+
+.pillar-card {
+  background: rgba(0,0,0,0.15);
+  border: 1px solid rgba(0, 255, 65, 0.2);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s;
+}
+
+.mode-lore .pillar-card {
+  border: 2px solid #ffb000;
+  box-shadow: 0 0 20px rgba(255, 176, 0, 0.1), inset 0 0 10px rgba(255, 176, 0, 0.05);
+}
+
+.pillar-glow {
+  position: absolute;
+  top: -50%; left: -50%; width: 200%; height: 200%;
+  background: radial-gradient(circle at center, rgba(255, 176, 0, 0.08) 0%, rgba(0, 255, 65, 0.02) 40%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.6s;
+  pointer-events: none;
+}
+.mode-lore .pillar-glow { opacity: 1; }
+
+.pillar-seal {
+  position: absolute;
+  bottom: 8px; right: 12px;
+  font-size: 1.5rem;
+  opacity: 0.1;
+  color: #ffb000;
+  transform: rotate(-15deg);
+}
+
+.pillar-icon { font-size: 2rem; flex-shrink: 0; }
+.pillar-info { flex: 1; z-index: 1; }
+.pillar-name { font-family: var(--font-display); font-size: 1rem; font-weight: 900; color: #fff; margin-bottom: 4px; }
+.pillar-source { font-family: var(--font-mono); font-size: 0.55rem; text-transform: uppercase; color: var(--accent); opacity: 0.7; letter-spacing: 0.1em; margin-bottom: 8px; }
+.pillar-note { font-size: 0.75rem; opacity: 0.7; line-height: 1.4; margin: 0; font-style: italic; }
+
+/* Federation Adoption Buttons */
+.fed-adopt-btn {
+  background: var(--ink);
+  color: #ffb000;
+  border: 1px solid #ffb000;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 900;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-transform: uppercase;
+}
+.fed-adopt-btn:hover { background: rgba(255, 176, 0, 0.1); }
+
+.fed-adopted-badge {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  color: #00ff41;
+  font-weight: 900;
+  opacity: 0.8;
+}
+
+.fed-doctrine-card.adopted { border-color: #00ff41; }
+
+@media (max-width: 390px) {
+  .pillar-grid { grid-template-columns: 1fr; }
+  .pillar-card { padding: 16px; gap: 16px; }
+  .pillar-icon { font-size: 1.8rem; }
+}
+
+/* Archive Legacy v17 — “PASS THE TORCH” */
+.legacy-transfers-shelf { margin-top: 32px; margin-bottom: 32px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 24px; }
+.legacy-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin-top: 16px; }
+
+.legacy-card {
+  background: rgba(255, 176, 0, 0.03);
+  border: 1px solid rgba(255, 176, 0, 0.1);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s;
+}
+
+.mode-lore .legacy-card {
+  border: 1px solid #ffb000;
+  background: url('assets/parchment-texture.png'), rgba(0,0,0,0.1); /* Fallback to color if texture missing */
+  background-size: cover;
+  box-shadow: 0 0 20px rgba(255, 176, 0, 0.05);
+}
+
+.legacy-candle-glow {
+  position: absolute;
+  top: 10px; right: 10px; width: 40px; height: 40px;
+  background: radial-gradient(circle at center, rgba(255, 176, 0, 0.2) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.8s;
+  pointer-events: none;
+}
+.mode-lore .legacy-candle-glow { opacity: 1; animation: candle-flicker 4s infinite alternate; }
+
+@keyframes candle-flicker {
+  0% { transform: scale(1) opacity(0.8); }
+  50% { transform: scale(1.1) opacity(1); }
+  100% { transform: scale(0.9) opacity(0.7); }
+}
+
+.legacy-icon { font-size: 2.2rem; flex-shrink: 0; filter: drop-shadow(0 0 10px rgba(255, 176, 0, 0.4)); }
+.legacy-info { flex: 1; z-index: 1; }
+.legacy-name { font-family: var(--font-display); font-size: 1.1rem; font-weight: 900; color: #fff; margin-bottom: 6px; }
+.legacy-origin { font-family: var(--font-mono); font-size: 0.55rem; text-transform: uppercase; color: var(--accent); opacity: 0.7; letter-spacing: 0.1em; margin-bottom: 12px; }
+.legacy-note { font-size: 0.8rem; opacity: 0.7; line-height: 1.4; margin: 0; font-style: italic; }
+
+.legacy-btn {
+  background: var(--ink);
+  color: #ffb000;
+  border: 1px solid #ffb000;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 900;
+  padding: 8px 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-transform: uppercase;
+}
+.legacy-btn:hover { background: rgba(255, 176, 0, 0.1); transform: translateY(-2px); box-shadow: 0 0 15px rgba(255, 176, 0, 0.2); }
+
+@media (max-width: 390px) {
+  .legacy-grid { grid-template-columns: 1fr; }
+  .legacy-card { padding: 16px; }
+  .legacy-icon { font-size: 1.8rem; }
+}
+
+/* Archive Rebirth v16 — “SEEDING A NEW CIVILIZATION” */
+.seed-archive-shelf { margin-top: 32px; margin-bottom: 32px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 24px; }
+.seed-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin-top: 16px; }
+
+.seed-card {
+  background: rgba(0,0,0,0.2);
+  border: 1px solid rgba(0, 255, 65, 0.3);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s;
+}
+
+.mode-lore .seed-card {
+  border: 2px solid #00ff41;
+  box-shadow: 0 0 25px rgba(0, 255, 65, 0.1), inset 0 0 15px rgba(255, 176, 0, 0.05);
+}
+
+.seed-glow {
+  position: absolute;
+  top: -50%; left: -50%; width: 200%; height: 200%;
+  background: radial-gradient(circle at center, rgba(0, 255, 65, 0.08) 0%, rgba(255, 176, 0, 0.02) 40%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.8s;
+  pointer-events: none;
+}
+.mode-lore .seed-glow { opacity: 1; }
+
+.seed-icon { font-size: 2.2rem; flex-shrink: 0; filter: drop-shadow(0 0 10px rgba(0, 255, 65, 0.4)); }
+.seed-info { flex: 1; z-index: 1; }
+.seed-name { font-family: var(--font-display); font-size: 1.1rem; font-weight: 900; color: #fff; margin-bottom: 6px; }
+.seed-inherited { font-family: var(--font-mono); font-size: 0.55rem; text-transform: uppercase; color: var(--accent); opacity: 0.8; letter-spacing: 0.05em; margin-bottom: 4px; }
+.seed-origin { font-family: var(--font-mono); font-size: 0.5rem; text-transform: uppercase; opacity: 0.4; letter-spacing: 0.1em; margin-bottom: 12px; }
+.seed-note { font-size: 0.8rem; opacity: 0.7; line-height: 1.5; margin: 0; font-style: italic; }
+
+.seed-btn {
+  background: #00ff41;
+  color: #000;
+  border: none;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 900;
+  padding: 10px 24px;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  box-shadow: 0 0 15px rgba(0, 255, 65, 0.4);
+}
+.seed-btn:hover { background: #fff; box-shadow: 0 0 20px #fff; transform: translateY(-2px); }
+
+@media (max-width: 390px) {
+  .seed-grid { grid-template-columns: 1fr; }
+  .seed-card { padding: 16px; }
+  .seed-icon { font-size: 1.8rem; }
+}
+
+/* Civilization Eras v15 — “THE GOLDEN ERA” */
+.era-card-container {
+  margin-bottom: 48px;
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  border-radius: 24px;
+  padding: 48px 24px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.06);
+}
+
+.mode-lore .era-card-container {
+  border-color: #ffb000;
+  box-shadow: 0 0 40px rgba(255, 176, 0, 0.1);
+}
+
+.era-glow {
+  position: absolute;
+  top: -50%; left: -50%; width: 200%; height: 200%;
+  background: radial-gradient(circle at center, rgba(255, 176, 0, 0.12) 0%, rgba(0, 255, 65, 0.03) 40%, transparent 70%);
+  opacity: 0;
+  transition: opacity 1s;
+  pointer-events: none;
+}
+.mode-lore .era-glow { opacity: 1; }
+
+.era-card-header { margin-bottom: 24px; }
+.era-kicker { font-family: var(--font-mono); font-size: 0.7rem; font-weight: 900; text-transform: uppercase; color: #ffb000; letter-spacing: 0.2em; }
+
+.era-seal-outer {
+  width: 80px; height: 80px;
+  margin: 0 auto 24px;
+  background: rgba(255, 176, 0, 0.05);
+  border: 1px solid rgba(255, 176, 0, 0.2);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+}
+.era-seal { font-size: 2.5rem; filter: drop-shadow(0 0 10px rgba(255, 176, 0, 0.4)); }
+
+.era-title { font-family: var(--font-display); font-size: 2.2rem; color: #fff; margin: 0 0 12px; font-weight: 900; text-shadow: 0 0 20px rgba(255,255,255,0.1); }
+.era-desc { font-size: 1rem; opacity: 0.7; font-style: italic; max-width: 400px; margin: 0 auto; line-height: 1.6; color: var(--accent); }
+
+/* Era Records Shelf */
+.era-records-shelf { margin-top: 32px; margin-bottom: 32px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 24px; }
+.era-records-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; margin-top: 16px; }
+
+.era-record-card {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 12px;
+  padding: 16px;
+  transition: all 0.3s;
+}
+.mode-lore .era-record-card { border-color: rgba(255, 176, 0, 0.2); }
+.er-meta { font-family: var(--font-mono); font-size: 0.55rem; text-transform: uppercase; opacity: 0.4; margin-bottom: 8px; }
+.er-title { font-family: var(--font-display); font-size: 1rem; font-weight: 900; color: #fff; margin-bottom: 6px; }
+.er-note { font-size: 0.75rem; opacity: 0.6; line-height: 1.4; margin: 0; }
+
+/* Federation Tag */
+.fed-meta-pill.era-active { background: rgba(255, 176, 0, 0.2); color: #fff; border: 1px solid #ffb000; box-shadow: 0 0 10px rgba(255, 176, 0, 0.3); }
+
+@keyframes pulse-ceremonial {
+  0% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+  100% { opacity: 0.6; transform: scale(1); }
+}
+.animate-pulse-ceremonial { animation: pulse-ceremonial 3s infinite ease-in-out; }
+
+@media (max-width: 390px) {
+  .era-card-container { padding: 32px 16px; }
+  .era-title { font-size: 1.6rem; }
+  .era-desc { font-size: 0.85rem; }
+  .era-records-grid { grid-template-columns: 1fr; }
+}
+
+/* Federation Protocols v13 — “PROPOSE DOCTRINE” */
+.fed-shared-doctrines { margin-top: 48px; padding-top: 48px; border-top: 1px solid rgba(255,255,255,0.05); }
+.fed-shared-intro { font-size: 0.8rem; opacity: 0.6; text-align: center; margin-bottom: 32px; max-width: 400px; margin-left: auto; margin-right: auto; }
+.fed-doctrine-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+
+.fed-doctrine-card {
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  border-radius: 12px;
+  padding: 24px;
+  position: relative;
+  display: flex;
+  gap: 20px;
+  transition: all 0.3s;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.mode-lore .fed-doctrine-card {
+  border: 2px double #ffb000;
+  background: rgba(0,0,0,0.2);
+  box-shadow: 0 0 30px rgba(255, 176, 0, 0.05);
+}
+
+.fed-doctrine-seal {
+  position: absolute;
+  top: 12px; right: 12px;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  opacity: 0.2;
+  color: #ffb000;
+}
+
+.fed-doctrine-icon { font-size: 2.2rem; flex-shrink: 0; }
+.fed-doctrine-info { flex: 1; }
+.fed-doctrine-name { font-family: var(--font-display); font-size: 1.1rem; color: #fff; margin-bottom: 4px; font-weight: 900; }
+.fed-doctrine-status { font-family: var(--font-mono); font-size: 0.5rem; text-transform: uppercase; color: #ffb000; letter-spacing: 0.1em; margin-bottom: 12px; font-weight: 900; }
+.fed-doctrine-adoption { font-family: var(--font-mono); font-size: 0.6rem; background: rgba(255, 176, 0, 0.1); color: #ffb000; padding: 4px 8px; border-radius: 4px; display: inline-block; margin-bottom: 12px; }
+.fed-doctrine-note { font-size: 0.8rem; opacity: 0.7; line-height: 1.4; margin: 0; font-style: italic; }
+
+/* Museum Proposal Buttons */
+.fed-propose-btn {
+  background: var(--accent);
+  color: var(--ink);
+  border: none;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 900;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-transform: uppercase;
+}
+.fed-propose-btn:hover { transform: scale(1.05); filter: brightness(1.1); }
+
+.fed-proposed-badge {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  color: #ffb000;
+  font-weight: 900;
+  opacity: 0.8;
+}
+
+.doctrine-card.proposed { border-color: #ffb000; }
+
+/* Today Hero Badges */
+.hero-spread-badge {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  background: rgba(255, 176, 0, 0.15);
+  color: #ffb000;
+  padding: 4px 10px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-top: 12px;
+  letter-spacing: 0.05em;
+  font-weight: 900;
+}
+
+@media (max-width: 390px) {
+  .fed-doctrine-grid { grid-template-columns: 1fr; }
+  .fed-doctrine-card { padding: 16px; gap: 16px; }
+  .fed-doctrine-icon { font-size: 1.8rem; }
+  .fed-doctrine-name { font-size: 1rem; }
+}
+
+/* Ritual Evolution v12 — “SYNTHESIS DOCTRINE” */
+.synthesis-doctrines-shelf { margin-top: 32px; margin-bottom: 24px; }
+.doctrine-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin-top: 16px; }
+
+.doctrine-card {
+  background: rgba(0,0,0,0.1);
+  border: 1px solid rgba(255, 176, 0, 0.3);
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s;
+}
+
+.mode-lore .doctrine-card {
+  border-color: rgba(255, 176, 0, 0.6);
+  box-shadow: 0 0 25px rgba(255, 176, 0, 0.1), inset 0 0 15px rgba(0, 255, 65, 0.05);
+}
+
+.doctrine-glow {
+  position: absolute;
+  top: -50%; left: -50%; width: 200%; height: 200%;
+  background: radial-gradient(circle at center, rgba(255, 176, 0, 0.1) 0%, rgba(0, 255, 65, 0.03) 40%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.6s;
+  pointer-events: none;
+}
+.mode-lore .doctrine-glow { opacity: 1; }
+
+.doctrine-icon { font-size: 2rem; flex-shrink: 0; filter: drop-shadow(0 0 10px rgba(255, 176, 0, 0.4)); }
+.doctrine-info { flex: 1; z-index: 1; }
+.doctrine-name { font-family: var(--font-display); font-size: 1.1rem; font-weight: 900; color: #fff; margin-bottom: 4px; letter-spacing: 0.02em; }
+.doctrine-source { font-family: var(--font-mono); font-size: 0.55rem; text-transform: uppercase; opacity: 0.5; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 10px; }
+.doctrine-note { font-size: 0.8rem; opacity: 0.7; line-height: 1.5; margin: 0; color: rgba(255,255,255,0.9); }
+
+/* Ghost OS Evolve Button */
+.ghost-evolve-btn {
+  background: #ffb000;
+  color: #000;
+  border: none;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 900;
+  padding: 8px 16px;
+  cursor: pointer;
+  margin-top: 12px;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  display: block;
+  box-shadow: 0 0 15px rgba(255, 176, 0, 0.4);
+}
+.ghost-evolve-btn:hover { background: #fff; box-shadow: 0 0 20px #fff; }
+
+@media (max-width: 390px) {
+  .doctrine-grid { grid-template-columns: 1fr; }
+  .doctrine-card { padding: 16px; gap: 16px; }
+  .doctrine-icon { font-size: 1.8rem; }
+  .doctrine-name { font-size: 1rem; }
+  .doctrine-note { font-size: 0.75rem; }
+}
+
+/* Archive Deep-Linking v11 — “BORROWED RITUALS” */
+.borrowed-rituals-shelf { margin-top: 32px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 24px; }
+.borrowed-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin-top: 16px; }
+
+.borrowed-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.mode-lore .borrowed-card {
+  border-color: rgba(255, 176, 0, 0.2);
+  box-shadow: 0 4px 15px rgba(255, 176, 0, 0.05);
+}
+
+.borrowed-glow {
+  position: absolute;
+  top: -50%; left: -50%; width: 200%; height: 200%;
+  background: radial-gradient(circle at center, rgba(255, 176, 0, 0.05) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s;
+  pointer-events: none;
+}
+.mode-lore .borrowed-glow { opacity: 1; }
+
+.borrowed-icon { font-size: 1.8rem; flex-shrink: 0; }
+.borrowed-info { flex: 1; }
+.borrowed-name { font-family: var(--font-display); font-size: 0.95rem; font-weight: 900; color: #fff; margin-bottom: 4px; }
+.borrowed-source { font-family: var(--font-mono); font-size: 0.55rem; text-transform: uppercase; opacity: 0.4; letter-spacing: 0.1em; margin-bottom: 8px; }
+.borrowed-note { font-size: 0.75rem; opacity: 0.6; font-style: italic; line-height: 1.4; margin: 0; }
+
+/* Ghost OS Command Buttons */
+.ghost-mirror-btn {
+  background: var(--ink);
+  color: #00ff41;
+  border: 1px solid #00ff41;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  padding: 6px 12px;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: all 0.2s;
+  text-transform: uppercase;
+  display: block;
+}
+.ghost-mirror-btn:hover { background: rgba(0, 255, 65, 0.1); }
+.mode-lore .ghost-mirror-btn { color: #ffb000; border-color: #ffb000; }
+.mode-lore .ghost-mirror-btn:hover { background: rgba(255, 176, 0, 0.1); }
+
+/* Today Hero Influence */
+.ritual-echo-note {
+  font-size: 0.65rem;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(0,0,0,0.05);
+  letter-spacing: 0.05em;
+  opacity: 0.8;
+}
+
+/* Federation Pills */
+.fed-meta-pill {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.05);
+  opacity: 0.5;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.fed-meta-pill.active { background: rgba(255, 176, 0, 0.1); color: #ffb000; opacity: 1; }
+
+.hero-ritual-echo {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-top: 12px;
+  opacity: 0.7;
+  letter-spacing: 0.05em;
+}
+
+@media (max-width: 390px) {
+  .borrowed-grid { grid-template-columns: 1fr; }
+  .borrowed-card { padding: 12px; }
+  .borrowed-icon { font-size: 1.5rem; }
+  .borrowed-name { font-size: 0.85rem; }
+}
+
 /* Cross-Archive Links v10 (Lore Compression v2) */
 .bb-link-status { 
   font-size: 0.55rem; 

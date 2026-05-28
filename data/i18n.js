@@ -1854,6 +1854,126 @@
         catQuietStability: { en: "Quiet Stability",           th: "ความมั่นคงที่เงียบสงบ" },
         catSameEraSurvival:{ en: "Same Era Survival",         th: "การอยู่รอดในยุคเดียวกัน" },
 
+        // Borrowed Rituals (v11)
+        borrowedRitualTitle:{ en: "Borrowed Rituals",        th: "กิจวัตรที่หยิบยืมมา" },
+        borrowAction:      { en: "MIRROR TO SHELF",           th: "คัดลอกลงชั้นวาง" },
+        borrowLimitFull:   { en: "Borrowed shelf full. Replacing oldest record.", th: "ชั้นวางเต็มแล้ว กำลังเขียนทับบันทึกที่เก่าที่สุด" },
+        borrowFrom:        { en: "From: #ARCHIVE-",           th: "จาก: #ARCHIVE-" },
+        borrowSuccess:     { en: "Ritual mirrored successfully.", th: "คัดลอกกิจวัตรสำเร็จ" },
+        borrowNoteShared:  { en: "Recovered from another civilization that survived the same recovery week.", th: "กู้คืนจากอีกอารยธรรมที่รอดพ้นจากสัปดาห์ฟื้นฟูเดียวกัน" },
+        borrowNoteEcho:    { en: "A symbolic echo of a distant household's stabilization strategy.", th: "เสียงสะท้อนเชิงสัญลักษณ์จากกลยุทธ์การสร้างความมั่นคงของครัวเรือนที่ห่างไกล" },
+        borrowNoteFragment:{ en: "A fragment of a lost doctrine that still resonates with local history.", th: "ชิ้นส่วนของลัทธิที่สาบสูญซึ่งยังคงสะท้อนถึงประวัติศาสตร์ในท้องถิ่น" },
+        
+        // Artifact Types
+        artBorrowedRitual: { en: "Borrowed Ritual",           th: "กิจวัตรที่หยิบยืม" },
+        artBorrowedProverb:{ en: "Mirrored Proverb",          th: "สุภาษิตที่สะท้อนมา" },
+        artBorrowedSignal: { en: "Captured Signal",           th: "สัญญาณที่ดักจับได้" },
+        artBorrowedMotto:  { en: "Motto Fragment",            th: "ชิ้นส่วนคติพจน์" },
+        artBorrowedDoctrine:{ en: "Recovery Doctrine",         th: "หลักการฟื้นฟู" },
+
+        // Today Hero Influence
+        heroBorrowedEcho:  { en: "Tonight’s ritual echoes {0}.", th: "กิจวัตรคืนนี้สะท้อนถึง {0}" },
+        
+        // Federation Meta
+        fedBorrowedActive: { en: "Borrowed tradition active", th: "มีการใช้ประเพณีที่หยิบยืมมา" },
+
+        // Synthesis Doctrines (v12)
+        synthesisTitle:    { en: "Synthesis Doctrines",       th: "หลักคำสอนจากการผสมผสาน" },
+        synthesisAction:   { en: "EVOLVE DOCTRINE",           th: "วิวัฒนาการหลักคำสอน" },
+        synthesisEligible: { en: "Compatible rituals detected.", th: "ตรวจพบกิจวัตรที่เข้ากันได้" },
+        synthesisSuccess:  { en: "Doctrine evolved successfully.", th: "วิวัฒนาการหลักคำสอนสำเร็จ" },
+        synthesisLimit:    { en: "Doctrine archives full. Replacing oldest.", th: "คลังหลักคำสอนเต็มแล้ว กำลังแทนที่อันเก่าที่สุด" },
+        synthesisFrom:     { en: "Derived from: {0} + {1}",    th: "ต่อยอดมาจาก: {0} + {1}" },
+        synthesisNoteQuiet:{ en: "Recovery begins softly before the world asks for energy.", th: "การพักฟื้นเริ่มต้นอย่างนุ่มนวล ก่อนที่โลกจะเรียกร้องพลังงาน" },
+        synthesisNoteReset:{ en: "Rest together, without needing conversation.", th: "พักผ่อนร่วมกันโดยไม่จำเป็นต้องมีการสนทนา" },
+        synthesisNoteSync: { en: "A unified strategy for synchronized stabilization.", th: "กลยุทธ์ที่เป็นหนึ่งเดียวเพื่อความสอดประสานที่มั่นคง" },
+        synthesisContrib:  { en: "Contributed to synthesis.", th: "มีส่วนช่วยในการผสมผสาน" },
+
+        // Federation Protocols (v13)
+        fedProposeAction:  { en: "PROPOSE TO FEDERATION",      th: "เสนอต่อสหพันธ์" },
+        fedProposed:       { en: "Proposed to Federation",     th: "เสนอต่อสหพันธ์แล้ว" },
+        fedAdoptedBy:      { en: "Adopted by:",                th: "ยอมรับโดย:" },
+        fedCivCount:       { en: "{0} civilizations",          th: "{0} อารยธรรม" },
+        fedRecognition:    { en: "+ Federation Recognition",   th: "+ การยอมรับจากสหพันธ์" },
+        fedSharedTitle:    { en: "Shared Doctrines",           th: "หลักคำสอนที่แบ่งปัน" },
+        fedSharedIntro:    { en: "Synthesized culture spread across allied households.", th: "วัฒนธรรมที่ผสมผสานแพร่กระจายไปยังครัวเรือนพันธมิตร" },
+        fedCultureContrib: { en: "Contributed to federation culture.", th: "มีส่วนร่วมในวัฒนธรรมของสหพันธ์" },
+        fedSpreadSuccess:  { en: "Your doctrine spread through the federation.", th: "หลักคำสอนของคุณแพร่กระจายไปทั่วสหพันธ์" },
+        fedSharedNote:     { en: "Shared as a recovery tradition for allied civilizations.", th: "แบ่งปันในฐานะประเพณีการพักฟื้นสำหรับอารยธรรมพันธมิตร" },
+        fedLimitFull:      { en: "Federation archives full. Replacing oldest proposal.", th: "จดหมายเหตุสหพันธ์เต็มแล้ว กำลังแทนที่ข้อเสนอที่เก่าที่สุด" },
+
+        // Civilization Eras (v15)
+        eraTitleLabel:     { en: "Civilization Era",          th: "ยุคสมัยของอารยธรรม" },
+        eraRecordsTitle:   { en: "Era Records",               th: "บันทึกยุคสมัย" },
+        eraGoldenEntered:  { en: "Your civilization entered a Golden Era.", th: "อารยธรรมของคุณได้เข้าสู่ยุคทองแล้ว" },
+        eraActiveTag:      { en: "GOLDEN ERA ACTIVE",         th: "ยุคทองกำลังทำงาน" },
+        
+        eraNotePillars:    { en: "Era initiated after multiple allied traditions became permanent.", th: "ยุคสมัยเริ่มต้นขึ้นหลังจากประเพณีของพันธมิตรหลายอย่างกลายเป็นสิ่งที่ถาวร" },
+        eraNoteDoctrines:  { en: "Era initiated after extensive federation cultural contribution.", th: "ยุคสมัยเริ่มต้นขึ้นหลังจากการสนับสนุนทางวัฒนธรรมแก่สหพันธ์อย่างกว้างขวาง" },
+        eraNoteHistory:    { en: "Era initiated after long-term sustainable development.", th: "ยุคสมัยเริ่มต้นขึ้นหลังจากการพัฒนาที่ยั่งยืนในระยะยาว" },
+
+        eraQuietRecovery:  { en: "Golden Era of Quiet Recovery", th: "ยุคทองแห่งการพักฟื้นที่เงียบสงบ" },
+        eraParallelBloom:  { en: "The Parallel Bloom",        th: "การผลิบานคู่ขนาน" },
+        eraSoupCentury:    { en: "The Soup Restoration Century", th: "ศตวรรษแห่งการฟื้นฟูด้วยซุป" },
+        eraSoftInfra:      { en: "Age of Soft Infrastructure", th: "ยุคสมัยแห่งโครงสร้างพื้นฐานที่นุ่มนวล" },
+        eraGreatRecharge:  { en: "The Great Recharge Era",    th: "ยุคสมัยแห่งการเติมพลังครั้งใหญ่" },
+
+        eraQuietRecoveryDesc: { en: "A period defined by deep internal stabilization and peaceful recovery.", th: "ช่วงเวลาที่กำหนดโดยการสร้างเสถียรภาพภายในที่ลึกซึ้งและการพักฟื้นที่สงบสุข" },
+        eraParallelBloomDesc: { en: "This civilization entered a period of quiet cultural abundance.", th: "อารยธรรมนี้เข้าสู่ช่วงเวลาแห่งความอุดมสมบูรณ์ทางวัฒนธรรมที่เงียบสงบ" },
+        eraSoupCenturyDesc:   { en: "A century characterized by shared nourishment and collective survival.", th: "ศตวรรษที่โดดเด่นด้วยการบำรุงเลี้ยงร่วมกันและการอยู่รอดของกลุ่ม" },
+        eraSoftInfraDesc:     { en: "The infrastructure of the house has reached peak softness and warmth.", th: "โครงสร้างพื้นฐานของบ้านได้มาถึงจุดสูงสุดของความนุ่มนวลและความอบอุ่น" },
+        eraGreatRechargeDesc: { en: "A monumental shift towards long-term energy sustainability.", th: "การเปลี่ยนแปลงครั้งสำคัญไปสู่ความยั่งยืนของพลังงานในระยะยาว" },
+
+        // Archive Rebirth (v16)
+        seedAction:        { en: "SEED NEW CIVILIZATION",     th: "หว่านเมล็ดพันธุ์อารยธรรมใหม่" },
+        seedArchiveTitle:  { en: "Seed Archive",              th: "คลังจดหมายเหตุเมล็ดพันธุ์" },
+        seedFirstBreath:   { en: "First Breath recorded.",     th: "บันทึกลมหายใจแรกแล้ว" },
+        seedNewGeneration: { en: "A new civilization began from your era.", th: "อารยธรรมใหม่ได้ถือกำเนิดขึ้นจากยุคสมัยของคุณ" },
+        seedFederationTag: { en: "NEW CIVILIZATION SEEDED",   th: "หว่านเมล็ดพันธุ์อารยธรรมใหม่แล้ว" },
+        seedInherited:     { en: "Inherited: {0}",            th: "สืบทอด: {0}" },
+        seedOriginEra:     { en: "Origin Era: {0}",           th: "ยุคสมัยต้นกำเนิด: {0}" },
+        
+        seedBufferColony:  { en: "The Quiet Buffer Colony",   th: "อาณานิคมการบัฟเฟอร์ที่เงียบสงบ" },
+        seedSoupRelay:     { en: "The Soup Relay House",      th: "บ้านส่งต่อซุป" },
+        seedSoftPioneer:   { en: "The Soft Infrastructure Pioneer", th: "ผู้บุกเบิกโครงสร้างพื้นฐานที่นุ่มนวล" },
+        seedParallelRoot:  { en: "The Parallel Root System",  th: "ระบบรากแก้วคู่ขนาน" },
+        
+        seedNoteBuffer:    { en: "A civilization founded from soft infrastructure and recovery.", th: "อารยธรรมที่ก่อตั้งขึ้นจากโครงสร้างพื้นฐานที่นุ่มนวลและการพักฟื้น" },
+        seedNoteSoup:      { en: "Built from nourishment and shared ritual.", th: "สร้างขึ้นจากการบำรุงเลี้ยงและพิธีกรรมร่วมกัน" },
+        seedNoteSoft:      { en: "Inherited the warmth of the home as its primary founding law.", th: "สืบทอดความอบอุ่นของบ้านมาเป็นกฎหลักในการก่อตั้ง" },
+        seedNoteParallel:  { en: "Founded on the principle of being together, separately.", th: "ก่อตั้งขึ้นบนหลักการของการอยู่ร่วมกันอย่างแยกจากกัน" },
+
+        // Archive Legacy (v17)
+        legacyAction:      { en: "PASS THE TORCH",            th: "ส่งต่อคบเพลิง" },
+        legacyTransferTitle:{ en: "Legacy Transfers",          th: "การถ่ายโอนมรดก" },
+        legacyTorchPassed: { en: "The torch was passed forward.", th: "คบเพลิงถูกส่งต่อไปยังเบื้องหน้าแล้ว" },
+        legacyStatusActive:{ en: "Continuity established.",   th: "จัดตั้งความต่อเนื่องแล้ว" },
+        legacyFederationTag:{ en: "TORCH PASSED",              th: "ส่งต่อคบเพลิงแล้ว" },
+        legacyPreviousEra: { en: "Previous Era: {0}",         th: "ยุคสมัยก่อนหน้า: {0}" },
+        legacyPassedFrom:  { en: "Passed forward from {0}.",  th: "ส่งต่อมาจาก {0}" },
+
+        traitHistoricallyQuiet: { en: "Historically Quiet",    th: "เงียบสงบทางประวัติศาสตร์" },
+        traitSoupReinforced:   { en: "Soup Reinforced",        th: "เสริมแกร่งด้วยซุป" },
+        traitParallelRooted:   { en: "Parallel Rooted",        th: "หยั่งรากขนาน" },
+        traitEmotionallyStable:{ en: "Emotionally Stable",     th: "มั่นคงทางอารมณ์" },
+        traitRecoveryDriven:   { en: "Recovery Driven",        th: "ขับเคลื่อนด้วยการพักฟื้น" },
+
+        legacyNoteTransfer: { en: "We carried something meaningful forward.", th: "เราได้นำพาสิ่งที่มีความหมายไปสู่เบื้องหน้า" },
+        legacyNoteSeed:     { en: "Inherited from a seed civilization that became the new core.", th: "สืบทอดมาจากอารยธรรมเมล็ดพันธุ์ที่กลายเป็นแกนหลักใหม่" },
+
+        // Legacy Pillars (v14)
+        pillarTitle:       { en: "Legacy Pillars",            th: "เสาหลักแห่งมรดก" },
+        pillarAdoptAction: { en: "ADOPT AS LEGACY PILLAR",    th: "รับมาเป็นเสาหลักแห่งมรดก" },
+        pillarAdopted:     { en: "Legacy Pillar established.", th: "จัดตั้งเสาหลักแห่งมรดกแล้ว" },
+        pillarFrom:        { en: "Adopted from: {0}",          th: "รับมาจาก: {0}" },
+        pillarNoteRecovery:{ en: "Adopted from an allied civilization during a recovery cycle.", th: "รับมาจากอารยธรรมพันธมิตรในช่วงวงจรการพักฟื้น" },
+        pillarNoteStabilize:{ en: "A permanent cultural anchor for shared domestic stability.", th: "สมอทางวัฒนธรรมที่ถาวรเพื่อความมั่นคงในครัวเรือนร่วมกัน" },
+        pillarNoteCycle:   { en: "A symbolic tradition that survived the shift between eras.", th: "ประเพณีเชิงสัญลักษณ์ที่รอดพ้นจากการเปลี่ยนแปลงระหว่างยุคสมัย" },
+        heroAlliedTradition:{ en: "An allied tradition became part of home.", th: "ประเพณีของพันธมิตรได้กลายเป็นส่วนหนึ่งของบ้านเราแล้ว" },
+        fedRecognitionBoth: { en: "+ Mutual Federation Recognition", th: "+ การยอมรับร่วมกันจากสหพันธ์" },
+        
+        heroDoctrineFollow:{ en: "Tonight follows {0}.",      th: "กิจวัตรคืนนี้ทำตาม {0}" },
+
         // Chemistry reasons
         reasonLoudWeek:    { en: "Both civilizations survived a Loud Week.", th: "ทั้งสองอารยธรรมรอดพ้นจากสัปดาห์ที่วุ่นวายมาด้วยกัน" },
         reasonSoupRituals: { en: "Soup rituals increased during the same period.", th: "พิธีกรรมซุปเพิ่มขึ้นในช่วงเวลาเดียวกัน" },

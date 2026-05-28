@@ -51,6 +51,7 @@
         const profiles = window.MeowStore.getFamily();
         const cabinet = window.MeowStore.getThoughtCabinet ? window.MeowStore.getThoughtCabinet() : {};
         const activeArc = window.MeowStore.getActiveArc ? window.MeowStore.getActiveArc() : null;
+        const era = window.MeowStore.getActiveEra ? window.MeowStore.getActiveEra() : null;
 
         const internalized = Object.entries(cabinet).filter(([id, d]) => d.status === 'INTERNALIZED');
         const doctrine = internalized.length > 0 ? internalized[0][0] : null;
@@ -67,6 +68,10 @@
             prestige,
             activeArcKey: activeArc ? activeArc.key : null,
             recentClimate: history.length > 0 ? history[0].answers.stress : 'calm',
+            hasBorrowedRituals: (window.MeowStore.getBorrowedRituals ? window.MeowStore.getBorrowedRituals().length : 0) > 0,
+            activeEra: era ? { id: era.id, title: era.title } : null,
+            seedCount: (window.MeowStore.getSeedCivilizations ? window.MeowStore.getSeedCivilizations().length : 0),
+            legacyCount: (window.MeowStore.getLegacyTransfers ? window.MeowStore.getLegacyTransfers().length : 0),
             giftKey,
             timestamp: Date.now()
         };
@@ -240,6 +245,80 @@
         `;
     }
 
+    function renderSharedDoctrines(federation) {
+        const localProposed = window.MeowStore.getProposedDoctrines() || [];
+        const legacyPillars = window.MeowStore.getLegacyPillars() || [];
+        const pillarIds = new Set(legacyPillars.map(p => p.id));
+
+        // Generate SIMULATED proposed doctrines from allied members
+        const alliedDoctrines = federation.map(member => {
+            const seed = member.id.length + (member.prestige || 0);
+            const titles = ['Quiet Soup Accord', 'Parallel Reset Doctrine', 'Synchronized Stability Pact', 'Cloud Shield Protocol'];
+            const icons = ['🍲', '🛏️', '⚖️', '🛡️'];
+            return {
+                id: 'allied_doc_' + member.id.toLowerCase() + '_' + (seed % 100),
+                title: t(titles[seed % titles.length]),
+                icon: icons[seed % icons.length],
+                sourceName: member.name,
+                sourceId: member.id,
+                note: t('fedSharedNote')
+            };
+        }).filter(d => d);
+
+        const allShared = [...localProposed.map(p => ({ ...p, isLocal: true })), ...alliedDoctrines];
+
+        if (allShared.length === 0) return '';
+
+        return `
+            <div class="fed-shared-doctrines animate-fade-in">
+                <div class="embassy-header">
+                    <h3 class="embassy-title">${t('fedSharedTitle')}</h3>
+                    <p class="fed-shared-intro">${t('fedSharedIntro')}</p>
+                </div>
+                <div class="fed-doctrine-grid">
+                    ${allShared.map(d => {
+                        const isAdopted = pillarIds.has(d.id);
+                        // Adoption count logic for local/allied
+                        const seed = d.id.length + federation.length;
+                        const adoptionCount = d.isLocal ? ((seed % (federation.length + 1)) + 1) : (seed % 3 + 1);
+                        
+                        if (window.MeowTrack) {
+                            window.MeowTrack('federation_adoption_seen', { doctrine_id: d.id, count: adoptionCount });
+                        }
+
+                        return `
+                            <div class="fed-doctrine-card ${isAdopted ? 'adopted' : ''}">
+                                <div class="fed-doctrine-seal">✦</div>
+                                <span class="fed-doctrine-icon">${d.icon}</span>
+                                <div class="fed-doctrine-info">
+                                    <div class="fed-doctrine-name">${d.title}</div>
+                                    <div class="fed-doctrine-status">${d.isLocal ? t('fedProposed') : d.sourceName}</div>
+                                    <div class="fed-doctrine-adoption">${t('fedAdoptedBy')} ${t('fedCivCount').replace('{0}', adoptionCount)}</div>
+                                    <p class="fed-doctrine-note">“${d.note}”</p>
+                                    
+                                    <div class="fed-doctrine-actions" style="margin-top:16px;">
+                                        ${d.isLocal ? '' : (isAdopted ? `
+                                            <span class="fed-adopted-badge">🏛️ ${t('pillarAdopted')}</span>
+                                        ` : `
+                                            <button class="fed-adopt-btn" 
+                                                    data-id="${d.id}" 
+                                                    data-title="${d.title}" 
+                                                    data-icon="${d.icon}" 
+                                                    data-source="${d.sourceName}"
+                                                    data-sid="${d.sourceId}">
+                                                ${t('pillarAdoptAction')}
+                                            </button>
+                                        `)}
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+            </div>
+        `;
+    }
+
     function renderFederationUI() {
         const host = window.MeowOS ? window.MeowOS.getLayer('identity') : document.getElementById('family-content');
         if (!host) return;
@@ -293,6 +372,8 @@
 
             ${renderGiftArchive()}
 
+            ${renderSharedDoctrines(federation)}
+
             ${federation.length > 0 ? `
                 <div class="fed-embassy-section">
                     <div class="embassy-header">
@@ -329,6 +410,9 @@
                             
                             if (window.MeowTrack) {
                                 window.MeowTrack('federation_reason_viewed', { member_id: member.id, category: chem.category });
+                                if (member.activeEra) window.MeowTrack('federation_era_visible', { member_id: member.id, era_id: member.activeEra.id });
+                                if (member.seedCount > 0) window.MeowTrack('federation_seed_visible', { member_id: member.id, seed_count: member.seedCount });
+                                if (member.legacyCount > 0) window.MeowTrack('federation_torch_seen', { member_id: member.id, legacy_count: member.legacyCount });
                             }
 
                             return `
@@ -336,6 +420,18 @@
                                     <div class="alliance-seal">${alliance.icon}</div>
                                     <div class="alliance-name">${member.name}</div>
                                     <div class="alliance-status">${alliance.title}</div>
+                                    <div class="fed-meta-grid" style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:8px;">
+                                        ${member.hasBorrowedRituals ? `<div class="fed-meta-pill active">${t('fedBorrowedActive')}</div>` : ''}
+                                        ${member.activeEra ? `
+                                            <div class="fed-meta-pill era-active animate-pulse-ceremonial" title="${member.activeEra.title}">✨ ${t('eraActiveTag')}</div>
+                                        ` : ''}
+                                        ${member.seedCount > 0 ? `
+                                            <div class="fed-meta-pill seed-active" style="background:rgba(0, 255, 65, 0.1); border-color:#00ff41; color:#00ff41;">🌱 ${t('seedFederationTag')}</div>
+                                        ` : ''}
+                                        ${member.legacyCount > 0 ? `
+                                            <div class="fed-meta-pill torch-active" style="background:rgba(255, 176, 0, 0.2); border-color:#ff4500; color:#ffb000;">🔥 ${t('legacyFederationTag')}</div>
+                                        ` : ''}
+                                    </div>
                                     <div class="pm-label">Prestige: ${member.prestige || 0} ${member.prestige > 100 ? '(Elder Civilization)' : ''}</div>
                                     
                                     <div class="fed-diplomacy-meta" style="margin:16px 0; padding:12px; background:rgba(255,255,255,0.03); border-radius:8px;">
@@ -396,6 +492,34 @@
             window.MeowTrack && window.MeowTrack('gift_archive_opened', { gift_count: window.MeowStore.getDiplomaticGifts().length, lang: getLang() });
         }
 
+        // Bind adoption buttons
+        container.querySelectorAll('.fed-adopt-btn').forEach(btn => {
+            btn.onclick = () => {
+                const data = btn.dataset;
+                const seed = data.id.length + new Date().getDate();
+                const notes = ['pillarNoteRecovery', 'pillarNoteStabilize', 'pillarNoteCycle'];
+                
+                const pillar = {
+                    id: data.id,
+                    title: data.title,
+                    icon: data.icon,
+                    sourceName: data.source,
+                    sourceId: data.sid,
+                    note: t(notes[seed % notes.length])
+                };
+
+                if (window.MeowStore.saveLegacyPillar(pillar)) {
+                    window.MeowStore.addPrestige(15); // Mutual recognition
+                    if (window.MeowTrack) {
+                        window.MeowTrack('pillar_adopted', { doctrine_id: pillar.id, source_name: pillar.sourceName });
+                        window.MeowTrack('federation_culture_shared', { type: 'legacy_pillar' });
+                    }
+                    renderFederationUI();
+                }
+            };
+        });
+
+        // Other sub-module interactions
         container.querySelector('#btn-fed-export').onclick = () => {
             const giftKey = container.querySelector('#fed-gift-select').value;
             const code = generateShareCode(giftKey);

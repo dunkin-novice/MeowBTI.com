@@ -28,12 +28,41 @@
         const civClass = window.MeowCivilization ? window.MeowCivilization.detectClass(history, profiles) : { title: 'Civilization' };
         const ritual = window.MeowRituals ? window.MeowRituals.getRitualRecommendation(climate.key, momentum.key, history) : { title: 'Survival' };
 
+        // Spread influence (v13) / Allied influence (v14) / Era influence (v15) / Rebirth influence (v16) / Legacy influence (v17)
+        const era = window.MeowStore.getActiveEra ? window.MeowStore.getActiveEra() : null;
+        const proposed = window.MeowStore.getProposedDoctrines ? window.MeowStore.getProposedDoctrines() : [];
+        const pillars = window.MeowStore.getLegacyPillars ? window.MeowStore.getLegacyPillars() : [];
+        const seeds = window.MeowStore.getSeedCivilizations ? window.MeowStore.getSeedCivilizations() : [];
+        const transfers = window.MeowStore.getLegacyTransfers ? window.MeowStore.getLegacyTransfers() : [];
+        let spreadMessage = null;
+        
+        if (transfers.length > 0) {
+            spreadMessage = t('legacyTorchPassed');
+            if (window.MeowTrack) window.MeowTrack('inherited_trait_applied', { transfer_count: transfers.length });
+        } else if (seeds.length > 0) {
+            spreadMessage = t('seedNewGeneration');
+            if (window.MeowTrack) window.MeowTrack('new_generation_seen', { seed_count: seeds.length });
+        } else if (era) {
+            spreadMessage = t('eraGoldenEntered');
+            if (window.MeowTrack) window.MeowTrack('golden_era_seen', { era_id: era.id });
+        } else if (pillars.length > 0) {
+            spreadMessage = t('heroAlliedTradition');
+            if (window.MeowTrack) window.MeowTrack('allied_tradition_applied', { pillar_count: pillars.length });
+        } else if (proposed.length > 0) {
+            const fedCount = (window.MeowStore.getFederation ? window.MeowStore.getFederation().length : 0);
+            if (fedCount > 0) {
+                spreadMessage = t('fedSpreadSuccess');
+                if (window.MeowTrack) window.MeowTrack('doctrine_spread_seen', { doctrine_count: proposed.length });
+            }
+        }
+
         const greeting = t('idGreeting').replace('{{class}}', civClass.title);
         
         container.innerHTML = `
             <div class="hero-atmosphere hero-bg-${climate.key}"></div>
             <div class="hero-content">
                 <div class="hero-greeting">${greeting}</div>
+                ${spreadMessage ? `<div class="hero-spread-badge animate-fade-in">✨ ${spreadMessage}</div>` : ''}
                 <div class="hero-weather-main">
                     <span class="hero-weather-emoji">${climate.emoji}</span>
                     <h1 class="hero-weather-title">${climate.title}</h1>
@@ -46,6 +75,7 @@
                         <span class="cta-val">${ritual.title}</span>
                         <span class="cta-arrow">→</span>
                     </a>
+                    ${ritual.echo ? `<div class="hero-ritual-echo animate-fade-in">${ritual.echo}</div>` : ''}
                 </div>
             </div>
         `;

@@ -18,11 +18,36 @@
             key = 'ritSharedFood';
         }
         
-        return {
+        const ritual = {
             title: t(key),
             desc: t(key + 'Desc'),
             key: key
         };
+
+        // Borrowed Ritual Influence (v11) / Synthesis Influence (v12)
+        const borrowed = window.MeowStore.getBorrowedRituals ? window.MeowStore.getBorrowedRituals() : [];
+        const doctrines = window.MeowStore.getSynthesisDoctrines ? window.MeowStore.getSynthesisDoctrines() : [];
+        
+        if (doctrines.length > 0) {
+            // Synthesis takes precedence
+            const seed = new Date().getDate() + doctrines.length;
+            const chosen = doctrines[seed % doctrines.length];
+            ritual.echo = t('heroDoctrineFollow').replace('{0}', chosen.title);
+            if (window.MeowTrack) {
+                window.MeowTrack('doctrine_applied', { doctrine_id: chosen.id });
+            }
+        } else if (borrowed.length > 0) {
+            // Deterministic selection based on date
+            const seed = new Date().getDate() + borrowed.length;
+            const chosen = borrowed[seed % borrowed.length];
+            ritual.echo = t('heroBorrowedEcho').replace('{0}', chosen.title);
+            
+            if (window.MeowTrack) {
+                window.MeowTrack('borrowed_ritual_applied', { ritual_id: chosen.id, source_id: chosen.sourceId });
+            }
+        }
+
+        return ritual;
     }
 
     function getRecoveryArchetype(history) {
@@ -109,6 +134,7 @@
                 <span class="ritual-badge">${archetype}</span>
                 <h3 class="ritual-name">${ritual.title}</h3>
                 <p class="ritual-desc">${ritual.desc}</p>
+                ${ritual.echo ? `<div class="ritual-echo-note animate-fade-in">${ritual.echo}</div>` : ''}
             </div>
 
             ${guidance ? `

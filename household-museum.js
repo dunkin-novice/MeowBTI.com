@@ -462,6 +462,221 @@
         `;
     }
 
+    function renderLegacyPillars() {
+        const pillars = window.MeowStore.getLegacyPillars() || [];
+        if (pillars.length === 0) return '';
+
+        return `
+            <div class="legacy-pillars-shelf">
+                <h4 class="museum-category-title">🏛️ ${t('pillarTitle')}</h4>
+                <div class="pillar-grid">
+                    ${pillars.map(p => `
+                        <div class="pillar-card animate-fade-in">
+                            <div class="pillar-glow"></div>
+                            <div class="pillar-seal">🏛️</div>
+                            <span class="pillar-icon">${p.icon}</span>
+                            <div class="pillar-info">
+                                <div class="pillar-name">${p.title}</div>
+                                <div class="pillar-source">${t('pillarFrom').replace('{0}', p.sourceName)}</div>
+                                <p class="pillar-note">“${p.note}”</p>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+    }
+
+    function renderEraCard() {
+        const era = window.MeowStore.getActiveEra ? window.MeowStore.getActiveEra() : null;
+        if (!era) return '';
+
+        // Auto-save era record if newly active
+        const records = window.MeowStore.getEraRecords();
+        if (!records.some(r => r.id === era.id)) {
+            window.MeowStore.saveEraRecord({
+                id: era.id,
+                title: era.title,
+                note: t('eraNote' + era.trigger.charAt(0).toUpperCase() + era.trigger.slice(1))
+            });
+            if (window.MeowTrack) window.MeowTrack('era_ascended', { era_id: era.id, trigger: era.trigger });
+        }
+
+        if (window.MeowTrack) window.MeowTrack('golden_era_seen', { era_id: era.id });
+
+        const seeding = window.MeowStore.checkSeedingEligibility();
+        const legacy = window.MeowStore.checkLegacyEligibility();
+
+        return `
+            <div class="era-card-container animate-fade-in">
+                <div class="era-glow"></div>
+                <div class="era-card-header">
+                    <span class="era-kicker">✦ ${t('eraTitleLabel')} ✦</span>
+                </div>
+                <div class="era-card-main">
+                    <div class="era-seal-outer">
+                        <div class="era-seal">${era.seal}</div>
+                    </div>
+                    <h1 class="era-title">${era.title}</h1>
+                    <p class="era-desc">“${era.desc}”</p>
+                    
+                    <div class="era-ceremonial-actions" style="margin-top:32px; display:flex; gap:16px; justify-content:center;">
+                        ${seeding.eligible ? `
+                            <button class="seed-btn accent" id="btn-seed-civ">
+                                🌱 ${t('seedAction')}
+                            </button>
+                        ` : ''}
+                        ${legacy.eligible ? `
+                            <button class="legacy-btn ghost" id="btn-legacy-torch">
+                                🕯️ ${t('legacyAction')}
+                            </button>
+                        ` : ''}
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    function renderLegacyTransfers() {
+        const transfers = window.MeowStore.getLegacyTransfers() || [];
+        if (transfers.length === 0) return '';
+
+        return `
+            <div class="legacy-transfers-shelf">
+                <h4 class="museum-category-title">🕯️ ${t('legacyTransferTitle')}</h4>
+                <div class="legacy-grid">
+                    ${transfers.map(t => {
+                        if (window.MeowTrack) window.MeowTrack('legacy_transfer_viewed', { trait_id: t.traitId });
+                        return `
+                            <div class="legacy-card animate-fade-in">
+                                <div class="legacy-candle-glow"></div>
+                                <span class="legacy-icon">${t.icon}</span>
+                                <div class="legacy-info">
+                                    <div class="legacy-name">${t.traitTitle}</div>
+                                    <div class="legacy-origin">${t('legacyPreviousEra').replace('{0}', t.previousEra)}</div>
+                                    <p class="legacy-note">“${t.note}”</p>
+                                </div>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+            </div>
+        `;
+    }
+
+    function renderSeedArchive() {
+        const seeds = window.MeowStore.getSeedCivilizations() || [];
+        if (seeds.length === 0) return '';
+
+        return `
+            <div class="seed-archive-shelf">
+                <h4 class="museum-category-title">🌱 ${t('seedArchiveTitle')}</h4>
+                <div class="seed-grid">
+                    ${seeds.map(s => {
+                        if (window.MeowTrack) window.MeowTrack('seed_archive_viewed', { seed_id: s.id });
+                        return `
+                            <div class="seed-card animate-fade-in">
+                                <div class="seed-glow"></div>
+                                <span class="seed-icon">${s.icon}</span>
+                                <div class="seed-info">
+                                    <div class="seed-name">${s.title}</div>
+                                    <div class="seed-inherited">${t('seedInherited').replace('{0}', s.inherited)}</div>
+                                    <div class="seed-origin">${t('seedOriginEra').replace('{0}', s.originEra)}</div>
+                                    <p class="seed-note">“${s.note}”</p>
+                                </div>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+            </div>
+        `;
+    }
+
+    function renderEraRecords() {
+        const records = window.MeowStore.getEraRecords() || [];
+        if (records.length === 0) return '';
+
+        return `
+            <div class="era-records-shelf">
+                <h4 class="museum-category-title">🏺 ${t('eraRecordsTitle')}</h4>
+                <div class="era-records-grid">
+                    ${records.map(r => {
+                        if (window.MeowTrack) window.MeowTrack('era_record_viewed', { era_id: r.id });
+                        return `
+                            <div class="era-record-card">
+                                <div class="er-meta">${new Date(r.unlockedAt).toLocaleDateString()}</div>
+                                <div class="er-title">${r.title}</div>
+                                <p class="er-note">${r.note}</p>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+            </div>
+        `;
+    }
+
+    function renderSynthesisDoctrines() {
+        const doctrines = window.MeowStore.getSynthesisDoctrines() || [];
+        if (doctrines.length === 0) return '';
+
+        const proposed = window.MeowStore.getProposedDoctrines() || [];
+        const proposedIds = new Set(proposed.map(p => p.id));
+
+        return `
+            <div class="synthesis-doctrines-shelf">
+                <h4 class="museum-category-title">📜 ${t('synthesisTitle')}</h4>
+                <div class="doctrine-grid">
+                    ${doctrines.map(d => {
+                        const isProposed = proposedIds.has(d.id);
+                        return `
+                            <div class="doctrine-card animate-fade-in ${isProposed ? 'proposed' : ''}">
+                                <div class="doctrine-glow"></div>
+                                <span class="doctrine-icon">${d.icon}</span>
+                                <div class="doctrine-info">
+                                    <div class="doctrine-name">${d.title}</div>
+                                    <div class="doctrine-source">${t('synthesisFrom').replace('{0}', '#' + d.sourcePair[0]).replace('{1}', '#' + d.sourcePair[1])}</div>
+                                    <p class="doctrine-note">“${d.note}”</p>
+                                    
+                                    <div class="doctrine-actions" style="margin-top:16px;">
+                                        ${isProposed ? `
+                                            <span class="fed-proposed-badge">✨ ${t('fedProposed')}</span>
+                                        ` : `
+                                            <button class="fed-propose-btn" data-id="${d.id}">${t('fedProposeAction')}</button>
+                                        `}
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+            </div>
+        `;
+    }
+
+    function renderBorrowedRituals() {
+        const rituals = window.MeowStore.getBorrowedRituals() || [];
+        if (rituals.length === 0) return '';
+
+        return `
+            <div class="borrowed-rituals-shelf">
+                <h4 class="museum-category-title">🏺 ${t('borrowedRitualTitle')}</h4>
+                <div class="borrowed-grid">
+                    ${rituals.map(r => `
+                        <div class="borrowed-card animate-fade-in">
+                            <div class="borrowed-glow"></div>
+                            <span class="borrowed-icon">${r.icon}</span>
+                            <div class="borrowed-info">
+                                <div class="borrowed-name">${r.title}</div>
+                                <div class="borrowed-source">${t('borrowFrom')}${r.sourceId}</div>
+                                <p class="borrowed-note">“${r.note}”</p>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+    }
+
     function renderMuseum() {
         const host = window.MeowOS ? window.MeowOS.getLayer('archive') : document.getElementById('family-content');
         if (!host) return;
@@ -501,6 +716,8 @@
         const fusionRelics = forgedRelics.filter(r => r.isFusion);
 
         container.innerHTML = `
+            ${renderEraCard()}
+
             <div class="museum-header">
                 <h2 class="museum-h2">${t('museumTitle')}</h2>
                 <p class="wm-intro">${t('museumIntro')}</p>
@@ -604,6 +821,12 @@
                 <h3 class="bucket-header">✦ ${t('bucketArchives')} ✦</h3>
                 <div class="myth-scrawl">"${myth}"</div>
                 <div id="black-box-vault-section"></div>
+                ${renderLegacyTransfers()}
+                ${renderSeedArchive()}
+                ${renderEraRecords()}
+                ${renderSynthesisDoctrines()}
+                ${renderLegacyPillars()}
+                ${renderBorrowedRituals()}
                 <div id="echo-chamber-wing"></div>
             </div>
 
@@ -611,6 +834,24 @@
                 <a href="#os-layer-archive" style="text-decoration:none; color:inherit;">✦ ${t('archiveStability')} ✦</a>
             </div>
         `;
+
+        // Bind proposal buttons
+        container.querySelectorAll('.fed-propose-btn').forEach(btn => {
+            btn.onclick = () => {
+                const id = btn.getAttribute('data-id');
+                const doctrines = window.MeowStore.getSynthesisDoctrines() || [];
+                const doctrine = doctrines.find(d => d.id === id);
+                
+                if (doctrine && window.MeowStore.saveProposedDoctrine(doctrine)) {
+                    window.MeowStore.addPrestige(10); // Symbolic increase
+                    if (window.MeowTrack) {
+                        window.MeowTrack('doctrine_proposed', { doctrine_id: doctrine.id, title: doctrine.title });
+                        window.MeowTrack('federation_recognition_awarded', { amount: 10 });
+                    }
+                    renderMuseum();
+                }
+            };
+        });
 
         // Sub-module rendering
         if (window.MeowVoidRecorder && window.MeowVoidRecorder.render) window.MeowVoidRecorder.render();
@@ -641,6 +882,50 @@
 
         if (window.MeowTrack) {
             window.MeowTrack('lore_bucket_view', { bucket_count: 4 });
+            const rituals = window.MeowStore.getBorrowedRituals() || [];
+            if (rituals.length > 0) {
+                window.MeowTrack('borrowed_ritual_viewed', { ritual_count: rituals.length });
+            }
+            const doctrines = window.MeowStore.getSynthesisDoctrines() || [];
+            if (doctrines.length > 0) {
+                window.MeowTrack('doctrine_viewed', { doctrine_count: doctrines.length });
+            }
+            const pillars = window.MeowStore.getLegacyPillars() || [];
+            if (pillars.length > 0) {
+                window.MeowTrack('legacy_pillar_viewed', { pillar_count: pillars.length });
+            }
+            const seeds = window.MeowStore.getSeedCivilizations() || [];
+            if (seeds.length > 0) {
+                window.MeowTrack('new_generation_seen', { seed_count: seeds.length });
+            }
+            const transfers = window.MeowStore.getLegacyTransfers() || [];
+            if (transfers.length > 0) {
+                window.MeowTrack('legacy_transfer_viewed', { transfer_count: transfers.length });
+            }
+        }
+
+        // Bind seed button
+        const seedBtn = container.querySelector('#btn-seed-civ');
+        if (seedBtn) {
+            seedBtn.onclick = () => {
+                const seed = window.MeowStore.generateSeedCivilization();
+                if (seed && window.MeowStore.saveSeedCivilization(seed)) {
+                    if (window.MeowTrack) window.MeowTrack('civilization_seeded', { seed_id: seed.id, title: seed.title });
+                    renderMuseum();
+                }
+            };
+        }
+
+        // Bind legacy button
+        const legacyBtn = container.querySelector('#btn-legacy-torch');
+        if (legacyBtn) {
+            legacyBtn.onclick = () => {
+                const transfer = window.MeowStore.inheritLegacyTrait();
+                if (transfer && window.MeowStore.saveLegacyTransfer(transfer)) {
+                    if (window.MeowTrack) window.MeowTrack('torch_passed', { trait_id: transfer.traitId, previous_era: transfer.previousEra });
+                    renderMuseum();
+                }
+            };
         }
     }
 

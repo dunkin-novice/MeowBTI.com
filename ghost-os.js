@@ -109,6 +109,16 @@
         };
 
         if (connections) {
+            const doctrines = window.MeowStore.getSynthesisDoctrines() || [];
+            const proposed = window.MeowStore.getProposedDoctrines() || [];
+            const pillars = window.MeowStore.getLegacyPillars() || [];
+            
+            const synthesisIds = new Set(doctrines.flatMap(d => d.sourcePair));
+            const federationIds = new Set(proposed.flatMap(p => p.sourcePair));
+            const pillarSourceIds = new Set(pillars.map(p => p.sourceId));
+            
+            const synthesisPair = checkSynthesisEligibility();
+
             files['/connections'] = {
                 icon: '🔗',
                 onOpen: () => {
@@ -120,16 +130,163 @@
                     TARGET: #${r.targetId}
                     TYPE: ${r.type}
                     NOTE: ${r.note}
+                    ${synthesisIds.has(r.targetId) ? `STATUS: ${t('synthesisContrib')}` : ''}
+                    ${federationIds.has(r.targetId) ? `FEDERATION: ${t('fedCultureContrib')}` : ''}
+                    ${pillarSourceIds.has(r.targetId) ? `LEGACY: ${t('pillarAdopted')}` : ''}
                     
                     WHY LINKED:
                     ${r.why.category.toUpperCase()}
                     “${r.why.reason}”
                     --------------------------
+                    [COMMAND] mirror --target #${r.targetId}
+                `).join('') + (synthesisPair ? `
+                    --------------------------
+                    [SYSTEM] ${t('synthesisEligible')}
+                    [COMMAND] evolve --pair ${synthesisPair[0].id},${synthesisPair[1].id}
+                ` : '')
+            };
+        }
+
+        // ERA RECORD (v15)
+        const era = window.MeowStore.getActiveEra ? window.MeowStore.getActiveEra() : null;
+        if (era) {
+            files['/era'] = {
+                icon: '✦',
+                content: `
+                    CIVILIZATION ERA:
+                    ${era.title.toUpperCase()}
+                    
+                    TRIGGER:
+                    ${t('eraNote' + era.trigger.charAt(0).toUpperCase() + era.trigger.slice(1))}
+                    
+                    SYMBOLIC LOG:
+                    “Era initiated as the civilization
+                    transcended temporary survival
+                    into permanent cultural abundance.”
+                    --------------------------
+                    SEAL: ${era.seal}
+                    STATUS: ACTIVE
+                `
+            };
+        }
+
+        // SEED RECORD (v16)
+        const seeds = window.MeowStore.getSeedCivilizations ? window.MeowStore.getSeedCivilizations() : [];
+        if (seeds.length > 0) {
+            files['/seed'] = {
+                icon: '🌱',
+                onOpen: () => {
+                    if (window.MeowTrack) window.MeowTrack('seed_file_opened', { seed_count: seeds.length });
+                },
+                content: seeds.map(s => `
+                    FOUNDED: ${s.title.toUpperCase()}
+                    ORIGIN: ${s.originEra}
+                    INHERITED: ${s.inherited}
+                    
+                    LOG:
+                    “First Breath recorded. 
+                    Generational continuity established.”
+                    --------------------------
+                    STATUS: ACTIVE
+                `).join('')
+            };
+        }
+
+        // LEGACY RECORD (v17)
+        const transfers = window.MeowStore.getLegacyTransfers ? window.MeowStore.getLegacyTransfers() : [];
+        if (transfers.length > 0) {
+            files['/legacy'] = {
+                icon: '🕯️',
+                onOpen: () => {
+                    if (window.MeowTrack) window.MeowTrack('legacy_file_opened', { transfer_count: transfers.length });
+                },
+                content: transfers.map(t => `
+                    PREVIOUS: ${t.previousEra.toUpperCase()}
+                    INHERITED: ${t.traitTitle}
+                    
+                    LOG:
+                    “Continuity established.
+                    Heritage carried forward
+                    to the next generation.”
+                    --------------------------
+                    STATUS: ANCHORED
                 `).join('')
             };
         }
 
         return files;
+    }
+
+    function generateBorrowedArtifact(targetId, archiveId, historyDepth) {
+        // Deterministic generation from archive metadata
+        const seed = targetId.length + historyDepth + new Date().getDate();
+        const types = ['artBorrowedRitual', 'artBorrowedProverb', 'artBorrowedSignal', 'artBorrowedMotto', 'artBorrowedDoctrine'];
+        const icons = ['🍲', '📜', '📡', '🛡️', '🧠'];
+        const notes = ['borrowNoteShared', 'borrowNoteEcho', 'borrowNoteFragment'];
+        
+        const typeKey = types[seed % types.length];
+        const icon = icons[seed % icons.length];
+        const note = t(notes[seed % notes.length]);
+        
+        // Generate a name fragment based on class and depth
+        const names = ['Silent Pause', 'Soup Ritual', 'Cloud Buffer', 'Soft Shield', 'Resonant Echo', 'Ancient Protocol'];
+        const title = `${t(typeKey)}: ${names[seed % names.length]}`;
+
+        return {
+            id: 'borrow_' + targetId.toLowerCase() + '_' + seed,
+            sourceId: targetId,
+            typeKey,
+            title,
+            icon,
+            note,
+            mirroredFrom: archiveId
+        };
+    }
+
+    function checkSynthesisEligibility() {
+        const borrowed = window.MeowStore.getBorrowedRituals() || [];
+        if (borrowed.length < 2) return null;
+
+        const survived = window.MeowStore.survivedLoudWeeks();
+        
+        // Find first compatible pair
+        for (let i = 0; i < borrowed.length; i++) {
+            for (let j = i + 1; j < borrowed.length; j++) {
+                const a = borrowed[i];
+                const b = borrowed[j];
+                
+                // Compatibility: survivied OR specific type pairs
+                const isCompatible = survived || 
+                    (a.typeKey === 'artBorrowedRitual' && b.typeKey === 'artBorrowedProverb') ||
+                    (a.typeKey === 'artBorrowedSignal' && b.typeKey === 'artBorrowedMotto') ||
+                    (a.typeKey === 'artBorrowedDoctrine' && b.typeKey === 'artBorrowedRitual');
+                
+                if (isCompatible) return [a, b];
+            }
+        }
+        return null;
+    }
+
+    function evolveDoctrine(pair) {
+        const [a, b] = pair;
+        const seed = a.id.length + b.id.length + new Date().getDate();
+        
+        const titles = ['Quiet Soup Accord', 'Parallel Reset Doctrine', 'Synchronized Stability Pact', 'Cloud Shield Protocol'];
+        const icons = ['🍲', '🛏️', '⚖️', '🛡️'];
+        const notes = ['synthesisNoteQuiet', 'synthesisNoteReset', 'synthesisNoteSync'];
+        
+        const title = t(titles[seed % titles.length]);
+        const icon = icons[seed % icons.length];
+        const note = t(notes[seed % notes.length]);
+
+        return {
+            id: 'doc_' + a.sourceId.toLowerCase() + '_' + b.sourceId.toLowerCase() + '_' + seed,
+            title,
+            icon,
+            note,
+            sourcePair: [a.sourceId, b.sourceId],
+            ritualIds: [a.id, b.id]
+        };
     }
 
     function openGhostOS(archive) {
@@ -185,8 +342,62 @@
             btn.className = 'file-item';
             btn.innerHTML = `<span class="file-icon">${files[path].icon}</span> ${path}`;
             btn.onclick = () => {
-                terminal.innerHTML = `<p class="cmd-line">> cat ${path}</p><pre class="file-content">${files[path].content.trim()}</pre>`;
+                let content = files[path].content.trim();
                 
+                // Interactive command parsing
+                if (path === '/connections') {
+                    content = content.replace(/\[COMMAND\] mirror --target #([A-Z0-9]+)/g, (match, targetId) => {
+                        return `<button class="ghost-mirror-btn" data-target="${targetId}">${t('borrowAction')}</button>`;
+                    });
+                    content = content.replace(/\[COMMAND\] evolve --pair ([^ ]+)/g, (match, pairIds) => {
+                        return `<button class="ghost-evolve-btn" data-pair="${pairIds}">${t('synthesisAction')}</button>`;
+                    });
+                }
+
+                terminal.innerHTML = `<p class="cmd-line">> cat ${path}</p><pre class="file-content">${content}</pre>`;
+                
+                // Bind buttons
+                terminal.querySelectorAll('.ghost-mirror-btn').forEach(mBtn => {
+                    mBtn.onclick = () => {
+                        const targetId = mBtn.getAttribute('data-target');
+                        const artifact = generateBorrowedArtifact(targetId, archive.id, archive.historyDepth);
+                        
+                        if (window.MeowStore.saveBorrowedRitual(artifact)) {
+                            mBtn.innerHTML = `✅ ${t('borrowSuccess')}`;
+                            mBtn.disabled = true;
+                            mBtn.style.opacity = '0.5';
+                            
+                            if (window.MeowTrack) {
+                                window.MeowTrack('ritual_mirrored', { source_id: targetId, artifact_type: artifact.title });
+                                window.MeowTrack('linked_archive_mirrored', { archive_id: archive.id });
+                            }
+                        }
+                    };
+                });
+
+                terminal.querySelectorAll('.ghost-evolve-btn').forEach(eBtn => {
+                    eBtn.onclick = () => {
+                        const pairIds = eBtn.getAttribute('data-pair').split(',');
+                        const borrowed = window.MeowStore.getBorrowedRituals() || [];
+                        const pair = [borrowed.find(r => r.id === pairIds[0]), borrowed.find(r => r.id === pairIds[1])];
+                        
+                        if (pair[0] && pair[1]) {
+                            const doctrine = evolveDoctrine(pair);
+                            if (window.MeowStore.saveSynthesisDoctrine(doctrine)) {
+                                eBtn.innerHTML = `✨ ${t('synthesisSuccess')}`;
+                                eBtn.disabled = true;
+                                eBtn.style.opacity = '0.5';
+                                
+                                if (window.MeowTrack) {
+                                    window.MeowTrack('synthesis_created', { doctrine_id: doctrine.id, title: doctrine.title });
+                                    window.MeowTrack('linked_archive_contributed', { archive_id: pair[0].sourceId });
+                                    window.MeowTrack('linked_archive_contributed', { archive_id: pair[1].sourceId });
+                                }
+                            }
+                        }
+                    };
+                });
+
                 // Trigger file-specific hooks
                 if (files[path].onOpen) files[path].onOpen();
 
