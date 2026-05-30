@@ -159,7 +159,6 @@
                 }
             };
         }
-    }
 
         // Analytics
         if (ruins.length > 0 && window.MeowTrack) {

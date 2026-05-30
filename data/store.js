@@ -31,6 +31,41 @@
         
         // Migration: Ensure all profiles have an ID
         let migrated = false;
+        const cappedArrays = {
+            chronicles: 20,
+            federation: 20,
+            diplomaticGifts: 50,
+            echoCards: 50,
+            lostFragments: 50,
+            broadcasts: 20,
+            importedTransmissions: 30,
+            savedStations: 20,
+            voidRecordings: 40,
+            syntheticEchoes: 25,
+            compositeSignals: 10,
+            blackBoxes: 15,
+            borrowedRituals: 6,
+            synthesisDoctrines: 4,
+            legacyPillars: 4,
+            proposedDoctrines: 5,
+            eraRecords: 6,
+            seedCivilizations: 4,
+            legacyTransfers: 6,
+            compositeArchives: 6,
+            relics: null
+        };
+        Object.entries(cappedArrays).forEach(([key, cap]) => {
+            if (store[key] === undefined) return;
+            if (!Array.isArray(store[key])) {
+                store[key] = [];
+                migrated = true;
+                return;
+            }
+            if (cap && store[key].length > cap) {
+                store[key] = store[key].slice(-cap);
+                migrated = true;
+            }
+        });
         store.profiles.forEach(p => {
             if (!p.id) {
                 p.id = generateProfileId();

@@ -72,8 +72,13 @@
         if (_cachedStore) return _cachedStore;
         try {
             const parsed = JSON.parse(localStorage.getItem(STORAGE_KEY) || '');
+            if (Array.isArray(parsed)) {
+                _cachedStore = { version: VERSION, items: parsed.slice(0, MAX_ITEMS) };
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(_cachedStore));
+                return _cachedStore;
+            }
             if (parsed && parsed.version === VERSION) {
-                _cachedStore = parsed;
+                _cachedStore = { version: VERSION, items: Array.isArray(parsed.items) ? parsed.items.slice(0, MAX_ITEMS) : [] };
                 return _cachedStore;
             }
         } catch (_) {}
@@ -354,6 +359,7 @@
             const type = (params.get('type') || '').toUpperCase();
             const meow = (params.get('meow') || '').toUpperCase();
             const subject = params.get('subject') || 'cat';
+            const { t } = i18n();
             const name = params.get('name') || (subject === 'human' ? t('defaultHumanName') : t('defaultCatName'));
             
             const profileContext = { code: type || meow, name: name, subject: subject, id: 'temp' };

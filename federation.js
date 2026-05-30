@@ -374,6 +374,14 @@
 
             ${renderSharedDoctrines(federation)}
 
+            ${federation.length === 0 ? `
+                <div class="federation-empty-state">
+                    <div class="empty-icon">🤝</div>
+                    <h3>${t('fedEmptyTitle')}</h3>
+                    <p>${t('fedEmptyBody')}</p>
+                </div>
+            ` : ''}
+
             ${federation.length > 0 ? `
                 <div class="fed-embassy-section">
                     <div class="embassy-header">

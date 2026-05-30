@@ -545,16 +545,20 @@
             <div class="legacy-transfers-shelf">
                 <h4 class="museum-category-title">🕯️ ${t('legacyTransferTitle')}</h4>
                 <div class="legacy-grid">
-                    ${transfers.map(t => {
-                        if (window.MeowTrack) window.MeowTrack('legacy_transfer_viewed', { trait_id: t.traitId });
+                    ${transfers.map(transfer => {
+                        const traitTitle = sanitize(transfer.traitTitle || transfer.title || transfer.name || t('legacyTransferTitle'));
+                        const previousEra = sanitize(transfer.previousEra || transfer.source || transfer.originEra || 'Unknown');
+                        const note = sanitize(transfer.note || t('legacyTorchPassed'), 160);
+                        const icon = sanitize(transfer.icon || '🕯️');
+                        if (window.MeowTrack) window.MeowTrack('legacy_transfer_viewed', { trait_id: transfer.traitId || transfer.id || 'unknown' });
                         return `
                             <div class="legacy-card animate-fade-in">
                                 <div class="legacy-candle-glow"></div>
-                                <span class="legacy-icon">${t.icon}</span>
+                                <span class="legacy-icon">${icon}</span>
                                 <div class="legacy-info">
-                                    <div class="legacy-name">${t.traitTitle}</div>
-                                    <div class="legacy-origin">${t('legacyPreviousEra').replace('{0}', t.previousEra)}</div>
-                                    <p class="legacy-note">“${t.note}”</p>
+                                    <div class="legacy-name">${traitTitle}</div>
+                                    <div class="legacy-origin">${t('legacyPreviousEra').replace('{0}', previousEra)}</div>
+                                    <p class="legacy-note">“${note}”</p>
                                 </div>
                             </div>
                         `;

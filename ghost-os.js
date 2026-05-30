@@ -193,24 +193,29 @@
         }
 
         // LEGACY RECORD (v17)
-        const transfers = window.MeowStore.getLegacyTransfers ? window.MeowStore.getLegacyTransfers() : [];
+        const storedTransfers = window.MeowStore.getLegacyTransfers ? window.MeowStore.getLegacyTransfers() : [];
+        const archiveTransfers = Array.isArray(archive.legacyTransfers) ? archive.legacyTransfers : [];
+        const transfers = (storedTransfers.length > 0 ? storedTransfers : archiveTransfers).filter(Boolean);
         if (transfers.length > 0) {
             files['/legacy'] = {
                 icon: '🕯️',
                 onOpen: () => {
                     if (window.MeowTrack) window.MeowTrack('legacy_file_opened', { transfer_count: transfers.length });
                 },
-                content: transfers.map(t => `
-                    PREVIOUS: ${t.previousEra.toUpperCase()}
-                    INHERITED: ${t.traitTitle}
+                content: transfers.map(transfer => {
+                    const previousEra = sanitize(transfer.previousEra || transfer.source || transfer.originEra || 'Unknown');
+                    const traitTitle = sanitize(transfer.traitTitle || transfer.title || transfer.name || t('legacyTransferTitle'));
+                    const note = sanitize(transfer.note || t('legacyStatusActive'), 160);
+                    return `
+                    PREVIOUS: ${previousEra.toUpperCase()}
+                    INHERITED: ${traitTitle}
                     
                     LOG:
-                    “Continuity established.
-                    Heritage carried forward
-                    to the next generation.”
+                    “${note}”
                     --------------------------
                     STATUS: ANCHORED
-                `).join('')
+                `;
+                }).join('')
             };
         }
 

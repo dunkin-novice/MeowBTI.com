@@ -619,6 +619,8 @@
         fedEmbassy:        { en: "Emotional Embassy",         th: "สถานเอกอัครราชทูตทางอารมณ์" },
         fedExportCode:     { en: "Share Civilization Code",   th: "แชร์รหัสอารยธรรม" },
         fedImportCode:     { en: "Establish Diplomacy",       th: "สถาปนาการทูต" },
+        fedEmptyTitle:     { en: "No allied households yet",   th: "ยังไม่มีบ้านพันธมิตร" },
+        fedEmptyBody:      { en: "Import a civilization code when you want to add an allied household. Until then, this civilization remains independent.", th: "นำเข้ารหัสอารยธรรมเมื่อคุณต้องการเพิ่มบ้านพันธมิตร ระหว่างนี้อารยธรรมนี้ยังเป็นอิสระ" },
         fedStickerWall:    { en: "Embassy Sticker Wall",      th: "กำแพงสติกเกอร์สถานทูต" },
         fedPublicProfile:  { en: "Emotional Civilization Profile", th: "ประวัติอารยธรรมทางอารมณ์" },
         fedShareIdentity:  { en: "Export Public Identity",    th: "ส่งออกตัวตนสาธารณะ" },

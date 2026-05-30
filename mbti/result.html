@@ -61,8 +61,9 @@
     <footer class="main-footer" id="main-footer"></footer>
 
     <script>
-    (function() {
-        const { getLang, t, withLang } = window.MeowI18n;
+    document.addEventListener('DOMContentLoaded', () => {
+        const i18n = window.MeowI18n || { getLang: () => 'en', t: k => k, withLang: h => h };
+        const { getLang, t, withLang } = i18n;
         const params = new URLSearchParams(window.location.search);
         const mbti = params.get('type');
         const meow = params.get('meow');
@@ -188,7 +189,7 @@
                 }
             };
         });
-    })();
+    });
     </script>
 </body>
 </html>
