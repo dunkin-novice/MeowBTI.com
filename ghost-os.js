@@ -231,13 +231,13 @@
                 const note = sanitize(heirloom.descKey ? t(heirloom.descKey) : (heirloom.description || t('heirloomDefaultDesc')), 180);
                 const profile = heirloom.linkedProfileName ? sanitize(heirloom.linkedProfileName) : t('heirloomUnknownProfile');
                 return `
-                    TITLE: ${title}
-                    PROFILE: ${profile}
+                    ${t('heirloomGhostTitle')}: ${title}
+                    ${t('heirloomGhostProfile')}: ${profile}
 
-                    LOG:
+                    ${t('heirloomGhostLog')}:
                     “${note}”
                     --------------------------
-                    STATUS: ${t('heirloomRecoveredStatus')}
+                    ${t('heirloomGhostStatus')}: ${t('heirloomRecoveredStatus')}
                 `;
             }).join('') : t('heirloomGhostEmpty')
         };

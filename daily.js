@@ -168,7 +168,7 @@
     }
 
     function renderResult(host, entry) {
-        const { t } = i18n();
+        const { t, withLang } = i18n();
         const r = entry.result;
         host.innerHTML = `
             <div class="daily-result-card v2">
