@@ -1963,6 +1963,26 @@
         legacyNoteTransfer: { en: "We carried something meaningful forward.", th: "เราได้นำพาสิ่งที่มีความหมายไปสู่เบื้องหน้า" },
         legacyNoteSeed:     { en: "Inherited from a seed civilization that became the new core.", th: "สืบทอดมาจากอารยธรรมเมล็ดพันธุ์ที่กลายเป็นแกนหลักใหม่" },
 
+        // Restored Heirlooms (v18)
+        heirloomShelfTitle: { en: "Restored Heirlooms",       th: "ของรักที่หวนคืน" },
+        heirloomRecovered:  { en: "Recovered from an older chapter.", th: "หวนคืนมาจากบทเก่าในชีวิต" },
+        heirloomOriginEra:  { en: "Origin Era: {0}",          th: "ยุคสมัยต้นกำเนิด: {0}" },
+        heirloomLinkedProfile: { en: "Remembered by: {0}",    th: "ความทรงจำของ: {0}" },
+        heirloomRecoveredStatus: { en: "RECOVERED",           th: "กู้คืนแล้ว" },
+        heirloomGhostEmpty: { en: "No restored heirlooms recorded yet. Older comforts may return after more shared days.", th: "ยังไม่มีบันทึกของรักที่หวนคืน ความสบายใจจากวันเก่าอาจกลับมาอีกครั้งหลังจากใช้เวลาร่วมกันมากขึ้น" },
+        heirloomUnknownProfile: { en: "Household memory",     th: "ความทรงจำของบ้าน" },
+        heirloomDefaultDesc:{ en: "An old comfort returned quietly, carrying something worth keeping.", th: "ความสบายใจแบบเก่าหวนคืนมาอย่างแผ่วเบา พร้อมบางสิ่งที่ควรเก็บรักษาไว้" },
+        heirloomTitleWindowWatch: { en: "Window Watch at Sunrise", th: "เฝ้าหน้าต่างยามอรุณ" },
+        heirloomDescWindowWatch: { en: "The morning watch returned as a small, steady promise that the day can begin gently.", th: "การเฝ้ามองยามเช้ากลับมาอีกครั้ง เป็นคำสัญญาเล็กๆ ที่มั่นคงว่าวันใหม่เริ่มต้นอย่างอ่อนโยนได้" },
+        heirloomTitleBlanketNest: { en: "The Blanket Nest Ritual", th: "พิธีกรรมรังผ้าห่ม" },
+        heirloomDescBlanketNest: { en: "A familiar nest was rebuilt without urgency. Rest remembered where to find you.", th: "รังอันคุ้นเคยถูกสร้างขึ้นใหม่โดยไม่เร่งรีบ การพักผ่อนยังจำได้ว่าจะตามหาคุณได้ที่ไหน" },
+        heirloomTitleFootstepPatrol: { en: "Tiny Footstep Patrol", th: "เวรยามฝีเท้าจิ๋ว" },
+        heirloomDescFootstepPatrol: { en: "Small footsteps resumed their route, turning an old pattern into a quiet form of care.", th: "ฝีเท้าเล็กๆ กลับมาเดินตรวจตราอีกครั้ง เปลี่ยนรูปแบบเดิมให้เป็นการดูแลที่เงียบสงบ" },
+        heirloomTitleSlowBlink: { en: "Slow Blink Diplomacy", th: "การทูตกะพริบตาช้าๆ" },
+        heirloomDescSlowBlink: { en: "An old signal of trust returned. Nothing had to be rushed or explained.", th: "สัญญาณแห่งความไว้ใจแบบเดิมหวนคืนมา ไม่มีสิ่งใดต้องเร่งรีบหรืออธิบาย" },
+        heirloomTitleHallwayPatrol: { en: "Midnight Hallway Patrol", th: "เวรยามโถงทางเดินยามเที่ยงคืน" },
+        heirloomDescHallwayPatrol: { en: "The nighttime rounds came back softly, a remembered way of keeping the household close.", th: "การเดินตรวจยามค่ำคืนกลับมาอย่างนุ่มนวล เป็นวิธีเดิมๆ ที่ช่วยให้บ้านยังคงใกล้ชิดกัน" },
+
         // Legacy Pillars (v14)
         pillarTitle:       { en: "Legacy Pillars",            th: "เสาหลักแห่งมรดก" },
         pillarAdoptAction: { en: "ADOPT AS LEGACY PILLAR",    th: "รับมาเป็นเสาหลักแห่งมรดก" },

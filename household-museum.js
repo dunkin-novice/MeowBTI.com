@@ -568,6 +568,38 @@
         `;
     }
 
+    function renderRestoredHeirlooms() {
+        const heirlooms = window.MeowStore.getRestoredHeirlooms ? window.MeowStore.getRestoredHeirlooms() : [];
+        if (!Array.isArray(heirlooms) || heirlooms.length === 0) return '';
+
+        return `
+            <div class="restored-heirlooms-shelf">
+                <h4 class="museum-category-title">✨ ${t('heirloomShelfTitle')}</h4>
+                <div class="heirloom-grid">
+                    ${heirlooms.filter(Boolean).map(heirloom => {
+                        const title = sanitize(heirloom.titleKey ? t(heirloom.titleKey) : (heirloom.title || t('heirloomShelfTitle')));
+                        const desc = sanitize(heirloom.descKey ? t(heirloom.descKey) : (heirloom.description || t('heirloomDefaultDesc')), 180);
+                        const icon = sanitize(heirloom.icon || '✨');
+                        const profile = heirloom.linkedProfileName ? sanitize(heirloom.linkedProfileName) : '';
+                        const era = heirloom.originEra ? sanitize(heirloom.originEra) : '';
+                        return `
+                            <div class="heirloom-card animate-fade-in">
+                                <span class="heirloom-icon">${icon}</span>
+                                <div class="heirloom-info">
+                                    <div class="heirloom-name">${title}</div>
+                                    <p class="heirloom-desc">${desc}</p>
+                                    <p class="heirloom-recovered">${t('heirloomRecovered')}</p>
+                                    ${era ? `<div class="heirloom-meta">${t('heirloomOriginEra').replace('{0}', era)}</div>` : ''}
+                                    ${profile ? `<div class="heirloom-meta">${t('heirloomLinkedProfile').replace('{0}', profile)}</div>` : ''}
+                                </div>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+            </div>
+        `;
+    }
+
     function renderSeedArchive() {
         const seeds = window.MeowStore.getSeedCivilizations() || [];
         if (seeds.length === 0) return '';
@@ -701,14 +733,17 @@
         }
 
         const history = getHistory();
+        const restored = window.MeowStore.restoreEligibleHeirloom ? window.MeowStore.restoreEligibleHeirloom(history) : null;
+        if (restored && window.MeowTrack) window.MeowTrack('heirloom_restored', { heirloom_id: restored.id });
         const availableRelics = generateRelics(history, profiles);
         const keepsakes = generateKeepsakes(history, profiles);
         const forgedRelics = window.MeowStore.getForgedRelics ? window.MeowStore.getForgedRelics() : [];
         const trophies = generateTrophies(history, profiles);
         const myth = getMyth(history);
         const aura = getAura(history);
+        const restoredHeirlooms = window.MeowStore.getRestoredHeirlooms ? window.MeowStore.getRestoredHeirlooms() : [];
 
-        if (availableRelics.length === 0 && forgedRelics.length === 0 && trophies.length === 0 && keepsakes.length === 0) {
+        if (availableRelics.length === 0 && forgedRelics.length === 0 && trophies.length === 0 && keepsakes.length === 0 && restoredHeirlooms.length === 0) {
             container.style.display = 'none';
             return;
         }
@@ -825,6 +860,7 @@
                 <h3 class="bucket-header">✦ ${t('bucketArchives')} ✦</h3>
                 <div class="myth-scrawl">"${myth}"</div>
                 <div id="black-box-vault-section"></div>
+                ${renderRestoredHeirlooms()}
                 ${renderLegacyTransfers()}
                 ${renderSeedArchive()}
                 ${renderEraRecords()}
@@ -905,6 +941,10 @@
             const transfers = window.MeowStore.getLegacyTransfers() || [];
             if (transfers.length > 0) {
                 window.MeowTrack('legacy_transfer_viewed', { transfer_count: transfers.length });
+            }
+            const heirlooms = window.MeowStore.getRestoredHeirlooms ? window.MeowStore.getRestoredHeirlooms() : [];
+            if (heirlooms.length > 0) {
+                window.MeowTrack('restored_heirloom_viewed', { heirloom_count: heirlooms.length });
             }
         }
 

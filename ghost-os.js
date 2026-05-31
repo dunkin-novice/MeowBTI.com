@@ -219,6 +219,29 @@
             };
         }
 
+        // RESTORED HEIRLOOMS (v18)
+        const heirlooms = window.MeowStore.getRestoredHeirlooms ? window.MeowStore.getRestoredHeirlooms().filter(Boolean) : [];
+        files['/heirlooms'] = {
+            icon: '✨',
+            onOpen: () => {
+                if (window.MeowTrack) window.MeowTrack('heirloom_file_opened', { heirloom_count: heirlooms.length });
+            },
+            content: heirlooms.length > 0 ? heirlooms.map(heirloom => {
+                const title = sanitize(heirloom.titleKey ? t(heirloom.titleKey) : (heirloom.title || t('heirloomShelfTitle')));
+                const note = sanitize(heirloom.descKey ? t(heirloom.descKey) : (heirloom.description || t('heirloomDefaultDesc')), 180);
+                const profile = heirloom.linkedProfileName ? sanitize(heirloom.linkedProfileName) : t('heirloomUnknownProfile');
+                return `
+                    TITLE: ${title}
+                    PROFILE: ${profile}
+
+                    LOG:
+                    “${note}”
+                    --------------------------
+                    STATUS: ${t('heirloomRecoveredStatus')}
+                `;
+            }).join('') : t('heirloomGhostEmpty')
+        };
+
         return files;
     }
 

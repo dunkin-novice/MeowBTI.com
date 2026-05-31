@@ -51,6 +51,7 @@
             eraRecords: 6,
             seedCivilizations: 4,
             legacyTransfers: 6,
+            restoredHeirlooms: 6,
             compositeArchives: 6,
             relics: null
         };
@@ -483,6 +484,56 @@
         return true;
     }
 
+    function getRestoredHeirlooms() {
+        return getRawStore().restoredHeirlooms || [];
+    }
+
+    function saveRestoredHeirloom(heirloom) {
+        const store = getRawStore();
+        store.restoredHeirlooms = store.restoredHeirlooms || [];
+        if (store.restoredHeirlooms.some(h => h.id === heirloom.id)) return false;
+        store.restoredHeirlooms.push({ ...heirloom, restoredAt: new Date().toISOString() });
+        if (store.restoredHeirlooms.length > 6) store.restoredHeirlooms = store.restoredHeirlooms.slice(-6);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
+        return true;
+    }
+
+    function restoreEligibleHeirloom(history) {
+        const profiles = getFamily().filter(Boolean);
+        if (profiles.length === 0 || !Array.isArray(history)) return null;
+
+        const distinctDays = [...new Set(history.map(entry => entry && entry.date).filter(Boolean))];
+        const transfers = getLegacyTransfers().filter(Boolean);
+        const firstThreshold = transfers.length > 0 ? 5 : 7;
+        if (distinctDays.length < firstThreshold) return null;
+
+        const restorationIndex = Math.floor((distinctDays.length - firstThreshold) / 7);
+        const id = 'heirloom_restored_' + restorationIndex;
+        if (getRestoredHeirlooms().some(h => h.id === id)) return null;
+
+        const templates = [
+            { titleKey: 'heirloomTitleWindowWatch', descKey: 'heirloomDescWindowWatch', icon: '🌅' },
+            { titleKey: 'heirloomTitleBlanketNest', descKey: 'heirloomDescBlanketNest', icon: '🧺' },
+            { titleKey: 'heirloomTitleFootstepPatrol', descKey: 'heirloomDescFootstepPatrol', icon: '🐾' },
+            { titleKey: 'heirloomTitleSlowBlink', descKey: 'heirloomDescSlowBlink', icon: '✨' },
+            { titleKey: 'heirloomTitleHallwayPatrol', descKey: 'heirloomDescHallwayPatrol', icon: '🌙' }
+        ];
+        const profile = profiles[restorationIndex % profiles.length];
+        const transfer = transfers[restorationIndex % Math.max(transfers.length, 1)];
+        const era = getActiveEra();
+        const seed = distinctDays.length + profiles.length + transfers.length + restorationIndex;
+        const template = templates[seed % templates.length];
+        const heirloom = {
+            id,
+            ...template,
+            linkedProfileId: profile.id || null,
+            linkedProfileName: profile.name || null,
+            originEra: (transfer && (transfer.previousEra || transfer.originEra)) || (era && era.title) || null
+        };
+
+        return saveRestoredHeirloom(heirloom) ? heirloom : null;
+    }
+
     function checkLegacyEligibility() {
         const era = getActiveEra();
         if (!era) return { eligible: false };
@@ -659,6 +710,9 @@
         generateSeedCivilization,
         getLegacyTransfers,
         saveLegacyTransfer,
+        getRestoredHeirlooms,
+        saveRestoredHeirloom,
+        restoreEligibleHeirloom,
         checkLegacyEligibility,
         inheritLegacyTrait,
         survivedLoudWeeks,

@@ -6865,6 +6865,32 @@ body.time-night .home-grain { opacity: 0.1; }
   .legacy-icon { font-size: 1.8rem; }
 }
 
+/* Emotional Continuity v18 — “RESTORED HEIRLOOM” */
+.restored-heirlooms-shelf { margin-top: 32px; margin-bottom: 32px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 24px; }
+.heirloom-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin-top: 16px; }
+.heirloom-card {
+  background: rgba(216, 226, 255, 0.06);
+  border: 1px solid rgba(216, 226, 255, 0.18);
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+.mode-lore .heirloom-card { background: rgba(216, 226, 255, 0.04); border-color: rgba(216, 226, 255, 0.35); }
+.heirloom-icon { flex-shrink: 0; font-size: 2rem; }
+.heirloom-info { min-width: 0; }
+.heirloom-name { color: #fff; font-family: var(--font-display); font-size: 1.1rem; font-weight: 900; margin-bottom: 8px; }
+.heirloom-desc, .heirloom-recovered { font-size: 0.8rem; line-height: 1.5; margin: 0 0 8px; opacity: 0.76; overflow-wrap: anywhere; }
+.heirloom-recovered { color: #d8e2ff; font-style: italic; }
+.heirloom-meta { color: var(--accent); font-family: var(--font-mono); font-size: 0.55rem; line-height: 1.5; opacity: 0.72; text-transform: uppercase; overflow-wrap: anywhere; }
+
+@media (max-width: 390px) {
+  .heirloom-grid { grid-template-columns: 1fr; }
+  .heirloom-card { padding: 16px; }
+  .heirloom-icon { font-size: 1.7rem; }
+}
+
 /* Archive Rebirth v16 — “SEEDING A NEW CIVILIZATION” */
 .seed-archive-shelf { margin-top: 32px; margin-bottom: 32px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 24px; }
 .seed-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin-top: 16px; }
@@ -7273,4 +7299,3 @@ body.time-night .home-grain { opacity: 0.1; }
   animation: pulse-mystical 3s infinite; 
 }
 .mode-lore .bb-link-status.active { color: #ffb000; text-shadow: 0 0 10px rgba(255, 176, 0, 0.4); }
-

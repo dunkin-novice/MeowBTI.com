@@ -310,6 +310,11 @@
     }
 
     function init() {
+        if (window.MeowStore && window.MeowStore.restoreEligibleHeirloom) {
+            const restored = window.MeowStore.restoreEligibleHeirloom(readStore().items);
+            if (restored && window.MeowTrack) window.MeowTrack('heirloom_restored', { heirloom_id: restored.id });
+        }
+
         const pageApp = document.getElementById('daily-app');
         if (pageApp) {
             const primary = getTargetProfile();
