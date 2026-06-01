@@ -148,6 +148,72 @@
         };
     }
 
+    function getReflectionShareText(reflection) {
+        const { t } = i18n();
+        const context = reflection.profileName || t('reflectionHousehold');
+        return [
+            t('reflectionShareHeading'),
+            reflection.body,
+            '',
+            t('reflectionShareLinked', context),
+            '',
+            t('reflectionShareCta'),
+            'https://meowbti.com/'
+        ].join('\n');
+    }
+
+    async function copyText(text) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            try {
+                await navigator.clipboard.writeText(text);
+                return;
+            } catch (_) {}
+        }
+        const field = document.createElement('textarea');
+        field.value = text;
+        field.setAttribute('readonly', '');
+        field.style.position = 'fixed';
+        field.style.opacity = '0';
+        document.body.append(field);
+        field.select();
+        document.execCommand('copy');
+        field.remove();
+    }
+
+    function setReflectionActionStatus(host, message) {
+        const status = host.querySelector('.reflection-action-status');
+        if (!status) return;
+        status.textContent = message;
+        window.setTimeout(() => {
+            if (status.textContent === message) status.textContent = '';
+        }, 2200);
+    }
+
+    function bindReflectionActions(host, reflection) {
+        const { t } = i18n();
+        const text = getReflectionShareText(reflection);
+        const copyButton = host.querySelector('[data-reflection-action="copy"]');
+        const shareButton = host.querySelector('[data-reflection-action="share"]');
+        const copy = async () => {
+            await copyText(text);
+            setReflectionActionStatus(host, t('reflectionCopied'));
+        };
+
+        if (copyButton) copyButton.onclick = copy;
+        if (shareButton) shareButton.onclick = async () => {
+            if (!navigator.share) {
+                await copy();
+                return;
+            }
+            try {
+                await navigator.share({ title: t('reflectionShareHeading'), text });
+            } catch (error) {
+                if (error && error.name === 'AbortError') return;
+                await copy();
+            }
+        };
+    }
+
     function renderHomeReflection() {
         const host = document.getElementById('daily-reflection-home');
         if (!host) return;
@@ -160,14 +226,21 @@
                 <h2>${escapeHtml(reflection.title)}</h2>
                 <p>${escapeHtml(reflection.body)}</p>
                 ${reflection.profileName ? `<div class="reflection-profile">${escapeHtml(t('reflectionLinkedProfile', reflection.profileName))}</div>` : ''}
+                <div class="reflection-actions">
+                    <button type="button" class="reflection-action" data-reflection-action="copy">${escapeHtml(t('reflectionCopy'))}</button>
+                    <button type="button" class="reflection-action" data-reflection-action="share">${escapeHtml(t('reflectionShare'))}</button>
+                    <span class="reflection-action-status" role="status" aria-live="polite"></span>
+                </div>
             </div>
         ` : `
             <div class="daily-reflection-card empty">
                 <div class="reflection-kicker">${escapeHtml(t('reflectionKicker'))}</div>
                 <h2>${escapeHtml(t('reflectionTitle'))}</h2>
                 <p>${escapeHtml(t('reflectionEmpty'))}</p>
+                <div class="reflection-insufficient">${escapeHtml(t('reflectionInsufficient'))}</div>
             </div>
         `;
+        if (reflection) bindReflectionActions(host, reflection);
     }
 
     function buildResult(answers, profile) {

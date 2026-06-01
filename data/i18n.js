@@ -115,6 +115,13 @@
         reflectionGhostLog:  { en: "LOG",                     th: "บันทึก" },
         reflectionGhostStatus:{ en: "STATUS",                 th: "สถานะ" },
         reflectionGhostEmpty:{ en: "No daily reflection recorded yet. More shared check-ins will reveal a household rhythm.", th: "ยังไม่มีบันทึกภาพสะท้อนประจำวัน การเช็กอินร่วมกันอีกสักระยะจะเผยให้เห็นจังหวะของบ้าน" },
+        reflectionCopy:      { en: "Copy reflection",         th: "คัดลอกภาพสะท้อน" },
+        reflectionShare:     { en: "Share reflection",        th: "แชร์ภาพสะท้อน" },
+        reflectionCopied:    { en: "Copied",                  th: "คัดลอกแล้ว" },
+        reflectionInsufficient:{ en: "Not enough history yet", th: "ประวัติยังไม่เพียงพอ" },
+        reflectionShareHeading:{ en: "MeowBTI Daily Reflection", th: "ภาพสะท้อนประจำวันจาก MeowBTI" },
+        reflectionShareLinked:{ en: context => `Linked to: ${context}`, th: context => `เชื่อมโยงกับ: ${context}` },
+        reflectionShareCta:  { en: "Take the cat personality test:", th: "ลองทำแบบทดสอบบุคลิกภาพแมว:" },
 
         // ─── browse (personality-types.html) ──────────────────
         browseH1:          { en: "All 16 cats.",              th: "แมวทั้ง 16 ประเภท" },

@@ -2044,6 +2044,37 @@ a { color: inherit; }
   opacity: 0.7;
   overflow-wrap: anywhere;
 }
+.reflection-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+.reflection-action {
+  min-height: 44px;
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  background: rgba(255,255,255,0.72);
+  color: var(--ink);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.76rem;
+  font-weight: 800;
+  padding: 9px 12px;
+}
+.reflection-action:hover { border-color: var(--accent); }
+.reflection-action-status,
+.reflection-insufficient {
+  align-self: center;
+  color: var(--ink-soft);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+.reflection-action-status { min-height: 1em; }
+.reflection-insufficient {
+  margin-top: 10px;
+  opacity: 0.7;
+}
 .dwh-main {
   display: flex;
   align-items: center;
