@@ -242,6 +242,36 @@
             }).join('') : t('heirloomGhostEmpty')
         };
 
+        // DYNASTY TREE (v19)
+        const dynastyProfiles = (window.MeowStore.getFamily ? window.MeowStore.getFamily() : [])
+            .filter(profile => profile && profile.subject !== 'human')
+            .map((profile, index) => ({ ...profile, _index: index }))
+            .sort((a, b) => {
+                const aTime = Date.parse(a.savedAt || '') || a._index;
+                const bTime = Date.parse(b.savedAt || '') || b._index;
+                return aTime - bTime;
+            });
+        files['/dynasty'] = {
+            icon: '🌿',
+            onOpen: () => {
+                if (window.MeowTrack) window.MeowTrack('dynasty_file_opened', { profile_count: dynastyProfiles.length });
+            },
+            content: dynastyProfiles.length > 0 ? dynastyProfiles.map((profile, index) => {
+                const heirloomCount = heirlooms.filter(heirloom => heirloom && (
+                    (heirloom.linkedProfileId && heirloom.linkedProfileId === profile.id) ||
+                    (!heirloom.linkedProfileId && heirloom.linkedProfileName === profile.name)
+                )).length;
+                const hasLegacy = index === dynastyProfiles.length - 1 && transfers.length > 0;
+                return `
+                    ${t('dynastyGhostCat')}: ${sanitize(profile.name || t('defaultCatName'))}
+                    ${t('dynastyGhostType')}: ${sanitize(profile.archetypeName || profile.code || t('dynastyUnknownType'))}
+                    ${t('dynastyGhostHeirlooms')}: ${heirloomCount}
+                    ${t('dynastyGhostLegacy')}: ${hasLegacy ? t('dynastyGhostLegacyYes') : t('dynastyGhostLegacyNo')}
+                    --------------------------
+                `;
+            }).join('') : t('dynastyGhostEmpty')
+        };
+
         return files;
     }
 

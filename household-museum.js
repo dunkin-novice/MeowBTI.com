@@ -600,6 +600,61 @@
         `;
     }
 
+    function getDynastyLabel(profile) {
+        const labels = ['dynastyLabelCurious', 'dynastyLabelSteady', 'dynastyLabelWarm', 'dynastyLabelWatchful'];
+        const seed = String(profile.code || profile.name || '').split('').reduce((sum, char) => sum + char.charCodeAt(0), 0);
+        return t(labels[seed % labels.length]);
+    }
+
+    function renderDynastyTree() {
+        const profiles = (window.MeowStore.getFamily() || [])
+            .filter(profile => profile && profile.subject !== 'human')
+            .map((profile, index) => ({ ...profile, _index: index }))
+            .sort((a, b) => {
+                const aTime = Date.parse(a.savedAt || '') || a._index;
+                const bTime = Date.parse(b.savedAt || '') || b._index;
+                return aTime - bTime;
+            });
+        const heirlooms = window.MeowStore.getRestoredHeirlooms ? window.MeowStore.getRestoredHeirlooms() : [];
+        const transfers = window.MeowStore.getLegacyTransfers ? window.MeowStore.getLegacyTransfers() : [];
+
+        return `
+            <div class="dynasty-tree-shelf">
+                <h4 class="museum-category-title">🌿 ${t('dynastyTitle')}</h4>
+                <p class="dynasty-intro">${t('dynastyIntro')}</p>
+                ${profiles.length > 0 ? `
+                    <div class="dynasty-tree">
+                        ${profiles.map((profile, index) => {
+                            const heirloomCount = heirlooms.filter(heirloom => heirloom && (
+                                (heirloom.linkedProfileId && heirloom.linkedProfileId === profile.id) ||
+                                (!heirloom.linkedProfileId && heirloom.linkedProfileName === profile.name)
+                            )).length;
+                            const isLatest = index === profiles.length - 1;
+                            return `
+                                ${index > 0 ? `<div class="dynasty-connector" aria-hidden="true">↓</div>` : ''}
+                                <div class="dynasty-card animate-fade-in">
+                                    <div class="dynasty-card-kicker">${index === 0 ? t('dynastyRootLabel') : (isLatest ? t('dynastyNewestLabel') : t('dynastyEarlierLabel'))}</div>
+                                    <div class="dynasty-card-main">
+                                        <div>
+                                            <div class="dynasty-name">${sanitize(profile.name || t('defaultCatName'))}</div>
+                                            <div class="dynasty-type">${sanitize(profile.archetypeName || profile.code || t('dynastyUnknownType'))}</div>
+                                        </div>
+                                        <span class="dynasty-code">${sanitize(profile.code || '----')}</span>
+                                    </div>
+                                    <div class="dynasty-emotional-label">${getDynastyLabel(profile)}</div>
+                                    <div class="dynasty-meta-row">
+                                        <span>${t(heirloomCount === 1 ? 'dynastyHeirloomCountOne' : 'dynastyHeirloomCount').replace('{0}', heirloomCount)}</span>
+                                        ${isLatest && transfers.length > 0 ? `<span class="dynasty-legacy-marker">🕯️ ${t('dynastyLegacyMarker')}</span>` : ''}
+                                    </div>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                ` : `<div class="dynasty-empty-state">${t('dynastyEmpty')}</div>`}
+            </div>
+        `;
+    }
+
     function renderSeedArchive() {
         const seeds = window.MeowStore.getSeedCivilizations() || [];
         if (seeds.length === 0) return '';
@@ -722,7 +777,7 @@
         }
 
         const profiles = window.MeowStore.getFamily();
-        if (profiles.length < 2) return;
+        if (profiles.length === 0) return;
 
         let container = document.getElementById('household-museum-section');
         if (!container) {
@@ -860,6 +915,7 @@
                 <h3 class="bucket-header">✦ ${t('bucketArchives')} ✦</h3>
                 <div class="myth-scrawl">"${myth}"</div>
                 <div id="black-box-vault-section"></div>
+                ${renderDynastyTree()}
                 ${renderRestoredHeirlooms()}
                 ${renderLegacyTransfers()}
                 ${renderSeedArchive()}

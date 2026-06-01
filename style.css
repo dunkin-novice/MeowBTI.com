@@ -6891,6 +6891,42 @@ body.time-night .home-grain { opacity: 0.1; }
   .heirloom-icon { font-size: 1.7rem; }
 }
 
+/* Emotional Lineage v19 — “DYNASTY TREE” */
+.dynasty-tree-shelf { margin: 32px 0; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 24px; }
+.dynasty-intro { max-width: 620px; margin: -12px 0 20px; color: #d8e2ff; font-size: 0.82rem; line-height: 1.5; opacity: 0.76; }
+.dynasty-tree { display: grid; gap: 8px; max-width: 620px; }
+.dynasty-connector { color: #d8e2ff; font-family: var(--font-mono); font-size: 1rem; line-height: 1; opacity: 0.55; padding-left: 24px; }
+.dynasty-card {
+  background: rgba(216, 226, 255, 0.05);
+  border: 1px solid rgba(216, 226, 255, 0.2);
+  border-radius: 8px;
+  padding: 16px;
+  min-width: 0;
+}
+.mode-lore .dynasty-card { border-color: rgba(216, 226, 255, 0.38); background: rgba(216, 226, 255, 0.035); }
+.dynasty-card-kicker, .dynasty-type, .dynasty-code, .dynasty-meta-row {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  line-height: 1.45;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+.dynasty-card-kicker { color: #d8e2ff; margin-bottom: 8px; opacity: 0.7; }
+.dynasty-card-main { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; min-width: 0; }
+.dynasty-name { color: #fff; font-family: var(--font-display); font-size: 1.1rem; font-weight: 900; overflow-wrap: anywhere; }
+.dynasty-type { color: var(--accent); margin-top: 4px; opacity: 0.75; }
+.dynasty-code { flex-shrink: 0; color: #d8e2ff; border: 1px solid rgba(216, 226, 255, 0.25); border-radius: 4px; padding: 3px 6px; }
+.dynasty-emotional-label { margin: 12px 0; color: #d8e2ff; font-size: 0.82rem; line-height: 1.45; opacity: 0.82; }
+.dynasty-meta-row { display: flex; flex-wrap: wrap; gap: 8px 12px; color: #d8e2ff; opacity: 0.72; }
+.dynasty-legacy-marker { color: #ffb000; }
+.dynasty-empty-state { border: 1px dashed rgba(216, 226, 255, 0.22); border-radius: 8px; color: #d8e2ff; font-size: 0.82rem; line-height: 1.5; opacity: 0.78; padding: 16px; }
+
+@media (max-width: 390px) {
+  .dynasty-card { padding: 14px; }
+  .dynasty-name { font-size: 1rem; }
+  .dynasty-emotional-label, .dynasty-intro, .dynasty-empty-state { font-size: 0.78rem; }
+}
+
 /* Archive Rebirth v16 — “SEEDING A NEW CIVILIZATION” */
 .seed-archive-shelf { margin-top: 32px; margin-bottom: 32px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 24px; }
 .seed-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin-top: 16px; }
