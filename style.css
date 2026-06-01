@@ -1076,9 +1076,9 @@ a { color: inherit; }
 .nav-lang-switcher .lang-pill { padding: 4px 8px; font-size: 11px; }
 @media (max-width: 600px) {
   .nav-lang-switcher .lang-pill {
-    min-height: 28px;
-    min-width: 32px;
-    padding: 5px 7px;
+    min-height: 44px;
+    min-width: 40px;
+    padding: 8px 9px;
     font-size: 10px;
     letter-spacing: 0.06em;
   }
@@ -6516,9 +6516,11 @@ body.time-night .home-grain { opacity: 0.1; }
   .ghost-body { flex-direction: column; }
   .ghost-sidebar { width: 100%; border-right: 0; border-bottom: 1px solid #222; }
   .file-list { flex-direction: row; overflow-x: auto; padding-bottom: 12px; }
-  .file-item { white-space: nowrap; font-size: 0.7rem; }
+  .file-item { display: flex; align-items: center; min-height: 44px; white-space: nowrap; font-size: 0.7rem; }
+  .ghost-close-btn { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; margin: -8px -8px -8px 0; }
   .ghost-main { padding: 24px 16px; }
   .terminal-output { font-size: 0.8rem; }
+  .ghost-mirror-btn, .ghost-evolve-btn { min-height: 44px; padding-top: 10px; padding-bottom: 10px; }
 }
 
 @media (max-width: 390px) {
