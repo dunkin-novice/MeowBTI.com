@@ -272,6 +272,24 @@
             }).join('') : t('dynastyGhostEmpty')
         };
 
+        // DAILY REFLECTION (v21)
+        const reflection = window.MeowDaily && window.MeowDaily.getLatestReflection ? window.MeowDaily.getLatestReflection() : null;
+        files['/reflection'] = {
+            icon: '☁️',
+            onOpen: () => {
+                if (window.MeowTrack) window.MeowTrack('reflection_file_opened', { has_reflection: !!reflection });
+            },
+            content: reflection ? `
+                ${t('reflectionGhostTitle')}: ${sanitize(reflection.title)}
+                ${t('reflectionGhostProfile')}: ${sanitize(reflection.profileName || t('reflectionHousehold'))}
+
+                ${t('reflectionGhostLog')}:
+                “${sanitize(reflection.body, 220)}”
+                --------------------------
+                ${t('reflectionGhostStatus')}: ${sanitize(reflection.status)}
+            ` : t('reflectionGhostEmpty')
+        };
+
         return files;
     }
 

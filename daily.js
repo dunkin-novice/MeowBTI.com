@@ -118,6 +118,58 @@
         return family.find(p => p.subject === 'human') || family[0] || null;
     }
 
+    function getLatestReflection() {
+        const { t } = i18n();
+        const history = readStore().items.filter(entry => entry && entry.date && entry.answers);
+        const distinctDays = [...new Set(history.map(entry => entry.date))];
+        if (distinctDays.length < 3) return null;
+
+        const recent = history.slice(0, 7);
+        const older = history.slice(7, 14);
+        const count = (items, key, value) => items.filter(entry => entry.answers[key] === value).length;
+        const recentCalm = count(recent, 'stress', 'calm');
+        const olderCalm = count(older, 'stress', 'calm');
+        const quiet = count(recent, 'social', 'hiding') + count(recent, 'social', 'selective');
+        const lowEnergy = count(recent, 'energy', 'low');
+        let bodyKey = 'reflectionBodyRhythm';
+
+        if (older.length > 0 && recentCalm > olderCalm) bodyKey = 'reflectionBodyGrounded';
+        else if (quiet >= Math.ceil(recent.length / 2)) bodyKey = 'reflectionBodyQuietComfort';
+        else if (lowEnergy >= Math.ceil(recent.length / 2)) bodyKey = 'reflectionBodySlowerMoments';
+
+        const profile = recent.find(entry => entry.profile && entry.profile.name)?.profile ||
+            (window.MeowStore && window.MeowStore.getFamily ? window.MeowStore.getFamily()[0] : null);
+
+        return {
+            title: t('reflectionTitle'),
+            body: t(bodyKey),
+            profileName: profile && profile.name ? profile.name : null,
+            status: t('reflectionStatus')
+        };
+    }
+
+    function renderHomeReflection() {
+        const host = document.getElementById('daily-reflection-home');
+        if (!host) return;
+        const { t } = i18n();
+        const reflection = getLatestReflection();
+
+        host.innerHTML = reflection ? `
+            <div class="daily-reflection-card">
+                <div class="reflection-kicker">${escapeHtml(t('reflectionKicker'))}</div>
+                <h2>${escapeHtml(reflection.title)}</h2>
+                <p>${escapeHtml(reflection.body)}</p>
+                ${reflection.profileName ? `<div class="reflection-profile">${escapeHtml(t('reflectionLinkedProfile', reflection.profileName))}</div>` : ''}
+            </div>
+        ` : `
+            <div class="daily-reflection-card empty">
+                <div class="reflection-kicker">${escapeHtml(t('reflectionKicker'))}</div>
+                <h2>${escapeHtml(t('reflectionTitle'))}</h2>
+                <p>${escapeHtml(t('reflectionEmpty'))}</p>
+            </div>
+        `;
+    }
+
     function buildResult(answers, profile) {
         const { getLang } = i18n();
         const lang = getLang();
@@ -314,6 +366,7 @@
             const restored = window.MeowStore.restoreEligibleHeirloom(readStore().items);
             if (restored && window.MeowTrack) window.MeowTrack('heirloom_restored', { heirloom_id: restored.id });
         }
+        renderHomeReflection();
 
         const pageApp = document.getElementById('daily-app');
         if (pageApp) {
@@ -377,6 +430,7 @@
     window.MeowDaily = {
         getTodayCheckin: getTodayCheckin,
         getHistory: () => readStore().items,
+        getLatestReflection: getLatestReflection,
         buildResult: buildResult,
         ORBS: ORBS
     };
