@@ -148,6 +148,62 @@
         };
     }
 
+    function getObservationStreak() {
+        const { t } = i18n();
+        const history = readStore().items.filter(entry => entry && /^\d{4}-\d{2}-\d{2}$/.test(entry.date || ''));
+        const entriesByDate = new Map();
+        history.forEach(entry => {
+            if (!entriesByDate.has(entry.date)) entriesByDate.set(entry.date, entry);
+        });
+        const dates = [...entriesByDate.keys()].sort().reverse();
+        if (dates.length === 0) return null;
+
+        const dayNumber = date => {
+            const [year, month, day] = date.split('-').map(Number);
+            return Date.UTC(year, month - 1, day) / 86400000;
+        };
+        let days = 1;
+        for (let index = 1; index < dates.length; index++) {
+            if (dayNumber(dates[index - 1]) - dayNumber(dates[index]) !== 1) break;
+            days++;
+        }
+
+        let milestone = t('streakMilestoneDays', days);
+        if (days === 1) milestone = t('streakMilestoneOne');
+        else if (days >= 90) milestone = t('streakMilestoneNinety');
+        else if (days >= 60) milestone = t('streakMilestoneSixty');
+        else if (days >= 30) milestone = t('streakMilestoneThirty');
+        else if (days >= 14) milestone = t('streakMilestoneFourteen');
+        else if (days >= 7) milestone = t('streakMilestoneSeven');
+
+        const latestEntry = entriesByDate.get(dates[0]);
+        const profileName = latestEntry && latestEntry.profile && latestEntry.profile.name ?
+            latestEntry.profile.name : null;
+        return { days, milestone, profileName, status: t('streakStatus') };
+    }
+
+    function renderHomeObservationStreak() {
+        const host = document.getElementById('observation-streak-home');
+        if (!host) return;
+        const { t } = i18n();
+        const streak = getObservationStreak();
+
+        host.innerHTML = streak ? `
+            <div class="observation-streak-card">
+                <div class="observation-streak-kicker">${escapeHtml(t('streakTitle'))}</div>
+                <div class="observation-streak-count">${escapeHtml(t('streakDaysObserved', streak.days))}</div>
+                <p>${escapeHtml(streak.milestone)}</p>
+                ${streak.profileName ? `<div class="observation-streak-profile">${escapeHtml(t('streakLinkedProfile', streak.profileName))}</div>` : ''}
+            </div>
+        ` : `
+            <div class="observation-streak-card empty">
+                <div class="observation-streak-kicker">${escapeHtml(t('streakTitle'))}</div>
+                <h2>${escapeHtml(t('streakStarterTitle'))}</h2>
+                <p>${escapeHtml(t('streakEmpty'))}</p>
+            </div>
+        `;
+    }
+
     function getReflectionShareText(reflection) {
         const { t } = i18n();
         const context = reflection.profileName || t('reflectionHousehold');
@@ -440,6 +496,7 @@
             if (restored && window.MeowTrack) window.MeowTrack('heirloom_restored', { heirloom_id: restored.id });
         }
         renderHomeReflection();
+        renderHomeObservationStreak();
 
         const pageApp = document.getElementById('daily-app');
         if (pageApp) {
@@ -504,6 +561,7 @@
         getTodayCheckin: getTodayCheckin,
         getHistory: () => readStore().items,
         getLatestReflection: getLatestReflection,
+        getObservationStreak: getObservationStreak,
         buildResult: buildResult,
         ORBS: ORBS
     };

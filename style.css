@@ -2075,6 +2075,50 @@ a { color: inherit; }
   margin-top: 10px;
   opacity: 0.7;
 }
+.observation-streak-home-card {
+  max-width: 720px;
+  margin: 14px auto 0;
+}
+.observation-streak-card {
+  background: rgba(255,255,255,0.56);
+  border: 1px solid var(--line-soft);
+  border-radius: 12px;
+  padding: 15px 18px;
+}
+.observation-streak-card.empty { background: rgba(255,255,255,0.42); }
+.observation-streak-kicker {
+  color: var(--accent);
+  font-size: 0.64rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.observation-streak-card h2,
+.observation-streak-count {
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 1.08rem;
+  font-weight: 900;
+  line-height: 1.15;
+  margin: 7px 0 5px;
+  overflow-wrap: anywhere;
+}
+.observation-streak-card p {
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.45;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.observation-streak-profile {
+  color: var(--ink-soft);
+  font-size: 0.7rem;
+  font-weight: 800;
+  margin-top: 8px;
+  opacity: 0.7;
+  overflow-wrap: anywhere;
+}
 .dwh-main {
   display: flex;
   align-items: center;

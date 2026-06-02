@@ -290,6 +290,21 @@
             ` : t('reflectionGhostEmpty')
         };
 
+        // OBSERVATION STREAK (v23)
+        const streak = window.MeowDaily && window.MeowDaily.getObservationStreak ? window.MeowDaily.getObservationStreak() : null;
+        files['/streak'] = {
+            icon: '◌',
+            onOpen: () => {
+                if (window.MeowTrack) window.MeowTrack('streak_file_opened', { streak_days: streak ? streak.days : 0 });
+            },
+            content: streak ? `
+                ${t('streakGhostStatus')}: ${sanitize(streak.status)}
+                ${t('streakGhostDays')}: ${streak.days}
+                ${t('streakGhostMilestone')}: ${sanitize(streak.milestone)}
+                ${streak.profileName ? `${t('streakGhostProfile')}: ${sanitize(streak.profileName)}` : ''}
+            ` : t('streakGhostEmpty')
+        };
+
         return files;
     }
 
