@@ -75,13 +75,18 @@
         if (_cachedStore) return _cachedStore;
         try {
             const parsed = JSON.parse(localStorage.getItem(STORAGE_KEY) || '');
+            const normalizeItems = items => items.filter(entry =>
+                entry && typeof entry === 'object' && !Array.isArray(entry) &&
+                typeof entry.date === 'string' &&
+                entry.answers && typeof entry.answers === 'object' && !Array.isArray(entry.answers)
+            ).slice(0, MAX_ITEMS);
             if (Array.isArray(parsed)) {
-                _cachedStore = { version: VERSION, items: parsed.slice(0, MAX_ITEMS) };
+                _cachedStore = { version: VERSION, items: normalizeItems(parsed) };
                 localStorage.setItem(STORAGE_KEY, JSON.stringify(_cachedStore));
                 return _cachedStore;
             }
             if (parsed && parsed.version === VERSION) {
-                _cachedStore = { version: VERSION, items: Array.isArray(parsed.items) ? parsed.items.slice(0, MAX_ITEMS) : [] };
+                _cachedStore = { version: VERSION, items: Array.isArray(parsed.items) ? normalizeItems(parsed.items) : [] };
                 return _cachedStore;
             }
         } catch (_) {}
@@ -106,7 +111,7 @@
         return readStore().items.find(i => {
             const sameDate = i.date === date;
             const sameProfile = profileId ? (i.profile && i.profile.id === profileId) : !i.profile;
-            return sameDate && sameProfile;
+            return sameDate && sameProfile && i.result && typeof i.result === 'object';
         }) || null;
     }
 
