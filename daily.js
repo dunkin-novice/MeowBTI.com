@@ -54,7 +54,10 @@
     }
 
     function todayKey() {
-        return new Date().toISOString().split('T')[0];
+        const now = new Date();
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const day = String(now.getDate()).padStart(2, '0');
+        return `${now.getFullYear()}-${month}-${day}`;
     }
 
     let _cachedStore = null;
@@ -150,18 +153,26 @@
 
     function getObservationStreak() {
         const { t } = i18n();
-        const history = readStore().items.filter(entry => entry && /^\d{4}-\d{2}-\d{2}$/.test(entry.date || ''));
+        const dayNumber = date => {
+            if (!/^\d{4}-\d{2}-\d{2}$/.test(date || '')) return null;
+            const [year, month, day] = date.split('-').map(Number);
+            const timestamp = Date.UTC(year, month - 1, day);
+            const parsed = new Date(timestamp);
+            if (parsed.getUTCFullYear() !== year || parsed.getUTCMonth() !== month - 1 || parsed.getUTCDate() !== day) return null;
+            return timestamp / 86400000;
+        };
+        const today = todayKey();
+        const history = readStore().items.filter(entry =>
+            entry && dayNumber(entry.date) !== null && entry.date <= today
+        );
         const entriesByDate = new Map();
         history.forEach(entry => {
             if (!entriesByDate.has(entry.date)) entriesByDate.set(entry.date, entry);
         });
         const dates = [...entriesByDate.keys()].sort().reverse();
         if (dates.length === 0) return null;
+        if (dayNumber(today) - dayNumber(dates[0]) > 1) return null;
 
-        const dayNumber = date => {
-            const [year, month, day] = date.split('-').map(Number);
-            return Date.UTC(year, month - 1, day) / 86400000;
-        };
         let days = 1;
         for (let index = 1; index < dates.length; index++) {
             if (dayNumber(dates[index - 1]) - dayNumber(dates[index]) !== 1) break;
