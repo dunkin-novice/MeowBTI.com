@@ -1538,9 +1538,130 @@ a.psychology-tool-card:hover {
   margin: 22px 0 0;
   text-align: center;
 }
+.psychology-note a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  font-weight: 800;
+}
 @media (max-width: 760px) {
   .psychology-card-grid { grid-template-columns: 1fr; }
   .psychology-tool-card { min-height: 0; }
+}
+
+/* ─── MBTI evergreen content foundation ──────────────────── */
+.mbti-content-page { background: var(--bg); }
+.mbti-content-hero {
+  padding: 52px 0 28px;
+  text-align: center;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255,91,59,0.11), transparent 48%),
+    var(--bg);
+}
+.mbti-breadcrumb,
+.mbti-content-kicker {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  color: var(--ink-soft);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.mbti-breadcrumb {
+  min-height: 44px;
+  margin-right: 10px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.mbti-content-hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(38px, 8vw, 74px);
+  line-height: 1;
+  margin: 12px auto 14px;
+  max-width: 860px;
+  text-wrap: balance;
+}
+.mbti-content-hero p {
+  max-width: 720px;
+  margin: 0 auto;
+  color: var(--ink-soft);
+  font-size: clamp(17px, 3vw, 21px);
+}
+.mbti-content-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 26px;
+}
+.mbti-content-body { padding: 38px 0 80px; }
+.mbti-content-body .container {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 28px;
+  align-items: start;
+}
+.mbti-article,
+.mbti-related-panel {
+  background: rgba(255,255,255,0.88);
+  border: 1.5px solid var(--line-soft);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+}
+.mbti-article { padding: clamp(22px, 5vw, 38px); }
+.mbti-article section + section {
+  margin-top: 34px;
+  padding-top: 28px;
+  border-top: 1.5px solid var(--line-soft);
+}
+.mbti-article h2,
+.mbti-related-panel h2 {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 4vw, 32px);
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+.mbti-article p,
+.mbti-article li {
+  color: var(--ink-soft);
+  font-size: 16px;
+  line-height: 1.72;
+}
+.mbti-article ul { padding-left: 22px; }
+.mbti-article details {
+  border: 1.5px solid var(--line-soft);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  background: var(--surface-warm);
+}
+.mbti-article details + details { margin-top: 12px; }
+.mbti-article summary {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 800;
+}
+.mbti-related-panel {
+  position: sticky;
+  top: 88px;
+  padding: 20px;
+}
+.mbti-related-panel a {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 800;
+  border-top: 1px solid var(--line-soft);
+}
+.mbti-related-panel a:hover { color: var(--accent); }
+@media (max-width: 820px) {
+  .mbti-content-body .container { grid-template-columns: 1fr; }
+  .mbti-related-panel { position: static; }
 }
 
 .hero-actions {

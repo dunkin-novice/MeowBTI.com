@@ -394,6 +394,24 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://meowbti.com/mbti/intj/</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://meowbti.com/mbti/enfp/</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://meowbti.com/mbti/intj-enfp/</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://meowbti.com/mbti/test.html</loc>
     <lastmod>2026-05-14</lastmod>
     <changefreq>monthly</changefreq>
