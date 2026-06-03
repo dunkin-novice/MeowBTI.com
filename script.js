@@ -49,8 +49,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.MeowTrack && window.MeowTrack('lang_switched', { from: getLang(), to: next });
                 setLang(next);
                 const url = new URL(window.location.href);
-                if (next === 'en') url.searchParams.delete('lang');
-                else url.searchParams.set('lang', next);
+                if (next === 'en') {
+                    url.searchParams.delete('lang');
+                    if (url.pathname.startsWith('/th/')) url.pathname = url.pathname.replace(/^\/th(?=\/)/, '') || '/';
+                } else if (url.pathname === '/psychology/') {
+                    url.pathname = '/th/psychology/';
+                    url.searchParams.delete('lang');
+                } else {
+                    url.searchParams.set('lang', next);
+                }
                 window.location.href = url.toString();
             });
         });

@@ -11,6 +11,7 @@
         navHome:           { en: "Home",                      th: "หน้าหลัก" },
         navAll16:          { en: "All 16",                    th: "ทั้งหมด 16" },
         navHumanMode:      { en: "Human Energy",              th: "ตัวตนในร่างแมว" },
+        navPsychology:     { en: "Psychology",                th: "จิตวิทยา" },
         navMBTI:           { en: "MBTI",                      th: "MBTI" },
         navEnnea:          { en: "Enneagram",                 th: "Enneagram" },
         navCompare:        { en: "Compare",                   th: "เปรียบเทียบ" },
@@ -41,6 +42,32 @@
                               th: "ค้นพบแรงขับเคลื่อนทางอารมณ์และความกลัวลึกๆ ที่ซ่อนอยู่ใต้ผิวหนังคุณ" },
         ecoDescWeather:    { en: "A tiny ritual to see which cat energy is running your day.", 
                               th: "พิธีกรรมเล็กๆ เพื่อเช็กว่าวันนี้พลังงานแมวตัวไหนกำลังคุมมู้ดคุณอยู่" },
+
+        // ─── psychology hub (psychology/) ─────────────────────
+        psychHubKicker:    { en: "Free self-awareness hub",   th: "ศูนย์รวมการรู้จักตัวเองฟรี" },
+        psychHubH1:        { en: "Free Psychology Tools",     th: "เครื่องมือจิตวิทยาฟรี" },
+        psychHubSub:       { en: "Understand yourself a little better.", th: "เข้าใจตัวเองให้มากขึ้นอีกนิด" },
+        psychAvailable:    { en: "Available now",             th: "พร้อมใช้งานแล้ว" },
+        psychComingSoon:   { en: "Coming soon",               th: "เร็วๆ นี้" },
+        psychStatusAvailable:{ en: "Available",               th: "พร้อมใช้งาน" },
+        psychStatusSoon:   { en: "Coming soon",               th: "เร็วๆ นี้" },
+        psychHumanTitle:   { en: "Human MBTI Test",           th: "Human MBTI Test" },
+        psychHumanDesc:    { en: "Find the cat-energy archetype behind your everyday human patterns.", th: "ค้นหาพลังงานแมวที่ซ่อนอยู่ในแพตเทิร์นชีวิตประจำวันของคุณ" },
+        psychCatTitle:     { en: "Cat MBTI Test",             th: "Cat MBTI Test" },
+        psychCatDesc:      { en: "Map your cat's personality into one of 16 playful MeowBTI types.", th: "จับคู่บุคลิกแมวของคุณกับ 1 ใน 16 ประเภท MeowBTI แบบสนุกๆ" },
+        psychMbtiTitle:    { en: "MBTI Cognitive Type",       th: "MBTI Cognitive Type" },
+        psychMbtiDesc:     { en: "Explore your 4-letter mind style and its MeowBTI cousin.", th: "สำรวจสไตล์ความคิด 4 ตัวอักษร และญาติในโลก MeowBTI ของคุณ" },
+        psychEnneaTitle:   { en: "Enneagram",                 th: "Enneagram" },
+        psychEnneaDesc:    { en: "A future reflection tool for core motivations and recurring patterns.", th: "เครื่องมือสะท้อนแรงขับและแพตเทิร์นที่วนกลับมาในอนาคต" },
+        psychAttachmentTitle:{ en: "Attachment Style",        th: "Attachment Style" },
+        psychAttachmentDesc:{ en: "A gentle look at how closeness, distance, and trust can feel.", th: "มองอย่างอ่อนโยนว่าความใกล้ชิด ระยะห่าง และความไว้ใจรู้สึกอย่างไร" },
+        psychLoveTitle:    { en: "Love Languages",            th: "Love Languages" },
+        psychLoveDesc:     { en: "A simple way to reflect on how care is given and received.", th: "วิธีง่ายๆ ในการสะท้อนว่าเราให้และรับความใส่ใจอย่างไร" },
+        psychBurnoutTitle: { en: "Burnout Check",             th: "Burnout Check" },
+        psychBurnoutDesc:  { en: "A non-clinical pause for noticing energy, pressure, and rest.", th: "พื้นที่พักแบบไม่ใช่การวินิจฉัย เพื่อสังเกตพลังงาน แรงกดดัน และการพัก" },
+        psychEmotionalTitle:{ en: "Emotional Awareness Check-In", th: "Emotional Awareness Check-In" },
+        psychEmotionalDesc:{ en: "A future daily reflection space for naming the mood of the moment.", th: "พื้นที่สะท้อนประจำวันในอนาคต สำหรับเรียกชื่ออารมณ์ของช่วงเวลานั้น" },
+        psychDisclaimer:   { en: "For reflection and entertainment only. Not medical or mental health advice.", th: "เพื่อการสะท้อนตัวเองและความบันเทิงเท่านั้น ไม่ใช่คำแนะนำทางการแพทย์หรือสุขภาพจิต" },
 
         navTakeTest:       { en: "Take the test",             th: "เริ่มทำแบบทดสอบ" },
         
@@ -2109,6 +2136,7 @@
                 try { localStorage.setItem(STORAGE_KEY, url); } catch (_) {}
                 return url;
             }
+            if (window.location.pathname.startsWith('/th/')) return 'th';
             const stored = localStorage.getItem(STORAGE_KEY);
             if (stored === 'th' || stored === 'en') return stored;
         } catch (_) {}
@@ -2139,6 +2167,8 @@
         const lang = getLang();
         if (lang !== 'th') return href;
         if (!href || href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('#')) return href;
+        if (href === '/psychology/' || href === 'psychology/' || href === '../psychology/') return '/th/psychology/';
+        if (window.location.pathname.startsWith('/th/')) return href;
         if (/[?&]lang=/.test(href)) return href;
         const sep = href.includes('?') ? '&' : '?';
         // Preserve hash fragments at the end.
