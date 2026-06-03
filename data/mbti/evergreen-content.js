@@ -46,6 +46,9 @@
         'isfj': { type: 'personality', title: 'ISFJ Personality Guide', related: ['esfj', 'istj', 'infj'], route: '/mbti/isfj/' },
         'isfp': { type: 'personality', title: 'ISFP Personality Guide', related: ['esfp', 'infp', 'istp'], route: '/mbti/isfp/' },
         'istj': { type: 'personality', title: 'ISTJ Personality Guide', related: ['estj', 'isfj', 'intj'], route: '/mbti/istj/' },
+        'why-infjs-disappear': { type: 'growth', title: 'Why INFJs Disappear', related: ['infj', 'infp', 'enfj'], route: '/mbti/why-infjs-disappear/' },
+        'why-intjs-need-space': { type: 'growth', title: 'Why INTJs Need Space', related: ['intj', 'intp', 'entj'], route: '/mbti/why-intjs-need-space/' },
+        'why-enfps-lose-interest': { type: 'growth', title: 'Why ENFPs Lose Interest', related: ['enfp', 'entp', 'infp'], route: '/mbti/why-enfps-lose-interest/' },
         'istp': { type: 'personality', title: 'ISTP Personality Guide', related: ['estp', 'intp', 'isfp'], route: '/mbti/istp/' }
     };
 
