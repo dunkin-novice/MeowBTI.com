@@ -98,12 +98,48 @@ a { color: inherit; }
   filter: drop-shadow(2px 2px 0 var(--ink-06));
 }
 .nav-menu { list-style: none; display: flex; gap: 4px; align-items: center; }
-.nav-menu li a {
+.nav-menu li a,
+.nav-summary {
+  display: inline-flex;
+  align-items: center;
   text-decoration: none; color: var(--ink);
   font-weight: 600; font-size: 14px;
   padding: 8px 12px; border-radius: var(--radius-pill);
+  cursor: pointer;
 }
-.nav-menu li a:hover { background: var(--ink-06); }
+.nav-menu li a:hover,
+.nav-summary:hover { background: var(--ink-06); }
+.nav-group { position: relative; }
+.nav-group details { position: relative; }
+.nav-summary { list-style: none; }
+.nav-summary::-webkit-details-marker { display: none; }
+.nav-summary::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  margin-left: 7px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg) translateY(-1px);
+}
+.nav-panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 70;
+  display: none;
+  min-width: 190px;
+  padding: 8px;
+  border: 1px solid var(--ink-12);
+  border-radius: 14px;
+  background: var(--paper);
+  box-shadow: var(--shadow-soft);
+}
+.nav-group details[open] .nav-panel { display: grid; gap: 2px; }
+.nav-panel a {
+  width: 100%;
+  min-height: 40px;
+}
 .nav-menu .nav-cta {
   background: var(--ink); color: #fff;
   padding: 10px 16px;
@@ -133,11 +169,8 @@ a { color: inherit; }
   }
   .nav-menu li.nav-mobile-hide,
   .nav-menu li.nav-mobile-secondary { display: none; }
-  .nav-menu li:nth-child(2),
-  .nav-menu li:nth-child(7),
-  .nav-menu li:nth-child(8) { display: none; }
-  .nav-menu li:nth-child(5) { display: list-item; }
-  .nav-menu li a {
+  .nav-menu li a,
+  .nav-summary {
     display: inline-flex;
     align-items: center;
     min-height: 44px;
@@ -145,10 +178,58 @@ a { color: inherit; }
     font-size: 11px;
     white-space: nowrap;
   }
+  .nav-summary::after {
+    width: 5px;
+    height: 5px;
+    margin-left: 5px;
+  }
+  .nav-panel {
+    position: fixed;
+    top: 54px;
+    left: 10px;
+    right: 10px;
+    min-width: 0;
+    padding: 10px;
+    grid-template-columns: 1fr;
+    border-radius: 12px;
+  }
+  .nav-panel a {
+    min-height: 44px;
+    padding: 9px 12px;
+    font-size: 13px;
+  }
   .nav-menu .nav-cta { padding: 7px 9px; }
   .nav-menu .nav-lang { flex: 0 0 auto; }
 }
 @media (max-width: 430px) {
+  .logo {
+    width: 28px;
+    gap: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 0;
+  }
+  .logo::before { font-size: 22px; }
+  .nav-summary {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  .nav-group-tests .nav-summary,
+  .nav-group-psychology .nav-summary,
+  .nav-group-daily .nav-summary,
+  .nav-group-more .nav-summary {
+    font-size: 0;
+  }
+  .nav-group-tests .nav-summary::before,
+  .nav-group-psychology .nav-summary::before,
+  .nav-group-daily .nav-summary::before,
+  .nav-group-more .nav-summary::before {
+    font-size: 11px;
+  }
+  .nav-group-tests .nav-summary::before { content: "Test"; }
+  .nav-group-psychology .nav-summary::before { content: "Psych"; }
+  .nav-group-daily .nav-summary::before { content: "Daily"; }
+  .nav-group-more .nav-summary::before { content: "More"; }
   .nav-menu .nav-cta {
     min-width: 44px;
     justify-content: center;
