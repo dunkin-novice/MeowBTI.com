@@ -73,9 +73,45 @@ document.addEventListener('DOMContentLoaded', () => {
                 const element = document.getElementById(elementId);
                 if (!element) return;
                 element.innerHTML = data;
+                if (elementId === 'main-header') normalizeNav(element);
                 applyI18n(element);
             })
             .catch(error => console.error('Error loading component:', error));
+    }
+
+    function normalizeNav(root) {
+        const menu = root.querySelector('.nav-menu');
+        if (!menu) return;
+
+        const links = Array.from(menu.querySelectorAll('a'));
+        const byHref = href => links.find(link => link.getAttribute('href') === href);
+
+        const all16 = byHref('/personality-types.html');
+        const codex = byHref('/codex/');
+        const compare = byHref('/compare.html');
+        [all16, codex, compare].forEach(link => {
+            const item = link && link.closest('li');
+            if (item) item.classList.add('nav-mobile-secondary');
+        });
+
+        const mbti = byHref('/mbti/');
+        if (mbti) {
+            const item = mbti.closest('li');
+            if (item) item.classList.remove('nav-mobile-hide');
+        }
+
+        if (!byHref('/psychology/')) {
+            const item = document.createElement('li');
+            const link = document.createElement('a');
+            link.href = '/psychology/';
+            link.setAttribute('data-i18n-href', '');
+            link.setAttribute('data-i18n', 'navPsychology');
+            link.textContent = 'Psychology';
+            item.appendChild(link);
+            const mbtiItem = mbti && mbti.closest('li');
+            if (mbtiItem) menu.insertBefore(item, mbtiItem);
+            else menu.insertBefore(item, menu.querySelector('.nav-lang'));
+        }
     }
 
     // Translate any [data-i18n] elements that were already in the static HTML.

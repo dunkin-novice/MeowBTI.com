@@ -133,6 +133,10 @@ a { color: inherit; }
   }
   .nav-menu li.nav-mobile-hide,
   .nav-menu li.nav-mobile-secondary { display: none; }
+  .nav-menu li:nth-child(2),
+  .nav-menu li:nth-child(7),
+  .nav-menu li:nth-child(8) { display: none; }
+  .nav-menu li:nth-child(5) { display: list-item; }
   .nav-menu li a {
     display: inline-flex;
     align-items: center;
