@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Attachment Style Result | MeowBTI</title>
+    <meta name="robots" content="noindex, follow">
+    <meta name="theme-color" content="#FFF4EC">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <meta property="og:title" content="My Attachment Style Reflection | MeowBTI">
+    <meta property="og:description" content="A gentle self-reflection result for noticing relationship patterns.">
+    <meta property="og:image" content="https://meowbti.com/assets/personalities/shnr-the-gentle-defender.webp">
+    <meta property="og:url" content="https://meowbti.com/attachment-style/result.html">
+    <meta property="og:type" content="website">
+    <link rel="stylesheet" href="../style.css">
+    <script src="../analytics.js" defer></script>
+    <script src="../data/i18n.js" defer></script>
+    <script src="../script.js" defer></script>
+</head>
+<body>
+    <header class="main-header" id="main-header"></header>
+    <main>
+        <section class="result-section attachment-result-section">
+            <div class="container">
+                <div id="attachment-result-content" class="attachment-result-content">
+                    <p style="text-align:center; padding:80px 0; opacity:0.6;">Loading your reflection...</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="main-footer" id="main-footer"></footer>
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const TYPES = {
+            secure: {
+                name: "Secure",
+                page: "secure/",
+                overview: "You may usually find closeness and independence both workable. When stress appears, you tend to look for repair, clarity, and mutual steadiness rather than proving or withdrawing.",
+                strengths: ["Communicates needs with relative directness", "Can accept care without losing a sense of self", "Often sees conflict as something that can be repaired"],
+                challenges: ["May underestimate how hard trust feels for others", "Can still avoid difficult topics when overloaded", "May need to practice naming needs before resentment builds"],
+                patterns: "In relationships, this pattern often looks like steady warmth, room for individuality, and willingness to talk after tension.",
+                growth: "Keep practicing specific requests, active listening, and repair after small misunderstandings. Security is maintained through repeated everyday choices."
+            },
+            anxious: {
+                name: "Anxious",
+                page: "anxious/",
+                overview: "You may notice a stronger pull toward reassurance, closeness, and signs that the relationship is still safe. Unclear communication can feel especially loud.",
+                strengths: ["Deeply notices emotional shifts", "Values closeness, care, and responsiveness", "Often wants to repair tension quickly"],
+                challenges: ["May read silence as rejection", "Can over-explain or seek repeated reassurance under stress", "May put another person's mood ahead of your own needs"],
+                patterns: "In relationships, this pattern often looks like high sensitivity to distance, quick bids for connection, and relief when communication feels warm and consistent.",
+                growth: "Practice slowing the story your mind creates under uncertainty. Ask for reassurance directly, while also building calming routines that do not depend on an immediate reply."
+            },
+            avoidant: {
+                name: "Avoidant",
+                page: "avoidant/",
+                overview: "You may protect your steadiness through space, self-reliance, and time to think. Too much emotional pressure can make distance feel like the safest move.",
+                strengths: ["Respects independence and personal boundaries", "Can stay practical under pressure", "Often gives others room to be themselves"],
+                challenges: ["May pull away before explaining what is happening", "Can experience needs as pressure or loss of freedom", "May delay repair because space feels easier than conversation"],
+                patterns: "In relationships, this pattern often looks like valuing autonomy, needing time before emotional conversations, and feeling wary of intensity.",
+                growth: "Practice naming the need for space without disappearing. A short, clear message can protect independence while keeping the connection intact."
+            },
+            fearfulAvoidant: {
+                name: "Fearful Avoidant",
+                page: "fearful-avoidant/",
+                overview: "You may want closeness and feel cautious about it at the same time. Connection can feel meaningful, while uncertainty or conflict may trigger both reaching and retreating.",
+                strengths: ["Notices complexity in relationships", "Can be deeply loyal when trust feels earned", "Often reflects carefully on emotional safety"],
+                challenges: ["May switch between seeking closeness and needing distance", "Can expect disappointment even when care is present", "May find conflict hard to interpret in the moment"],
+                patterns: "In relationships, this pattern often looks like mixed signals: wanting reassurance, then needing room when closeness feels overwhelming.",
+                growth: "Practice one small steady action at a time: naming what you feel, asking for a pause, or choosing a repair conversation after your body settles."
+            }
+        };
+
+        function escapeHtml(value) {
+            return String(value).replace(/[&<>"']/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;" }[ch]));
+        }
+
+        function scoreRows(params) {
+            const rows = [
+                ["Secure", params.get("s")],
+                ["Anxious", params.get("a")],
+                ["Avoidant", params.get("v")],
+                ["Fearful Avoidant", params.get("f")]
+            ].map(([label, raw]) => ({ label, value: Number(raw || 0) }));
+            const min = Math.min(...rows.map(row => row.value), 0);
+            const max = Math.max(...rows.map(row => row.value), 1);
+            return rows.map(row => {
+                const pct = Math.round(((row.value - min) / Math.max(1, max - min)) * 100);
+                return `
+                    <div class="attachment-score-row">
+                        <span>${escapeHtml(row.label)}</span>
+                        <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:${pct}%"></div></div>
+                        <strong>${escapeHtml(row.value)}</strong>
+                    </div>
+                `;
+            }).join("");
+        }
+
+        const params = new URLSearchParams(window.location.search);
+        const typeKey = params.get("type");
+        const result = TYPES[typeKey];
+        const host = document.getElementById("attachment-result-content");
+
+        if (!host || !result) {
+            if (host) {
+                host.innerHTML = `
+                    <div class="attachment-result-card">
+                        <h1>Result not found</h1>
+                        <p>This result link is missing a valid style. You can retake the Attachment Style Test anytime.</p>
+                        <a class="big-btn accent" href="test.html" data-i18n-href>Retake the test</a>
+                    </div>
+                `;
+            }
+            return;
+        }
+
+        window.MeowTrack && window.MeowTrack("result_view", {
+            framework: "attachment_style",
+            result_type: typeKey
+        });
+
+        host.innerHTML = `
+            <article class="attachment-result-card">
+                <a class="mbti-breadcrumb" href="./" data-i18n-href>Attachment Style Guide</a>
+                <span class="mbti-content-kicker">Self-reflection result</span>
+                <h1>${escapeHtml(result.name)} Attachment</h1>
+                <p class="attachment-result-overview">${escapeHtml(result.overview)}</p>
+                <p class="attachment-disclaimer">This is a self-reflection tool, not a diagnosis, therapy, medical advice, or mental-health screening.</p>
+
+                <section>
+                    <h2>Your score pattern</h2>
+                    <div class="attachment-score-list">${scoreRows(params)}</div>
+                </section>
+
+                <section>
+                    <h2>Common strengths</h2>
+                    <ul>${result.strengths.map(item => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+                </section>
+
+                <section>
+                    <h2>Common challenges</h2>
+                    <ul>${result.challenges.map(item => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+                </section>
+
+                <section>
+                    <h2>Relationship patterns</h2>
+                    <p>${escapeHtml(result.patterns)}</p>
+                </section>
+
+                <section>
+                    <h2>Growth reflection</h2>
+                    <p>${escapeHtml(result.growth)}</p>
+                </section>
+
+                <div class="attachment-result-actions">
+                    <a class="big-btn accent" href="${escapeHtml(result.page)}" data-i18n-href>Read the full style guide</a>
+                    <a class="big-btn ghost" href="../psychology/" data-i18n-href>Psychology Hub</a>
+                    <a class="big-btn ghost" href="test.html" data-i18n-href>Retake the test</a>
+                </div>
+            </article>
+        `;
+    });
+    </script>
+</body>
+</html>
