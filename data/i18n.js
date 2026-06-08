@@ -40,8 +40,8 @@
                               th: "เข้าใจระบบความคิดลึกๆ และวิธีที่คุณประมวลผลความจริงรอบตัว" },
         ecoDescEnnea:      { en: "Discover the emotional pressure and deep motivation that actually drives you.", 
                               th: "ค้นพบแรงขับเคลื่อนทางอารมณ์และความกลัวลึกๆ ที่ซ่อนอยู่ใต้ผิวหนังคุณ" },
-        ecoDescWeather:    { en: "A tiny ritual to see which cat energy is running your day.", 
-                              th: "พิธีกรรมเล็กๆ เพื่อเช็กว่าวันนี้พลังงานแมวตัวไหนกำลังคุมมู้ดคุณอยู่" },
+        ecoDescWeather:    { en: "Check in, notice patterns, and build consistency.",
+                              th: "เช็กอิน เห็นแพตเทิร์น และสร้างความต่อเนื่อง" },
 
         // ─── psychology hub (psychology/) ─────────────────────
         psychHubKicker:    { en: "Free self-awareness hub",   th: "ศูนย์รวมการรู้จักตัวเองฟรี" },
@@ -1384,11 +1384,11 @@
         mbtiTakeHumanCta:  { en: "Map your human archetype", th: "ถอดรหัสตัวตนร่างมนุษย์" },
         mbtiBrowseArchetypes: { en: "Browse all 16 cat energies", th: "ดูพลังงานแมวทั้ง 16 แบบ" },
 
-        // ─── Emotional OS daily check-in (daily.html + daily.js) ──
-        dailyKicker:       { en: "Daily ritual",               th: "พิธีเช็กอินประจำวัน" },
-        dailyH1:           { en: "Daily Emotional Weather",    th: "สภาพอากาศในใจประจำวัน" },
-        dailyIntro:        { en: "A tiny check-in for your current cat-energy mood. Saved only on this device.",
-                              th: "เช็กอินสั้นๆ กับพลังงานแมวในใจตอนนี้ บันทึกไว้เฉพาะในอุปกรณ์นี้" },
+        // ─── Daily Loop (daily.html + daily.js) ──
+        dailyKicker:       { en: "Daily Loop",                 th: "วงจรประจำวัน" },
+        dailyH1:           { en: "Daily Loop",                 th: "วงจรประจำวัน" },
+        dailyIntro:        { en: "Check in, notice emotional patterns, and build an observation streak. Saved only on this device.",
+                              th: "เช็กอิน สังเกตแพตเทิร์นอารมณ์ และสะสมช่วงเวลาแห่งการสังเกต บันทึกไว้เฉพาะในอุปกรณ์นี้" },
         dailyDisclaimer:   { en: "For reflection and entertainment only. Not medical or mental health advice.",
                               th: "ใช้เพื่อการสะท้อนตัวเองและความบันเทิงเท่านั้น ไม่ใช่คำแนะนำทางการแพทย์หรือสุขภาพจิต" },
         dailyStartCta:     { en: "Start today’s check-in",     th: "เริ่มเช็กอินวันนี้" },
