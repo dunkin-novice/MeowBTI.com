@@ -59,7 +59,7 @@
                         <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
                             <a href="quiz.html" class="big-btn accent" data-i18n-href>${t('navTakeTest')}</a>
                             <a href="mbti/index.html" class="big-btn ghost">MBTI</a>
-                            <a href="enneagram/index.html" class="big-btn ghost" style="border-color:#9B59B6; color:#9B59B6;">Enneagram</a>
+                            <a href="psychology/" class="big-btn ghost">Psychology Hub</a>
                         </div>
                     </div>
                 `;

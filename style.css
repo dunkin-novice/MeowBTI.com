@@ -229,7 +229,7 @@ a { color: inherit; }
   .nav-group-tests .nav-summary::before { content: "Test"; }
   .nav-group-psychology .nav-summary::before { content: "Psych"; }
   .nav-group-daily .nav-summary::before { content: "Daily"; }
-  .nav-group-more .nav-summary::before { content: "More"; }
+  .nav-group-more .nav-summary::before { content: "World"; }
   .nav-menu .nav-cta {
     min-width: 44px;
     justify-content: center;
@@ -3282,6 +3282,31 @@ a.psychology-tool-card:hover {
 .home-archive-grid {
   grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
 }
+.world-map-flow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin: 28px auto 32px;
+  max-width: 820px;
+}
+.world-map-flow span,
+.world-archive-flow span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 8px 12px;
+  border: 1px solid var(--line-soft);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.72);
+  font-weight: 800;
+  font-size: 0.82rem;
+}
+.world-map-flow span:not(:last-child)::after {
+  content: "→";
+  margin-left: 10px;
+  color: var(--ink-soft);
+}
 .home-daily-system {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   margin: 32px 0 28px;
@@ -3339,6 +3364,17 @@ a.psychology-tool-card:hover {
   .home-world-section .eco-card,
   .home-daily-system .eco-card {
     min-height: 0;
+  }
+  .world-map-flow {
+    justify-content: flex-start;
+  }
+  .world-map-flow span {
+    flex: 1 1 140px;
+    justify-content: center;
+  }
+  .world-map-flow span:not(:last-child)::after {
+    content: "";
+    margin-left: 0;
   }
 }
 
@@ -3818,6 +3854,35 @@ a.psychology-tool-card:hover {
 .wm-header { text-align: center; margin-bottom: 40px; }
 .wm-title { font-family: var(--font-display); font-size: 2rem; margin-bottom: 8px; }
 .wm-intro { opacity: 0.6; font-size: 1rem; max-width: 500px; margin: 0 auto; }
+.world-archive-orientation {
+  max-width: 720px;
+  margin: 22px auto 0;
+  padding: 18px;
+  border: 1px solid var(--line-soft);
+  border-radius: 18px;
+  background: rgba(255,255,255,0.62);
+  text-align: left;
+}
+.world-archive-orientation strong,
+.world-archive-orientation span {
+  display: block;
+}
+.world-archive-orientation strong {
+  margin-bottom: 6px;
+  font-family: var(--font-display);
+  font-size: 1rem;
+}
+.world-archive-orientation > span {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+.world-archive-flow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
 
 .climate-spotlight {
   background: #fff;

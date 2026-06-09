@@ -433,7 +433,7 @@
 
         // ─── Household Museum & Relics ────────────────────
         museumTitle:       { en: "The Household Museum",      th: "พิพิธภัณฑ์ประจำบ้าน" },
-        museumIntro:       { en: "A collection of symbolic artifacts from your shared emotional history.", th: "คลังสะสมวัตถุเชิงสัญลักษณ์จากประวัติศาสตร์ทางอารมณ์ร่วมกันของคุณ" },
+        museumIntro:       { en: "The Museum stores the history of your household: profiles, Daily Loop patterns, saved memories, and restored artifacts.", th: "พิพิธภัณฑ์เก็บประวัติของบ้านคุณ ทั้งโปรไฟล์ แพตเทิร์นจาก Daily Loop ความทรงจำที่บันทึกไว้ และวัตถุที่ได้รับการฟื้นคืน" },
         relicShelf:        { en: "Artifact Shelf",            th: "หิ้งวัตถุโบราณ" },
         trophyRoom:        { en: "Trophy Room",               th: "ห้องเก็บถ้วยรางวัล" },
         
@@ -682,7 +682,7 @@
 
         // ─── Household Federation ───────────────────────
         fedTitle:          { en: "Household Federation",      th: "สหพันธรัฐประจำบ้าน" },
-        fedIntro:          { en: "Form alliances and establish emotional diplomacy with neighboring civilizations.", th: "สร้างพันธมิตรและสถาปนาการทูตทางอารมณ์กับอารยธรรมข้างเคียง" },
+        fedIntro:          { en: "Federation represents connections formed through your household journey and shared archive signals.", th: "สหพันธรัฐแทนความเชื่อมโยงที่เกิดขึ้นจากการเดินทางของบ้านคุณและสัญญาณจากคลังประวัติร่วมกัน" },
         fedEmbassy:        { en: "Emotional Embassy",         th: "สถานเอกอัครราชทูตทางอารมณ์" },
         fedExportCode:     { en: "Share Civilization Code",   th: "แชร์รหัสอารยธรรม" },
         fedImportCode:     { en: "Establish Diplomacy",       th: "สถาปนาการทูต" },
