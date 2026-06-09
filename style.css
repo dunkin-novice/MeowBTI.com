@@ -1339,6 +1339,41 @@ a { color: inherit; }
   margin-bottom: 24px;
   letter-spacing: -0.02em;
 }
+.quiz-mode-note,
+.quiz-route-note {
+  max-width: 620px;
+  margin: -10px auto 28px;
+  color: var(--ink-soft);
+  font-weight: 700;
+  line-height: 1.5;
+}
+.quiz-route-note {
+  margin: 24px auto 0;
+  font-size: 0.95rem;
+}
+.quiz-route-note a {
+  color: var(--ink);
+  font-weight: 900;
+}
+.test-trust-strip {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin: 14px auto 22px;
+}
+.test-trust-strip span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 7px 11px;
+  border: 1px solid var(--line-soft);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.72);
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+  font-weight: 900;
+}
 .quiz-mode-group {
   margin-bottom: 32px;
 }
