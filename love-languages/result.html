@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Love Languages Result | MeowBTI</title>
+    <meta name="robots" content="noindex, follow">
+    <meta name="theme-color" content="#FFF4EC">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <meta property="og:title" content="My Love Languages Reflection | MeowBTI">
+    <meta property="og:description" content="A gentle self-reflection result for noticing how care feels meaningful.">
+    <meta property="og:image" content="https://meowbti.com/assets/personalities/chnr-the-social-ambassador.webp">
+    <meta property="og:url" content="https://meowbti.com/love-languages/result.html">
+    <meta property="og:type" content="website">
+    <link rel="stylesheet" href="../style.css">
+    <script src="../analytics.js" defer></script>
+    <script src="../data/i18n.js" defer></script>
+    <script src="../script.js" defer></script>
+</head>
+<body>
+    <header class="main-header" id="main-header"></header>
+    <main>
+        <section class="result-section attachment-result-section">
+            <div class="container">
+                <div id="love-result-content" class="attachment-result-content">
+                    <p style="text-align:center; padding:80px 0; opacity:0.6;">Loading your reflection...</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="main-footer" id="main-footer"></footer>
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const TYPES = {
+            words: {
+                name: "Words of Affirmation",
+                overview: "You may feel especially cared for when appreciation, encouragement, and emotional clarity are spoken or written directly.",
+                strengths: ["Names appreciation clearly", "Notices tone and emotional meaning", "Can make others feel seen through language"],
+                blindSpots: ["May miss care that is shown quietly", "Can feel hurt by careless wording", "May need reassurance to be stated more often than others expect"],
+                preferences: "Warm messages, specific compliments, thoughtful check-ins, and sincere repair words tend to matter.",
+                tips: "Ask for specific words instead of expecting someone to guess. Offer examples of what lands well.",
+                growth: "Practice receiving care in nonverbal forms too, while still honoring that words help your heart register connection."
+            },
+            time: {
+                name: "Quality Time",
+                overview: "You may feel most connected when someone gives focused presence, shared attention, and unhurried time.",
+                strengths: ["Values presence over performance", "Creates room for real conversation", "Often notices when attention is divided"],
+                blindSpots: ["May experience busyness as disinterest", "Can feel overlooked when plans change", "May understate how much focused time matters"],
+                preferences: "Shared rituals, device-light conversations, walks, meals, and dedicated time can feel especially meaningful.",
+                tips: "Make requests concrete: a weekly walk, dinner without phones, or ten focused minutes after work.",
+                growth: "Let small moments count. Quality time does not always require a perfect schedule or long uninterrupted day."
+            },
+            service: {
+                name: "Acts of Service",
+                overview: "You may feel loved when care becomes practical help, reliability, and thoughtful action that reduces pressure.",
+                strengths: ["Notices real-world needs", "Often shows care through follow-through", "Values reliability and practical support"],
+                blindSpots: ["May feel unsupported when help is not offered automatically", "Can over-function instead of asking", "May overlook affectionate words when actions are missing"],
+                preferences: "Help with tasks, shared responsibility, thoughtful errands, and practical follow-through tend to feel caring.",
+                tips: "Name the kind of help that would matter most. Clear requests make support easier to give.",
+                growth: "Remember that rest and receiving are part of care too. You do not need to earn support by doing everything first."
+            },
+            touch: {
+                name: "Physical Touch",
+                overview: "You may feel connected through safe, welcome physical closeness such as hugs, hand-holding, or relaxed proximity.",
+                strengths: ["Notices physical comfort and warmth", "Can communicate care through gentle presence", "Often values embodied reassurance"],
+                blindSpots: ["May feel rejected when touch is unavailable", "Can forget that touch preferences differ", "May need to clarify consent and context more directly"],
+                preferences: "Consensual affection, closeness, comforting touch, and relaxed physical presence may help care feel real.",
+                tips: "Talk openly about what kinds of touch feel welcome, when, and in what contexts. Consent and comfort matter every time.",
+                growth: "Build more than one channel for reassurance so connection is not limited to physical closeness alone."
+            },
+            gifts: {
+                name: "Receiving Gifts",
+                overview: "You may feel cared for when someone chooses a thoughtful object, note, or gesture that says they remembered you.",
+                strengths: ["Notices symbolic meaning", "Often remembers details about others", "Can make care feel tangible and personal"],
+                blindSpots: ["May feel forgotten when milestones pass unmarked", "Can be misunderstood as materialistic", "May hesitate to explain the meaning behind gifts"],
+                preferences: "Small thoughtful objects, handwritten notes, meaningful souvenirs, and remembered favorites can feel deeply personal.",
+                tips: "Explain that thoughtfulness matters more than price. Share the kinds of gestures that feel meaningful.",
+                growth: "Let care be visible in everyday attention too. The object matters because of the remembering behind it."
+            }
+        };
+
+        function escapeHtml(value) {
+            return String(value).replace(/[&<>"']/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;" }[ch]));
+        }
+
+        function scoreRows(params) {
+            const rows = [
+                ["Words", params.get("w")],
+                ["Time", params.get("t")],
+                ["Service", params.get("s")],
+                ["Touch", params.get("p")],
+                ["Gifts", params.get("g")]
+            ].map(([label, raw]) => ({ label, value: Number(raw || 0) }));
+            const min = Math.min(...rows.map(row => row.value), 0);
+            const max = Math.max(...rows.map(row => row.value), 1);
+            return rows.map(row => {
+                const pct = Math.round(((row.value - min) / Math.max(1, max - min)) * 100);
+                return `
+                    <div class="attachment-score-row">
+                        <span>${escapeHtml(row.label)}</span>
+                        <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:${pct}%"></div></div>
+                        <strong>${escapeHtml(row.value)}</strong>
+                    </div>
+                `;
+            }).join("");
+        }
+
+        const params = new URLSearchParams(window.location.search);
+        const result = TYPES[params.get("type")];
+        const host = document.getElementById("love-result-content");
+
+        if (!host || !result) {
+            if (host) {
+                host.innerHTML = `
+                    <div class="attachment-result-card">
+                        <h1>Result not found</h1>
+                        <p>This result link is missing a valid love language. You can retake the Love Languages Test anytime.</p>
+                        <a class="big-btn accent" href="test.html" data-i18n-href>Retake the test</a>
+                    </div>
+                `;
+            }
+            return;
+        }
+
+        window.MeowTrack && window.MeowTrack("result_view", {
+            framework: "love_languages",
+            result_type: params.get("type")
+        });
+
+        host.innerHTML = `
+            <article class="attachment-result-card">
+                <a class="mbti-breadcrumb" href="./" data-i18n-href>Love Languages Guide</a>
+                <span class="mbti-content-kicker">Self-reflection result</span>
+                <h1>${escapeHtml(result.name)}</h1>
+                <p class="attachment-result-overview">${escapeHtml(result.overview)}</p>
+                <p class="attachment-disclaimer">This is a self-reflection tool, not a diagnosis, therapy, medical advice, or a rule for how relationships must work.</p>
+
+                <section>
+                    <h2>Your score pattern</h2>
+                    <div class="attachment-score-list">${scoreRows(params)}</div>
+                </section>
+                <section>
+                    <h2>Strengths</h2>
+                    <ul>${result.strengths.map(item => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+                </section>
+                <section>
+                    <h2>Blind spots</h2>
+                    <ul>${result.blindSpots.map(item => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+                </section>
+                <section>
+                    <h2>Relationship preferences</h2>
+                    <p>${escapeHtml(result.preferences)}</p>
+                </section>
+                <section>
+                    <h2>Communication tips</h2>
+                    <p>${escapeHtml(result.tips)}</p>
+                </section>
+                <section>
+                    <h2>Growth reflection</h2>
+                    <p>${escapeHtml(result.growth)}</p>
+                </section>
+                <div class="attachment-result-actions">
+                    <a class="big-btn accent" href="./" data-i18n-href>Read the guide</a>
+                    <a class="big-btn ghost" href="../psychology/" data-i18n-href>Psychology Hub</a>
+                    <a class="big-btn ghost" href="test.html" data-i18n-href>Retake the test</a>
+                </div>
+            </article>
+        `;
+    });
+    </script>
+</body>
+</html>

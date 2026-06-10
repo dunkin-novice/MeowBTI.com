@@ -815,6 +815,19 @@
             <div class="museum-header">
                 <h2 class="museum-h2">${t('museumTitle')}</h2>
                 <p class="wm-intro">${t('museumIntro')}</p>
+                <div class="world-archive-orientation">
+                    <strong>World / Archive</strong>
+                    <span>Museum stores your household history. Profiles and Daily Loop check-ins become memories, dynasty records, heirlooms, shared connections, and Ghost OS archive files.</span>
+                    <div class="world-archive-flow">
+                        <span>Profiles</span>
+                        <span>Daily Loop</span>
+                        <span>Museum</span>
+                        <span>Dynasty</span>
+                        <span>Heirlooms</span>
+                        <span>Federation</span>
+                        <span>Ghost OS</span>
+                    </div>
+                </div>
             </div>
 
             <!-- BUCKET: MEMORIES -->

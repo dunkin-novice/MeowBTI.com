@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Human Quiz — What Cat Energy Are You? | MeowBTI</title>
-    <meta name="description" content="What cat energy are you? Discover your human MeowBTI archetype. Quick or Deep analysis.">
+    <title>Human Archetype Quiz: What Cat Energy Are You? | MeowBTI</title>
+    <meta name="description" content="Take the free Human Archetype Quiz to map everyday personality patterns into playful MeowBTI cat energy. No login required.">
     <meta name="theme-color" content="#FFF4EC">
     <link rel="canonical" href="https://meowbti.com/human-quiz.html">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 
-    <meta property="og:title" content="The Human Quiz — What Cat Energy Are You? | MeowBTI">
-    <meta property="og:description" content="Discover your human MeowBTI archetype: playful, introspective, and suspiciously accurate.">
+    <meta property="og:title" content="Human Archetype Quiz | MeowBTI">
+    <meta property="og:description" content="A free playful self-reflection quiz for mapping everyday human patterns into MeowBTI cat energy.">
     <meta property="og:image" content="https://meowbti.com/assets/personalities/chnc-the-party-starter.webp">
     <meta property="og:image:width" content="1024">
     <meta property="og:image:height" content="1024">
@@ -18,8 +18,8 @@
     <meta property="og:url" content="https://meowbti.com/human-quiz.html">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="The Human Quiz — What Cat Energy Are You?">
-    <meta name="twitter:description" content="Discover your human MeowBTI archetype: playful, introspective, and suspiciously accurate.">
+    <meta name="twitter:title" content="Human Archetype Quiz | MeowBTI">
+    <meta name="twitter:description" content="Map everyday personality patterns into playful cat energy.">
     <meta name="twitter:image" content="https://meowbti.com/assets/personalities/chnc-the-party-starter.webp">
 
     <link rel="stylesheet" href="style.css">
@@ -55,29 +55,19 @@
                     <div class="quiz-progress" id="quiz-progress" role="progressbar" aria-valuemin="1" aria-valuemax="60" aria-valuenow="1"></div>
                     <span class="quiz-count" id="quiz-count">1/12</span>
                 </div>
+                <div class="test-trust-strip">
+                    <span>Free</span>
+                    <span>No login</span>
+                    <span>Playful self-reflection</span>
+                </div>
 
                 <!-- Mode Selection -->
                 <div id="quiz-mode-select" class="quiz-mode-select">
-                    <h2 data-i18n="quizModeTitle">choose your path</h2>
-                    
-                    <div class="quiz-mode-group">
-                        <h3 class="group-label" data-i18n="quizModeCat">The Cat Quiz</h3>
-                        <div class="mode-options">
-                            <button class="mode-card" onclick="startQuiz('short')">
-                                <div class="mode-icon">⚡</div>
-                                <h4 data-i18n="quizModeShort">Quick Quiz</h4>
-                                <p data-i18n="quizModeShortSub">12 questions · 90s · Viral</p>
-                            </button>
-                            <button class="mode-card" onclick="startQuiz('deep')">
-                                <div class="mode-icon">🧬</div>
-                                <h4 data-i18n="quizModeDeep">Deep Analysis</h4>
-                                <p data-i18n="quizModeDeepSub">60 questions · 5m · Precise</p>
-                            </button>
-                        </div>
-                    </div>
+                    <h2>Human Archetype Quiz</h2>
+                    <p class="quiz-mode-note">A playful personality archetype quiz for people. It maps everyday human patterns into MeowBTI cat energy.</p>
 
                     <div class="quiz-mode-group">
-                        <h3 class="group-label" data-i18n="quizModeOwner">The Human Quiz</h3>
+                        <h3 class="group-label">Personality archetype</h3>
                         <div class="mode-options">
                             <button class="mode-card highlight" onclick="startQuiz('humanShort')">
                                 <div class="mode-icon">🧠</div>
@@ -91,6 +81,7 @@
                             </button>
                         </div>
                     </div>
+                    <p class="quiz-route-note">Looking for your cat’s profile? <a href="quiz.html" data-i18n-href>Take the Cat Test.</a></p>
                 </div>
 
                 <div class="card-stack" id="card-stack" style="display: none;">

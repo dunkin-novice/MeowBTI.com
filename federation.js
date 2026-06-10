@@ -347,6 +347,10 @@
             <div class="chronicle-header">
                 <h2 class="chronicle-h2">${t('fedTitle')}</h2>
                 <p class="wm-intro">${t('fedIntro')}</p>
+                <div class="world-archive-orientation federation-orientation">
+                    <strong>World / Archive connection</strong>
+                    <span>Federation represents connections formed through your household journey. As profiles, Daily Loop history, and archive signals build up, connected households can become part of the same world layer.</span>
+                </div>
             </div>
 
             <div class="fed-action-grid">

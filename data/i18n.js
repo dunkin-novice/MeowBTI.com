@@ -40,8 +40,8 @@
                               th: "เข้าใจระบบความคิดลึกๆ และวิธีที่คุณประมวลผลความจริงรอบตัว" },
         ecoDescEnnea:      { en: "Discover the emotional pressure and deep motivation that actually drives you.", 
                               th: "ค้นพบแรงขับเคลื่อนทางอารมณ์และความกลัวลึกๆ ที่ซ่อนอยู่ใต้ผิวหนังคุณ" },
-        ecoDescWeather:    { en: "A tiny ritual to see which cat energy is running your day.", 
-                              th: "พิธีกรรมเล็กๆ เพื่อเช็กว่าวันนี้พลังงานแมวตัวไหนกำลังคุมมู้ดคุณอยู่" },
+        ecoDescWeather:    { en: "Check in, notice patterns, and build consistency.",
+                              th: "เช็กอิน เห็นแพตเทิร์น และสร้างความต่อเนื่อง" },
 
         // ─── psychology hub (psychology/) ─────────────────────
         psychHubKicker:    { en: "Free self-awareness hub",   th: "ศูนย์รวมการรู้จักตัวเองฟรี" },
@@ -51,14 +51,14 @@
         psychComingSoon:   { en: "Coming soon",               th: "เร็วๆ นี้" },
         psychStatusAvailable:{ en: "Available",               th: "พร้อมใช้งาน" },
         psychStatusSoon:   { en: "Coming soon",               th: "เร็วๆ นี้" },
-        psychHumanTitle:   { en: "Human MBTI Test",           th: "Human MBTI Test" },
-        psychHumanDesc:    { en: "Find the cat-energy archetype behind your everyday human patterns.", th: "ค้นหาพลังงานแมวที่ซ่อนอยู่ในแพตเทิร์นชีวิตประจำวันของคุณ" },
-        psychCatTitle:     { en: "Cat MBTI Test",             th: "Cat MBTI Test" },
+        psychHumanTitle:   { en: "Human Archetype Quiz",      th: "Human Archetype Quiz" },
+        psychHumanDesc:    { en: "Find the playful personality archetype behind your everyday human patterns.", th: "ค้นหาอาร์คีไทป์บุคลิกภาพแบบ playful ในตัวคุณ" },
+        psychCatTitle:     { en: "Cat Test",                  th: "Cat Test" },
         psychCatDesc:      { en: "Map your cat's personality into one of 16 playful MeowBTI types.", th: "จับคู่บุคลิกแมวของคุณกับ 1 ใน 16 ประเภท MeowBTI แบบสนุกๆ" },
-        psychMbtiTitle:    { en: "MBTI Cognitive Type",       th: "MBTI Cognitive Type" },
-        psychMbtiDesc:     { en: "Explore your 4-letter mind style and its MeowBTI cousin.", th: "สำรวจสไตล์ความคิด 4 ตัวอักษร และญาติในโลก MeowBTI ของคุณ" },
+        psychMbtiTitle:    { en: "Classic MBTI Test",         th: "Classic MBTI Test" },
+        psychMbtiDesc:     { en: "Use the familiar 4-letter framework to reflect on how you process information and make decisions.", th: "ใช้กรอบ 4 ตัวอักษรที่คุ้นเคย เพื่อสะท้อนวิธีรับข้อมูลและตัดสินใจของคุณ" },
         psychEnneaTitle:   { en: "Enneagram",                 th: "Enneagram" },
-        psychEnneaDesc:    { en: "A future reflection tool for core motivations and recurring patterns.", th: "เครื่องมือสะท้อนแรงขับและแพตเทิร์นที่วนกลับมาในอนาคต" },
+        psychEnneaDesc:    { en: "Not live yet. Planned as a later reflection tool for motivations and recurring patterns.", th: "ยังไม่เปิดใช้งาน วางไว้เป็นเครื่องมือสะท้อนแรงขับและแพตเทิร์นในภายหลัง" },
         psychAttachmentTitle:{ en: "Attachment Style",        th: "Attachment Style" },
         psychAttachmentDesc:{ en: "A gentle look at how closeness, distance, and trust can feel.", th: "มองอย่างอ่อนโยนว่าความใกล้ชิด ระยะห่าง และความไว้ใจรู้สึกอย่างไร" },
         psychLoveTitle:    { en: "Love Languages",            th: "Love Languages" },
@@ -66,7 +66,7 @@
         psychBurnoutTitle: { en: "Burnout Check",             th: "Burnout Check" },
         psychBurnoutDesc:  { en: "A non-clinical pause for noticing energy, pressure, and rest.", th: "พื้นที่พักแบบไม่ใช่การวินิจฉัย เพื่อสังเกตพลังงาน แรงกดดัน และการพัก" },
         psychEmotionalTitle:{ en: "Emotional Awareness Check-In", th: "Emotional Awareness Check-In" },
-        psychEmotionalDesc:{ en: "A future daily reflection space for naming the mood of the moment.", th: "พื้นที่สะท้อนประจำวันในอนาคต สำหรับเรียกชื่ออารมณ์ของช่วงเวลานั้น" },
+        psychEmotionalDesc:{ en: "Not live yet. Planned as a later reflection space for naming the mood of the moment.", th: "ยังไม่เปิดใช้งาน วางไว้เป็นพื้นที่สะท้อนสำหรับเรียกชื่ออารมณ์ของช่วงเวลานั้นในภายหลัง" },
         psychDisclaimer:   { en: "For reflection and entertainment only. Not medical or mental health advice.", th: "เพื่อการสะท้อนตัวเองและความบันเทิงเท่านั้น ไม่ใช่คำแนะนำทางการแพทย์หรือสุขภาพจิต" },
 
         navTakeTest:       { en: "Take the test",             th: "เริ่มทำแบบทดสอบ" },
@@ -433,7 +433,7 @@
 
         // ─── Household Museum & Relics ────────────────────
         museumTitle:       { en: "The Household Museum",      th: "พิพิธภัณฑ์ประจำบ้าน" },
-        museumIntro:       { en: "A collection of symbolic artifacts from your shared emotional history.", th: "คลังสะสมวัตถุเชิงสัญลักษณ์จากประวัติศาสตร์ทางอารมณ์ร่วมกันของคุณ" },
+        museumIntro:       { en: "The Museum stores the history of your household: profiles, Daily Loop patterns, saved memories, and restored artifacts.", th: "พิพิธภัณฑ์เก็บประวัติของบ้านคุณ ทั้งโปรไฟล์ แพตเทิร์นจาก Daily Loop ความทรงจำที่บันทึกไว้ และวัตถุที่ได้รับการฟื้นคืน" },
         relicShelf:        { en: "Artifact Shelf",            th: "หิ้งวัตถุโบราณ" },
         trophyRoom:        { en: "Trophy Room",               th: "ห้องเก็บถ้วยรางวัล" },
         
@@ -682,7 +682,7 @@
 
         // ─── Household Federation ───────────────────────
         fedTitle:          { en: "Household Federation",      th: "สหพันธรัฐประจำบ้าน" },
-        fedIntro:          { en: "Form alliances and establish emotional diplomacy with neighboring civilizations.", th: "สร้างพันธมิตรและสถาปนาการทูตทางอารมณ์กับอารยธรรมข้างเคียง" },
+        fedIntro:          { en: "Federation represents connections formed through your household journey and shared archive signals.", th: "สหพันธรัฐแทนความเชื่อมโยงที่เกิดขึ้นจากการเดินทางของบ้านคุณและสัญญาณจากคลังประวัติร่วมกัน" },
         fedEmbassy:        { en: "Emotional Embassy",         th: "สถานเอกอัครราชทูตทางอารมณ์" },
         fedExportCode:     { en: "Share Civilization Code",   th: "แชร์รหัสอารยธรรม" },
         fedImportCode:     { en: "Establish Diplomacy",       th: "สถาปนาการทูต" },
@@ -1384,11 +1384,11 @@
         mbtiTakeHumanCta:  { en: "Map your human archetype", th: "ถอดรหัสตัวตนร่างมนุษย์" },
         mbtiBrowseArchetypes: { en: "Browse all 16 cat energies", th: "ดูพลังงานแมวทั้ง 16 แบบ" },
 
-        // ─── Emotional OS daily check-in (daily.html + daily.js) ──
-        dailyKicker:       { en: "Daily ritual",               th: "พิธีเช็กอินประจำวัน" },
-        dailyH1:           { en: "Daily Emotional Weather",    th: "สภาพอากาศในใจประจำวัน" },
-        dailyIntro:        { en: "A tiny check-in for your current cat-energy mood. Saved only on this device.",
-                              th: "เช็กอินสั้นๆ กับพลังงานแมวในใจตอนนี้ บันทึกไว้เฉพาะในอุปกรณ์นี้" },
+        // ─── Daily Loop (daily.html + daily.js) ──
+        dailyKicker:       { en: "Daily Loop",                 th: "วงจรประจำวัน" },
+        dailyH1:           { en: "Daily Loop",                 th: "วงจรประจำวัน" },
+        dailyIntro:        { en: "Check in today, return tomorrow, and let small observations become patterns, consistency, and archive history. Saved only on this device.",
+                              th: "เช็กอินวันนี้ กลับมาพรุ่งนี้ แล้วให้การสังเกตเล็กๆ กลายเป็นแพตเทิร์น ความต่อเนื่อง และประวัติในคลังของคุณ บันทึกไว้เฉพาะในอุปกรณ์นี้" },
         dailyDisclaimer:   { en: "For reflection and entertainment only. Not medical or mental health advice.",
                               th: "ใช้เพื่อการสะท้อนตัวเองและความบันเทิงเท่านั้น ไม่ใช่คำแนะนำทางการแพทย์หรือสุขภาพจิต" },
         dailyStartCta:     { en: "Start today’s check-in",     th: "เริ่มเช็กอินวันนี้" },

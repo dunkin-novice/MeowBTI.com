@@ -409,6 +409,9 @@
                             <p class="boot-line">> DECOMPRESSING STRATA...</p>
                             <p class="boot-line">> ACCESS GRANTED.</p>
                             <p class="boot-line">--------------------------</p>
+                            <p class="boot-line">Ghost OS is the World / Archive command center.</p>
+                            <p class="boot-line">Use it to inspect history created by profiles, Daily Loop, Museum, Dynasty, Heirlooms, and Federation.</p>
+                            <p class="boot-line">--------------------------</p>
                             <p class="boot-line">Welcome, authorized observer.</p>
                             <p class="boot-line">Select a fragment to visualize.</p>
                         </div>

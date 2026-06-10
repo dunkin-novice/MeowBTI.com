@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MeowBTI Quiz — what kind of menace is your cat?</title>
-    <meta name="description" content="Quick or Deep analysis. Find out which of 16 chaotic personalities your cat truly is.">
+    <title>Cat Personality Test: Find Your Cat’s MeowBTI Type</title>
+    <meta name="description" content="Take the free Cat Test to map your cat’s personality into one of 16 playful MeowBTI types. No login required.">
     <meta name="theme-color" content="#FFF4EC">
     <link rel="canonical" href="https://meowbti.com/quiz.html">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 
-    <meta property="og:title" content="Take the MeowBTI quiz — what kind of menace is your cat?">
-    <meta property="og:description" content="Quick or Deep analysis. One of 16 verdicts.">
+    <meta property="og:title" content="Cat Personality Test | MeowBTI">
+    <meta property="og:description" content="A free playful cat personality test with quick and deep modes. No login required.">
     <meta property="og:image" content="https://meowbti.com/assets/personalities/chnc-the-party-starter.webp">
     <meta property="og:image:width" content="1024">
     <meta property="og:image:height" content="1024">
@@ -18,8 +18,8 @@
     <meta property="og:url" content="https://meowbti.com/quiz.html">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Take the MeowBTI quiz">
-    <meta name="twitter:description" content="Quick or Deep analysis. One of 16 verdicts.">
+    <meta name="twitter:title" content="Cat Personality Test | MeowBTI">
+    <meta name="twitter:description" content="Find your cat’s playful MeowBTI type.">
     <meta name="twitter:image" content="https://meowbti.com/assets/personalities/chnc-the-party-starter.webp">
 
     <link rel="stylesheet" href="style.css">
@@ -55,13 +55,19 @@
                     <div class="quiz-progress" id="quiz-progress" role="progressbar" aria-valuemin="1" aria-valuemax="60" aria-valuenow="1"></div>
                     <span class="quiz-count" id="quiz-count">1/12</span>
                 </div>
+                <div class="test-trust-strip">
+                    <span>Free</span>
+                    <span>No login</span>
+                    <span>Playful self-reflection</span>
+                </div>
 
                 <!-- Mode Selection -->
                 <div id="quiz-mode-select" class="quiz-mode-select">
-                    <h2 data-i18n="quizModeTitle">choose your path</h2>
+                    <h2>Cat Test</h2>
+                    <p class="quiz-mode-note">A playful personality test for your cat. Choose a quick read or a deeper profile.</p>
                     
                     <div class="quiz-mode-group">
-                        <h3 class="group-label" data-i18n="quizModeCat">The Cat Quiz</h3>
+                        <h3 class="group-label">Playful cat personality</h3>
                         <div class="mode-options">
                             <button class="mode-card" onclick="startQuiz('short')">
                                 <div class="mode-icon">⚡</div>
@@ -75,22 +81,7 @@
                             </button>
                         </div>
                     </div>
-
-                    <div class="quiz-mode-group">
-                        <h3 class="group-label" data-i18n="quizModeOwner">The Human Quiz</h3>
-                        <div class="mode-options">
-                            <button class="mode-card highlight" onclick="startQuiz('humanShort')">
-                                <div class="mode-icon">🧠</div>
-                                <h4 data-i18n="quizModeShort">Quick Quiz</h4>
-                                <p data-i18n="quizModeShortSub">12 questions · 90s · Viral</p>
-                            </button>
-                            <button class="mode-card highlight" onclick="startQuiz('humanDeep')">
-                                <div class="mode-icon">🔮</div>
-                                <h4 data-i18n="quizModeDeep">Deep Analysis</h4>
-                                <p data-i18n="quizModeDeepSub">60 questions · 5m · Precise</p>
-                            </button>
-                        </div>
-                    </div>
+                    <p class="quiz-route-note">Looking for your own archetype? <a href="human-quiz.html" data-i18n-href>Take the Human Archetype quiz.</a></p>
                 </div>
 
                 <div class="card-stack" id="card-stack" style="display: none;">
