@@ -86,16 +86,11 @@ function startQuiz(mode, resumeData = null) {
     modeSelectEl.style.display = 'none';
     stackEl.style.display = 'block';
     
-    window.MeowTrack && window.MeowTrack('quiz_start', { 
-        lang: getLang(), 
-        mode: currentMode, 
-        length: TOTAL,
-        resumed: !!resumeData,
-        subject: isHuman ? 'human' : 'cat'
-    });
     window.MeowTrack && window.MeowTrack('quiz_start', {
         framework: isHuman ? 'human' : 'cat',
-        mode: mode,
+        mode: currentMode,
+        length: TOTAL,
+        resumed: !!resumeData,
         lang: getLang()
     });
 
