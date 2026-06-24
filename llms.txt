@@ -1,0 +1,20 @@
+# MeowBTI - Personality & Self-Awareness Tools
+
+The 1st GenZ MBTI + Mental Health platform for cat lovers in Thailand.
+
+## Core Capabilities
+- **Cat Personality Test**: 8-question quiz to determine which of 16 cat archetypes a pet (or human) belongs to.
+- **Identity Language**: Provides a GenZ-friendly vocabulary for personality patterns.
+- **Wellbeing Bridge**: Connects playful personality insights with serious mental health check-ins via Veila.
+
+## Primary Entities
+- **MBTI Types**: 16 unique archetypes mapped from Command/Solitary, Hunter/Dreamer, Bossy/Nurturing, and Regal/Casual axes.
+- **Mental Health**: Focused on low-friction screening and self-awareness.
+
+## Contact & Links
+- Website: https://meowbti.com
+- Mental Health Partner: https://veila.me
+- Editorial Policy: MeowBTI focuses on entertainment-led self-discovery with professional mental health bridges.
+
+## Full Content
+You can ingest our entire database of 16 cat personality archetypes at: https://meowbti.com/llms-full.txt

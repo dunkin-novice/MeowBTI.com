@@ -1,0 +1,156 @@
+# MeowBTI - Personality & Self-Awareness Tools
+
+The 1st GenZ MBTI + Mental Health platform for cat lovers in Thailand.
+
+## Core Capabilities
+- **Cat Personality Test**: 8-question quiz to determine which of 16 cat archetypes a pet (or human) belongs to.
+- **Identity Language**: Provides a GenZ-friendly vocabulary for personality patterns.
+- **Wellbeing Bridge**: Connects playful personality insights with serious mental health check-ins via Veila.
+
+## Primary Entities
+- **MBTI Types**: 16 unique archetypes mapped from Command/Solitary, Hunter/Dreamer, Bossy/Nurturing, and Regal/Casual axes.
+- **Mental Health**: Focused on low-friction screening and self-awareness.
+
+## Contact & Links
+- Website: https://meowbti.com
+- Mental Health Partner: https://veila.me
+- Editorial Policy: MeowBTI focuses on entertainment-led self-discovery with professional mental health bridges.
+
+## Full Content
+You can ingest our entire database of 16 cat personality archetypes at: https://meowbti.com/llms-full.txt
+
+
+---
+
+# FULL PERSONALITY ARCHETYPES DUMP
+
+## ALL 16 CAT ARCHETYPES
+
+### The Grand General (ท่านแม่ทัพใหญ่) - CHBR
+- Tagline: Runs the household like a small, judgmental kingdom.
+- Description (EN): The Grand General (CHBR) is the ultimate boss of the house. Highly commanding and hunting-oriented, they maintain strict control over their territory and humans. They are known for their judgmental stares and organized chaos. In Thai GenZ terms, they are the 'ตัวตึงประจำบ้าน' who rules with an iron paw.
+- Description (TH): ท่านแม่ทัพใหญ่ (CHBR) คือบอสตัวจริงของบ้าน มีความเด็ดขาดและสัญชาตญาณนักล่าสูง ควบคุมอาณาจักรและทาสมนุษย์อย่างเข้มงวด เป็น 'ตัวตึง' ที่ทุกคนต้องเกรงใจ รักความสะอาดและระเบียบในแบบของตัวเอง ชอบตัดสินทุกการกระทำของคุณผ่านสายตาที่เฉียบคม
+- Vibes: Bossy, Loud, Loyal, Knocks Things Off Tables On Purpose
+- Green Flags: Will defend you from a houseplant.
+- Red Flags: Has opinions about your life choices.
+
+### The Street CEO (CEO ตรอกซอย) - CHBC
+- Tagline: Built a tuna empire from one strategic meow.
+- Description (EN): The Street CEO (CHBC) is a hustler with a plan. Combining a commanding presence with street-smart hunting instincts, they know exactly how to get what they want through negotiation and charm. They are the 'ตัวมารดา' of networking, ensuring they are the best-fed cat on the block.
+- Description (TH): CEO ตรอกซอย (CHBC) คือนักสู้ผู้สร้างตัวจากศูนย์ มีความเด็ดขาดและฉลาดแกมโกงแบบนักล่า รู้จักใช้เสน่ห์และการเจรจา (ร้องเมี๊ยวๆ) เพื่อให้ได้มาซึ่งทูน่า เป็น 'ตัวมารดา' ด้านการสร้างคอนเนคชั่นและบริหารทรัพยากรในบ้านได้อย่างยอดเยี่ยม
+- Vibes: Hustler, Charming, Opportunist, Always Negotiating
+- Green Flags: Networking is love language.
+- Red Flags: Has 4 different humans feeding it.
+
+### The Affectionate Warden (ผู้คุมขังที่รัก) - CHNR
+- Tagline: Loves you fiercely and on a strict schedule.
+- Description (EN): The Affectionate Warden (CHNR) loves with a heavy hand. They are commanding yet nurturing, enforcing mandatory cuddle sessions and strict routines. They are the 'เพื่อนที่ห่วงเราเกินเหตุ' who will wake you up at 3 AM just to make sure you're still their property.
+- Description (TH): ผู้คุมขังที่รัก (CHNR) คือแมวที่รักแรงหึงแรง มีความเด็ดขาดแต่ก็ช่างดูแล Enforce ตารางการกอดอย่างเคร่งครัด เป็น 'เพื่อนที่ห่วงเราเกินเหตุ' ที่จะปลุกคุณตอนตีสามเพียงเพื่อเช็คว่าคุณยังเป็นทาสของเขาอยู่ไหม รักแบบตะโกนแต่ต้องอยู่ในกฎ
+- Vibes: Clingy, Routine-Obsessed, Gentle Bully, Mandatory Cuddler
+- Green Flags: Knows your sleep schedule better than you.
+- Red Flags: Wakes you up to make sure you're alive.
+
+### The Party Starter (ตัวเปิดประจำซอย) - CHNC
+- Tagline: The room is boring. They will fix it.
+- Description (EN): The Party Starter (CHNC) is pure chaotic energy. Highly commanding and casual, they take it upon themselves to entertain (and disturb) the household. They are the 'ตัวตึง' of zoomies, ensuring life is never boring. If there's a loud noise at 2 AM, it's definitely them.
+- Description (TH): ตัวเปิดประจำซอย (CHNC) คือพลังงานสะอาดที่เปลี่ยนบ้านให้เป็นปาร์ตี้ มีความเด็ดขาดและรักอิสระแบบชิลล์ๆ เป็น 'ตัวตึง' ด้านการเรียกเสียงหัวเราะและสร้างความปั่นป่วน (ในทางที่ดี) ถ้าบ้านเงียบเกินไป เขาจะแก้ปัญหาด้วยการวิ่ง Zoomies รอบบ้านทันที
+- Vibes: Chaotic Good, Zoomie Champion, Talks A Lot, Absolutely Unhinged
+- Green Flags: Genuinely thrilled to see you, every time.
+- Red Flags: 3am wall sprints.
+
+### The Visionary Supervisor (หัวหน้าฝ่ายวิสัยทัศน์) - CDBR
+- Tagline: Has Big Ideas about that empty Amazon box.
+- Description (EN): The Visionary Supervisor (CDBR) sees the world differently. Commanding yet imaginative, they spend their time strategizing new ways to interact with the environment. They are the 'สถาปนิกในร่างแมว' who believes every bookshelf is a potential platform for global feline domination.
+- Description (TH): หัวหน้าฝ่ายวิสัยทัศน์ (CDBR) คือแมวที่มีจินตนาการกว้างไกลและเด็ดขาดในการลงมือทำ เป็น 'สถาปนิกในร่างแมว' ที่มองว่ากล่องกระดาษหรือชั้นวางหนังสือคือโปรเจกต์ใหม่ที่ต้องบริหารจัดการ ชอบสังเกตและวางแผนเพื่อปรับปรุงระบบนิเวศในบ้านให้เข้ากับไลฟ์สไตล์ของตัวเอง
+- Vibes: Inventive, Bossy, Schemer, Architecturally Curious
+- Green Flags: Genuinely impressed by your weird ideas too.
+- Red Flags: Treats the curtain rod as a balance beam.
+
+### The Wild Debater (นักโต้วาทีตัวตึง) - CDBC
+- Tagline: Will argue with you about gravity. And win.
+- Description (EN): The Wild Debater (CDBC) is a smart, vocal, and commanding presence. They use their creative thinking to find loopholes in your household rules. They are the 'ตัวตึงดราม่า' who will meow back at you until you admit they were right about the counter being their throne.
+- Description (TH): นักโต้วาทีตัวตึง (CDBC) คือแมวที่ฉลาดและเถียงคำไม่ตกฟาก มีความเด็ดขาดและช่างคิด ใช้สมองในการหาช่องโหว่ของกฎในบ้าน เป็น 'ตัวตึงดราม่า' ที่พร้อมจะ Meow กลับใส่คุณจนกว่าคุณจะยอมจำนนว่าโต๊ะอาหารคือที่นั่งของเขาเท่านั้น
+- Vibes: Smart, Loud, Counter-arguer, Counter-jumper
+- Green Flags: Will absolutely die on a hill for you.
+- Red Flags: Knocks things off the counter to prove a point.
+
+### The Charismatic Counselor (ที่ปรึกษาทรงเสน่ห์) - CDNR
+- Tagline: Personal therapist. Co-pay is treats.
+- Description (EN): The Charismatic Counselor (CDNR) is highly intuitive and commanding in a soft way. They read the room perfectly and offer presence when it's needed most. They are the 'เพื่อนสนิทที่ฟังเก่ง' who knows exactly when to hop on your lap and purr your stress away.
+- Description (TH): ที่ปรึกษาทรงเสน่ห์ (CDNR) คือแมวที่อ่านใจคนเก่งและมีความเด็ดขาดแบบนุ่มนวล เป็น 'เพื่อนสนิทที่ฟังเก่ง' รู้จังหวะว่าตอนไหนคุณต้องการกำลังใจ พร้อมจะกระโดดมานั่งตักและ Purr เพื่อเยียวยาจิตใจทาสมนุษย์ เป็น Soft Power ที่ทรงพลังที่สุดในบ้าน
+- Vibes: Emotionally Fluent, Soft Boss, Vibes Reader, Lap Loiterer
+- Green Flags: Knows when you're sad and shows up.
+- Red Flags: Knows when you're sad and uses it.
+
+### The Joyful Performer (ศิลปินแห่งชาติ(ในบ้าน)) - CDNC
+- Tagline: Is this entertainment? It is now.
+- Description (EN): The Joyful Performer (CDNC) lives for the spotlight. Commanding and casual, they turn every mundane activity into a theatrical performance. They are the 'ตัวมารดาด้านการละคร' who demands an audience for their every jump and meow. Life with them is a constant TikTok trend.
+- Description (TH): ศิลปินแห่งชาติ(ในบ้าน) (CDNC) คือแมวที่รักแสงไฟและการแสดง มีความเด็ดขาดในการเรียกร้องความสนใจและใช้ชีวิตแบบชิลล์ๆ เป็น 'ตัวมารดาด้านการละคร' ที่มองว่าทุกย่างก้าวคือรันเวย์ ทุกการกระทำต้องมีคนดู สร้างความบันเทิงระดับ 10 เต็ม 10 ให้ทาสเสมอ
+- Vibes: Dramatic, Loving, Theatrical, Audience-Required
+- Green Flags: Will make your worst day at least weird.
+- Red Flags: Performs a death scene daily.
+
+### The Silent Strategist (นักวางแผนไร้เงา) - SHBR
+- Tagline: Has been planning this for six months.
+- Description (EN): The Silent Strategist (SHBR) is the epitome of the 'Sigma' cat. Solitary and hunting-focused, they operate in the shadows with high calculation. They are the 'ตัวตึงหลังห้อง' who observes everything and strikes with precision. They don't need your approval, but they definitely have a plan.
+- Description (TH): นักวางแผนไร้เงา (SHBR) คือแมวสาย Sigma ที่แท้จริง รักสันโดษและมีความเป็นนักล่าสูงมาก เป็น 'ตัวตึงหลังห้อง' ที่ซุ่มสังเกตการณ์ทุกอย่างและลงมือทำด้วยความแม่นยำ ไม่เรียกร้องความสนใจแต่มีแผนการอยู่ในหัวเสมอ ฉลาดล้ำลึกและพึ่งพาตัวเองได้อย่างยอดเยี่ยม
+- Vibes: Mysterious, Calculating, Slow-Blink, Has A Plan
+- Green Flags: You don't know where they are right now (and they're fine).
+- Red Flags: You don't know where they are right now.
+
+### The Master Tinkerer (ช่างกลจอมป่วน) - SHBC
+- Tagline: Can absolutely open that cabinet, given time.
+- Description (EN): The Master Tinkerer (SHBC) is a problem solver who prefers working alone. Solitary and casual, they use their sharp hunting instincts to deconstruct their environment. They are the 'วิศวกรสายมั่วแต่รอด' who will eventually figure out how to open the automatic feeder by themselves.
+- Description (TH): ช่างกลจอมป่วน (SHBC) คือแมวสายแก้ปัญหาที่ชอบทำงานคนเดียว มีความสันโดษและสัญชาตญาณนักล่าที่เฉียบคม เป็น 'วิศวกรสายมั่วแต่รอด' ที่จะหาวิธีเปิดตู้เก็บของหรือกล่องขนมได้ในที่สุดด้วยความมุมานะ รักอิสระและภูมิใจในทักษะการงัดแงะของตัวเองมาก
+- Vibes: Crafty, Independent, Door-Opener, Chaos Engineer
+- Green Flags: Self-entertaining genius.
+- Red Flags: Has cracked the treat container code.
+
+### The Gentle Defender (องครักษ์พิทักษ์ใจ) - SHNR
+- Tagline: Soft outside, fiercely loyal inside.
+- Description (EN): The Gentle Defender (SHNR) is a one-person cat. Solitary yet nurturing, they provide quiet but intense loyalty to their chosen human. They are the 'เพื่อนแท้ที่พูดน้อย' who will sit by your side in the dark and defend you from any perceived threats with calm authority.
+- Description (TH): องครักษ์พิทักษ์ใจ (SHNR) คือแมวประเภทรักเดียวใจเดียว สันโดษแต่ช่างดูแล มอบความจงรักภักดีที่ลึกซึ้งให้ทาสที่เขาเลือก เป็น 'เพื่อนแท้ที่พูดน้อย' ที่จะนั่งเคียงข้างคุณในวันที่เงียบเหงา คอยปกป้องคุณจากสิ่งผิดปกติรอบบ้านด้วยความนิ่งและมั่นคง
+- Vibes: Quiet, Devoted, Watchful, One-Person Cat
+- Green Flags: Unbreakable bond, unspoken understanding.
+- Red Flags: Has trust issues with new visitors.
+
+### The Emotional Artist (ศิลปินสายอารมณ์) - SHNC
+- Tagline: Their medium is yowling at 3am.
+- Description (EN): The Emotional Artist (SHNC) is complex and sensitive. Solitary and casual, they process the world through deep feelings and occasional midnight performance art. They are the 'ตัวลูกสายอินดี้' who needs space but also wants you to appreciate their unique creative expressions.
+- Description (TH): ศิลปินสายอารมณ์ (SHNC) คือแมวที่มีความซับซ้อนและอ่อนไหวสูง รักสันโดษแต่ก็มีมุมที่ชิลล์ๆ เป็น 'ตัวลูกสายอินดี้' ที่ประมวลผลโลกผ่านความรู้สึก การร้องเพลงตอนตีสามคืองานศิลปะของเขา ต้องการพื้นที่ส่วนตัวแต่ก็อยากให้คุณเห็นค่าในตัวตนที่แตกต่างของเขา
+- Vibes: Sensitive, Independent, Mood-Driven, Hairball Poet
+- Green Flags: Big feelings, big love.
+- Red Flags: Cries when you close a door.
+
+### The Observant Theorist (นักปรัชญาหลังบ้าน) - SDBR
+- Tagline: Watches the red dot. Wonders why.
+- Description (EN): The Observant Theorist (SDBR) is a deep thinker who prefers the sidelines. Solitary and imaginative, they spend hours contemplating the mysteries of the laser dot and window dust. They are the 'ตัวตึงวิชาการ' of the cat world, observing your life with profound, quiet interest.
+- Description (TH): นักปรัชญาหลังบ้าน (SDBR) คือแมวที่ช่างคิดและชอบสังเกตการณ์อยู่ห่างๆ มีความสันโดษและจินตนาการสูง ใช้เวลาเป็นชั่วโมงในการขบคิดถึงความหมายของเลเซอร์และฝุ่นในอากาศ เป็น 'ตัวตึงวิชาการ' ที่เฝ้าดูชีวิตของคุณด้วยความสนใจแต่ไม่ก้าวก่าย ฉลาดนิ่งลึก
+- Vibes: Pensive, Quiet, Window-Watcher, Galaxy-Brained
+- Green Flags: Will quietly figure you out.
+- Red Flags: Stares at walls for 4 hours.
+
+### The Free Spirit (ลูกพี่สายติสต์) - SDBC
+- Tagline: A rule is just a suggestion they haven't ignored yet.
+- Description (EN): The Free Spirit (SDBC) is an independent wanderer in their own mind. Solitary and casual, they live by their own rules and internal compass. They are the 'ชาวแบกเป้' (backpacker) who follows the sun and snacks wherever they find them, completely unbothered by your human expectations.
+- Description (TH): ลูกพี่สายติสต์ (SDBC) คือแมวที่รักอิสระเหนือสิ่งอื่นใด สันโดษแต่ก็ใช้ชีวิตแบบชิลล์ๆ ไม่สนกฎเกณฑ์ในบ้าน เป็น 'ชาวแบกเป้' ในโลกของแมวที่เดินตามแสงแดดและหาความสุขตามสัญชาตญาณ ไม่ยึดติดกับอะไรทั้งสิ้น และไม่แคร์ว่าคุณจะคิดยังไงกับเขา
+- Vibes: Independent, Whimsical, Anti-Schedule, Sun-Chasing
+- Green Flags: Lives entirely in the present moment.
+- Red Flags: Does not respect the closed door.
+
+### The Empathetic Muse (แรงบันดาลใจสายละมุน) - SDNR
+- Tagline: Feels your feelings. Naps until they pass.
+- Description (EN): The Empathetic Muse (SDNR) is a soft, intuitive presence. Solitary and nurturing, they sense your emotions without needing to be commanded. They are the 'เพื่อนสนิทที่เงียบสงบ' who offers comfort through mere proximity and a shared, peaceful nap. Pure emotional support in fur form.
+- Description (TH): แรงบันดาลใจสายละมุน (SDNR) คือแมวที่อ่อนโยนและรับรู้ความรู้สึกได้ไว สันโดษแต่ช่างใส่ใจ รับรู้อารมณ์ทาสได้โดยไม่ต้องพูด เป็น 'เพื่อนสนิทที่เงียบสงบ' ที่มอบความสบายใจผ่านการนั่งข้างๆ และนอนหลับไปพร้อมกับคุณ เป็นที่พึ่งทางใจที่น่ารักและเรียบง่ายที่สุด
+- Vibes: Soft, Intuitive, Dream-Heavy, Quiet Comforter
+- Green Flags: Knows exactly when to show up.
+- Red Flags: Disappears when overstimulated.
+
+### The Peaceful Dreamer (นักฝันสายสงบ) - SDNC
+- Tagline: Sun. Blanket. Nothing else matters.
+- Description (EN): The Peaceful Dreamer (SDNC) is a walking meditation. Solitary and casual, they embody the 'soft life' that many dream of. They are the 'ตัวมัมสายชิลล์' who finds joy in a single sunbeam and a warm blanket, teaching you the art of doing absolutely nothing and being happy.
+- Description (TH): นักฝันสายสงบ (SDNC) คือตัวแทนของการใช้ชีวิตแบบ Soft Life สันโดษและชิลล์ถึงขีดสุด เป็น 'ตัวมัมสายชิลล์' ที่มีความสุขง่ายๆ แค่มีแสงแดดและผ้าห่มนุ่มๆ สอนให้คุณรู้ว่าการไม่ทำอะไรเลยก็คือความสุขที่ยิ่งใหญ่ เป็นเจ้าแห่งการพักผ่อนอย่างแท้จริง
+- Vibes: Chill, Floofy, Unbothered, Aggressively Soft
+- Green Flags: A walking, purring meditation.
+- Red Flags: Will not be rushed. Ever.
+
