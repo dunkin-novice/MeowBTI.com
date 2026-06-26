@@ -3,103 +3,25 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://meowbti.com/</loc>
-    <lastmod>2026-05-12</lastmod>
+    <lastmod>2026-06-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://meowbti.com/quiz.html</loc>
-    <lastmod>2026-05-12</lastmod>
+    <lastmod>2026-06-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://meowbti.com/personality-types.html</loc>
-    <lastmod>2026-05-12</lastmod>
+    <lastmod>2026-06-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/psychology/</loc>
-    <lastmod>2026-06-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/th/psychology/</loc>
-    <lastmod>2026-06-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/attachment-style/</loc>
-    <lastmod>2026-06-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/attachment-style/test.html</loc>
-    <lastmod>2026-06-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/attachment-style/secure/</loc>
-    <lastmod>2026-06-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/attachment-style/anxious/</loc>
-    <lastmod>2026-06-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/attachment-style/avoidant/</loc>
-    <lastmod>2026-06-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/attachment-style/fearful-avoidant/</loc>
-    <lastmod>2026-06-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/love-languages/</loc>
-    <lastmod>2026-06-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/love-languages/test.html</loc>
-    <lastmod>2026-06-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/burnout/</loc>
-    <lastmod>2026-06-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/burnout/test.html</loc>
-    <lastmod>2026-06-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/compare.html</loc>
-    <lastmod>2026-05-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://meowbti.com/personality-types/CHBR.html</loc>
-    <lastmod>2026-05-12</lastmod>
+    <lastmod>2026-06-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -109,7 +31,7 @@
   </url>
   <url>
     <loc>https://meowbti.com/personality-types/CHBC.html</loc>
-    <lastmod>2026-05-12</lastmod>
+    <lastmod>2026-06-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -119,7 +41,7 @@
   </url>
   <url>
     <loc>https://meowbti.com/personality-types/CHNR.html</loc>
-    <lastmod>2026-05-12</lastmod>
+    <lastmod>2026-06-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -129,7 +51,7 @@
   </url>
   <url>
     <loc>https://meowbti.com/personality-types/CHNC.html</loc>
-    <lastmod>2026-05-12</lastmod>
+    <lastmod>2026-06-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -139,7 +61,7 @@
   </url>
   <url>
     <loc>https://meowbti.com/personality-types/CDBR.html</loc>
-    <lastmod>2026-05-12</lastmod>
+    <lastmod>2026-06-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -149,7 +71,7 @@
   </url>
   <url>
     <loc>https://meowbti.com/personality-types/CDBC.html</loc>
-    <lastmod>2026-05-12</lastmod>
+    <lastmod>2026-06-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -159,7 +81,7 @@
   </url>
   <url>
     <loc>https://meowbti.com/personality-types/CDNR.html</loc>
-    <lastmod>2026-05-12</lastmod>
+    <lastmod>2026-06-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -169,7 +91,7 @@
   </url>
   <url>
     <loc>https://meowbti.com/personality-types/CDNC.html</loc>
-    <lastmod>2026-05-12</lastmod>
+    <lastmod>2026-06-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -179,7 +101,7 @@
   </url>
   <url>
     <loc>https://meowbti.com/personality-types/SHBR.html</loc>
-    <lastmod>2026-05-12</lastmod>
+    <lastmod>2026-06-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -189,7 +111,7 @@
   </url>
   <url>
     <loc>https://meowbti.com/personality-types/SHBC.html</loc>
-    <lastmod>2026-05-12</lastmod>
+    <lastmod>2026-06-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -199,7 +121,7 @@
   </url>
   <url>
     <loc>https://meowbti.com/personality-types/SHNR.html</loc>
-    <lastmod>2026-05-12</lastmod>
+    <lastmod>2026-06-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -209,7 +131,7 @@
   </url>
   <url>
     <loc>https://meowbti.com/personality-types/SHNC.html</loc>
-    <lastmod>2026-05-12</lastmod>
+    <lastmod>2026-06-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -219,7 +141,7 @@
   </url>
   <url>
     <loc>https://meowbti.com/personality-types/SDBR.html</loc>
-    <lastmod>2026-05-12</lastmod>
+    <lastmod>2026-06-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -229,7 +151,7 @@
   </url>
   <url>
     <loc>https://meowbti.com/personality-types/SDBC.html</loc>
-    <lastmod>2026-05-12</lastmod>
+    <lastmod>2026-06-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -239,7 +161,7 @@
   </url>
   <url>
     <loc>https://meowbti.com/personality-types/SDNR.html</loc>
-    <lastmod>2026-05-12</lastmod>
+    <lastmod>2026-06-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -249,7 +171,7 @@
   </url>
   <url>
     <loc>https://meowbti.com/personality-types/SDNC.html</loc>
-    <lastmod>2026-05-12</lastmod>
+    <lastmod>2026-06-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -268,537 +190,5 @@
     <lastmod>2026-05-09</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/human-quiz.html</loc>
-    <lastmod>2026-05-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/daily.html</loc>
-    <lastmod>2026-05-14</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/human-types.html</loc>
-    <lastmod>2026-05-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/human-types/CHBR.html</loc>
-    <lastmod>2026-05-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://meowbti.com/assets/og/CHBR.png</image:loc>
-      <image:title>The Grand General — MeowBTI Human Identity</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://meowbti.com/human-types/CHBC.html</loc>
-    <lastmod>2026-05-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://meowbti.com/assets/og/CHBC.png</image:loc>
-      <image:title>The Street CEO — MeowBTI Human Identity</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://meowbti.com/human-types/CHNR.html</loc>
-    <lastmod>2026-05-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://meowbti.com/assets/og/CHNR.png</image:loc>
-      <image:title>The Affectionate Warden — MeowBTI Human Identity</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://meowbti.com/human-types/CHNC.html</loc>
-    <lastmod>2026-05-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://meowbti.com/assets/og/CHNC.png</image:loc>
-      <image:title>The Party Starter — MeowBTI Human Identity</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://meowbti.com/human-types/CDBR.html</loc>
-    <lastmod>2026-05-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://meowbti.com/assets/og/CDBR.png</image:loc>
-      <image:title>The Visionary Supervisor — MeowBTI Human Identity</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://meowbti.com/human-types/CDBC.html</loc>
-    <lastmod>2026-05-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://meowbti.com/assets/og/CDBC.png</image:loc>
-      <image:title>The Wild Debater — MeowBTI Human Identity</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://meowbti.com/human-types/CDNR.html</loc>
-    <lastmod>2026-05-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://meowbti.com/assets/og/CDNR.png</image:loc>
-      <image:title>The Charismatic Counselor — MeowBTI Human Identity</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://meowbti.com/human-types/CDNC.html</loc>
-    <lastmod>2026-05-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://meowbti.com/assets/og/CDNC.png</image:loc>
-      <image:title>The Joyful Performer — MeowBTI Human Identity</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://meowbti.com/human-types/SHBR.html</loc>
-    <lastmod>2026-05-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://meowbti.com/assets/og/SHBR.png</image:loc>
-      <image:title>The Silent Strategist — MeowBTI Human Identity</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://meowbti.com/human-types/SHBC.html</loc>
-    <lastmod>2026-05-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://meowbti.com/assets/og/SHBC.png</image:loc>
-      <image:title>The Master Tinkerer — MeowBTI Human Identity</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://meowbti.com/human-types/SHNR.html</loc>
-    <lastmod>2026-05-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://meowbti.com/assets/og/SHNR.png</image:loc>
-      <image:title>The Gentle Defender — MeowBTI Human Identity</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://meowbti.com/human-types/SHNC.html</loc>
-    <lastmod>2026-05-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://meowbti.com/assets/og/SHNC.png</image:loc>
-      <image:title>The Emotional Artist — MeowBTI Human Identity</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://meowbti.com/human-types/SDBR.html</loc>
-    <lastmod>2026-05-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://meowbti.com/assets/og/SDBR.png</image:loc>
-      <image:title>The Observant Theorist — MeowBTI Human Identity</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://meowbti.com/human-types/SDBC.html</loc>
-    <lastmod>2026-05-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://meowbti.com/assets/og/SDBC.png</image:loc>
-      <image:title>The Free Spirit — MeowBTI Human Identity</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://meowbti.com/human-types/SDNR.html</loc>
-    <lastmod>2026-05-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://meowbti.com/assets/og/SDNR.png</image:loc>
-      <image:title>The Empathetic Muse — MeowBTI Human Identity</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://meowbti.com/human-types/SDNC.html</loc>
-    <lastmod>2026-05-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://meowbti.com/assets/og/SDNC.png</image:loc>
-      <image:title>The Peaceful Dreamer — MeowBTI Human Identity</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://meowbti.com/mbti/</loc>
-    <lastmod>2026-05-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/mbti/enfj/</loc>
-    <lastmod>2026-06-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/mbti/enfp/</loc>
-    <lastmod>2026-06-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/mbti/entj/</loc>
-    <lastmod>2026-06-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/mbti/entp/</loc>
-    <lastmod>2026-06-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/mbti/esfj/</loc>
-    <lastmod>2026-06-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/mbti/esfp/</loc>
-    <lastmod>2026-06-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/mbti/estj/</loc>
-    <lastmod>2026-06-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/mbti/estp/</loc>
-    <lastmod>2026-06-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/mbti/infj/</loc>
-    <lastmod>2026-06-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/mbti/infp/</loc>
-    <lastmod>2026-06-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/mbti/intj/</loc>
-    <lastmod>2026-06-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/mbti/intp/</loc>
-    <lastmod>2026-06-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/mbti/isfj/</loc>
-    <lastmod>2026-06-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/mbti/isfp/</loc>
-    <lastmod>2026-06-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/mbti/istj/</loc>
-    <lastmod>2026-06-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/mbti/istp/</loc>
-    <lastmod>2026-06-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/mbti/why-infjs-disappear/</loc>
-    <lastmod>2026-06-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/mbti/why-intjs-need-space/</loc>
-    <lastmod>2026-06-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/mbti/why-enfps-lose-interest/</loc>
-    <lastmod>2026-06-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/mbti/infj-entp/</loc>
-    <lastmod>2026-06-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/mbti/intj-infp/</loc>
-    <lastmod>2026-06-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/mbti/enfp-infj/</loc>
-    <lastmod>2026-06-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/mbti/entp-intj/</loc>
-    <lastmod>2026-06-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/mbti/isfj-entp/</loc>
-    <lastmod>2026-06-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/mbti/intj-enfp/</loc>
-    <lastmod>2026-06-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/mbti/infj-careers/</loc>
-    <lastmod>2026-06-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/mbti/intj-careers/</loc>
-    <lastmod>2026-06-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/mbti/enfp-careers/</loc>
-    <lastmod>2026-06-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/mbti/istp-careers/</loc>
-    <lastmod>2026-06-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/mbti/entp-careers/</loc>
-    <lastmod>2026-06-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/mbti/test.html</loc>
-    <lastmod>2026-05-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/mbti/istj.html</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/mbti/isfj.html</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/mbti/infj.html</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/mbti/intj.html</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/mbti/istp.html</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/mbti/isfp.html</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/mbti/infp.html</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/mbti/intp.html</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/mbti/estp.html</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/mbti/esfp.html</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/mbti/enfp.html</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/mbti/entp.html</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/mbti/estj.html</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/mbti/esfj.html</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/mbti/enfj.html</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/mbti/entj.html</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/enneagram/</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/enneagram/test.html</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/enneagram/type-1.html</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/enneagram/type-2.html</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/enneagram/type-3.html</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/enneagram/type-4.html</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/enneagram/type-5.html</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/enneagram/type-6.html</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/enneagram/type-7.html</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/enneagram/type-8.html</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://meowbti.com/enneagram/type-9.html</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
   </url>
 </urlset>
